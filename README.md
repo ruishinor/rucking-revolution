@@ -20,7 +20,7 @@ To create a production build:
 npm run build
 ```
 
-The static output will be in the `dist/` directory, ready for deployment.
+Astro writes the rendered site to `dist/` for local inspection and preview. When deploying to Vercel with the Astro adapter, the build also prepares the platform-specific output in `.vercel/output/`.
 
 To preview the production build locally:
 
@@ -30,24 +30,23 @@ npm run preview
 
 ## Deployment to Vercel
 
-This project is configured for deployment on Vercel using a `vercel.json` configuration file.
+This project is configured to let Vercel build from source on every push. The repository should not commit any files from `.vercel/output/`.
 
 ### Deployment Steps
 
 1. Push the repository to GitHub.
 2. Import the project in Vercel (vercel.com) using the GitHub repository.
-3. Vercel will use the `vercel.json` configuration to build and deploy the project.
+3. Vercel will install dependencies and run `npm run build` from the repository root.
 4. Set the following environment variables in Vercel project settings (if applicable):
     - `CMS_API_KEY`: Your CMS API key
     - `PAYMENT_WEBHOOK_URL`: URL for payment webhooks
 
 ### Vercel Configuration
 
-The `vercel.json` file configures Vercel to:
-- Use `@vercel/static-build` builder
-- Run `npm install` and `npm run build` as the build process
-- Serve the `dist/` directory as the output
-- Configure routes for client-side routing (SPA fallback)
+The repository deployment path is:
+- `astro.config.mjs` uses the official `@astrojs/vercel` adapter.
+- `vercel.json` explicitly tells Vercel to use the Astro framework preset and run `npm run build`.
+- `.vercel/` is ignored so tracked prebuilt output cannot override the source build.
 
 After setting the environment variables, Vercel will automatically build and deploy the project on each push to the main branch.
 

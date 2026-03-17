@@ -5,6 +5,7 @@ yarn.lock
 
 # Build outputs
 dist/
+.vercel/
 _bmad-output/
 .p/
 .cache/
