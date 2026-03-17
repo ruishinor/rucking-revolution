@@ -1,7 +1,32 @@
 ---
 import Layout from '@/components/Layout.astro';
+import Container from '@/components/Container.astro';
 ---
-<Layout title="Train" description="Training doctrine repository: Training, Performance Kit">
-  <h1 class="text-3xl font-bold mb-6">Train</h1>
-  <p>Training doctrine repository: Training, Performance Kit</p>
+<Layout title="Train - Rucking Revolution" description="Training doctrine repository: Training, Performance Kit">
+  <Container>
+    <header class="mb-12 text-center">
+      <h1 class="text-4xl font-bold mb-4">Train</h1>
+      <p class="text-xl text-muted">
+        Training doctrine repository: Training, Performance Kit
+      </p>
+    </header>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-6">Training Resources</h2>
+      <div class="grid gap-6 md:grid-cols-2">
+        <a href="/train/workouts" class="block p-6 border rounded-lg hover:shadow-lg transition-shadow">
+          <h3 class="text-xl font-semibold mb-2">Workouts</h3>
+          <p class="text-muted">
+            Generate workouts, access sample routines, and learn programming principles.
+          </p>
+        </a>
+        <a href="/train/performance-kit" class="block p-6 border rounded-lg hover:shadow-lg transition-shadow">
+          <h3 class="text-xl font-semibold mb-2">Performance Kit</h3>
+          <p class="text-muted">
+            Exercise pages for mobility band, release ball, and ankle wrap techniques.
+          </p>
+        </a>
+      </div>
+    </section>
+  </Container>
 </Layout>

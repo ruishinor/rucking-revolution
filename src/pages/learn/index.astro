@@ -1,7 +1,50 @@
 ---
 import Layout from '@/components/Layout.astro';
+import Container from '@/components/Container.astro';
 ---
-<Layout title="Learn" description="Publishing engine: Articles, Digital Library">
-  <h1 class="text-3xl font-bold mb-6">Learn</h1>
-  <p>Publishing engine: Articles, Digital Library</p>
+<Layout title="Learn - Rucking Revolution" description="Publishing engine: Articles, Digital Library">
+  <Container>
+    <header class="mb-12 text-center">
+      <h1 class="text-4xl font-bold mb-4">Learn</h1>
+      <p class="text-xl text-muted">
+        Publishing engine: Articles, Digital Library
+      </p>
+    </header>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-6">Explore Our Knowledge Base</h2>
+      <div class="grid gap-6 md:grid-cols-2">
+        <a href="/learn/articles" class="block p-6 border rounded-lg hover:shadow-lg transition-shadow">
+          <h3 class="text-xl font-semibold mb-2">Articles</h3>
+          <p class="text-muted">
+            In-depth articles covering rucking discipline, leadership, and field activities.
+          </p>
+        </a>
+        <a href="/learn/library" class="block p-6 border rounded-lg hover:shadow-lg transition-shadow">
+          <h3 class="text-xl font-semibold mb-2">Digital Library</h3>
+          <p class="text-muted">
+            Expertly crafted guides, books, and training materials.
+          </p>
+        </a>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-6">Supporting Resources</h2>
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <a href="/why-rucking" class="block p-4 border rounded-lg hover:shadow-lg transition-shadow text-center">
+          <span class="font-semibold">Why Rucking</span>
+        </a>
+        <a href="/routes" class="block p-4 border rounded-lg hover:shadow-lg transition-shadow text-center">
+          <span class="font-semibold">Routes</span>
+        </a>
+        <a href="/events" class="block p-4 border rounded-lg hover:shadow-lg transition-shadow text-center">
+          <span class="font-semibold">Events</span>
+        </a>
+        <a href="/field-notes" class="block p-4 border rounded-lg hover:shadow-lg transition-shadow text-center">
+          <span class="font-semibold">Field Notes</span>
+        </a>
+      </div>
+    </section>
+  </Container>
 </Layout>

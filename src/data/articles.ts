@@ -46,7 +46,6 @@ Research in group psychology shows that shared adversity creates stronger bonds 
 
 In rucking, we don't just build endurance—we build the kind of teams that can withstand any mission. The miles we log together aren't just distance covered; they're investments in the human connections that make extraordinary achievements possible.
 
-*TODO: Replace placeholder image with actual hero image. Add more specific examples from community rucking teams or mutual aid groups.*
 `,
     estimatedCaloriesBurned: 450,
   },
@@ -86,7 +85,6 @@ Proper form isn't just about looking good—it's the difference between sustaina
 
 Your ruck should sit high on your back, with the weight distributed between shoulder blades and hips. The hip belt (if used) should carry approximately 20-30% of the load.
 
-*TODO: Add video demonstration links. Include specific exercises to strengthen form muscles.*
 `,
     estimatedCaloriesBurned: 320,
   },
@@ -128,7 +126,6 @@ Within 30 minutes post-ruck, prioritize:
 - Rehydration with electrolytes
 - Anti-inflammatory foods (turmeric, ginger, berries)
 
-*TODO: Consult with sports nutritionist for specific caloric calculations based on weight and distance. Add sample meal plans for different ruck durations.*
 `,
     estimatedCaloriesBurned: 500,
   },
@@ -165,7 +162,6 @@ Instead of fighting discomfort, observe it neutrally. Notice the sensation in yo
 ### Technique 4: Gratitude Practice
 Mid-ruck, mentally list three things you're grateful for in that moment. This shifts focus from suffering to appreciation.
 
-*TODO: Interview sports psychologists for ruck-specific mental training protocols. Add guided audio exercises for practitioners.*
 `,
     estimatedCaloriesBurned: 280,
   },
@@ -209,7 +205,6 @@ Effective rucking programs don't happen by accident—they require systematic pl
 - 1x/week long ruck (8-10 miles @ 35-45% body weight)
 - 1x/week skills integration ruck with navigation and team challenges
 
-*TODO: Collaborate with community rucking leaders to refine program templates. Add injury tracking metrics and adjustment guidelines.*
 `,
     estimatedCaloriesBurned: 600,
   },
@@ -251,7 +246,6 @@ Rucking provides specific adaptations that transfer directly to these scenarios:
 **Practical Scenarios**: Simulate common helping situations like carrying bags, assisting with mobility, or moving supplies
 **Endurance Building**: Develop the capacity to maintain capability over extended periods when needed
 
-*TODO: Develop community-focused rucking protocols with input from volunteer organizations and mutual aid groups. Include case studies of successful community assistance scenarios.*
 `,
     estimatedCaloriesBurned: 350,
   },
@@ -310,7 +304,6 @@ As loads increase beyond 30% of body weight, technique becomes even more critica
 - Taper volume while maintaining intensity
 - Fine-tune equipment and nutrition strategies
 
-*TODO: Work with biomechanics lab to gather force plate data on elite ruckers. Develop video analysis framework for technique assessment.*
 `,
     estimatedCaloriesBurned: 420,
   },
@@ -356,7 +349,6 @@ Periodically expand awareness to notice:
 ### Letting Go Practice
 Imagine each step releasing a worry or stressor, physically leaving it behind on the trail.
 
-*TODO: Partner with mindfulness instructors to develop rucking-specific meditation guides. Add research citations on nature exposure and rhythmic exercise benefits.*
 `,
     estimatedCaloriesBurned: 250,
   },
@@ -411,7 +403,6 @@ The side-by-side nature of walking (rather than face-to-face) often facilitates 
 - Distance: 2-4 miles
 - Incorporate navigation or challenge elements
 
-*TODO: Create printable family rucking challenge cards. Develop progression system for kids to earn patches or badges.*
 `,
     estimatedCaloriesBurned: 180,
   },
@@ -464,7 +455,6 @@ Avoid cotton at all costs. Instead, use a layered approach:
 - **Food Storage**: Secure, accessible pockets for snacks
 - **Emergency**: Always carry extra rations and water purification
 
-*TODO: Update with current year's gear models. Add specific product recommendations with affiliate disclaimers where appropriate. Include maintenance tips to extend gear lifespan.*
 `,
     estimatedCaloriesBurned: 200,
   },

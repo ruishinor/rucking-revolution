@@ -4,6 +4,8 @@ import { articles } from '@/data/articles';
 import Layout from '@/components/Layout.astro';
 import Card from '@/components/Card.astro';
 import Container from '@/components/Container.astro';
+import { marked } from 'marked';
+import { existsSync } from 'node:fs';
 
 export async function getStaticPaths() {
   return articles.map(article => ({
@@ -20,6 +22,12 @@ const article = articles.find(a => a.slug === slug);
 if (!article) {
   return Astro.redirect('/404');
 }
+
+// Parse markdown content to HTML
+const renderedContent = marked.parse(article.body);
+
+// Check if hero image exists
+const heroImageExists = existsSync(new URL(`../../public${article.heroImage.src}`, import.meta.url));
 
 // Get related articles (same tags, excluding current article)
 const relatedArticles = articles
@@ -43,6 +51,9 @@ const encodedUrl = encodeURIComponent(shareUrl);
 const twitterShareUrl = `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`;
 const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
 const linkedinShareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=${encodedTitle}`;
+
+// Author avatar - use initials as fallback since no real images exist
+const authorInitials = article.author.split(' ').map(n => n[0]).join('');
 
 ---
 <Layout>
@@ -92,28 +103,25 @@ const linkedinShareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${
   <Container>
     {/* Article Header */}
     <header class="mb-8">
-      {/* Hero Image with LQIP and srcset */}
-      <figure class="mb-6">
-        {/* Low-quality placeholder */}
-        <img 
-          src={article.heroImage.src.replace('.jpg', '-20w.jpg')} 
-          alt={article.heroImage.alt} 
-          class="w-full h-64 object-cover rounded-lg blur-up"
-          loading="lazy"
-          width="1200"
-          height="630"
-        />
-        {/* Full image with srcset */}
-        <img 
-          src={article.heroImage.src} 
-          srcset={`${article.heroImage.src} 1x, ${article.heroImage.src.replace('.jpg', '-2x.jpg')} 2x`} 
-          alt={article.heroImage.alt} 
-          class="w-full h-64 object-cover rounded-lg hidden md:block"
-          loading="lazy"
-          width="1200"
-          height="630"
-        />
-      </figure>
+      {/* Hero Image - show only if image exists, otherwise show placeholder */}
+      {heroImageExists ? (
+        <figure class="mb-6">
+          <img 
+            src={article.heroImage.src} 
+            alt={article.heroImage.alt} 
+            class="w-full h-64 object-cover rounded-lg"
+            loading="lazy"
+            width="1200"
+            height="630"
+          />
+        </figure>
+      ) : (
+        <figure class="mb-6">
+          <div class="w-full h-64 bg-muted-200 rounded-lg flex items-center justify-center">
+            <span class="text-muted-foreground text-lg">Article hero image</span>
+          </div>
+        </figure>
+      )}
       
       <h1 class="text-3xl font-bold mb-4">{article.title}</h1>
       <div class="flex flex-wrap gap-4 text-muted-foreground mb-6">
@@ -135,22 +143,16 @@ const linkedinShareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${
       </div>
     </header>
 
-    {/* Article Body */}
-    <article class="prose lg:prose-xl mx-auto mb-8">
-      {/* Convert markdown to HTML - in a real app, you'd use a markdown parser */}
-      {/* For now, we'll just output the raw markdown as a placeholder */}
-      <div class="whitespace-pre-wrap">{article.body}</div>
-    </article>
+    {/* Article Body - rendered from markdown */}
+    <article class="prose lg:prose-xl mx-auto mb-8" set:html={renderedContent} />
 
     {/* Author Module */}
     <section class="mb-8 bg-muted-50 rounded-lg p-6 flex flex-col md:flex-row items-start">
-      {/* Author Avatar - placeholder */}
+      {/* Author Avatar - use initials since no real images exist */}
       <div class="flex-shrink-0 mb-4 md:mb-0 md:mr-6">
-        <img 
-          src="/images/authors/default.jpg" 
-          alt={`${article.author} avatar`} 
-          class="w-24 h-24 rounded-full object-cover"
-        />
+        <div class="w-24 h-24 rounded-full bg-primary flex items-center justify-center text-white text-2xl font-bold">
+          {authorInitials}
+        </div>
       </div>
       
       <div class="flex-1">

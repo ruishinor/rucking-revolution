@@ -217,6 +217,105 @@
       }
     },
     {
+      "path": "/why-rucking",
+      "title": "Why Rucking",
+      "description": "The philosophy and manifesto of rucking as a discipline and community practice",
+      "meta": {
+        "title": "Why Rucking Exists - Rucking Revolution",
+        "description": "Discover the philosophy and manifesto of rucking as discipline, leadership practice, and community."
+      }
+    },
+    {
+      "path": "/routes",
+      "title": "Routes",
+      "description": "Curated rucking routes with detailed metadata",
+      "meta": {
+        "title": "Routes - Rucking Revolution",
+        "description": "Explore our curated rucking routes with distance, elevation, terrain, and difficulty information."
+      }
+    },
+    {
+      "path": "/routes/[slug]",
+      "title": "Route Detail",
+      "description": "Individual route page with map, description, and elevation profile",
+      "meta": {
+        "title": "[Route Name] - Rucking Revolution",
+        "description": "Learn about [route name] including distance, terrain, difficulty, and recommended load."
+      }
+    },
+    {
+      "path": "/events",
+      "title": "Events",
+      "description": "Upcoming rucking events and challenges",
+      "meta": {
+        "title": "Events - Rucking Revolution",
+        "description": "Discover upcoming rucking events and challenges in your area."
+      }
+    },
+    {
+      "path": "/events/[slug]",
+      "title": "Event Detail",
+      "description": "Individual event page with details, registration, and location",
+      "meta": {
+        "title": "[Event Name] - Rucking Revolution",
+        "description": "Learn about [event name] and register to participate."
+      }
+    },
+    {
+      "path": "/field-notes",
+      "title": "Field Notes",
+      "description": "Short essays and observations from real-world rucking experiences",
+      "meta": {
+        "title": "Field Notes - Rucking Revolution",
+        "description": "Read short essays and observations from real-world rucking experiences."
+      }
+    },
+    {
+      "path": "/field-notes/[slug]",
+      "title": "Field Note Detail",
+      "description": "Individual field note with observations and lessons learned",
+      "meta": {
+        "title": "[Field Note Title] - Rucking Revolution",
+        "description": "Read about [field note topic] and learn from real-world rucking experiences."
+      }
+    },
+    {
+      "path": "/library",
+      "title": "Digital Library",
+      "description": "Product listings for guides, books, card decks, and training materials",
+      "meta": {
+        "title": "Digital Library - Rucking Revolution",
+        "description": "Explore our digital product storefront for guides, books, card decks, and training materials."
+      }
+    },
+    {
+      "path": "/library/[slug]",
+      "title": "Product Detail",
+      "description": "Individual product page with preview images, description, and purchase links",
+      "meta": {
+        "title": "[Product Title] - Rucking Revolution",
+        "description": "Learn about [product] and purchase your copy."
+      }
+    },
+    {
+      "path": "/style-guide",
+      "title": "Style Guide",
+      "description": "Design system and styling reference for the Rucking Revolution website",
+      "meta": {
+        "title": "Style Guide - Rucking Revolution",
+        "description": "Reference for the design system, colors, typography, and components."
+      }
+    },
+    {
+      "path": "/faq",
+      "title": "Privacy Policy",
+      "description": "Privacy policy for the Rucking Revolution website",
+      "meta": {
+        "title": "Privacy Policy - Rucking Revolution",
+        "description": "Understand how we collect, use, and protect your personal information."
+      }
+    },
+    {
       "path": "/faq",
       "title": "FAQ",
       "description": "Frequently asked questions about rucking and the Rucking Revolution platform",
