@@ -1,7 +1,37 @@
 ---
 import Layout from '@/components/Layout.astro';
+import { articles } from '@/data/articles';
+import Card from '@/components/Card.astro';
+
+// Get featured/recent articles (limit to 6)
+const recentArticles = articles.slice(0, 6);
 ---
-<Layout title="Articles" description="Grid gallery of articles covering rucking discipline, leadership, and field activities">
-  <h1 class="text-3xl font-bold mb-6">Articles</h1>
-  <p>Grid gallery of articles covering rucking discipline, leadership, and field activities</p>
+
+<Layout title="Articles - Rucking Revolution" description="In-depth articles covering rucking discipline, leadership, and field activities">
+  <div class="max-w-7xl mx-auto px-4 py-8">
+    <header class="mb-12 text-center">
+      <h1 class="text-4xl font-bold mb-4">Articles</h1>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+        In-depth articles covering rucking discipline, leadership, and field activities
+      </p>
+    </header>
+
+    {recentArticles.length > 0 ? (
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {recentArticles.map((article) => (
+          <Card article={article} />
+        ))}
+      </div>
+    ) : (
+      <div class="text-center py-12 text-gray-500">
+        <p>No articles available at this time.</p>
+      </div>
+    )}
+
+    <div class="mt-12 text-center">
+      <a href="/articles" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+        View All Articles
+      </a>
+    </div>
+  </div>
 </Layout>

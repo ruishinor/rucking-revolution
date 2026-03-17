@@ -1,7 +1,37 @@
 ---
 import Layout from '@/components/Layout.astro';
+import ProductCard from '@/components/ProductCard.astro';
+import { products } from '@/data/products';
+
+// Get featured products (limit to 6)
+const featuredProducts = products.slice(0, 6);
 ---
-<Layout title="Digital Library" description="Product listings for guides, books, card decks, and training materials">
-  <h1 class="text-3xl font-bold mb-6">Digital Library</h1>
-  <p>Product listings for guides, books, card decks, and training materials</p>
+
+<Layout title="Digital Library - Rucking Revolution" description="Expertly crafted guides, books, and training materials">
+  <div class="max-w-7xl mx-auto px-4 py-8">
+    <header class="mb-12 text-center">
+      <h1 class="text-4xl font-bold mb-4">Digital Library</h1>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+        Expertly crafted guides, books, and training materials to elevate your rucking practice
+      </p>
+    </header>
+
+    {featuredProducts.length > 0 ? (
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {featuredProducts.map((product) => (
+          <ProductCard product={product} />
+        ))}
+      </div>
+    ) : (
+      <div class="text-center py-12 text-gray-500">
+        <p>No products available at this time.</p>
+      </div>
+    )}
+
+    <div class="mt-12 text-center">
+      <a href="/library" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+        View Full Library
+      </a>
+    </div>
+  </div>
 </Layout>
