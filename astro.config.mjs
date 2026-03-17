@@ -20,6 +20,5 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss(), crittersVitePlugin]
   },
-  integrations: [sitemap()],
-  output: 'server'
+  integrations: [sitemap()]
 });
