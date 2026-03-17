@@ -1,0 +1,59 @@
+# Dependencies
+node_modules/
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# Build outputs
+dist/
+_bmad-output/
+.p/
+.cache/
+.tmp/
+
+# BMAD development framework (not needed for production)
+_bmad/
+_bmad-output/
+
+# resource-database
+project-documents-ugc
+
+# IDE and editor directories
+.agents/
+.astro/
+.claude/
+.cursor/
+.gemini/
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lighthouse-report*.json
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Scripts and utilities used during development (optional)
+fix-*.js
+contrast.js
+scripts/
+
+# Test coverage
+coverage/
+*.lcov*
+
+# Misc
+tmp/
+temp/
