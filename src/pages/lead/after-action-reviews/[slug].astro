@@ -1,0 +1,103 @@
+---
+import Layout from '@/components/Layout.astro';
+import { aarEntries } from '@/data/aar';
+
+const { slug } = Astro.params;
+
+// Find the AAR entry by slug (id)
+const aar = aarEntries.find((entry) => entry.id === slug);
+
+// If AAR not found, redirect to archive or show 404
+if (!aar) {
+  return Astro.redirect('/lead/after-action-reviews/archive');
+}
+
+export async function getStaticPaths() {
+  return aarEntries.map(aar => ({
+    params: { slug: aar.id },
+    props: { aar }
+  }));
+}
+---
+<Layout title={`${aar.title} - After Action Review`} description={`After Action Review: ${aar.title}`}>
+  <article class="prose lg:prose-xl mx-auto">
+    <h1 class="text-3xl font-bold text-red-800 mb-6">{aar.title}</h1>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+      <div>
+        <p><strong>Date:</strong> {new Date(aar.date).toLocaleDateString()}</p>
+        <p><strong>Author:</strong> {aar.author}</p>
+        <p><strong>Location:</strong> {aar.location || 'Not specified'}</p>
+        <p><strong>Distance:</strong> {aar.distance} km</p>
+        <p><strong>Load:</strong> {aar.load} kg</p>
+        <p><strong>Participants:</strong> {aar.participants}</p>
+        <p><strong>Duration:</strong> {Math.floor(aar.duration / 60)}h {aar.duration % 60}min</p>
+        <p><strong>Conditions:</strong> {aar.conditions}</p>
+      </div>
+      
+      <div>
+        {aar.heroImage && (
+          <figure class="mb-6">
+            <img src={aar.heroImage.src} alt={aar.heroImage.alt} class="rounded-lg shadow-md w-full h-auto" />
+            <figcaption class="mt-2 text-center text-sm text-gray-500">{aar.heroImage.alt}</figcaption>
+          </figure>
+        )}
+      </div>
+    </div>
+    
+    <section class="mb-8">
+      <h2 class="text-2xl font-bold text-red-800 mb-4">What Was Planned</h2>
+      <ul class="list-disc list-inside space-y-2">
+        {aar.planned.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
+    </section>
+    
+    <section class="mb-8">
+      <h2 class="text-2xl font-bold text-red-800 mb-4">What Actually Happened</h2>
+      <ul class="list-disc list-inside space-y-2">
+        {aar.actual.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
+    </section>
+    
+    <section class="mb-8">
+      <h2 class="text-2xl font-bold text-red-800 mb-4">What Went Well</h2>
+      <ul class="list-disc list-inside space-y-2">
+        {aar.whatWentWell.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
+    </section>
+    
+    <section class="mb-8">
+      <h2 class="text-2xl font-bold text-red-800 mb-4">What Could Be Improved</h2>
+      <ul class="list-disc list-inside space-y-2">
+        {aar.improvements.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
+    </section>
+    
+    <section class="mb-8">
+      <h2 class="text-2xl font-bold text-red-800 mb-4">Lessons Learned</h2>
+      <ul class="list-disc list-inside space-y-2">
+        {aar.lessonsLearned.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
+    </section>
+    
+    {aar.approved ? (
+      <div class="bg-green-50 border-l-4 border-green-500 p-4 mt-8">
+        <p class="text-green-800"><strong>Status:</strong> Approved and published</p>
+      </div>
+    ) : (
+      <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 mt-8">
+        <p class="text-yellow-800"><strong>Status:</strong> Pending moderation</p>
+      </div>
+    )}
+  </article>
+</Layout>

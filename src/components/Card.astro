@@ -1,0 +1,13 @@
+---
+// Card Props
+// children: HTMLElement (default slot)
+// header: HTMLElement (optional)
+// footer: HTMLElement (optional)
+// class: string (optional)
+const { children, header, footer, class: className = '' } = Astro.props;
+---
+<div class="border border-gray-200 rounded-lg bg-white shadow-sm flex flex-col {className}">
+  {header && <div class="px-4 py-3 border-b border-gray-200">{header}</div>}
+  <div class="flex-1 px-4 py-4">{children}</div>
+  {footer && <div class="px-4 py-3 border-t border-gray-200">{footer}</div>}
+</div>

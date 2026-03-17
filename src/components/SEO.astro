@@ -1,0 +1,100 @@
+---
+import { site } from '@/data/site';
+
+export interface Props {
+  /**
+   * The title of the page. If not provided, defaults to site.title.
+   */
+  title?: string;
+  /**
+   * The description of the page. If not provided, defaults to site.description.
+   */
+  description?: string;
+  /**
+   * Open Graph properties.
+   * @see https://ogp.me/
+   */
+  openGraph?: {
+    type?: string; // e.g., 'website', 'article'
+    image?: string; // URL to image
+    url?: string; // Canonical URL
+    [key: string]: any; // Other OG properties
+  };
+  /**
+   * Twitter card properties.
+   * @see https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/abouts-cards
+   */
+  twitter?: {
+    card?: string; // e.g., 'summary', 'summary_large_image'
+    site?: string; // Twitter handle
+    creator?: string; // Twitter handle of creator
+    [key: string]: any; // Other Twitter properties
+  };
+  /**
+   * Structured data (JSON-LD) for the page.
+   * @see https://schema.org/
+   */
+  structuredData?: object | null;
+  /**
+   * Canonical URL for the page.
+   */
+  canonicalUrl?: string;
+  /**
+   * If true, instructs search engines not to index the page.
+   */
+  noindex?: boolean;
+  /**
+   * If true, instructs search engines not to follow links on the page.
+   */
+  nofollow?: boolean;
+}
+
+const {
+  title: defaultTitle = site.title,
+  description: defaultDescription = site.description,
+  openGraph: og = {},
+  twitter: tw = {},
+  structuredData: structuredData = null,
+  canonicalUrl: defaultCanonicalUrl = site.baseUrl,
+  noindex = false,
+  nofollow = false,
+} = Astro.props;
+
+// Use provided title or default
+const title = Astro.props.title ?? defaultTitle;
+// Use provided description or default
+const description = Astro.props.description ?? defaultDescription;
+// Use provided canonicalUrl or default
+const canonicalUrl = Astro.props.canonicalUrl ?? defaultCanonicalUrl;
+
+// Construct Open Graph properties
+const ogProperties = {
+  'og:title': title,
+  'og:description': description,
+  'og:url': Astro.props.openGraph?.url || canonicalUrl,
+  'og:type': og.type || 'website',
+  ...(og.image && { 'og:image': og.image }),
+  ...Object.entries(og).filter(([key]) => !['type', 'image', 'url'].includes(key)).reduce((acc, [key, value]) => {
+    acc[`og:${key}`] = value;
+    return acc;
+  }, {} as Record<string, any>),
+};
+
+// Construct Twitter card properties
+const twitterProperties = {
+  'twitter:card': tw.card || 'summary',
+  'twitter:site': tw.site || '',
+  'twitter:creator': tw.creator || '',
+  ...Object.entries(tw).filter(([key]) => !['card', 'site', 'creator'].includes(key)).reduce((acc, [key, value]) => {
+    acc[`twitter:${key}`] = value;
+    return acc;
+  }, {} as Record<string, any>),
+};
+---
+<title>{title}</title>
+{description && <meta name="description" content={description} />}
+{Object.entries(ogProperties).map(([key, value]) => <meta property={key} content={String(value)} />)}
+{Object.entries(twitterProperties).map(([key, value]) => <meta property={key} content={String(value)} />)}
+{structuredData && <script type="application/ld+json">{JSON.stringify(structuredData)}</script>}
+{canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+{noindex || nofollow ? <meta name="robots" content={`${noindex ? 'noindex' : 'index'},${nofollow ? 'nofollow' : 'follow'}`} /> : null}

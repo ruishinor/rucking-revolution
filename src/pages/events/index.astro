@@ -1,0 +1,74 @@
+---
+import { site } from '@/data/site';
+import { events } from '@/data/events';
+import Layout from '@/components/Layout.astro';
+import Container from '@/components/Container.astro';
+
+---
+<Layout title="Events - Rucking Revolution" description="Discover upcoming rucking events and challenges." currentPage="/events">
+  <meta name="title" content="Events - Rucking Revolution" />
+  <meta name="description" content="Discover upcoming rucking events and challenges." />
+  <meta property="og:title" content="Events - Rucking Revolution" />
+  <meta property="og:description" content="Discover upcoming rucking events and challenges." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={`${site.baseUrl}/events`} />
+  <meta property="og:image" content={`${site.baseUrl}/og-events.jpg`} />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <Container>
+    <header class="mb-8">
+      <h1 class="text-3xl font-bold text-center">Events</h1>
+      <p class="text-center text-muted mt-2">
+        Discover upcoming rucking events and challenges.
+      </p>
+    </header>
+
+    {/* Events Grid */}
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {events.map(event => (
+        <article
+          key={event.id}
+          class="hover:shadow-lg transition-shadow flex flex-col h-full border rounded-lg overflow-hidden"
+        >
+          {/* Hero Image */}
+          <a href={`/events/${event.slug}`} class="mb-0">
+            <img
+              src={event.heroImage.src}
+              alt={event.heroImage.alt}
+              class="w-full h-48 object-cover"
+              loading="lazy"
+            />
+          </a>
+
+          {/* Event Content */}
+          <div class="flex-0 p-4">
+            <h2 class="text-xl font-semibold mb-2 line-clamp-2">
+              <a href={`/events/${event.slug}`} class="hover:underline">
+                {event.title}
+              </a>
+            </h2>
+            <p class="text-muted-foreground mb-2 line-clamp-3">{event.description}</p>
+
+            {/* Metadata */}
+            <div class="mt-auto space-y-2 text-sm text-muted-foreground">
+              <div class="flex flex-wrap gap-4">
+                <span>Date: {new Date(event.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                <span>Location: {event.location}</span>
+                <span>Duration: {event.duration}</span>
+              </div>
+              <div class="flex flex-wrap gap-4">
+                <span>Distance: {event.distance} km</span>
+                <span>Load: {event.load} kg</span>
+                <span>Difficulty: 
+                  {event.difficulty === 'beginner' ? 'Beginner' : 
+                   event.difficulty === 'intermediate' ? 'Intermediate' : 'Advanced'}
+                </span>
+                <span>Price: €{event.priceEUR.toFixed(2)}</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </Container>
+</Layout>

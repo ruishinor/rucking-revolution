@@ -1,0 +1,19 @@
+---
+import Layout from '@/components/Layout.astro';
+import ProductCard from '@/components/ProductCard.astro';
+import { products } from '@/data/products';
+---
+<Layout title="Digital Library & Storefront" description="Browse and purchase rucking guides, books, and training materials">
+  <div class="max-w-7xl mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6 text-center">Digital Library & Storefront</h1>
+    <p class="text-lg text-gray-600 mb-8 text-center">
+      Expertly crafted guides, books, and training materials to elevate your rucking practice
+    </p>
+    
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {products.map((product) => (
+        <ProductCard key={product.id} product={product} />
+      ))}
+    </div>
+  </div>
+</Layout>

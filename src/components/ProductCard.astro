@@ -1,0 +1,63 @@
+---
+// ProductCard Props
+// product: Product (required)
+const { product } = Astro.props;
+---
+<a 
+  href={`/library/${product.id}`} 
+  class="block hover:shadow-md transition-shadow duration-200"
+>
+  <div class="border border-gray-200 rounded-lg bg-white shadow-sm flex flex-col h-full">
+    <div class="flex-1 flex flex-col">
+        <!-- Product Image -->
+        {product.previewImages[0] && (
+          <div class="relative h-48 overflow-hidden">
+            <img 
+              src={product.previewImages[0].src} 
+              alt={product.previewImages[0].alt} 
+              class="w-full h-full object-cover"
+              loading="lazy"
+              width={product.previewImages[0].width || 800}
+              height={product.previewImages[0].height || 600}
+            >
+            </img>
+            <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white text-sm px-2 py-1">
+              {product.title}
+            </div>
+          </div>
+        )}
+      
+      <!-- Product Info -->
+      <div class="flex-1 px-4 py-4">
+        <h3 class="text-lg font-semibold mb-2">{product.title}</h3>
+        <p class="text-gray-600 mb-3 line-clamp-3">{product.description}</p>
+        
+        <!-- What You Will Learn -->
+        {product.whatYouLearn && product.whatYouLearn.length > 0 && (
+          <div class="mb-4">
+            <h4 class="font-medium text-gray-800 mb-1">What You'll Learn:</h4>
+            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-1">
+              {product.whatYouLearn.map((learn, index) => (
+                <li key={index}>{learn}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+        
+        <!-- Download Format -->
+        {product.files && product.files.length > 0 && (
+          <div class="mb-4">
+            <h4 class="font-medium text-gray-800 mb-1">Download Format:</h4>
+            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-1">
+              {product.files.map((file, index) => (
+                <li key={index}>
+                  {file.name} ({file.type.toUpperCase()}, {file.size})
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+</a>

@@ -1,0 +1,129 @@
+---
+import { site } from '@/data/site';
+import { events } from '@/data/events';
+import Layout from '@/components/Layout.astro';
+import Container from '@/components/Container.astro';
+
+export async function getStaticPaths() {
+  return events.map(event => ({
+    params: { slug: event.slug },
+    props: { event }
+  }));
+}
+
+// Get the slug from params
+const { slug } = Astro.params;
+
+// Find the event with matching slug
+const event = events.find(e => e.slug === slug);
+
+// If event not found, redirect to 404
+if (!event) {
+  return Astro.redirect('/404');
+}
+---
+<Layout title={`${event.title} - Rucking Revolution`} description={event.description} currentPage={`/events/${event.slug}`}>
+  <meta name="title" content={`${event.title} - Rucking Revolution`} />
+  <meta name="description" content={event.description} />
+  <meta property="og:title" content={`${event.title} - Rucking Revolution`} />
+  <meta property="og:description" content={event.description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={`${site.baseUrl}/events/${event.slug}`} />
+  <meta property="og:image" content={`${site.baseUrl}${event.heroImage.src}`} />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <Container>
+    {/* Event Header */}
+    <header class="mb-8">
+      <div class="flex items-center space-x-4">
+        {/* Back Link */}
+        <a href="/events" class="text-sm text-muted-foreground hover:underline">
+          ← All Events
+        </a>
+        <h1 class="text-3xl font-bold">{event.title}</h1>
+      </div>
+      <p class="text-muted-foreground mt-2">{event.description}</p>
+    </header>
+
+    {/* Event Details */}
+    <div class="grid gap-8 md:grid-cols-2">
+      {/* Hero Image */}
+      <div class="rounded-lg overflow-hidden shadow-lg">
+        <img
+          src={event.heroImage.src}
+          alt={event.heroImage.alt}
+          class="w-full h-48 object-cover"
+          loading="lazy"
+        />
+      </div>
+
+      {/* Event Info */}
+      <div class="space-y-4">
+        <div class="space-y-2">
+          <div class="flex flex-wrap gap-4 text-sm text-muted-foreground">
+            <span>Date: {new Date(event.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+            <span>Location: {event.location}</span>
+            <span>Duration: {event.duration}</span>
+          </div>
+          <div class="flex flex-wrap gap-4 text-sm text-muted-foreground">
+            <span>Distance: {event.distance} km</span>
+            <span>Load: {event.load} kg</span>
+            <span>Difficulty: 
+              {event.difficulty === 'beginner' ? 'Beginner' : 
+               event.difficulty === 'intermediate' ? 'Intermediate' : 'Advanced'}
+            </span>
+            <span>Price: €{event.priceEUR.toFixed(2)}</span>
+            <span>Max Participants: {event.maxParticipants}</span>
+          </div>
+        </div>
+
+        {/* Includes */}
+        <div>
+          <h3 class="font-semibold mb-2">Includes</h3>
+          <ul class="list-disc list-inside space-y-1 text-muted-foreground">
+            {event.includes.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Requirements */}
+        <div>
+          <h3 class="font-semibold mb-2">Requirements</h3>
+          <ul class="list-disc list-inside space-y-1 text-muted-foreground">
+            {event.requirements.map((req, index) => (
+              <li key={index}>{req}</li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Agenda */}
+        <div>
+          <h3 class="font-semibold mb-2">Agenda</h3>
+          <div class="space-y-2">
+            {event.agenda.map((item, index) => (
+              <div key={index} class="border-l-2 border-primary pl-3">
+                <span class="font-medium">{item.time}</span>
+                <span class="ml-2">{item.activity}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Downloadable Event Plan Template */}
+    <section class="mt-8">
+      <h2 class="text-2xl font-semibold mb-4">Event Plan Template</h2>
+      <p class="text-muted-foreground mb-4">
+        Download our comprehensive event plan template to help you organize your own rucking event.
+      </p>
+      <a 
+        href="/templates/event-plan-template.pdf" 
+        class="inline-block bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-dark transition-colors"
+      >
+        Download Event Plan Template (PDF)
+      </a>
+    </section>
+  </Container>
+</Layout>

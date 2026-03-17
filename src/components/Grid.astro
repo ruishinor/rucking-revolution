@@ -1,0 +1,11 @@
+---
+// Grid Props
+// columns: number (default 1) - corresponds to Tailwind's grid-cols-{columns}
+// gap: number (default 4) - corresponds to Tailwind's gap-{gap} (spacing units)
+// children: HTMLElement (default slot)
+// class: string (optional)
+const { columns = 1, gap = 4, children, class: className = '' } = Astro.props;
+---
+<div class={`grid grid-cols-${columns} gap-${gap} ${className}`}>
+  <slot />
+</div>

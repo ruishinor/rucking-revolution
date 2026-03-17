@@ -1,0 +1,256 @@
+{
+  "routes": [
+    {
+      "path": "/",
+      "title": "Home",
+      "description": "Rucking Revolution - Empowering ruckers with knowledge, gear, and community.",
+      "meta": {
+        "title": "Rucking Revolution - Home",
+        "description": "Discover the structured knowledge platform for rucking as discipline, leadership practice, and practical field activity."
+      }
+    },
+    {
+      "path": "/learn",
+      "title": "Learn",
+      "description": "Publishing engine: Articles, Digital Library",
+      "meta": {
+        "title": "Learn - Rucking Revolution",
+        "description": "Explore our publishing engine with articles and digital library resources."
+      }
+    },
+    {
+      "path": "/learn/articles",
+      "title": "Articles",
+      "description": "Grid gallery of articles covering rucking discipline, leadership, and field activities",
+      "meta": {
+        "title": "Articles - Rucking Revolution",
+        "description": "Read articles about rucking as discipline, leadership practice, and practical field activity."
+      }
+    },
+    {
+      "path": "/learn/articles/[slug]",
+      "title": "Article Page",
+      "description": "Individual article page with hero image, author module, related articles, and share links",
+      "meta": {
+        "title": "[Article Title] - Rucking Revolution",
+        "description": "Read the full article about [topic]"
+      }
+    },
+    {
+      "path": "/learn/library",
+      "title": "Digital Library",
+      "description": "Product listings for guides, books, card decks, and training materials",
+      "meta": {
+        "title": "Digital Library - Rucking Revolution",
+        "description": "Explore our digital product storefront for guides, books, card decks, and training materials."
+      }
+    },
+    {
+      "path": "/learn/library/[slug]",
+      "title": "Product Detail",
+      "description": "Individual product page with preview images, description, and purchase links",
+      "meta": {
+        "title": "[Product Title] - Rucking Revolution",
+        "description": "Learn about [product] and purchase your copy."
+      }
+    },
+    {
+      "path": "/train",
+      "title": "Train",
+      "description": "Training doctrine repository: Training, Performance Kit",
+      "meta": {
+        "title": "Train - Rucking Revolution",
+        "description": "Access our training doctrine repository with workouts, programming principles, and performance kit."
+      }
+    },
+    {
+      "path": "/train/workouts",
+      "title": "Workouts",
+      "description": "Training overview, workout generator, sample workouts, and programming principles",
+      "meta": {
+        "title": "Workouts - Rucking Revolution",
+        "description": "Generate workouts, access sample routines, and learn programming principles."
+      }
+    },
+    {
+      "path": "/train/performance-kit",
+      "title": "Performance Kit",
+      "description": "Exercise pages for mobility band (upper/lower), release ball, ankle wrap technique",
+      "meta": {
+        "title": "Performance Kit - Rucking Revolution",
+        "description": "Learn about mobility band exercises, release ball techniques, and ankle wrap methods."
+      }
+    },
+    {
+      "path": "/train/performance-kit/[exercise]",
+      "title": "Exercise Detail",
+      "description": "Individual exercise page with purpose, step-by-step instructions, common mistakes, progressions, and media",
+      "meta": {
+        "title": "[Exercise Name] - Rucking Revolution",
+        "description": "Learn how to perform [exercise] with proper form and progression."
+      }
+    },
+    {
+      "path": "/lead",
+      "title": "Lead",
+      "description": "Movement infrastructure: CrewTactics, Ruck Clubs, After Action Reviews",
+      "meta": {
+        "title": "Lead - Rucking Revolution",
+        "description": "Explore our movement infrastructure with leadership tools, club resources, and community reflections."
+      }
+    },
+    {
+      "path": "/lead/crew-tactics",
+      "title": "CrewTactics",
+      "description": "Overview, card deck, random card generator, and leader guides",
+      "meta": {
+        "title": "CrewTactics - Rucking Revolution",
+        "description": "Access leadership tactic cards, draw tactics for your rucks, and explore leader guides."
+      }
+    },
+    {
+      "path": "/lead/crew-tactics/generator",
+      "title": "CrewTactics Generator",
+      "description": "Interactive generator to draw tactics during rucks",
+      "meta": {
+        "title": "CrewTactics Generator - Rucking Revolution",
+        "description": "Draw leadership tactic cards for your rucks and training sessions."
+      }
+    },
+    {
+      "path": "/lead/ruck-clubs",
+      "title": "Ruck Clubs",
+      "description": "Informational pages on starting and running ruck crews",
+      "meta": {
+        "title": "Ruck Clubs - Rucking Revolution",
+        "description": "Learn how to start and run ruck clubs with leadership principles and crew culture."
+      }
+    },
+    {
+      "path": "/lead/ruck-clubs/start-a-club",
+      "title": "Start a Club",
+      "description": "Step-by-step guide to starting a ruck club",
+      "meta": {
+        "title": "Start a Ruck Club - Rucking Revolution",
+        "description": "Follow our step-by-step guide to launch your own ruck club."
+      }
+    },
+    {
+      "path": "/lead/ruck-clubs/leadership-principles",
+      "title": "Leadership Principles",
+      "description": "Core principles for leading ruck crews effectively",
+      "meta": {
+        "title": "Leadership Principles - Rucking Revolution",
+        "description": "Learn the essential principles for leading ruck crews with purpose and integrity."
+      }
+    },
+    {
+      "path": "/lead/ruck-clubs/crew-culture",
+      "title": "Crew Culture",
+      "description": "Building strong crew culture and shared experiences",
+      "meta": {
+        "title": "Crew Culture - Rucking Revolution",
+        "description": "Explore how to build strong crew culture through shared experiences and traditions."
+      }
+    },
+    {
+      "path": "/lead/after-action-reviews",
+      "title": "After Action Reviews",
+      "description": "Submission system and archive for community reflections",
+      "meta": {
+        "title": "After Action Reviews - Rucking Revolution",
+        "description": "Read community reflections or submit your own AAR to contribute to collective learning."
+      }
+    },
+    {
+      "path": "/lead/after-action-reviews/submit",
+      "title": "Submit AAR",
+      "description": "Form to submit after action reviews for community learning",
+      "meta": {
+        "title": "Submit After Action Review - Rucking Revolution",
+        "description": "Share your rucking experience and lessons learned with the community."
+      }
+    },
+    {
+      "path": "/lead/after-action-reviews/archive",
+      "title": "AAR Archive",
+      "description": "Searchable archive of community reflections",
+      "meta": {
+        "title": "After Action Review Archive - Rucking Revolution",
+        "description": "Browse community reflections and learn from shared experiences."
+      }
+    },
+    {
+      "path": "/red-rucker",
+      "title": "Red Rucker",
+      "description": "Webcomic archive and individual comic pages",
+      "meta": {
+        "title": "Red Rucker - Rucking Revolution",
+        "description": "Enjoy the Red Rucker webcomic series - myth, ritual, and shared concepts for the rucking community."
+      }
+    },
+    {
+      "path": "/red-rucker/[episode]",
+      "title": "Red Rucker Comic",
+      "description": "Individual comic page with panel image, commentary, and lesson takeaway",
+      "meta": {
+        "title": "Red Rucker Episode [number] - Rucking Revolution",
+        "description": "Read episode [number] of the Red Rucker webcomic series."
+      }
+    },
+    {
+      "path": "/about",
+      "title": "About",
+      "description": "Mission, philosophy, the movement, and contact information",
+      "meta": {
+        "title": "About - Rucking Revolution",
+        "description": "Learn about our mission, philosophy, the rucking movement, and how to get involved."
+      }
+    },
+    {
+      "path": "/privacy",
+      "title": "Privacy Policy",
+      "description": "Privacy policy for the Rucking Revolution website",
+      "meta": {
+        "title": "Privacy Policy - Rucking Revolution",
+        "description": "Understand how we collect, use, and protect your personal information."
+      }
+    },
+    {
+      "path": "/faq",
+      "title": "FAQ",
+      "description": "Frequently asked questions about rucking and the Rucking Revolution platform",
+      "meta": {
+        "title": "FAQ - Rucking Revolution",
+        "description": "Find answers to common questions about rucking as discipline, leadership practice, and field activity."
+      }
+    },
+    {
+      "path": "/social",
+      "title": "Social Media",
+      "description": "Links to our social media profiles and communities",
+      "meta": {
+        "title": "Social Media - Rucking Revolution",
+        "description": "Connect with us on social media and join the rucking community conversation."
+      }
+    },
+    {
+      "path": "/terms",
+      "title": "Terms of Service",
+      "description": "Terms of service for using the Rucking Revolution website",
+      "meta": {
+        "title": "Terms of Service - Rucking Revolution",
+        "description": "Review the terms and conditions for using our platform and services."
+      }
+    },
+    {
+      "path": "/contact",
+      "title": "Contact",
+      "description": "Get in touch with the Rucking Revolution team.",
+      "meta": {
+        "title": "Contact - Rucking Revolution",
+        "description": "Contact us for inquiries, partnerships, or support."
+      }
+    }
+  ]
+}

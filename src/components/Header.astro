@@ -1,0 +1,60 @@
+---
+// Import site metadata for navigation and branding
+import { site } from '@/data/site.ts';
+// Accept currentPage prop to highlight active nav item
+const { currentPage = '' } = Astro.props;
+---
+<header class="bg-primary text-white shadow-md z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-wrap items-center justify-between py-4">
+      <!-- Site Logo/Brand -->
+      <div class="flex-shrink-0 flex items-center">
+        <a href="/" class="text-xl font-bold whitespace-nowrap">
+          {site.title}
+        </a>
+      </div>
+
+      <!-- Navigation Menu -->
+      <div class="hidden md:block md:ml-10">
+        <nav aria-label="Primary" class="flex space-x-6">
+          {site.primaryNav.map(({ name, link }) => (
+            <a 
+              href={link} 
+              class={`hover:text-accent transition-colors duration-200 px-3 py-2 rounded-md text-sm font-medium ${currentPage === link ? 'border-b-2 border-accent' : ''}`}
+              key={link}
+            >
+              {name}
+            </a>
+          ))}
+        </nav>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="-mr-2 flex items-center md:hidden">
+        <button id="mobile-menu-button"
+                aria-controls="mobile-menu"
+                aria-expanded="false"
+                class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2">
+          <span class="sr-only">Open main menu</span>
+          <!-- Icon: hamburger -->
+          <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden space-y-1 px-2 pt-2 pb-3">
+    {site.primaryNav.map(({ name, link }) => (
+      <a 
+        href={link} 
+        class={`block px-3 py-2 rounded-md text-base font-medium hover:bg-accent hover:text-white ${currentPage === link ? 'bg-accent text-white' : ''}`}
+        key={link}
+      >
+        {name}
+      </a>
+    ))}
+  </div>
+</header>

@@ -1,0 +1,116 @@
+---
+import { site } from '@/data/site';
+import { routes } from '@/data/routes';
+import Layout from '@/components/Layout.astro';
+import Container from '@/components/Container.astro';
+
+// Get the slug from params
+const { slug } = Astro.params;
+
+// Find the route with matching slug
+const route = routes.find(r => r.slug === slug);
+
+// If route not found, redirect to 404 (Astro will handle this if we return null)
+// We'll let Astro's built-in 404 handling work by returning null if not found
+if (!route) {
+  return Astro.redirect('/404');
+}
+
+export async function getStaticPaths() {
+  return routes.map(route => ({
+    params: { slug: route.slug },
+    props: { route }
+  }));
+}
+---
+<Layout>
+  <meta name="title" content={`${route.title} - Rucking Revolution`} />
+  <meta name="description" content={route.description} />
+  <meta property="og:title" content={`${route.title} - Rucking Revolution`} />
+  <meta property="og:description" content={route.description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={`${site.baseUrl}/routes/${route.slug}`} />
+  <meta property="og:image" content={`${site.baseUrl}${route.heroImage.src}`} />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <Container>
+    {/* Route Header */}
+    <header class="mb-8">
+      <div class="flex items-center space-x-4">
+        {/* Back Link */}
+        <a href="/routes" class="text-sm text-muted-foreground hover:underline">
+          ← All Routes
+        </a>
+        <h1 class="text-3xl font-bold">{route.title}</h1>
+      </div>
+      <p class="text-muted-foreground mt-2">{route.description}</p>
+    </header>
+
+    {/* Route Details */}
+    <div class="grid gap-8 md:grid-cols-2">
+      {/* Hero Image */}
+      <div class="rounded-lg overflow-hidden shadow-lg">
+        <img
+          src={route.heroImage.src}
+          alt={route.heroImage.alt}
+          class="w-full h-48 object-cover"
+          loading="lazy"
+        />
+      </div>
+
+      {/* Route Info */}
+      <div class="space-y-4">
+        <div class="space-y-2">
+          <div class="flex flex-wrap gap-4 text-sm text-muted-foreground">
+            <span>Distance: {route.distance} km</span>
+            <span>Estimated Time: {route.estimatedTime}</span>
+            <span>Difficulty: 
+              {route.difficulty === 'beginner' ? 'Beginner' : 
+               route.difficulty === 'intermediate' ? 'Intermediate' : 'Advanced'}
+            </span>
+          </div>
+          <div class="flex flex-wrap gap-4 text-sm text-muted-foreground">
+            <span>Elevation Gain: {route.elevationGain} m</span>
+            <span>Load Recommendation: {route.loadRecommendation} kg</span>
+            <span>Best Season: {route.bestSeason.map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(', ')}</span>
+          </div>
+          <div class="flex flex-wrap gap-4 text-sm text-muted-foreground">
+            <span>Terrain: {route.terrain.map(t => t.charAt(0).toUpperCase() + t.slice(1)).join(', ')}</span>
+          </div>
+        </div>
+
+        {/* Notes */}
+        {route.notes && (
+          <div class="bg-muted-50 p-4 rounded-lg border border-muted-200">
+            <h3 class="font-semibold mb-2">Notes</h3>
+            <p class="text-muted-foreground">{route.notes}</p>
+          </div>
+        )}
+
+        {/* Waypoints */}
+        <div>
+          <h3 class="font-semibold mb-2">Waypoints</h3>
+          <div class="space-y-3">
+            {route.waypoints.map((waypoint, index) => (
+              <div key={index} class="border-l-2 border-primary pl-3">
+                <h4 class="font-medium">{waypoint.name}</h4>
+                <p class="text-sm text-muted-foreground">
+                  {waypoint.distanceFromStart} km from start
+                </p>
+                <p class="text-muted-foreground">{waypoint.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Map Placeholder */}
+    <section class="mt-8">
+      <h2 class="text-2xl font-semibold mb-4">Route Map</h2>
+      <div class="aspect-w-16 aspect-h-9 bg-muted-200 rounded-lg flex items-center justify-center">
+        <span class="text-muted-foreground text-italic">Map placeholder - Interactive map would be integrated here</span>
+      </div>
+    </section>
+  </Container>
+</Layout>

@@ -1,0 +1,36 @@
+---
+import Layout from '@/components/Layout.astro';
+---
+<Layout title="CrewTactics" description="Overview, card deck, random card generator, and leader guides">
+  <h1 class="text-3xl font-bold mb-6">CrewTactics</h1>
+  <div class="prose lg:prose-xl mx-auto">
+    <p>CrewTactics is a collection of practical leadership and communication exercises designed to be used during rucks and team training. Each card presents a specific tactic that leaders can practice to improve team cohesion, decision-making, and adaptability.</p>
+    
+    <h2 class="text-2xl font-bold mt-6 mb-4">How It Works</h2>
+    <p>Draw a card during your ruck to focus on a specific skill. Practice the tactic, reflect on the prompts, and discuss with your team. Regular use builds leadership muscle memory.</p>
+    
+    <h2 class="text-2xl font-bold mt-6 mb-4">Categories</h2>
+    <div class="grid gap-4 md:grid-cols-2">
+      <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+        <h3 class="font-semibold mb-2">Leadership</h3>
+        <p>Exercises focused on leading teams, taking responsibility, and developing others.</p>
+      </div>
+      <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+        <h3 class="font-semibold mb-2">Communication</h3>
+        <p>Techniques for clear, effective communication under various conditions.</p>
+      </div>
+      <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+        <h3 class="font-semibold mb-2">Decision Making</h3>
+        <p>Frameworks and techniques for making better decisions, especially under pressure.</p>
+      </div>
+      <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+        <h3 class="font-semibold mb-2">Adaptability</h3>
+        <p>Practices for staying flexible and adjusting to changing circumstances.</p>
+      </div>
+    </div>
+    
+    <p class="mt-6 text-center">
+      <a href="/lead/crew-tactics/generator" class="btn btn-primary">Try the Tactics Generator</a>
+    </p>
+  </div>
+</Layout>

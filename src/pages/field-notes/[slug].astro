@@ -1,0 +1,101 @@
+---
+import { site } from '@/data/site';
+import { fieldNotes } from '@/data/fieldnotes';
+import Layout from '@/components/Layout.astro';
+import Container from '@/components/Container.astro';
+
+export async function getStaticPaths() {
+  return fieldNotes.map(note => ({
+    params: { slug: note.slug },
+    props: { note }
+  }));
+}
+
+// Get the slug from params
+const { slug } = Astro.params;
+
+// Find the field note with matching slug
+const note = fieldNotes.find(n => n.slug === slug);
+
+// If field note not found, redirect to 404
+if (!note) {
+  return Astro.redirect('/404');
+}
+---
+<Layout title={`${note.title} - Rucking Revolution`} description={note.observations.join(' ')} currentPage={`/field-notes/${note.slug}`}>
+  <meta name="title" content={`${note.title} - Rucking Revolution`} />
+  <meta name="description" content={note.observations.join(' ')} />
+  <meta property="og:title" content={`${note.title} - Rucking Revolution`} />
+  <meta property="og:description" content={note.observations.join(' ')} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={`${site.baseUrl}/field-notes/${note.slug}`} />
+  <meta property="og:image" content={`${site.baseUrl}${note.heroImage.src}`} />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <Container>
+    {/* Field Note Header */}
+    <header class="mb-8">
+      <div class="flex items-center space-x-4">
+        {/* Back Link */}
+        <a href="/field-notes" class="text-sm text-muted-foreground hover:underline">
+          ← All Field Notes
+        </a>
+        <h1 class="text-3xl font-bold">{note.title}</h1>
+      </div>
+      <div class="space-y-2 text-muted-foreground text-sm">
+        <span>Date: {new Date(note.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+        <span>Location: {note.location}</span>
+        <span>Distance: {note.distance} km • Duration: {note.duration} min • Load: {note.load} kg</span>
+        <span>Weather: {note.weather}</span>
+        <span>Terrain: {note.terrain.map(t => t.charAt(0).toUpperCase() + t.slice(1)).join(', ')}</span>
+      </div>
+    </header>
+
+    {/* Field Note Content */}
+    <div class="prose lg:prose-xl">
+      {/* Hero Image */}
+      <div class="mb-8">
+        <img
+          src={note.heroImage.src}
+          alt={note.heroImage.alt}
+          class="w-full rounded-lg shadow-lg"
+          loading="lazy"
+        />
+      </div>
+
+      {/* Observations */}
+      <section class="mb-8">
+        <h2 class="text-2xl font-semibold mb-4">Observations</h2>
+        <ul class="list-disc list-inside space-y-3">
+          {note.observations.map((obs, index) => (
+            <li key={index}>{obs}</li>
+          ))}
+        </ul>
+      </section>
+
+      {/* Insights */}
+      {note.insights.length > 0 && (
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4">Insights</h2>
+          <ul class="list-disc list-inside space-y-3">
+            {note.insights.map((insight, index) => (
+              <li key={index}>{insight}</li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {/* Questions */}
+      {note.questions.length > 0 && (
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4">Questions for Further Exploration</h2>
+          <ul class="list-disc list-inside space-y-3">
+            {note.questions.map((question, index) => (
+              <li key={index}>{question}</li>
+            ))}
+          </ul>
+        </section>
+      )}
+    </div>
+  </Container>
+</Layout>

@@ -1,0 +1,38 @@
+{
+  "name": "website-rucking-revolution",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "test": "vitest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.1",
+    "@astrojs/vercel": "^10.0.1",
+    "@tailwindcss/postcss": "^4.2.1",
+    "@tailwindcss/vite": "^4.2.1",
+    "astro": "^6.0.5",
+    "sharp": "^0.34.5"
+  },
+  "devDependencies": {
+    "@axe-core/cli": "^4.11.1",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^25.5.0",
+    "autoprefixer": "^10.4.27",
+    "critters": "^0.0.23",
+    "postcss": "^8.5.8",
+    "tailwindcss": "^4.2.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.0"
+  }
+}

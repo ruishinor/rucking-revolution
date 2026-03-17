@@ -1,0 +1,88 @@
+---
+import Layout from '@/components/Layout.astro';
+import { comics } from '@/data/comics.ts';
+
+const episode = Number(Astro.params.episode);
+const comic = comics.find((c) => c.episode === episode);
+
+if (!comic) {
+  return Astro.redirect('/red-rucker');
+}
+
+const getPrevEpisode = () => {
+  const prev = comics.find((c) => c.episode === episode - 1);
+  return prev ? prev.episode : null;
+};
+
+const getNextEpisode = () => {
+  const next = comics.find((c) => c.episode === episode + 1);
+  return next ? next.episode : null;
+};
+
+export async function getStaticPaths() {
+  return comics.map(comic => ({
+    params: { episode: comic.episode.toString() },
+    props: { comic }
+  }));
+}
+---
+
+<Layout title={`${comic.title} - Red Rucker`} description={`${comic.caption} - Lesson: ${comic.lesson}`}>
+  <article class="prose mx-auto max-w-2xl">
+    <header class="mb-8">
+      <h1 class="text-3xl font-bold">{comic.title}</h1>
+      <p class="text-gray-600">Episode {comic.episode}</p>
+    </header>
+
+     <figure class="mb-6">
+       {typeof comic.image === 'string' ? (
+         <img
+           src={comic.image}
+           alt={comic.title}
+           class="w-full h-auto rounded-lg shadow-lg"
+           loading="lazy"
+         />
+       ) : (
+         <img
+           src={comic.image.src}
+           width={comic.image.width}
+           height={comic.image.height}
+           alt={comic.title}
+           class="w-full h-auto rounded-lg shadow-lg"
+           loading="lazy"
+         />
+       )}
+       <figcaption class="mt-2 text-center text-gray-500">{comic.caption}</figcaption>
+     </figure>
+
+    <section class="bg-gray-50 p-6 rounded-lg">
+      <h2 class="text-xl font-bold mb-4">Lesson Takeaway</h2>
+      <p>{comic.lesson}</p>
+    </section>
+
+    <nav class="mt-8 flex justify-between">
+      {getPrevEpisode() && (
+        <a
+          href={`/red-rucker/${getPrevEpisode()}`}
+          class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+        >
+          ← Previous Episode
+        </a>
+      )}
+      {getNextEpisode() && (
+        <a
+          href={`/red-rucker/${getNextEpisode()}`}
+          class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+        >
+          Next Episode →
+        </a>
+      )}
+    </nav>
+
+    <div class="mt-8 text-center">
+      <a href="/red-rucker" class="text-blue-500 hover:underline">
+        ← Back to Archive
+      </a>
+    </div>
+  </article>
+</Layout>

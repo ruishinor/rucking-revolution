@@ -1,0 +1,20 @@
+---
+import Layout from '@/components/Layout.astro';
+import { exercises } from '@/data/exercises.ts';
+
+// Filter for upper body exercises (first 10, or we can check if id starts with 'upper-')
+const upperBodyExercises = exercises.slice(0, 10);
+---
+<Layout title="Mobility Band - Upper Body" description="Upper body exercises using resistance bands">
+  <h1 class="text-3xl font-bold mb-6">Mobility Band - Upper Body</h1>
+  <p class="mb-6">Exercises for upper body strength and mobility using resistance bands</p>
+  
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    {upperBodyExercises.map(exercise => (
+      <a href={`/train/performance-kit/mobility-band/upper-body/${exercise.slug}`} class="bg-white p-4 rounded-lg shadow hover:shadow-md transition-shadow flex flex-col h-full">
+        <h2 class="text-xl font-semibold mb-2">{exercise.title}</h2>
+        <p class="text-gray-600 flex-grow">Difficulty: {exercise.difficulty}</p>
+      </a>
+    ))}
+  </div>
+</Layout>

@@ -1,0 +1,158 @@
+---
+import { site } from '@/data/site';
+import { articles } from '@/data/articles';
+import Layout from '@/components/Layout.astro';
+import Card from '@/components/Card.astro';
+import Container from '@/components/Container.astro';
+
+// Get all unique tags from articles
+const allTags = [...new Set(articles.flatMap(article => article.tags))];
+
+// Get query parameters for filtering and pagination
+const { tag, page } = Astro.params;
+const currentTag = tag ?? null;
+const currentPage = parseInt(page) || 1;
+const pageSize = 6; // Number of articles per page
+
+// Filter articles by tag if provided
+let filteredArticles = articles;
+if (currentTag) {
+  filteredArticles = articles.filter(article => article.tags.includes(currentTag));
+}
+
+// Calculate pagination
+const totalPages = Math.max(1, Math.ceil(filteredArticles.length / pageSize));
+const paginatedArticles = filteredArticles.slice(
+  (currentPage - 1) * pageSize,
+  currentPage * pageSize
+);
+
+// Generate pagination links
+const generatePaginationLinks = (basePath) => {
+  const links = [];
+  if (currentPage > 1) {
+    links.push({ label: 'Previous', href: `${basePath}/${currentPage - 1}` });
+  }
+  for (let i = 1; i <= totalPages; i++) {
+    links.push({ 
+      label: i.toString(), 
+      href: i === 1 ? basePath : `${basePath}/${i}`, 
+      active: i === currentPage 
+    });
+  }
+  if (currentPage < totalPages) {
+    links.push({ label: 'Next', href: `${basePath}/${currentPage + 1}` });
+  }
+  return links;
+};
+
+// Base path for pagination (without page number)
+const basePath = currentTag ? `/articles/tag/${currentTag}` : '/articles';
+---
+<Layout>
+  <meta name="title" content="Articles - Rucking Revolution" />
+  <meta name="description" content="Explore our collection of articles on rucking, leadership, and community resilience." />
+  <meta property="og:title" content="Articles - Rucking Revolution" />
+  <meta property="og:description" content="Explore our collection of articles on rucking, leadership, and community resilience." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={`${site.baseUrl}/articles`} />
+  <meta property="og:image" content={`${site.baseUrl}/og-articles.jpg`} />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <Container>
+    <header class="mb-8">
+      <h1 class="text-3xl font-bold text-center">Articles</h1>
+      <p class="text-center text-muted mt-2">
+        Explore our collection of articles on rucking, leadership, and community resilience.
+      </p>
+    </header>
+
+    {/* Category Filters */}
+    <div class="mb-6 flex flex-wrap gap-2 justify-center">
+      <a 
+        href="/articles" 
+        class={`px-3 py-1 rounded text-sm font-medium 
+          ${currentTag === null ? 'bg-primary text-white' : 'bg-muted-200 text-muted-foreground hover:bg-muted-300'}`}
+      >
+        All
+      </a>
+      {allTags.map(tag => (
+        <a 
+          key={tag}
+          href={`/articles/tag/${tag}`} 
+          class={`px-3 py-1 rounded text-sm font-medium 
+            ${currentTag === tag ? 'bg-primary text-white' : 'bg-muted-200 text-muted-foreground hover:bg-muted-300'}`}
+        >
+          {tag}
+        </a>
+      ))}
+    </div>
+
+    {/* Articles Grid */}
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {paginatedArticles.map(article => (
+        <article 
+          key={article.id} 
+          class="hover:shadow-lg transition-shadow flex flex-col h-full"
+        >
+          {/* Hero Image */}
+          <a href={`/articles/${article.slug}`} class="mb-4">
+            <img 
+              src={article.heroImage.src} 
+              alt={article.heroImage.alt} 
+              class="w-full h-48 object-cover rounded-t-lg"
+              loading="lazy"
+            />
+          </a>
+          
+          {/* Article Content */}
+          <div class="flex-0 p-4">
+            <h2 class="text-xl font-semibold mb-2 line-clamp-2">
+              <a href={`/articles/${article.slug}`} class="hover:underline">
+                {article.title}
+              </a>
+            </h2>
+            <p class="text-muted-foreground mb-2 line-clamp-3">{article.excerpt}</p>
+            
+            {/* Meta Info */}
+            <div class="flex flex-wrap gap-3 text-xs text-muted-foreground mt-auto">
+              <span>By {article.author}</span>
+              <span>
+                <time dateTime={article.date}>
+                  {new Date(article.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                </time>
+              </span>
+              <span>{article.readingTime} min read</span>
+            </div>
+          </div>
+        </article>
+      ))}
+      
+      {/* Empty State */}
+      {paginatedArticles.length === 0 && (
+        <div class="col-span-full text-center py-12">
+          <p class="text-muted-foreground">No articles found for this category.</p>
+          <a href="/articles" class="mt-4 inline-block text-primary hover:underline">
+            Browse All Articles
+          </a>
+        </div>
+      )}
+    </div>
+
+    {/* Pagination */}
+    {totalPages > 1 && (
+      <div class="mt-8 flex justify-center gap-2">
+        {generatePaginationLinks(basePath).map(link => (
+          <a 
+            key={link.href} 
+            href={link.href} 
+            class={`px-4 py-2 rounded 
+              ${link.active ? 'bg-primary text-white' : 'bg-muted-200 text-muted-foreground hover:bg-muted-300'}`}
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
+    )}
+  </Container>
+</Layout>

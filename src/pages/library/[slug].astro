@@ -1,0 +1,91 @@
+---
+import Layout from '@/components/Layout.astro';
+import { products } from '@/data/products';
+
+const { slug } = Astro.params;
+
+// Find product by id (using slug as id)
+const product = products.find(p => p.id === slug);
+
+// If product not found, redirect to 404 (or library index)
+if (!product) {
+  return Astro.redirect('/library');
+}
+
+export async function getStaticPaths() {
+  return products.map(product => ({
+    params: { slug: product.id },
+    props: { product }
+  }));
+}
+---
+<Layout title={`${product.title} - Rucking Revolution Store`} description={product.description}>
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="flex flex-col lg:flex-row gap-8">
+      <!-- Product Images -->
+      <div class="lg:w-1/2">
+        <div class="space-y-4">
+          {product.previewImages.map((image, index) => (
+            <div key={index} class="border border-gray-200 rounded-lg overflow-hidden shadow">
+              <img 
+                src={image.src} 
+                alt={image.alt} 
+                class="w-full h-auto object-cover"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Product Details -->
+      <div class="lg:w-1/2 space-y-6">
+        <h1 class="text-3xl font-bold">{product.title}</h1>
+        <p class="text-gray-600 mb-4">{product.description}</p>
+
+        <!-- What You Will Learn -->
+        {product.whatYouLearn && product.whatYouLearn.length > 0 && (
+          <div>
+            <h2 class="text-xl font-semibold mb-2">What You'll Learn</h2>
+            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+              {product.whatYouLearn.map((learn, index) => (
+                <li key={index}>{learn}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <!-- Download Format -->
+        {product.files && product.files.length > 0 && (
+          <div>
+            <h2 class="text-xl font-semibold mb-2">Download Format</h2>
+            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+              {product.files.map((file, index) => (
+                <li key={index}>
+                  {file.name} ({file.type.toUpperCase()}, {file.size})
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <!-- Purchase Section -->
+        <div class="pt-6 border-t border-gray-200">
+          <div class="flex justify-between items-center mb-4">
+            <span class="text-2xl font-bold">€{product.priceEUR.toFixed(2)}</span>
+            <a 
+              href={product.purchaseLink} 
+              target="_blank"
+              rel="noopener noreferrer"
+              class="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition-colors duration-200 font-medium"
+            >
+              Purchase Securely
+            </a>
+          </div>
+          <p class="text-sm text-gray-500">
+            Secure checkout via Gumroad or PayPal. No payment details stored on our site.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

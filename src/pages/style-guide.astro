@@ -1,0 +1,100 @@
+---
+import Layout from '@/components/Layout.astro';
+import Button from '@/components/Button.astro';
+import Card from '@/components/Card.astro';
+import Container from '@/components/Container.astro';
+import Footer from '@/components/Footer.astro';
+import Grid from '@/components/Grid.astro';
+import Header from '@/components/Header.astro';
+---
+<Layout>
+  <Container>
+    <h1 class="text-4xl font-bold text-center mb-8">Style Guide</h1>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Color Tokens</h2>
+      <Grid columns={1} gap={4} class="sm:grid-cols-2 lg:grid-cols-3">
+        <div class="bg-primary text-white p-4 rounded">Primary: #8B0000</div>
+        <div class="bg-secondary text-white p-4 rounded">Secondary: #1C1C1C</div>
+        <div class="bg-accent text-white p-4 rounded">Accent: #E85C2A</div>
+        <div class="bg-background text-gray-900 p-4 rounded">Background: #F4F4F4</div>
+        <div class="bg-forest text-white p-4 rounded">Forest: #2E4A3F</div>
+        <div class="bg-steel text-white p-4 rounded">Steel: #6B6B6B</div>
+      </Grid>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Typography</h2>
+      <div class="space-y-2">
+        <p class="text-xs">This is extra small text (text-xs)</p>
+        <p class="text-sm">This is small text (text-sm)</p>
+        <p class="text-base">This is base text (text-base)</p>
+        <p class="text-lg">This is large text (text-lg)</p>
+        <p class="text-xl">This is extra large text (text-xl)</p>
+        <p class="text-2xl">This is 2xl text (text-2xl)</p>
+        <p class="text-3xl">This is 3xl text (text-3xl)</p>
+        <p class="text-4xl">This is 4xl text (text-4xl)</p>
+        <p class="text-5xl">This is 5xl text (text-5xl)</p>
+        <p class="text-6xl">This is 6xl text (text-6xl)</p>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Buttons</h2>
+      <div class="flex flex-wrap gap-4">
+        <Button variant="primary" size="sm">Primary Small</Button>
+        <Button variant="primary" size="md">Primary Medium</Button>
+        <Button variant="primary" size="lg">Primary Large</Button>
+        <Button variant="secondary" size="sm">Secondary Small</Button>
+        <Button variant="secondary" size="md">Secondary Medium</Button>
+        <Button variant="secondary" size="lg">Secondary Large</Button>
+        <Button variant="utility" size="sm">Utility Small</Button>
+        <Button variant="utility" size="md">Utility Medium</Button>
+        <Button variant="utility" size="lg">Utility Large</Button>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Card</h2>
+      <Card class="w-64">
+        <div class="font-bold text-lg mb-2">Card Header</div>
+        <div class="text-gray-600">
+          This is the card content. It can contain any HTML or Astro components.
+        </div>
+      </Card>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Grid</h2>
+      <Grid columns={3} gap={4}>
+        <div class="bg-gray-200 p-4 text-center">1</div>
+        <div class="bg-gray-200 p-4 text-center">2</div>
+        <div class="bg-gray-200 p-4 text-center">3</div>
+        <div class="bg-gray-200 p-4 text-center">4</div>
+        <div class="bg-gray-200 p-4 text-center">5</div>
+        <div class="bg-gray-200 p-4 text-center">6</div>
+        <div class="bg-gray-200 p-4 text-center">7</div>
+        <div class="bg-gray-200 p-4 text-center">8</div>
+        <div class="bg-gray-200 p-4 text-center">9</div>
+      </Grid>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Header and Footer (Preview)</h2>
+      <Header currentPage="/" />
+      <div class="my-8">
+        <p class="text-center">Main content would go here.</p>
+      </div>
+      <Footer />
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">High Contrast Theme</h2>
+      <p>To enable high contrast theme, add the <code>high-contrast</code> class to the <code><html></code> element.</p>
+      <div class="high-contrast p-4 bg-gray-900 text-white rounded">
+        <p>This is a preview of the high contrast theme.</p>
+        <Button variant="primary">High Contrast Button</Button>
+      </div>
+    </section>
+  </Container>
+</Layout>

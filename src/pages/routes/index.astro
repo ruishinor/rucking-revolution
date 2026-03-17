@@ -1,0 +1,73 @@
+---
+import { site } from '@/data/site';
+import { routes } from '@/data/routes';
+import Layout from '@/components/Layout.astro';
+import Container from '@/components/Container.astro';
+
+---
+<Layout>
+  <meta name="title" content="Routes - Rucking Revolution" />
+  <meta name="description" content="Explore our curated rucking routes with detailed metadata." />
+  <meta property="og:title" content="Routes - Rucking Revolution" />
+  <meta property="og:description" content="Explore our curated rucking routes with detailed metadata." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={`${site.baseUrl}/routes`} />
+  <meta property="og:image" content={`${site.baseUrl}/og-routes.jpg`} />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <Container>
+    <header class="mb-8">
+      <h1 class="text-3xl font-bold text-center">Routes</h1>
+      <p class="text-center text-muted mt-2">
+        Explore our curated rucking routes with detailed metadata.
+      </p>
+    </header>
+
+    {/* Routes Grid */}
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {routes.map(route => (
+        <article
+          key={route.id}
+          class="hover:shadow-lg transition-shadow flex flex-col h-full border rounded-lg overflow-hidden"
+        >
+          {/* Hero Image */}
+          <a href={`/routes/${route.slug}`} class="mb-0">
+            <img
+              src={route.heroImage.src}
+              alt={route.heroImage.alt}
+              class="w-full h-48 object-cover"
+              loading="lazy"
+            />
+          </a>
+
+          {/* Route Content */}
+          <div class="flex-0 p-4">
+            <h2 class="text-xl font-semibold mb-2 line-clamp-2">
+              <a href={`/routes/${route.slug}`} class="hover:underline">
+                {route.title}
+              </a>
+            </h2>
+            <p class="text-muted-foreground mb-2 line-clamp-3">{route.description}</p>
+
+            {/* Metadata */}
+            <div class="mt-auto space-y-2 text-sm text-muted-foreground">
+              <div class="flex flex-wrap gap-4">
+                <span>Distance: {route.distance} km</span>
+                <span>Elevation Gain: {route.elevationGain} m</span>
+                <span>Terrain: {route.terrain.map(t => t.charAt(0).toUpperCase() + t.slice(1)).join(', ')}</span>
+              </div>
+              <div class="flex flex-wrap gap-4">
+                <span>Difficulty: 
+                  {route.difficulty === 'beginner' ? 'Beginner' : 
+                   route.difficulty === 'intermediate' ? 'Intermediate' : 'Advanced'}
+                </span>
+                <span>Estimated Time: {route.estimatedTime}</span>
+                <span>Load Recommendation: {route.loadRecommendation} kg</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </Container>
+</Layout>

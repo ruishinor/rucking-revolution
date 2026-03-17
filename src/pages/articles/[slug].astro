@@ -1,0 +1,232 @@
+---
+import { site } from '@/data/site';
+import { articles } from '@/data/articles';
+import Layout from '@/components/Layout.astro';
+import Card from '@/components/Card.astro';
+import Container from '@/components/Container.astro';
+
+export async function getStaticPaths() {
+  return articles.map(article => ({
+    params: { slug: article.slug },
+    props: { article }
+  }));
+}
+
+// Get the article by slug
+const { slug } = Astro.params;
+const article = articles.find(a => a.slug === slug);
+
+// If article not found, redirect to 404 (Astro will handle this)
+if (!article) {
+  return Astro.redirect('/404');
+}
+
+// Get related articles (same tags, excluding current article)
+const relatedArticles = articles
+  .filter(a => a.id !== article.id && a.tags.some(tag => article.tags.includes(tag)))
+  .slice(0, 3); // Limit to 3 related articles
+
+// Calculate reading time in minutes (already in article data)
+// Format date
+const date = new Date(article.date);
+const formattedDate = date.toLocaleDateString('en-US', {
+  month: 'long',
+  day: 'numeric',
+  year: 'numeric'
+});
+
+// Generate social share URLs
+const shareUrl = `${site.baseUrl}/articles/${article.slug}`;
+const encodedTitle = encodeURIComponent(article.title);
+const encodedUrl = encodeURIComponent(shareUrl);
+
+const twitterShareUrl = `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`;
+const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
+const linkedinShareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=${encodedTitle}`;
+
+---
+<Layout>
+  <meta name="title" content={`${article.title} - Rucking Revolution`} />
+  <meta name="description" content={article.excerpt} />
+  <meta property="og:title" content={`${article.title} - Rucking Revolution`} />
+  <meta property="og:description" content={article.excerpt} />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content={`${site.baseUrl}/articles/${article.slug}`} />
+  <meta property="og:image" content={`${site.baseUrl}${article.heroImage.src}`} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={`${article.title} - Rucking Revolution`} />
+  <meta name="twitter:description" content={article.excerpt} />
+  <meta name="twitter:image" content={`${site.baseUrl}${article.heroImage.src}`} />
+
+  {/* Structured Data (JSON-LD) */}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": article.title,
+      "description": article.excerpt,
+      "image": [
+        `${site.baseUrl}${article.heroImage.src}`
+      ],
+      "author": {
+        "@type": "Person",
+        "name": article.author
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Rucking Revolution",
+        "logo": {
+          "@type": "ImageObject",
+          "url": `${site.baseUrl}/logo.png`
+        }
+      },
+      "datePublished": article.date,
+      "dateModified": article.date,
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": `${site.baseUrl}/articles/${article.slug}`
+      }
+    }
+  </script>
+
+  <Container>
+    {/* Article Header */}
+    <header class="mb-8">
+      {/* Hero Image with LQIP and srcset */}
+      <figure class="mb-6">
+        {/* Low-quality placeholder */}
+        <img 
+          src={article.heroImage.src.replace('.jpg', '-20w.jpg')} 
+          alt={article.heroImage.alt} 
+          class="w-full h-64 object-cover rounded-lg blur-up"
+          loading="lazy"
+          width="1200"
+          height="630"
+        />
+        {/* Full image with srcset */}
+        <img 
+          src={article.heroImage.src} 
+          srcset={`${article.heroImage.src} 1x, ${article.heroImage.src.replace('.jpg', '-2x.jpg')} 2x`} 
+          alt={article.heroImage.alt} 
+          class="w-full h-64 object-cover rounded-lg hidden md:block"
+          loading="lazy"
+          width="1200"
+          height="630"
+        />
+      </figure>
+      
+      <h1 class="text-3xl font-bold mb-4">{article.title}</h1>
+      <div class="flex flex-wrap gap-4 text-muted-foreground mb-6">
+        <span>By {article.author}</span>
+        <span>•</span>
+        <span>
+          <time dateTime={article.date}>
+            {formattedDate}
+          </time>
+        </span>
+        <span>•</span>
+        <span>{article.readingTime} min read</span>
+        {article.estimatedCaloriesBurned && (
+          <>
+            <span>•</span>
+            <span>{article.estimatedCaloriesBurned} kcal burned</span>
+          </>
+        )}
+      </div>
+    </header>
+
+    {/* Article Body */}
+    <article class="prose lg:prose-xl mx-auto mb-8">
+      {/* Convert markdown to HTML - in a real app, you'd use a markdown parser */}
+      {/* For now, we'll just output the raw markdown as a placeholder */}
+      <div class="whitespace-pre-wrap">{article.body}</div>
+    </article>
+
+    {/* Author Module */}
+    <section class="mb-8 bg-muted-50 rounded-lg p-6 flex flex-col md:flex-row items-start">
+      {/* Author Avatar - placeholder */}
+      <div class="flex-shrink-0 mb-4 md:mb-0 md:mr-6">
+        <img 
+          src="/images/authors/default.jpg" 
+          alt={`${article.author} avatar`} 
+          class="w-24 h-24 rounded-full object-cover"
+        />
+      </div>
+      
+      <div class="flex-1">
+        <h2 class="text-xl font-semibold mb-2">About the Author</h2>
+        <p class="text-muted-foreground">
+          {article.author} is a dedicated rucking enthusiast and contributor to Rucking Revolution.
+          {/* In a real app, you'd have author bios */}
+        </p>
+      </div>
+    </section>
+
+    {/* Related Articles */}
+    {relatedArticles.length > 0 && (
+      <section class="mb-8">
+        <h2 class="text-2xl font-semibold mb-4">Related Articles</h2>
+        <div class="grid gap-4 md:grid-cols-3">
+          {relatedArticles.map(related => (
+            <Card key={related.id} class="hover:shadow-lg transition-shadow">
+              <div class="flex flex-col h-full">
+                <a href={`/articles/${related.slug}`} class="mb-3">
+                  <img 
+                    src={related.heroImage.src} 
+                    alt={related.heroImage.alt} 
+                    class="w-full h-36 object-cover rounded-t-lg"
+                    loading="lazy"
+                  />
+                </a>
+                <div class="p-4 flex-0">
+                  <h3 class="text-lg font-semibold mb-2 line-clamp-2">
+                    <a href={`/articles/${related.slug}`} class="hover:underline">
+                      {related.title}
+                    </a>
+                  </h3>
+                  <p class="text-muted-foreground mb-2 line-clamp-2">{related.excerpt}</p>
+                  <div class="flex flex-wrap gap-2 text-xs text-muted-foreground mt-auto">
+                    <span>{related.readingTime} min read</span>
+                    <span>•</span>
+                    <span>{new Date(related.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
+                  </div>
+                </div>
+              </div>
+            </Card>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {/* Share Links */}
+    <section class="mb-8 bg-muted-50 rounded-lg p-6">
+      <h2 class="text-xl font-semibold mb-4">Share this Article</h2>
+      <div class="flex flex-wrap gap-3">
+        <a 
+          href={twitterShareUrl} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="flex-1 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+        >
+          Share on Twitter
+        </a>
+        <a 
+          href={facebookShareUrl} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="flex-1 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+        >
+          Share on Facebook
+        </a>
+        <a 
+          href={linkedinShareUrl} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="flex-1 px-4 py-2 bg-blue-800 text-white rounded hover:bg-blue-900 transition-colors"
+        >
+          Share on LinkedIn
+        </a>
+      </div>
+    </section>
+  </Container>
+</Layout>
