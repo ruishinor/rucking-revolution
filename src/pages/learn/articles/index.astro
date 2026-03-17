@@ -1,10 +1,16 @@
 ---
 import Layout from '@/components/Layout.astro';
 import { articles } from '@/data/articles';
-import Card from '@/components/Card.astro';
+import { existsSync } from 'node:fs';
+
+const publicAssetExists = (assetPath) =>
+  existsSync(new URL(`../../../public${assetPath}`, import.meta.url));
 
 // Get featured/recent articles (limit to 6)
-const recentArticles = articles.slice(0, 6);
+const featuredArticles = articles.slice(0, 6).map(article => ({
+  ...article,
+  hasHeroImage: publicAssetExists(article.heroImage.src),
+}));
 ---
 
 <Layout title="Articles - Rucking Revolution" description="In-depth articles covering rucking discipline, leadership, and field activities">
@@ -16,10 +22,49 @@ const recentArticles = articles.slice(0, 6);
       </p>
     </header>
 
-    {recentArticles.length > 0 ? (
+    {featuredArticles.length > 0 ? (
       <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {recentArticles.map((article) => (
-          <Card article={article} />
+        {featuredArticles.map(article => (
+          <article class="hover:shadow-lg transition-shadow flex flex-col h-full border border-gray-200 rounded-lg overflow-hidden bg-white">
+            {/* Hero Image */}
+            {article.hasHeroImage ? (
+              <a href={`/articles/${article.slug}`} class="block">
+                <img 
+                  src={article.heroImage.src} 
+                  alt={article.heroImage.alt} 
+                  class="w-full h-48 object-cover"
+                  loading="lazy"
+                />
+              </a>
+            ) : (
+              <a href={`/articles/${article.slug}`} class="block">
+                <div class="w-full h-48 bg-gray-200 flex items-center justify-center">
+                  <span class="text-gray-500 text-sm">Article image</span>
+                </div>
+              </a>
+            )}
+            
+            {/* Article Content */}
+            <div class="flex-1 p-4">
+              <h2 class="text-xl font-semibold mb-2 line-clamp-2">
+                <a href={`/articles/${article.slug}`} class="hover:text-blue-600 transition-colors">
+                  {article.title}
+                </a>
+              </h2>
+              <p class="text-gray-600 mb-3 line-clamp-3">{article.excerpt}</p>
+              
+              {/* Meta Info */}
+              <div class="flex flex-wrap gap-3 text-xs text-gray-500 mt-auto">
+                <span>By {article.author}</span>
+                <span>
+                  <time dateTime={article.date}>
+                    {new Date(article.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                  </time>
+                </span>
+                <span>{article.readingTime} min read</span>
+              </div>
+            </div>
+          </article>
         ))}
       </div>
     ) : (
