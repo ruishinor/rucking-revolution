@@ -1,34 +1,130 @@
 ---
 import Layout from '@/components/Layout.astro';
 import { comics } from '@/data/comics.ts';
+
+// Get first comic for preview
+const featuredComic = comics[0];
 ---
 
-<Layout title="Red Rucker" description="Webcomic archive and individual comic pages">
-  <h1 class="text-3xl font-bold mb-6">Red Rucker</h1>
-  <p class="mb-6">Webcomic archive and individual comic pages</p>
-  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-    {comics.map((comic) => (
-       <a href={`/red-rucker/${comic.episode}`} class="group">
-         {typeof comic.image === 'string' ? (
-           <img
-             src={comic.image}
-             alt={comic.title}
-             class="w-full h-auto rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-105"
-             loading="lazy"
-           />
-         ) : (
-           <img
-             src={comic.image.src}
-             width={comic.image.width}
-             height={comic.image.height}
-             alt={comic.title}
-             class="w-full h-auto rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-105"
-             loading="lazy"
-           />
-         )}
-         <h2 class="mt-4 text-xl font-semibold text-center">{comic.title}</h2>
-         <p class="text-center text-sm text-gray-600">Episode {comic.episode}</p>
-       </a>
-    ))}
+<Layout 
+  title="Red Rucker - Webcomic Archive" 
+  description="Follow Red Rucker's adventures in leadership and community building. Each episode delivers valuable insights through engaging storytelling."
+>
+  <div class="bg-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Header Section -->
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-extrabold text-gray-900 mb-4">Red Rucker</h1>
+        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+          Follow the adventures and lessons of Red Rucker as he navigates the challenges of rucking leadership and community building. Each episode delivers valuable insights through engaging storytelling.
+        </p>
+        <div class="mt-6 flex items-center justify-center gap-4 text-sm text-gray-500">
+          <span>{comics.length} Episodes Available</span>
+          <span>•</span>
+          <span>New episodes regularly</span>
+        </div>
+      </div>
+
+      <!-- Featured Episode -->
+      {featuredComic && (
+        <div class="mb-16 bg-gray-50 rounded-xl overflow-hidden shadow-lg">
+          <div class="md:flex">
+            <div class="md:w-1/2">
+              <a href={`/red-rucker/${featuredComic.episode}`}>
+                <img 
+                  src={featuredComic.image} 
+                  alt={featuredComic.title}
+                  class="w-full h-64 md:h-full object-cover hover:opacity-95 transition-opacity"
+                />
+              </a>
+            </div>
+            <div class="md:w-1/2 p-8 flex flex-col justify-center">
+              <span class="text-sm font-medium text-primary mb-2">Featured Episode</span>
+              <h2 class="text-2xl font-bold text-gray-900 mb-2">
+                Episode {featuredComic.episode}: {featuredComic.title}
+              </h2>
+              <p class="text-gray-600 mb-4">{featuredComic.caption}</p>
+              <div class="bg-white p-4 rounded-lg border-l-4 border-primary">
+                <span class="text-sm font-semibold text-gray-700">Lesson: </span>
+                <span class="text-sm text-gray-600">{featuredComic.lesson}</span>
+              </div>
+              <a 
+                href={`/red-rucker/${featuredComic.episode}`}
+                class="mt-6 inline-flex items-center text-primary hover:text-primary/80 font-medium"
+              >
+                Read Episode →
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <!-- All Episodes Grid -->
+      <h2 class="text-2xl font-bold text-gray-900 mb-8">All Episodes</h2>
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {comics.map((comic) => (
+          <a 
+            href={`/red-rucker/${comic.episode}`} 
+            class="group bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+          >
+            <div class="relative overflow-hidden">
+              <img
+                src={comic.image}
+                alt={comic.title}
+                class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+              />
+              <div class="absolute top-0 right-0 bg-primary text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
+                EP {comic.episode}
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-lg font-semibold text-gray-900 group-hover:text-primary transition-colors">
+                {comic.title}
+              </h3>
+              <p class="mt-2 text-sm text-gray-600 line-clamp-2">
+                {comic.caption}
+              </p>
+              <div class="mt-4 pt-4 border-t border-gray-100">
+                <span class="text-xs font-medium text-gray-500 uppercase tracking-wide">
+                  Lesson
+                </span>
+                <p class="mt-1 text-sm text-gray-700 line-clamp-2">
+                  {comic.lesson}
+                </p>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <!-- Cross-Reference Section -->
+      <div class="mt-16 bg-gray-50 rounded-xl p-8">
+        <h3 class="text-xl font-bold text-gray-900 mb-4">Continue Your Journey</h3>
+        <div class="grid gap-6 sm:grid-cols-3">
+          <a href="/learn" class="flex items-center gap-3 p-4 bg-white rounded-lg hover:shadow-md transition-shadow">
+            <span class="text-2xl">📚</span>
+            <div>
+              <span class="font-medium text-gray-900">Learn</span>
+              <p class="text-sm text-gray-600">Explore articles and guides</p>
+            </div>
+          </a>
+          <a href="/train" class="flex items-center gap-3 p-4 bg-white rounded-lg hover:shadow-md transition-shadow">
+            <span class="text-2xl">🏋️</span>
+            <div>
+              <span class="font-medium text-gray-900">Train</span>
+              <p class="text-sm text-gray-600">Build your rucking fitness</p>
+            </div>
+          </a>
+          <a href="/lead" class="flex items-center gap-3 p-4 bg-white rounded-lg hover:shadow-md transition-shadow">
+            <span class="text-2xl">👥</span>
+            <div>
+              <span class="font-medium text-gray-900">Lead</span>
+              <p class="text-sm text-gray-600">Lead your crew effectively</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 </Layout>

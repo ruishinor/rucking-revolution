@@ -27,62 +27,132 @@ export async function getStaticPaths() {
 }
 ---
 
-<Layout title={`${comic.title} - Red Rucker`} description={`${comic.caption} - Lesson: ${comic.lesson}`}>
-  <article class="prose mx-auto max-w-2xl">
-    <header class="mb-8">
-      <h1 class="text-3xl font-bold">{comic.title}</h1>
-      <p class="text-gray-600">Episode {comic.episode}</p>
-    </header>
+<Layout 
+  title={`${comic.title} - Red Rucker Episode ${comic.episode}`} 
+  description={`${comic.caption} - Lesson: ${comic.lesson}`}
+>
+  <div class="bg-gray-50 py-12">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Breadcrumb -->
+      <nav class="mb-8">
+        <ol class="flex items-center gap-2 text-sm text-gray-500">
+          <li><a href="/" class="hover:text-primary">Home</a></li>
+          <li>/</li>
+          <li><a href="/red-rucker" class="hover:text-primary">Red Rucker</a></li>
+          <li>/</li>
+          <li class="text-gray-900">Episode {comic.episode}</li>
+        </ol>
+      </nav>
 
-     <figure class="mb-6">
-       {typeof comic.image === 'string' ? (
-         <img
-           src={comic.image}
-           alt={comic.title}
-           class="w-full h-auto rounded-lg shadow-lg"
-           loading="lazy"
-         />
-       ) : (
-         <img
-           src={comic.image.src}
-           width={comic.image.width}
-           height={comic.image.height}
-           alt={comic.title}
-           class="w-full h-auto rounded-lg shadow-lg"
-           loading="lazy"
-         />
-       )}
-       <figcaption class="mt-2 text-center text-gray-500">{comic.caption}</figcaption>
-     </figure>
+      <!-- Episode Header -->
+      <header class="mb-8">
+        <span class="inline-block bg-primary text-white text-sm font-bold px-3 py-1 rounded-full mb-4">
+          Episode {comic.episode}
+        </span>
+        <h1 class="text-4xl font-extrabold text-gray-900 mb-4">
+          {comic.title}
+        </h1>
+        <p class="text-lg text-gray-600">
+          {comic.caption}
+        </p>
+      </header>
 
-    <section class="bg-gray-50 p-6 rounded-lg">
-      <h2 class="text-xl font-bold mb-4">Lesson Takeaway</h2>
-      <p>{comic.lesson}</p>
-    </section>
+      <!-- Comic Panel -->
+      <figure class="mb-10">
+        <img
+          src={comic.image}
+          alt={comic.title}
+          class="w-full h-auto rounded-xl shadow-lg"
+          loading="lazy"
+        />
+        <figcaption class="mt-3 text-center text-gray-500 italic">
+          {comic.caption}
+        </figcaption>
+      </figure>
 
-    <nav class="mt-8 flex justify-between">
-      {getPrevEpisode() && (
+      <!-- Lesson Takeaway -->
+      <section class="bg-white rounded-xl shadow-md p-8 mb-10">
+        <div class="flex items-start gap-4">
+          <div class="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+            </svg>
+          </div>
+          <div>
+            <h2 class="text-xl font-bold text-gray-900 mb-2">Lesson Takeaway</h2>
+            <p class="text-gray-700 text-lg">{comic.lesson}</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Navigation -->
+      <nav class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-10">
+        {getPrevEpisode() ? (
+          <a
+            href={`/red-rucker/${getPrevEpisode()}`}
+            class="w-full sm:w-auto flex items-center justify-center gap-2 bg-white hover:bg-gray-50 text-gray-900 font-medium py-3 px-6 rounded-lg shadow-sm border border-gray-200 hover:border-primary transition-colors"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            <span>Previous Episode</span>
+          </a>
+        ) : (
+          <div class="w-full sm:w-auto"></div>
+        )}
+        
         <a
-          href={`/red-rucker/${getPrevEpisode()}`}
-          class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+          href="/red-rucker"
+          class="w-full sm:w-auto flex items-center justify-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-900 font-medium py-3 px-6 rounded-lg transition-colors"
         >
-          ← Previous Episode
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+          </svg>
+          <span>All Episodes</span>
         </a>
-      )}
-      {getNextEpisode() && (
-        <a
-          href={`/red-rucker/${getNextEpisode()}`}
-          class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
-        >
-          Next Episode →
-        </a>
-      )}
-    </nav>
 
-    <div class="mt-8 text-center">
-      <a href="/red-rucker" class="text-blue-500 hover:underline">
-        ← Back to Archive
-      </a>
+        {getNextEpisode() ? (
+          <a
+            href={`/red-rucker/${getNextEpisode()}`}
+            class="w-full sm:w-auto flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white font-medium py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition-all"
+          >
+            <span>Next Episode</span>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        ) : (
+          <div class="w-full sm:w-auto"></div>
+        )}
+      </nav>
+
+      <!-- Cross-References -->
+      <section class="bg-white rounded-xl shadow-md p-8">
+        <h3 class="text-lg font-bold text-gray-900 mb-6">Continue Your Journey</h3>
+        <div class="grid gap-4 sm:grid-cols-3">
+          <a href="/learn/articles" class="flex items-center gap-3 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">📖</span>
+            <div>
+              <span class="block font-medium text-gray-900">Articles</span>
+              <span class="text-sm text-gray-600">Learn the theory</span>
+            </div>
+          </a>
+          <a href="/train/workouts" class="flex items-center gap-3 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">🏋️</span>
+            <div>
+              <span class="block font-medium text-gray-900">Workouts</span>
+              <span class="text-sm text-gray-600">Train with programs</span>
+            </div>
+          </a>
+          <a href="/lead/crew-tactics" class="flex items-center gap-3 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+            <span class="text-2xl">👥</span>
+            <div>
+              <span class="block font-medium text-gray-900">Crew Tactics</span>
+              <span class="text-sm text-gray-600">Lead your team</span>
+            </div>
+          </a>
+        </div>
+      </section>
     </div>
-  </article>
+  </div>
 </Layout>
