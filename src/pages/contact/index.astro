@@ -1,7 +1,126 @@
 ---
 import Layout from '@/components/Layout.astro';
+import Container from '@/components/Container.astro';
 ---
-<Layout title="Contact" description="Get in touch with the Rucking Revolution team." currentPage="/contact">
-  <h1 class="text-3xl font-bold mb-6">Contact</h1>
-  <p>Get in touch with the Rucking Revolution team.</p>
+<Layout title="Contact - Rucking Revolution" description="Get in touch with the Rucking Revolution team" currentPage="/contact">
+  <Container>
+    <header class="mb-12 text-center">
+      <h1 class="text-4xl font-bold mb-4">Contact Us</h1>
+      <p class="text-xl text-muted">
+        We'd hear from you. Here's how to reach the right team.
+      </p>
+    </header>
+
+    <section class="mb-12">
+      <div class="grid gap-8 md:grid-cols-2">
+        <div>
+          <h2 class="text-2xl font-semibold mb-4">General Inquiries</h2>
+          <p class="text-muted mb-6">
+            For questions about the platform, partnerships, or general information about rucking, reach out to our team.
+          </p>
+          <div class="p-6 border rounded-lg">
+            <h3 class="text-lg font-semibold mb-3">Email</h3>
+            <p class="text-muted mb-2">hello@ruckingrevolution.com</p>
+            <p class="text-sm text-muted">
+              We typically respond within 2-3 business days.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-semibold mb-4">Subject Guidance</h2>
+          <p class="text-muted mb-6">
+            To help us route your inquiry efficiently, please use the appropriate subject line:
+          </p>
+          <div class="space-y-4">
+            <div class="p-4 border rounded-lg">
+              <h3 class="font-semibold mb-1">Partnerships & Collaborations</h3>
+              <p class="text-sm text-muted">For brands, media, and business inquiries</p>
+            </div>
+            <div class="p-4 border rounded-lg">
+              <h3 class="font-semibold mb-1">Crew Support</h3>
+              <p class="text-sm text-muted">For existing crews needing platform help</p>
+            </div>
+            <div class="p-4 border rounded-lg">
+              <h3 class="font-semibold mb-1">Content Submissions</h3>
+              <p class="text-sm text-muted">For articles, guides, or field notes</p>
+            </div>
+            <div class="p-4 border rounded-lg">
+              <h3 class="font-semibold mb-1">Technical Issues</h3>
+              <p class="text-sm text-muted">For bugs, broken links, or site problems</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">What to Expect</h2>
+      <div class="grid gap-6 md:grid-cols-3">
+        <div class="p-6 border rounded-lg text-center">
+          <div class="text-3xl mb-3">📬</div>
+          <h3 class="font-semibold mb-2">Response Time</h3>
+          <p class="text-sm text-muted">
+            We aim to acknowledge all inquiries within 48 hours. Complex questions may take 3-5 business days.
+          </p>
+        </div>
+        <div class="p-6 border rounded-lg text-center">
+          <div class="text-3xl mb-3">📋</div>
+          <h3 class="font-semibold mb-2">What to Include</h3>
+          <p class="text-sm text-muted">
+            Be specific about your inquiry. Include relevant details like your crew name, the section of the site you're referring to, or your background with rucking.
+          </p>
+        </div>
+        <div class="p-6 border rounded-lg text-center">
+          <div class="text-3xl mb-3">🔒</div>
+          <h3 class="font-semibold mb-2">Privacy</h3>
+          <p class="text-sm text-muted">
+            Your information is kept confidential. We never share your contact details with third parties.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Connect With Us</h2>
+      <p class="text-muted mb-6">
+        Follow us on social media for daily inspiration, training tips, and community highlights.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="https://facebook.com/ruckingrevolution" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-6 py-3 border rounded-lg hover:bg-gray-50 transition-colors">
+          <span class="mr-2">📘</span> Facebook
+        </a>
+        <a href="https://instagram.com/ruckingrevolution" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-6 py-3 border rounded-lg hover:bg-gray-50 transition-colors">
+          <span class="mr-2">📸</span> Instagram
+        </a>
+        <a href="https://twitter.com/ruckingrevolution" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-6 py-3 border rounded-lg hover:bg-gray-50 transition-colors">
+          <span class="mr-2">🐦</span> Twitter
+        </a>
+        <a href="https://youtube.com/@ruckingrevolution" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-6 py-3 border rounded-lg hover:bg-gray-50 transition-colors">
+          <span class="mr-2">📺</span> YouTube
+        </a>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Explore Before You Go</h2>
+      <p class="text-muted mb-6">
+        If you're looking for specific information, these sections might help:
+      </p>
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <a href="/faq" class="block p-4 border rounded-lg hover:shadow-lg transition-shadow text-center">
+          <span class="font-semibold">FAQ</span>
+        </a>
+        <a href="/learn/articles" class="block p-4 border rounded-lg hover:shadow-lg transition-shadow text-center">
+          <span class="font-semibold">Articles</span>
+        </a>
+        <a href="/train" class="block p-4 border rounded-lg hover:shadow-lg transition-shadow text-center">
+          <span class="font-semibold">Training</span>
+        </a>
+        <a href="/lead" class="block p-4 border rounded-lg hover:shadow-lg transition-shadow text-center">
+          <span class="font-semibold">Leadership</span>
+        </a>
+      </div>
+    </section>
+  </Container>
 </Layout>
