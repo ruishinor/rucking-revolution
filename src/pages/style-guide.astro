@@ -20,15 +20,15 @@ import Grid from '@/components/Grid.astro';
       <h2 class="mb-5 text-3xl font-semibold">Palette</h2>
       <Grid columns={1} gap={4} class="sm:grid-cols-2 lg:grid-cols-3">
         <div class="rounded-[1.25rem] bg-primary p-5 text-white shadow-[0_14px_28px_rgba(139,0,0,0.18)]">
-          <p class="text-sm uppercase tracking-[0.16em] text-white/70">Primary</p>
+          <p class="text-sm uppercase tracking-[0.16em] text-white/90">Primary</p>
           <p class="mt-3 text-3xl font-bold">#8B0000</p>
         </div>
         <div class="rounded-[1.25rem] bg-secondary p-5 text-white shadow-[0_14px_28px_rgba(28,28,28,0.18)]">
-          <p class="text-sm uppercase tracking-[0.16em] text-white/70">Secondary</p>
+          <p class="text-sm uppercase tracking-[0.16em] text-white/90">Secondary</p>
           <p class="mt-3 text-3xl font-bold">#1C1C1C</p>
         </div>
-        <div class="rounded-[1.25rem] bg-accent p-5 text-white shadow-[0_14px_28px_rgba(232,92,42,0.18)]">
-          <p class="text-sm uppercase tracking-[0.16em] text-white/70">Accent</p>
+        <div class="rounded-[1.25rem] bg-accent p-5 text-secondary shadow-[0_14px_28px_rgba(232,92,42,0.18)]">
+          <p class="text-sm uppercase tracking-[0.16em] text-secondary/80">Accent</p>
           <p class="mt-3 text-3xl font-bold">#E85C2A</p>
         </div>
         <div class="rounded-[1.25rem] border border-muted-200 bg-background p-5 text-foreground">
@@ -36,11 +36,11 @@ import Grid from '@/components/Grid.astro';
           <p class="mt-3 text-3xl font-bold">#F5F1E8</p>
         </div>
         <div class="rounded-[1.25rem] bg-forest p-5 text-white shadow-[0_14px_28px_rgba(46,74,63,0.18)]">
-          <p class="text-sm uppercase tracking-[0.16em] text-white/70">Forest</p>
+          <p class="text-sm uppercase tracking-[0.16em] text-white/90">Forest</p>
           <p class="mt-3 text-3xl font-bold">#2E4A3F</p>
         </div>
         <div class="rounded-[1.25rem] bg-steel p-5 text-white shadow-[0_14px_28px_rgba(88,100,115,0.18)]">
-          <p class="text-sm uppercase tracking-[0.16em] text-white/70">Steel</p>
+          <p class="text-sm uppercase tracking-[0.16em] text-white/90">Steel</p>
           <p class="mt-3 text-3xl font-bold">#586473</p>
         </div>
       </Grid>
@@ -112,7 +112,7 @@ import Grid from '@/components/Grid.astro';
         <Card>
           <div slot="header" class="flex items-center justify-between gap-3">
             <p class="text-sm font-semibold uppercase tracking-[0.16em] text-primary">Knowledge Surface</p>
-            <span class="rounded-full bg-muted-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-muted">Editorial</span>
+            <span class="rounded-full bg-muted-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground">Editorial</span>
           </div>
           <h3 class="mb-3 text-2xl font-bold text-foreground">Field note cards now read as one system.</h3>
           <p class="text-muted-foreground">

@@ -19,6 +19,44 @@ This work order turns the current audit into an execution plan to repair the web
 
 This is not a "nice to have" polish pass. The current implementation has structural problems that affect layout, routing, styling, SEO, accessibility, and feature behavior. The work below must be completed in order.
 
+## Restored strategic guidance and scope constraints
+
+The following product guidance was reaffirmed after the initial draft and must remain active for all modules:
+
+- Preserve the site as a knowledge ecosystem, not a generic marketing site:
+  - publishing engine
+  - training doctrine repository
+  - movement and crew infrastructure
+- Preserve simplified top-level navigation and keep primary root choices within a low cognitive-load range. The preferred root shape is:
+  - Home
+  - Learn
+  - Train
+  - Lead
+  - Red Rucker
+  - About
+- Keep the Digital Library commercially visible even if it is grouped under `Learn`. It must remain directly discoverable through homepage placement, overview pages, footer/utility navigation, and canonical library routes.
+- Preserve and integrate the high-value cultural and field pages that support long-term platform identity:
+  - `/why-rucking`
+  - `/routes`
+  - `/events`
+  - `/field-notes`
+- Treat `/gear` as a planned strategic section. If it is not implemented yet, do not fake it; route planning for it must still be accounted for in the architecture modules.
+- Protect article readability:
+  - approximately 60-80 characters per line
+  - generous spacing
+  - clear editorial hierarchy
+- Protect field usability on training pages:
+  - large diagrams
+  - short instructions
+  - minimal cognitive load during use
+- Treat mobile as the dominant form factor.
+- Do not redesign the internal purpose of the Workout Generator or CrewTactics generator during this remediation unless a later explicit change request approves it. Permitted work on those tools is limited to:
+  - deployment safety
+  - navigation context
+  - accessibility
+  - visual consistency
+  - supporting explanatory content around the tools
+
 ## How to use this document
 
 - Non-developers should read:
@@ -86,6 +124,13 @@ These rules apply to every module.
   - keyboard-accessible controls
   - valid links
 - Every asset referenced in code must exist in the repository or be loaded from an approved external source.
+- Preserve the existing knowledge-platform loop where possible:
+  - read
+  - train
+  - lead
+  - reflect
+  - publish
+  - improve
 - Every module should be merged only after:
   - `npm run build` passes
   - relevant tests pass
@@ -329,20 +374,19 @@ Make the shared shell of the site stable, consistent, and aligned with the platf
 
 - Fix broken class interpolation in shared components.
 - Refactor shared layout components so they produce valid HTML and reusable structure.
-- Align root navigation with the required platform architecture:
+- Align root navigation with the approved simplified platform architecture:
   - Home
-  - Articles
-  - Training
-  - Performance Kit
-  - CrewTactics
-  - Ruck Clubs
-  - After Action Reviews
-  - Digital Library
+  - Learn
+  - Train
+  - Lead
   - Red Rucker
   - About
-- If helper landing pages such as `/learn`, `/train`, or `/lead` are retained, they must either:
-  - become meaningful overview pages, or
-  - redirect to the new canonical structure
+- Ensure the Digital Library remains directly discoverable without overloading the primary menu. Acceptable placements include:
+  - the Learn overview page
+  - homepage showcase sections
+  - footer or utility navigation
+  - a direct canonical library route
+- Helper landing pages such as `/learn`, `/train`, and `/lead` are preferred as meaningful canonical overview pages, not temporary holding pages.
 - Replace footer placeholders with real destinations.
 - Make mobile navigation fully usable by keyboard and touch.
 
@@ -379,12 +423,24 @@ Make the URL structure and page structure match the intended knowledge platform.
 - Every important menu item should lead to a meaningful page.
 - No page should promise filtering, pagination, or detail pages that do not exist.
 - The site map should reflect the original product structure, not a temporary internal grouping.
+- The architecture should preserve the knowledge journey:
+  - Learn
+  - Train
+  - Lead
+  while still keeping library/storefront, routes, events, field notes, and manifesto pages easy to find.
 
 ### Developer instructions
 
 - Audit all current routes and align them to the target architecture.
 - Decide canonical URLs and apply them consistently.
 - Remove or redirect routes that exist only because of the current temporary grouping.
+- Preserve and integrate the strategic supporting routes:
+  - `/why-rucking`
+  - `/routes`
+  - `/events`
+  - `/field-notes`
+- Decide and document the canonical treatment of library routes so monetization is visible and not buried.
+- Reserve route space for `/gear` even if the page itself is deferred; do not allow the architecture to block it later.
 - Fix broken internal links for:
   - article tags and pagination
   - workout detail pages
@@ -418,17 +474,24 @@ Turn the homepage into a real landing page for the entire platform.
 ### Plain-language instructions
 
 - The homepage should immediately explain what Rucking Revolution is.
-- It should guide visitors into the main pillars:
-  - Articles
-  - Training
-  - Leadership/Crew systems
-  - Library/storefront
+- It should guide visitors into the real lifecycle:
+  - start rucking
+  - learn the discipline
+  - lead a crew
+- It should also surface the broader platform pillars:
+  - editorial learning
+  - training doctrine
+  - leadership/crew systems
+  - library/storefront
   - Red Rucker
+  - manifesto/why-rucking
+  - field notes, routes, and events where relevant
 - It should not contain placeholders or fake cards.
 
 ### Developer instructions
 
 - Rebuild the homepage using real data and real links.
+- Clarify homepage CTA hierarchy so the primary choices do not compete with each other unnecessarily.
 - Implement the requested homepage sections:
   - Hero
   - Core Pillars
@@ -436,6 +499,7 @@ Turn the homepage into a real landing page for the entire platform.
   - Training Resources
   - Digital Library showcase
   - Red Rucker preview
+  - optional featured manifesto, field note, route, or event callout if it improves platform orientation without clutter
   - optional Newsletter section only if functional or intentionally disabled
 - Replace placeholder article cards with data-driven cards from the actual article source.
 - Link resource cards to real target pages.
@@ -517,11 +581,18 @@ Build a complete training section that works as a real instructional resource.
 - Training should not be a placeholder page.
 - The workout generator must actually generate workouts in the deployed site.
 - Performance Kit pages must be instructional pages with real structure, not empty shells.
+- Training pages should remain optimized for field use: large diagrams, short instructions, and low cognitive load.
+- Do not reinvent the workout generator's underlying concept, scope, or output model in this module unless it is broken.
 
 ### Developer instructions
 
 - Build a meaningful `Training` overview page.
 - Move workout generation to a client-side interaction model or another deployment-safe architecture.
+- Preserve the workout generator's existing role and avoid feature redesign beyond:
+  - deployment-safe behavior
+  - accessibility
+  - navigation context
+  - visual consistency
 - Add sample workout detail pages if the UI links to them.
 - Build or complete:
   - Training overview
@@ -578,6 +649,7 @@ Make the leadership and community sections useful, specific, and consistent with
 - CrewTactics should feel like a practical leadership tool, not a rough demo.
 - Ruck Clubs should clearly explain how to start and run a crew.
 - Downloadable club resources are fine, but the pages themselves must also stand alone.
+- Do not change what CrewTactics fundamentally is. Improve framing, navigation, accessibility, and presentation around the existing tool.
 
 ### Developer instructions
 
@@ -587,6 +659,7 @@ Make the leadership and community sections useful, specific, and consistent with
   - how to use
   - leader guidance
   - path to the generator
+- Keep the generator concept and deck structure intact unless a later explicitly approved change request says otherwise.
 - Keep the generator only if it is actually usable, keyboard accessible, and styled consistently.
 - Expand Ruck Clubs into a real overview page covering:
   - what a ruck club is
@@ -682,6 +755,8 @@ Turn the library/store section into a real storefront with valid assets and clea
 - The library should feel curated and trustworthy.
 - Product pages should show what the item is, who it is for, and how to buy it.
 - No product should appear live if its files, preview images, or payment links are fake or missing.
+- The library must remain visibly monetizable and not be buried behind unclear navigation.
+- If gear guidance is introduced here, it must be real and integrated with the library strategy, not a fake placeholder category.
 
 ### Developer instructions
 
@@ -691,6 +766,7 @@ Turn the library/store section into a real storefront with valid assets and clea
   - Card Decks
   - Training Materials
   - Workout Packs
+- Decide whether gear should live here as a library/buying-guide category, a standalone route, or both; whichever option is chosen must be explicit and non-placeholder.
 - Rework the library landing page so it behaves like a store/library, not just a grid of cards.
 - Fix product detail pages:
   - proper layout
@@ -1160,3 +1236,36 @@ Module 01 gate notes:
 - [ ] Technical sign-off complete
 - [ ] Accessibility sign-off complete
 - [ ] Launch approval given
+
+## Summary of incorporated guidance and completed work
+
+Restored strategic guidance now explicitly preserved in this work order:
+
+- Root navigation is defined around the simplified platform structure:
+  - Home
+  - Learn
+  - Train
+  - Lead
+  - Red Rucker
+  - About
+- Digital Library discoverability is now protected even when grouped under `Learn`.
+- The high-value platform pages `/why-rucking`, `/routes`, `/events`, and `/field-notes` are now explicitly treated as strategic architecture elements rather than optional extras.
+- `/gear` is now accounted for as a planned section so later IA work does not block it.
+- Training-page field usability and mobile-first behavior are now explicit requirements.
+- Module 06 now explicitly forbids redesigning the Workout Generator beyond deployment safety, accessibility, navigation context, and visual consistency.
+- Module 07 now explicitly forbids redesigning CrewTactics beyond framing, navigation context, accessibility, and visual consistency.
+
+Implemented work completed so far:
+
+- Module 01 foundation and design-system repair was executed in code.
+- The live deployment path was corrected so Vercel builds from source instead of serving tracked `.vercel/output` artifacts.
+- The custom domain `ruckingrevolution.org` is treated as the production validation target.
+- Module 01 validation now includes:
+  - production HTML/CSS verification
+  - desktop and mobile screenshot review
+  - console/request-failure review
+  - accessibility spot checks
+- Remaining post-Module-01 issues discovered during validation must be assigned to their owning modules instead of being lost:
+  - article image 404s belong to Module 05
+  - any missing product/store assets belong to Module 09
+  - any remaining content/asset gaps outside the foundation layer belong to their respective later modules

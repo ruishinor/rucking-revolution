@@ -50,7 +50,7 @@ const { currentPage = '' } = Astro.props;
     {site.primaryNav.map(({ name, link }) => (
       <a 
         href={link} 
-        class={`block px-3 py-2 rounded-md text-base font-medium hover:bg-accent hover:text-white ${currentPage === link ? 'bg-accent text-white' : ''}`}
+        class={`block px-3 py-2 rounded-md text-base font-medium hover:bg-accent hover:text-secondary ${currentPage === link ? 'bg-accent text-secondary' : ''}`}
         key={link}
       >
         {name}

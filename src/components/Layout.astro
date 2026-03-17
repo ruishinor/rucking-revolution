@@ -88,7 +88,7 @@
         {site.primaryNav.map(({ name, link }) => (
           <a
             href={link}
-            class={`block rounded-md px-3 py-2 text-base font-semibold uppercase tracking-wide hover:bg-accent hover:text-white ${currentPage === link ? 'bg-accent text-white' : 'text-white/80'}`}
+            class={`block rounded-md px-3 py-2 text-base font-semibold uppercase tracking-wide hover:bg-accent hover:text-secondary ${currentPage === link ? 'bg-accent text-secondary' : 'text-white/80'}`}
             key={link}
           >
             {name}
@@ -144,7 +144,7 @@
           <p class="text-sm mb-4">Get updates on new articles, workouts, and community events.</p>
           <form class="space-y-2">
             <input type="email" placeholder="Enter your email" required class="w-full rounded-border border border-gray-600 bg-gray-700 px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-accent" />
-            <button type="submit" class="w-full bg-accent text-white px-4 py-2 rounded-md hover:bg-accent/80 transition-colors duration-200 font-medium">
+            <button type="submit" class="w-full rounded-md bg-accent px-4 py-2 font-medium text-secondary transition-colors duration-200 hover:bg-accent/90">
               Subscribe
             </button>
           </form>
