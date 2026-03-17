@@ -7,7 +7,7 @@ const { slug } = Astro.params;
 // Find product by id (using slug as id)
 const product = products.find(p => p.id === slug);
 
-// If product not found, redirect to 404 (or library index)
+// If product not found, redirect to library index
 if (!product) {
   return Astro.redirect('/library');
 }
@@ -18,37 +18,89 @@ export async function getStaticPaths() {
     props: { product }
   }));
 }
+
+// Category labels
+const categoryLabels: Record<string, string> = {
+  'books': 'Book',
+  'guides': 'Guide',
+  'card-decks': 'Card Deck',
+  'training-materials': 'Training Material',
+  'workout-packs': 'Workout Pack',
+};
+
+// Check if images exist
+const hasImages = product.previewImages && product.previewImages.length > 0;
 ---
+
 <Layout title={`${product.title} - Rucking Revolution Store`} description={product.description}>
-  <div class="max-w-4xl mx-auto px-4 py-8">
-    <div class="flex flex-col lg:flex-row gap-8">
+  <div class="max-w-6xl mx-auto px-4 py-8">
+    <!-- Back Navigation -->
+    <a href="/library" class="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 transition-colors">
+      <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+      </svg>
+      Back to Library
+    </a>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
       <!-- Product Images -->
       <div class="lg:w-1/2">
         <div class="space-y-4">
-          {product.previewImages.map((image, index) => (
-            <div key={index} class="border border-gray-200 rounded-lg overflow-hidden shadow">
-              <img 
-                src={image.src} 
-                alt={image.alt} 
-                class="w-full h-auto object-cover"
-              />
+          {hasImages ? (
+            product.previewImages.map((image, index) => (
+              <div key={index} class="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+                <img 
+                  src={image.src} 
+                  alt={image.alt} 
+                  class="w-full h-auto object-cover"
+                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                />
+                <div class="hidden w-full h-64 bg-gray-100 items-center justify-center text-gray-400">
+                  <div class="text-center">
+                    <div class="text-4xl mb-2">📚</div>
+                    <div class="text-sm">Image not available</div>
+                  </div>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div class="w-full h-64 bg-gray-100 rounded-lg flex items-center justify-center text-gray-400">
+              <div class="text-center">
+                <div class="text-6xl mb-2">📚</div>
+                <div class="text-lg">No preview images available</div>
+              </div>
             </div>
-          ))}
+          )}
         </div>
       </div>
 
       <!-- Product Details -->
       <div class="lg:w-1/2 space-y-6">
-        <h1 class="text-3xl font-bold">{product.title}</h1>
-        <p class="text-gray-600 mb-4">{product.description}</p>
+        <!-- Category Badge -->
+        <div>
+          <span class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">
+            {categoryLabels[product.category] || product.category}
+          </span>
+        </div>
+
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-900">{product.title}</h1>
+        <p class="text-lg text-gray-600">{product.description}</p>
+
+        <!-- SKU -->
+        <div class="text-sm text-gray-500">
+          SKU: {product.sku}
+        </div>
 
         <!-- What You Will Learn -->
         {product.whatYouLearn && product.whatYouLearn.length > 0 && (
-          <div>
-            <h2 class="text-xl font-semibold mb-2">What You'll Learn</h2>
-            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+          <div class="bg-gray-50 rounded-lg p-6">
+            <h2 class="text-xl font-semibold mb-4 text-gray-900">What You'll Learn</h2>
+            <ul class="space-y-2">
               {product.whatYouLearn.map((learn, index) => (
-                <li key={index}>{learn}</li>
+                <li key={index} class="flex items-start">
+                  <span class="text-green-500 mr-2">✓</span>
+                  <span class="text-gray-700">{learn}</span>
+                </li>
               ))}
             </ul>
           </div>
@@ -57,34 +109,76 @@ export async function getStaticPaths() {
         <!-- Download Format -->
         {product.files && product.files.length > 0 && (
           <div>
-            <h2 class="text-xl font-semibold mb-2">Download Format</h2>
-            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+            <h2 class="text-xl font-semibold mb-3 text-gray-900">What's Included</h2>
+            <div class="space-y-2">
               {product.files.map((file, index) => (
-                <li key={index}>
-                  {file.name} ({file.type.toUpperCase()}, {file.size})
-                </li>
+                <div key={index} class="flex items-center justify-between bg-white border border-gray-200 rounded-lg p-3">
+                  <div class="flex items-center">
+                    <span class="text-2xl mr-3">
+                      {file.type === 'pdf' ? '📄' : file.type === 'epub' ? '📱' : file.type === 'zip' ? '📦' : file.type === 'spreadsheet' ? '📊' : '📁'}
+                    </span>
+                    <span class="font-medium text-gray-900">{file.name}</span>
+                  </div>
+                  <span class="text-sm text-gray-500">{file.size}</span>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
         )}
 
         <!-- Purchase Section -->
         <div class="pt-6 border-t border-gray-200">
-          <div class="flex justify-between items-center mb-4">
-            <span class="text-2xl font-bold">€{product.priceEUR.toFixed(2)}</span>
+          <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-4">
+            <div>
+              <span class="text-sm text-gray-500">Price</span>
+              <div class="text-3xl font-bold text-gray-900">€{product.priceEUR.toFixed(2)}</div>
+            </div>
             <a 
               href={product.purchaseLink} 
               target="_blank"
               rel="noopener noreferrer"
-              class="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition-colors duration-200 font-medium"
+              class="bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium text-lg w-full sm:w-auto text-center"
             >
-              Purchase Securely
+              Buy Now
             </a>
           </div>
-          <p class="text-sm text-gray-500">
-            Secure checkout via Gumroad or PayPal. No payment details stored on our site.
-          </p>
+          <div class="flex items-center justify-center gap-4 text-sm text-gray-500">
+            <span class="flex items-center">
+              <span class="mr-1">🔒</span> Secure checkout
+            </span>
+            <span class="flex items-center">
+              <span class="mr-1">📥</span> Instant download
+            </span>
+            <span class="flex items-center">
+              <span class="mr-1">↩️</span> 30-day guarantee
+            </span>
+          </div>
         </div>
+      </div>
+    </div>
+
+    <!-- Related Products Section -->
+    <div class="mt-16">
+      <h2 class="text-2xl font-bold mb-6 text-gray-900">More in {categoryLabels[product.category] || 'Products'}</h2>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {products
+          .filter(p => p.category === product.category && p.id !== product.id)
+          .slice(0, 4)
+          .map((relatedProduct) => (
+            <a href={`/library/${relatedProduct.id}`} class="block group">
+              <div class="border border-gray-200 rounded-lg bg-white shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden">
+                <div class="h-32 bg-gray-100 flex items-center justify-center">
+                  <span class="text-4xl">📚</span>
+                </div>
+                <div class="p-4">
+                  <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-1">
+                    {relatedProduct.title}
+                  </h3>
+                  <div class="text-blue-600 font-bold mt-1">€{relatedProduct.priceEUR.toFixed(2)}</div>
+                </div>
+              </div>
+            </a>
+          ))}
       </div>
     </div>
   </div>

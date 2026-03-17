@@ -3,6 +3,7 @@ export interface Product {
   sku: string;
   title: string;
   description: string;
+  category: 'books' | 'guides' | 'card-decks' | 'training-materials' | 'workout-packs';
   priceEUR: number;
   files: {
     name: string;
@@ -14,6 +15,8 @@ export interface Product {
    previewImages: {
      src: string;
      alt: string;
+     width?: number;
+     height?: number;
    }[];
    whatYouLearn: string[]; // Array of learning outcomes
 }
@@ -24,6 +27,7 @@ export const products: Product[] = [
     sku: 'RR-BOOK-001',
     title: 'The Rucking Revolution: Foundations',
     description: 'Comprehensive guide to rucking as a discipline, covering history, principles, and basic techniques for beginners and experienced practitioners alike.',
+    category: 'books',
     priceEUR: 24.99,
     files: [
       {
@@ -67,6 +71,7 @@ export const products: Product[] = [
     sku: 'RR-BOOK-002',
     title: 'Advanced Rucking: Community Applications',
     description: 'Advanced guide for experienced ruckers focusing on community applications, mission planning, and operational readiness.',
+    category: 'books',
     priceEUR: 29.99,
     files: [
       {
@@ -104,6 +109,7 @@ export const products: Product[] = [
     sku: 'RR-PLAN-001',
     title: '12-Month Rucking Periodization Plan',
     description: 'Complete year-long training program with monthly goals, weekly schedules, and progression templates for building endurance, strength, and resilience.',
+    category: 'training-materials',
     priceEUR: 19.99,
     files: [
       {
@@ -147,6 +153,7 @@ export const products: Product[] = [
     sku: 'RR-GUIDE-001',
     title: 'Rucking Gear Selection Guide',
     description: 'Expert recommendations for backpacks, footwear, clothing, and accessories based on different use cases, budgets, and body types.',
+    category: 'guides',
     priceEUR: 14.99,
     files: [
       {
@@ -184,6 +191,7 @@ export const products: Product[] = [
     sku: 'RR-NUTR-001',
     title: 'Fueling the Ruck: Nutrition for Loaded Marching',
     description: 'Science-based nutrition strategies for rucking, including meal plans, timing guidelines, and field-expedient solutions for sustained performance.',
+    category: 'guides',
     priceEUR: 17.99,
     files: [
       {
@@ -227,6 +235,7 @@ export const products: Product[] = [
     sku: 'RR-LEAD-001',
     title: 'Leadership Under Load: Rucking-Based Team Development',
     description: 'Facilitator guide for using rucking activities to develop team cohesion, communication, and leadership skills in organizational settings.',
+    category: 'training-materials',
     priceEUR: 22.99,
     files: [
       {
@@ -270,6 +279,7 @@ export const products: Product[] = [
     sku: 'RR-FAM-001',
     title: 'Family Rucking: Building Resilience Across Generations',
     description: 'Guide for introducing rucking to families with age-appropriate activities, games, and progression systems for children and adults.',
+    category: 'guides',
     priceEUR: 16.99,
     files: [
       {
@@ -307,6 +317,7 @@ export const products: Product[] = [
     sku: 'RR-MIND-001',
     title: 'Rucking Mindfulness: Meditation in Motion',
     description: 'Practical guide to integrating mindfulness practices with rucking for stress reduction, mental clarity, and enhanced mind-body connection.',
+    category: 'guides',
     priceEUR: 18.99,
     files: [
       {
@@ -350,6 +361,7 @@ export const products: Product[] = [
     sku: 'RR-CERT-001',
     title: 'Rucking Instructor Certification Program',
     description: 'Complete certification program for becoming a certified Rucking Revolution instructor, including materials, assessments, and teaching resources.',
+    category: 'training-materials',
     priceEUR: 199.99,
     files: [
       {
@@ -399,6 +411,7 @@ export const products: Product[] = [
     sku: 'RR-CHAL-001',
     title: '30-Day Rucking Challenge Pack',
     description: 'Motivational package with daily challenges, progress tracking, and community support to build a consistent rucking habit over 30 days.',
+    category: 'workout-packs',
     priceEUR: 12.99,
     files: [
       {
@@ -442,6 +455,7 @@ export const products: Product[] = [
     sku: 'RR-MAP-001',
     title: 'Historic Rucking Routes: Volume 1',
     description: 'Collection of historically significant rucking and marching routes from around the world with detailed maps, historical context, and modern adaptations.',
+    category: 'guides',
     priceEUR: 21.99,
     files: [
       {
@@ -485,6 +499,7 @@ export const products: Product[] = [
     sku: 'RR-APP-001',
     title: 'Rucking Revolution Mobile App Subscription',
     description: 'Annual subscription to the Rucking Revolution mobile app featuring workout tracking, route planning, community challenges, and exclusive content.',
+    category: 'training-materials',
     priceEUR: 39.99,
     files: [
       {
@@ -514,6 +529,13 @@ export const products: Product[] = [
         src: '/images/products/rr-app-preview2.jpg',
         alt: 'Route planning interface with map and elevation profile'
       }
+    ],
+    whatYouLearn: [
+      'How to track and analyze your rucking workouts',
+      'Plan and navigate routes with GPS integration',
+      'Participate in community challenges and leaderboards',
+      'Access exclusive content and training plans',
+      'Connect with other ruckers and share progress'
     ]
   }
 ];

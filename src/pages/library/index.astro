@@ -2,18 +2,115 @@
 import Layout from '@/components/Layout.astro';
 import ProductCard from '@/components/ProductCard.astro';
 import { products } from '@/data/products';
+
+// Get unique categories
+const categories = [
+  { id: 'all', name: 'All Products', icon: '📚' },
+  { id: 'books', name: 'Books', icon: '📖' },
+  { id: 'guides', name: 'Guides', icon: '📋' },
+  { id: 'training-materials', name: 'Training Materials', icon: '📊' },
+  { id: 'workout-packs', name: 'Workout Packs', icon: '💪' },
+];
+
+// Get selected category from URL params
+const selectedCategory = Astro.url.searchParams.get('category') || 'all';
+
+// Filter products by category
+const filteredProducts = selectedCategory === 'all' 
+  ? products 
+  : products.filter(p => p.category === selectedCategory);
+
+// Calculate totals
+const totalProducts = products.length;
+const totalValue = products.reduce((sum, p) => sum + p.priceEUR, 0);
 ---
-<Layout title="Digital Library & Storefront" description="Browse and purchase rucking guides, books, and training materials">
+
+<Layout 
+  title="Digital Library & Storefront" 
+  description="Browse and purchase rucking guides, books, and training materials"
+>
   <div class="max-w-7xl mx-auto px-4 py-8">
-    <h1 class="text-3xl font-bold mb-6 text-center">Digital Library & Storefront</h1>
-    <p class="text-lg text-gray-600 mb-8 text-center">
-      Expertly crafted guides, books, and training materials to elevate your rucking practice
-    </p>
-    
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
+    <!-- Hero Section -->
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-bold mb-4 text-gray-900">Digital Library & Storefront</h1>
+      <p class="text-lg text-gray-600 mb-6 max-w-2xl mx-auto">
+        Expertly crafted guides, books, and training materials to elevate your rucking practice. 
+        Download instantly and start improving today.
+      </p>
+      
+      <!-- Stats -->
+      <div class="flex justify-center gap-8 text-sm text-gray-600">
+        <div class="flex items-center gap-2">
+          <span class="text-2xl font-bold text-gray-900">{totalProducts}</span>
+          <span>Products</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-2xl font-bold text-gray-900">€{totalValue.toFixed(2)}</span>
+          <span>Total Value</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category Navigation -->
+    <div class="mb-8">
+      <div class="flex flex-wrap justify-center gap-2">
+        {categories.map((cat) => (
+          <a 
+            href={`/library${cat.id === 'all' ? '' : `?category=${cat.id}`}`}
+            class:list={[
+              "px-4 py-2 rounded-full text-sm font-medium transition-all duration-200",
+              selectedCategory === cat.id 
+                ? "bg-blue-600 text-white shadow-md" 
+                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+            ]}
+          >
+            <span class="mr-1">{cat.icon}</span>
+            {cat.name}
+            {cat.id !== 'all' && (
+              <span class="ml-1 text-xs opacity-75">
+                ({products.filter(p => p.category === cat.id).length})
+              </span>
+            )}
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Products Grid -->
+    {filteredProducts.length > 0 ? (
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {filteredProducts.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
+    ) : (
+      <div class="text-center py-12">
+        <p class="text-gray-500 text-lg">No products found in this category.</p>
+        <a href="/library" class="text-blue-600 hover:underline mt-2 inline-block">
+          View all products
+        </a>
+      </div>
+    )}
+
+    <!-- Trust Badges -->
+    <div class="mt-16 pt-8 border-t border-gray-200">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+        <div class="p-4">
+          <div class="text-3xl mb-2">🔒</div>
+          <h3 class="font-semibold text-gray-900 mb-1">Secure Checkout</h3>
+          <p class="text-sm text-gray-600">Safe payment via Gumroad or PayPal</p>
+        </div>
+        <div class="p-4">
+          <div class="text-3xl mb-2">📥</div>
+          <h3 class="font-semibold text-gray-900 mb-1">Instant Download</h3>
+          <p class="text-sm text-gray-600">Get your files immediately after purchase</p>
+        </div>
+        <div class="p-4">
+          <div class="text-3xl mb-2">⭐</div>
+          <h3 class="font-semibold text-gray-900 mb-1">Expert Content</h3>
+          <p class="text-sm text-gray-600">Created by experienced rucking professionals</p>
+        </div>
+      </div>
     </div>
   </div>
 </Layout>
