@@ -2,12 +2,77 @@
 import Layout from '@/components/Layout.astro';
 import CardGenerator from '@/components/CardGenerator.astro';
 ---
-<Layout title="CrewTactics Generator" description="Interactive generator to draw tactics during rucks">
-  <h1 class="text-3xl font-bold mb-6">CrewTactics Generator</h1>
-  <div class="max-w-4xl mx-auto px-4 py-8">
-    <p class="mb-6 text-lg text-muted">
-      Draw tactics to practice during your rucks. Each card presents a leadership or communication exercise with reflection prompts.
-    </p>
+
+<Layout 
+  title="CrewTactics Generator - Draw Leadership Cards" 
+  description="Interactive generator to draw leadership and communication tactics during rucks. Build leadership skills through deliberate practice."
+>
+  <div class="max-w-5xl mx-auto px-4 py-8">
+    <!-- Header -->
+    <header class="text-center mb-8">
+      <h1 class="text-4xl font-bold mb-4 text-foreground">CrewTactics Generator</h1>
+      <p class="text-xl text-muted max-w-2xl mx-auto">
+        Draw leadership and communication tactics to practice during your rucks. Each card presents a practical exercise with reflection prompts.
+      </p>
+    </header>
+
+    <!-- Quick Guide -->
+    <div class="bg-muted-50 rounded-lg p-4 mb-8 border border-muted-200">
+      <h2 class="text-lg font-semibold mb-2 text-foreground">Quick Guide</h2>
+      <div class="flex flex-wrap gap-4 text-sm text-muted">
+        <span><strong class="text-foreground">Draw 1:</strong> Focus on a single tactic</span>
+        <span><strong class="text-foreground">Draw 3:</strong> Variety of skills practice</span>
+        <span><strong class="text-foreground">Shuffle:</strong> Reset the deck</span>
+        <span><strong class="text-foreground">Filter:</strong> Focus on specific category</span>
+      </div>
+    </div>
+
+    <!-- Generator Component -->
     <CardGenerator />
+
+    <!-- Tips Section -->
+    <section class="mt-12">
+      <h2 class="text-2xl font-bold mb-4 text-foreground">Tips for Maximum Benefit</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-muted-50 rounded-lg p-5 border border-muted-200">
+          <h3 class="font-semibold mb-2 text-foreground">During the Ruck</h3>
+          <ul class="text-muted text-sm space-y-2">
+            <li>• Announce the tactic clearly to your team</li>
+            <li>• Give everyone time to process the exercise</li>
+            <li>• Use the prompts to guide discussion</li>
+            <li>• Don't rush—these are micro-exercises</li>
+          </ul>
+        </div>
+        <div class="bg-muted-50 rounded-lg p-5 border border-muted-200">
+          <h3 class="font-semibold mb-2 text-foreground">After the Ruck</h3>
+          <ul class="text-muted text-sm space-y-2">
+            <li>• Include the tactic in your AAR discussion</li>
+            <li>• Ask: What did we learn?</li>
+            <li>• Note growth edges for next time</li>
+            <li>• Connect to real scenarios you'll face</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Keyboard Shortcuts -->
+    <section class="mt-8">
+      <h3 class="font-semibold mb-3 text-foreground">Keyboard Shortcuts</h3>
+      <div class="flex flex-wrap gap-4 text-sm text-muted">
+        <span><kbd class="px-2 py-1 bg-muted-100 rounded text-xs">Enter</kbd> on button to activate</span>
+        <span><kbd class="px-2 py-1 bg-muted-100 rounded text-xs">Space</kbd> on shuffle to reset</span>
+        <span><kbd class="px-2 py-1 bg-muted-100 rounded text-xs">Tab</kbd> to navigate controls</span>
+      </div>
+    </section>
+
+    <!-- Back Links -->
+    <nav class="mt-8 flex gap-4">
+      <a href="/lead/crew-tactics" class="btn btn-secondary">
+        ← Back to CrewTactics Overview
+      </a>
+      <a href="/lead" class="btn btn-utility">
+        All Leadership Resources
+      </a>
+    </nav>
   </div>
 </Layout>

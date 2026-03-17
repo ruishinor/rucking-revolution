@@ -1,43 +1,160 @@
 ---
 import Layout from '@/components/Layout.astro';
 ---
-<Layout title="What is a Ruck Club" description="Learn about the concept and purpose of ruck clubs">
-  <h1 class="text-3xl font-bold mb-6">What is a Ruck Club</h1>
-  <div class="prose lg:prose-xl mx-auto">
-    <section>
-      <h2 class="text-2xl font-bold mt-6 mb-4">Introduction</h2>
-      <p>A ruck club is a group of individuals who come together to participate in rucking, which is walking with a weighted backpack. This activity builds strength, endurance, and camaraderie.</p>
-    </section>
 
-    <section>
-      <h2 class="text-2xl font-bold mt-6 mb-4">Core Principles</h2>
-      <ul class="list-disc list-inside space-y-2">
-        <li>Inclusivity: Welcoming individuals of all fitness levels and backgrounds.</li>
-        <li>Safety: Prioritizing proper form and injury prevention.</li>
-        <li>Consistency: Regular meetings to build habit and progress.</li>
-        <li>Community: Fostering a supportive and motivating environment.</li>
-        <li>Purpose: Aligning rucking with personal and collective goals.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2 class="text-2xl font-bold mt-6 mb-4">Practical Checklist</h2>
-      <ol class="list-decimal list-inside space-y-2">
-        <li>Define the club's mission and goals.</li>
-        <li>Choose a regular meeting time and location.</li>
-        <li>Establish safety guidelines and equipment requirements.</li>
-        <li>Create a communication channel (e.g., WhatsApp group, email list).</li>
-        <li>Plan the first ruck event and invite participants.</li>
-      </ol>
-    </section>
-
-    <section>
-      <h2 class="text-2xl font-bold mt-6 mb-4">Downloadable Checklist</h2>
-      <p>
-        <a href="/checklists/what-is-a-ruck-club.pdf" class="btn btn-primary" download>
-          Download Printable Checklist (PDF)
-        </a>
+<Layout 
+  title="What is a Ruck Club - Build Your Crew" 
+  description="Learn about ruck clubs, why crews matter, and how to build a strong rucking community. Start or join a crew near you."
+>
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <!-- Hero -->
+    <header class="text-center mb-12">
+      <h1 class="text-4xl font-bold mb-4 text-foreground">What is a Ruck Club</h1>
+      <p class="text-xl text-muted max-w-2xl mx-auto">
+        A ruck club is a crew of individuals who train together, push each other, and build unbreakable bonds through shared adversity.
       </p>
+    </header>
+
+    <!-- Why Crews Matter -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4 text-foreground">Why Crews Matter</h2>
+      <div class="prose lg:prose-xl max-w-none">
+        <p>
+          Rucking is inherently a social activity. While you can ruck alone, joining a crew multiplies the benefits:
+        </p>
+        <ul class="space-y-3 list-disc list-inside">
+          <li><strong>Accountability:</strong> You're less likely to skip a workout when teammates are counting on you.</li>
+          <li><strong>Safety in numbers:</strong> Trained crews can handle emergencies, injuries, and unexpected conditions together.</li>
+          <li><strong>Progressive overload:</strong> Partners push you to go farther, carry heavier, and train longer than you'd manage alone.</li>
+          <li><strong>Shared learning:</strong> Every member brings unique experience—learn from each other's mistakes and successes.</li>
+          <li><strong>Camaraderie:</strong> The bonds formed through shared suffering last a lifetime.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Core Principles -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-6 text-foreground">Core Principles</h2>
+      <div class="grid gap-6 md:grid-cols-2">
+        <div class="rounded-lg bg-muted-50 p-6 border border-muted-200">
+          <h3 class="font-bold text-lg mb-3 text-foreground">Inclusivity</h3>
+          <p class="text-muted">
+            Welcome individuals of all fitness levels and backgrounds. A strong crew has members at every stage of their rucking journey.
+          </p>
+        </div>
+        <div class="rounded-lg bg-muted-50 p-6 border border-muted-200">
+          <h3 class="font-bold text-lg mb-3 text-foreground">Safety</h3>
+          <p class="text-muted">
+            Prioritize proper form and injury prevention. No PR is worth a trip to the ER.
+          </p>
+        </div>
+        <div class="rounded-lg bg-muted-50 p-6 border border-muted-200">
+          <h3 class="font-bold text-lg mb-3 text-foreground">Consistency</h3>
+          <p class="text-muted">
+            Regular meetings build habit and progress. Show up, stay low, and complete the mission.
+          </p>
+        </div>
+        <div class="rounded-lg bg-muted-50 p-6 border border-muted-200">
+          <h3 class="font-bold text-lg mb-3 text-foreground">Community</h3>
+          <p class="text-muted">
+            Foster a supportive and motivating environment. Celebrate every win, big or small.
+          </p>
+        </div>
+        <div class="rounded-lg bg-muted-50 p-6 border border-muted-200">
+          <h3 class="font-bold text-lg mb-3 text-foreground">Purpose</h3>
+          <p class="text-muted">
+            Align rucking with personal and collective goals. Every ruck should have meaning.
+          </p>
+        </div>
+        <div class="rounded-lg bg-muted-50 p-6 border border-muted-200">
+          <h3 class="font-bold text-lg mb-3 text-foreground">Growth</h3>
+          <p class="text-muted">
+            Challenge each other to improve. The goal is progression, not perfection.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Types of Crews -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4 text-foreground">Types of Ruck Crews</h2>
+      <div class="prose lg:prose-xl max-w-none">
+        <p>There are many ways to structure a crew. Choose what fits your mission:</p>
+        
+        <h3 class="text-xl font-semibold mt-6 mb-3">Casual Social Crew</h3>
+        <p>Meet weekly for conversational-paced rucks. Focus on community and consistency over intensity.</p>
+        
+        <h3 class="text-xl font-semibold mt-6 mb-3">Fitness-Focused Crew</h3>
+        <p>Structured training with progressive programming. Members commit to regular attendance and higher intensity.</p>
+        
+        <h3 class="text-xl font-semibold mt-6 mb-3">Competitive Team</h3>
+        <p>Train for events, races, or challenges. Higher commitment, structured programming, and performance tracking.</p>
+        
+        <h3 class="text-xl font-semibold mt-6 mb-3">Community Service Crew</h3>
+        <p>Combine rucking with volunteer work. Carry supplies for community projects, trail maintenance, or charity events.</p>
+        
+        <h3 class="text-xl font-semibold mt-6 mb-3">Military/Veteran Unit</h3>
+        <p>Maintain readiness through rucking. Often includes ruck marches, tactical movements, and unit cohesion training.</p>
+      </div>
+    </section>
+
+    <!-- Getting Started -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4 text-foreground">Starting Your First Ruck</h2>
+      <div class="bg-muted-50 rounded-lg p-6 border border-muted-200">
+        <ol class="space-y-4 list-decimal list-inside">
+          <li class="pl-2">
+            <strong>Choose a safe route:</strong> Start with a familiar trail, park path, or neighborhood loop. Know the terrain.
+          </li>
+          <li class="pl-2">
+            <strong>Set a reasonable weight:</strong> Beginners should start with 10-20% of body weight. Focus on form first.
+          </li>
+          <li class="pl-2">
+            <strong>Establish a meeting point:</strong> Central location with parking. Have a backup plan for bad weather.
+          </li>
+          <li class="pl-2">
+            <strong>Communicate expectations:</strong> Tell attendees what to bring, when to arrive, and the planned pace.
+          </li>
+          <li class="pl-2">
+            <strong>Keep it simple:</strong> First ruck: 1-2 miles at conversational pace. Coffee afterward is mandatory.
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Resources -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-6 text-foreground">Resources for Building Your Crew</h2>
+      <div class="grid gap-4 md:grid-cols-3">
+        <a href="/lead/ruck-clubs/start-a-club" class="block p-6 rounded-lg border border-muted-200 hover:border-primary transition-colors">
+          <h3 class="font-bold text-lg mb-2 text-foreground">Start a Club</h3>
+          <p class="text-sm text-muted">Step-by-step guide to launching your crew</p>
+        </a>
+        <a href="/lead/ruck-clubs/leadership-principles" class="block p-6 rounded-lg border border-muted-200 hover:border-primary transition-colors">
+          <h3 class="font-bold text-lg mb-2 text-foreground">Leadership Principles</h3>
+          <p class="text-sm text-muted">Core principles for leading ruck crews</p>
+        </a>
+        <a href="/lead/ruck-clubs/crew-culture" class="block p-6 rounded-lg border border-muted-200 hover:border-primary transition-colors">
+          <h3 class="font-bold text-lg mb-2 text-foreground">Crew Culture</h3>
+          <p class="text-sm text-muted">Building strong crew culture and traditions</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="text-center py-8">
+      <h2 class="text-2xl font-bold mb-4 text-foreground">Ready to Build Your Crew?</h2>
+      <p class="text-muted mb-6 max-w-lg mx-auto">
+        Start small, stay consistent, and watch your crew grow into something bigger than any individual.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/lead/ruck-clubs/start-a-club" class="btn btn-primary btn-lg">
+          Start a Club
+        </a>
+        <a href="/lead" class="btn btn-secondary btn-lg">
+          Back to Leadership
+        </a>
+      </div>
     </section>
   </div>
 </Layout>

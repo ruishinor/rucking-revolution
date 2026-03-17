@@ -1,51 +1,163 @@
 ---
 import Layout from '@/components/Layout.astro';
 ---
-<Layout title="Leadership Principles" description="Core principles for leading ruck crews effectively">
-  <h1 class="text-3xl font-bold mb-6">Leadership Principles</h1>
-  <div class="prose lg:prose-xl mx-auto">
-    <section>
-      <h2 class="text-2xl font-bold mt-6 mb-4">Introduction</h2>
-      <p>Effective leadership is the foundation of a successful ruck club. These principles guide leaders in creating positive, impactful experiences for all members while fostering growth and camaraderie.</p>
-    </section>
 
-    <section>
-      <h2 class="text-2xl font-bold mt-6 mb-4">Core Principles</h2>
-      <ul class="list-disc list-inside space-y-2">
-        <li>Lead by Example: Demonstrate the commitment, attitude, and effort you expect from others.</li>
-        <li>Serve First: Prioritize the needs and development of your members above personal recognition.</li>
-        <li>Communicate Clearly: Share information openly, listen actively, and provide constructive feedback.</li>
-        <li>Develop Others: Invest time in mentoring and creating opportunities for members to grow.</li>
-        <li>Foster Inclusivity: Create an environment where everyone feels welcome and valued regardless of background or ability.</li>
-        <li>Embrace Adaptability: Adjust plans and approaches based on circumstances while maintaining core objectives.</li>
-        <li>Ensure Safety: Prioritize proper form, injury prevention, and risk management in all activities.</li>
-        <li>Build Community: Create connections and shared experiences that strengthen bonds between members.</li>
-        <li>Maintain Consistency: Provide reliable leadership and steady progress toward established goals.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2 class="text-2xl font-bold mt-6 mb-4">Practical Checklist</h2>
-      <ol class="list-decimal list-inside space-y-2">
-        <li>Conduct regular one-on-one check-ins with club members.</li>
-        <li>Seek feedback after each ruck to improve future events.</li>
-        <li>Rotate leadership responsibilities to develop emerging leaders.</li>
-        <li>Organize social events outside of rucks to build stronger relationships.</li>
-        <li>Recognize and celebrate member achievements and milestones.</li>
-        <li>Stay informed on best practices for safety and effective group leadership.</li>
-        <li>Plan progressive challenges that match the group's developing capabilities.</li>
-        <li>Document lessons learned and share them with the leadership team.</li>
-        <li>Regularly revisit and reinforce the club's mission and values.</li>
-      </ol>
-    </section>
-
-    <section>
-      <h2 class="text-2xl font-bold mt-6 mb-4">Downloadable Checklist</h2>
-      <p>
-        <a href="/checklists/leadership-principles.pdf" class="btn btn-primary" download>
-          Download Printable Checklist (PDF)
-        </a>
+<Layout 
+  title="Leadership Principles for Ruck Crews" 
+  description="Core principles for leading ruck crews effectively. Learn to serve, guide, and develop your team."
+>
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <!-- Hero -->
+    <header class="text-center mb-12">
+      <h1 class="text-4xl font-bold mb-4 text-foreground">Leadership Principles</h1>
+      <p class="text-xl text-muted max-w-2xl mx-auto">
+        Effective leadership is the foundation of a successful ruck club. These principles guide leaders in creating impactful experiences.
       </p>
+    </header>
+
+    <!-- Core Principles Overview -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-6 text-foreground">The 10 Core Principles</h2>
+      <div class="space-y-6">
+        <!-- Principle 1 -->
+        <div class="rounded-lg bg-muted-50 p-6 border border-muted-200">
+          <h3 class="font-bold text-xl mb-2 text-foreground">1. Lead by Example</h3>
+          <p class="text-muted">
+            Demonstrate the commitment, attitude, and effort you expect from others. Your crew watches how you carry, how you show up, and how you handle hardship. Be the standard.
+          </p>
+        </div>
+
+        <!-- Principle 2 -->
+        <div class="rounded-lg bg-muted-50 p-6 border border-muted-200">
+          <h3 class="font-bold text-xl mb-2 text-foreground">2. Serve First</h3>
+          <p class="text-muted">
+            Prioritize the needs and development of your members above personal recognition. The leader eats last, carries the heaviest pack, and makes sure everyone else is taken care of first.
+          </p>
+        </div>
+
+        <!-- Principle 3 -->
+        <div class="rounded-lg bg-muted-50 p-6 border border-muted-200">
+          <h3 class="font-bold text-xl mb-2 text-foreground">3. Communicate Clearly</h3>
+          <p class="text-muted">
+            Share information openly, listen actively, and provide constructive feedback. In rucking, unclear communication can lead to lost members, wrong turns, or safety issues.
+          </p>
+        </div>
+
+        <!-- Principle 4 -->
+        <div class="rounded-lg bg-muted-50 p-6 border border-muted-200">
+          <h3 class="font-bold text-xl mb-2 text-foreground">4. Develop Others</h3>
+          <p class="text-muted">
+            Invest time in mentoring and creating opportunities for members to grow. The best leaders create more leaders, not more followers.
+          </p>
+        </div>
+
+        <!-- Principle 5 -->
+        <div class="rounded-lg bg-muted-50 p-6 border border-muted-200">
+          <h3 class="font-bold text-xl mb-2 text-foreground">5. Foster Inclusivity</h3>
+          <p class="text-muted">
+            Create an environment where everyone feels welcome and valued regardless of background or ability. A diverse crew is a stronger crew.
+          </p>
+        </div>
+
+        <!-- Principle 6 -->
+        <div class="rounded-lg bg-muted-50 p-6 border border-muted-200">
+          <h3 class="font-bold text-xl mb-2 text-foreground">6. Embrace Adaptability</h3>
+          <p class="text-muted">
+            Adjust plans and approaches based on circumstances while maintaining core objectives. Weather changes, members get injured, routes get blocked — adapt and overcome.
+          </p>
+        </div>
+
+        <!-- Principle 7 -->
+        <div class="rounded-lg bg-muted-50 p-6 border border-muted-200">
+          <h3 class="font-bold text-xl mb-2 text-foreground">7. Ensure Safety</h3>
+          <p class="text-muted">
+            Prioritize proper form, injury prevention, and risk management in all activities. No workout is worth a trip to the ER. Have plans for emergencies.
+          </p>
+        </div>
+
+        <!-- Principle 8 -->
+        <div class="rounded-lg bg-muted-50 p-6 border border-muted-200">
+          <h3 class="font-bold text-xl mb-2 text-foreground">8. Build Community</h3>
+          <p class="text-muted">
+            Create connections and shared experiences that strengthen bonds between members. The post-ruck coffee matters as much as the ruck itself.
+          </p>
+        </div>
+
+        <!-- Principle 9 -->
+        <div class="rounded-lg bg-muted-50 p-6 border border-muted-200">
+          <h3 class="font-bold text-xl mb-2 text-foreground">9. Maintain Consistency</h3>
+          <p class="text-muted">
+            Provide reliable leadership and steady progress toward established goals. Showing up consistently builds trust and habit.
+          </p>
+        </div>
+
+        <!-- Principle 10 -->
+        <div class="rounded-lg bg-muted-50 p-6 border border-muted-200">
+          <h3 class="font-bold text-xl mb-2 text-foreground">10. Embrace the Suck</h3>
+          <p class="text-muted">
+            When things get hard (and they will), leaders stay calm, stay positive, and keep moving. Your attitude sets the tone for the entire crew.
+          </p>
+        </div>
+      </div>
     </section>
+
+    <!-- Practical Application -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4 text-foreground">Practical Application</h2>
+      <div class="prose lg:prose-xl max-w-none">
+        <p>These principles translate directly to your rucks:</p>
+        <ul class="space-y-2 list-disc list-inside mt-4">
+          <li><strong>Before the ruck:</strong> Plan the route, check weather, confirm attendance, prepare gear</li>
+          <li><strong>During the ruck:</strong> Set pace, manage stops, check on members, communicate changes</li>
+          <li><strong>After the ruck:</strong> Debrief, recognize effort, gather feedback, plan next ruck</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Common Leadership Mistakes -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4 text-foreground">Common Leadership Mistakes</h2>
+      <div class="grid gap-4 md:grid-cols-2">
+        <div class="bg-red-50 rounded-lg p-5 border border-red-200">
+          <h3 class="font-bold mb-2 text-red-700">Going Too Hard</h3>
+          <p class="text-sm text-red-600">Pushing the pace too fast alienates beginners. Meet the crew where they are.</p>
+        </div>
+        <div class="bg-red-50 rounded-lg p-5 border border-red-200">
+          <h3 class="font-bold mb-2 text-red-700">Micromanaging</h3>
+          <p class="text-sm text-red-600">Let members find their own pace and style. Guide, don't control.</p>
+        </div>
+        <div class="bg-red-50 rounded-lg p-5 border border-red-200">
+          <h3 class="font-bold mb-2 text-red-700">Skipping the Debrief</h3>
+          <p class="text-sm text-red-600">The After Action Review is where real learning happens. Never skip it.</p>
+        </div>
+        <div class="bg-red-50 rounded-lg p-5 border border-red-200">
+          <h3 class="font-bold mb-2 text-red-700">Not Delegating</h3>
+          <p class="text-sm text-red-600">If you do everything, the club dies when you're unavailable. Build other leaders.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resources -->
+    <section class="mb-12">
+      <div class="bg-muted-50 rounded-lg p-6 border border-muted-200">
+        <h2 class="text-xl font-bold mb-4 text-foreground">Downloadable Resources</h2>
+        <p class="text-muted mb-4">Keep these principles handy:</p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/checklists/leadership-principles.pdf" class="btn btn-primary" download>
+            Download Leadership Principles Checklist (PDF)
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav class="flex gap-4">
+      <a href="/lead/ruck-clubs" class="btn btn-secondary">
+        ← Back to Ruck Clubs
+      </a>
+      <a href="/lead/ruck-clubs/crew-culture" class="btn btn-utility">
+        Crew Culture →
+      </a>
+    </nav>
   </div>
 </Layout>

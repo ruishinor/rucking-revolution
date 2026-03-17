@@ -11,18 +11,21 @@ let { category = 'all' } = Astro.props;
     <button 
       id="drawOneBtn"
       class="btn btn-primary btn-md"
+      aria-label="Draw one card"
     >
       Draw 1 Card
     </button>
     <button 
       id="drawThreeBtn"
       class="btn btn-secondary btn-md"
+      aria-label="Draw three cards"
     >
       Draw 3 Cards
     </button>
     <select 
       id="categoryFilter"
       class="rounded-border border border-muted-200 bg-white px-3 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-accent"
+      aria-label="Filter by category"
     >
       <option value="all" {category === 'all' && 'selected'}>All Categories</option>
       <option value="Leadership" {category === 'Leadership' && 'selected'}>Leadership</option>
@@ -33,19 +36,20 @@ let { category = 'all' } = Astro.props;
     <button 
       id="shuffleBtn"
       class="btn btn-utility btn-md"
+      aria-label="Shuffle deck"
     >
       Shuffle Deck
     </button>
   </div>
 
   <!-- Cards Container -->
-  <div id="cardsContainer" class="grid gap-6 swipe-area" data-swipe-enabled="true">
+  <div id="cardsContainer" class="grid gap-6 swipe-area" data-swipe-enabled="true" role="region" aria-label="Drawn tactic cards">
     <!-- Cards will be populated by client-side JavaScript -->
   </div>
 
   <!-- Status -->
-  <div id="status" class="text-center text-muted">
-    Initializing...
+  <div id="status" class="text-center text-muted" aria-live="polite">
+    <span class="sr-only">Loading cards</span>
   </div>
 </div>
 
@@ -141,7 +145,11 @@ let { category = 'all' } = Astro.props;
   // Update status function
   function updateStatus() {
     const drawnCount = cardsContainer.children.length;
-    statusEl.textContent = `Showing ${drawnCount} card${drawnCount !== 1 ? 's' : ''} from ${generator.allTactics.length} total tactics`;
+    if (drawnCount === 0) {
+      statusEl.textContent = 'Click a button above to draw cards';
+    } else {
+      statusEl.textContent = `Showing ${drawnCount} card${drawnCount !== 1 ? 's' : ''} from ${generator.allTactics.length} total tactics`;
+    }
   }
 
   // Draw cards function
@@ -247,6 +255,6 @@ let { category = 'all' } = Astro.props;
     }
   }
 
-  // Initial draw
+  // Initial draw - show cards immediately
   drawCards(3);
 </script>

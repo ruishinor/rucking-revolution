@@ -1,52 +1,175 @@
 ---
 import Layout from '@/components/Layout.astro';
 ---
-<Layout title="Crew Culture" description="Building strong crew culture and shared experiences">
-  <h1 class="text-3xl font-bold mb-6">Crew Culture</h1>
-  <div class="prose lg:prose-xl mx-auto">
-    <section>
-      <h2 class="text-2xl font-bold mt-6 mb-4">Introduction</h2>
-      <p>Crew culture is the shared values, behaviors, and experiences that define a ruck club's identity. A strong culture fosters belonging, motivation, and long-term commitment among members.</p>
-    </section>
 
-    <section>
-      <h2 class="text-2xl font-bold mt-6 mb-4">Core Principles</h2>
-      <ul class="list-disc list-inside space-y-2">
-        <li>Shared Purpose: Aligning around common goals and motivations for rucking.</li>
-        <li>Mutual Respect: Valuing each member's contributions and differences.</li>
-        <li>Shared Suffering: Embracing challenges together builds unbreakable bonds.</li>
-        <li>Celebration: Recognizing achievements, both big and small, as a group.</li>
-        <li>Tradition: Creating rituals and routines that become part of the club's identity.</li>
-        <li>Storytelling: Sharing experiences and lessons learned to inspire others.</li>
-        <li>Inclusivity: Ensuring everyone feels they belong and can contribute.</li>
-        <li>Accountability: Holding each other to shared standards and commitments.</li>
-        <li>Fun: Maintaining enjoyment and camaraderie as central to the experience.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2 class="text-2xl font-bold mt-6 mb-4">Practical Checklist</h2>
-      <ol class="list-decimal list-inside space-y-2">
-        <li>Start each ruck with a brief circle to share intentions.</li>
-        <li>End each ruck with a debrief to discuss highlights and lessons learned.</li>
-        <li>Create a club motto or slogan that reflects your values.</li>
-        <li>Establish regular social gatherings outside of rucks.</li>
-        <li>Develop recognition systems for milestones and achievements.</li>
-        <li>Create opportunities for members to share their rucking stories.</li>
-        <li>Plan occasional themed rucks or challenges to build variety.</li>
-        <li>Involve members in decision-making processes for club activities.</li>
-        <li>Document and share club history through photos, journals, or blogs.</li>
-        <li>Regularly assess cultural health through member feedback.</li>
-      </ol>
-    </section>
-
-    <section>
-      <h2 class="text-2xl font-bold mt-6 mb-4">Downloadable Checklist</h2>
-      <p>
-        <a href="/checklists/crew-culture.pdf" class="btn btn-primary" download>
-          Download Printable Checklist (PDF)
-        </a>
+<Layout 
+  title="Crew Culture - Building Strong Ruck Crew Identity" 
+  description="Learn how to build strong crew culture, create traditions, and foster unbreakable bonds within your ruck club."
+>
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <!-- Hero -->
+    <header class="text-center mb-12">
+      <h1 class="text-4xl font-bold mb-4 text-foreground">Crew Culture</h1>
+      <p class="text-xl text-muted max-w-2xl mx-auto">
+        Culture is what happens when the leader isn't looking. Build a culture so strong it carries itself.
       </p>
+    </header>
+
+    <!-- Core Principles -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-6 text-foreground">The 9 Pillars of Crew Culture</h2>
+      <div class="space-y-6">
+        <!-- Pillar 1 -->
+        <div class="rounded-lg bg-muted-50 p-6 border border-muted-200">
+          <h3 class="font-bold text-xl mb-2 text-foreground">1. Shared Purpose</h3>
+          <p class="text-muted">
+            Align around common goals and motivations for rucking. Everyone should know <em>why</em> they're there, not just <em>what</em> they're doing.
+          </p>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="rounded-lg bg-muted-50 p-6 border border-muted-200">
+          <h3 class="font-bold text-xl mb-2 text-foreground">2. Mutual Respect</h3>
+          <p class="text-muted">
+            Value each member's contributions and differences. Respect isn't earned — it's given to everyone until they prove otherwise.
+          </p>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="rounded-lg bg-muted-50 p-6 border border-muted-200">
+          <h3 class="font-bold text-xl mb-2 text-foreground">3. Shared Suffering</h3>
+          <p class="text-muted">
+            Embrace challenges together. The miles you grind together create bonds that no other activity can match. Lean into the hard rucks.
+          </p>
+        </div>
+
+        <!-- Pillar 4 -->
+        <div class="rounded-lg bg-muted-50 p-6 border border-muted-200">
+          <h3 class="font-bold text-xl mb-2 text-foreground">4. Celebration</h3>
+          <p class="text-muted">
+            Recognize achievements, both big and small, as a group. Celebrate PRs, consistency milestones, birthdays, and just showing up.
+          </p>
+        </div>
+
+        <!-- Pillar 5 -->
+        <div class="rounded-lg bg-muted-50 p-6 border border-muted-200">
+          <h3 class="font-bold text-xl mb-2 text-foreground">5. Tradition</h3>
+          <p class="text-muted">
+            Create rituals and routines that become part of the club's identity. Traditions create continuity and belonging.
+          </p>
+        </div>
+
+        <!-- Pillar 6 -->
+        <div class="rounded-lg bg-muted-50 p-6 border border-muted-200">
+          <h3 class="font-bold text-xl mb-2 text-foreground">6. Storytelling</h3>
+          <p class="text-muted">
+            Share experiences and lessons learned to inspire others. Every ruck is a story. Help members tell theirs.
+          </p>
+        </div>
+
+        <!-- Pillar 7 -->
+        <div class="rounded-lg bg-muted-50 p-6 border border-muted-200">
+          <h3 class="font-bold text-xl mb-2 text-foreground">7. Inclusivity</h3>
+          <p class="text-muted">
+            Ensure everyone feels they belong and can contribute. A strong culture includes rather than excludes.
+          </p>
+        </div>
+
+        <!-- Pillar 8 -->
+        <div class="rounded-lg bg-muted-50 p-6 border border-muted-200">
+          <h3 class="font-bold text-xl mb-2 text-foreground">8. Accountability</h3>
+          <p class="text-muted">
+            Hold each other to shared standards and commitments. In a crew, everyone watches out for everyone.
+          </p>
+        </div>
+
+        <!-- Pillar 9 -->
+        <div class="rounded-lg bg-muted-50 p-6 border border-muted-200">
+          <h3 class="font-bold text-xl mb-2 text-foreground">9. Fun</h3>
+          <p class="text-muted">
+            Maintain enjoyment and camaraderie as central to the experience. If it's not fun, why do it? The laughs matter as much as the miles.
+          </p>
+        </div>
+      </div>
     </section>
+
+    <!-- Building Traditions -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4 text-foreground">Building Traditions</h2>
+      <div class="prose lg:prose-xl max-w-none">
+        <p>Traditions give your crew identity. Here are ideas:</p>
+        <ul class="space-y-2 list-disc list-inside mt-4">
+          <li><strong>Opening circle:</strong> Start each ruck with a brief check-in</li>
+          <li><strong>Closing debrief:</strong> End every ruck with lessons learned</li>
+          <li><strong>Nicknames:</strong> Earned through effort, not given freely</li>
+          <li><strong>Anniversary rucks:</strong> Celebrate the club's founding annually</li>
+          <li><strong>Themed rucks:</strong> Costume rucks, birthday rucks, milestones</li>
+          <li><strong>Post-ruck ritual:</strong> Coffee, breakfast, or food somewhere specific</li>
+          <li><strong>Club motto:</strong> Something short and memorable that captures your spirit</li>
+          <li><strong>Challenge events:</strong> Annual rucks that become legendary</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Culture Killers -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4 text-foreground">Culture Killers to Avoid</h2>
+      <div class="grid gap-4 md:grid-cols-2">
+        <div class="bg-red-50 rounded-lg p-5 border border-red-200">
+          <h3 class="font-bold mb-2 text-red-700">Elitism</h3>
+          <p class="text-sm text-red-600">Making new members feel unwelcome or inferior drives them away.</p>
+        </div>
+        <div class="bg-red-50 rounded-lg p-5 border border-red-200">
+          <h3 class="font-bold mb-2 text-red-700">Gossip</h3>
+          <p class="text-sm text-red-600">Talking behind members' backs destroys trust quickly.</p>
+        </div>
+        <div class="bg-red-50 rounded-lg p-5 border border-red-200">
+          <h3 class="font-bold mb-2 text-red-700">No Show Policy</h3>
+          <p class="text-sm text-red-600">Missing without notice should be addressed, not ignored.</p>
+        </div>
+        <div class="bg-red-50 rounded-lg p-5 border border-red-200">
+          <h3 class="font-bold mb-2 text-red-700">Burning Out</h3>
+          <p class="text-sm text-red-600">Overtraining members or forcing intensity leads to dropout.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Measuring Culture Health -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4 text-foreground">Measuring Culture Health</h2>
+      <div class="prose lg:prose-xl max-w-none">
+        <p>Ask your crew regularly:</p>
+        <ul class="space-y-2 list-disc list-inside mt-4">
+          <li>Do I feel welcome here?</li>
+          <li>Do I look forward to rucks?</li>
+          <li>Do I trust my crew members?</li>
+          <li>Am I growing as a rucker?</li>
+          <li>Would I recommend this crew to a friend?</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Resources -->
+    <section class="mb-12">
+      <div class="bg-muted-50 rounded-lg p-6 border border-muted-200">
+        <h2 class="text-xl font-bold mb-4 text-foreground">Downloadable Resources</h2>
+        <p class="text-muted mb-4">Tools for building crew culture:</p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/checklists/crew-culture.pdf" class="btn btn-primary" download>
+            Download Crew Culture Checklist (PDF)
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav class="flex gap-4">
+      <a href="/lead/ruck-clubs" class="btn btn-secondary">
+        ← Back to Ruck Clubs
+      </a>
+      <a href="/lead" class="btn btn-utility">
+        All Leadership Resources
+      </a>
+    </nav>
   </div>
 </Layout>

@@ -1,47 +1,149 @@
 ---
 import Layout from '@/components/Layout.astro';
 ---
-<Layout title="Start a Club" description="Step-by-step guide to starting a ruck club">
-  <h1 class="text-3xl font-bold mb-6">Start a Club</h1>
-  <div class="prose lg:prose-xl mx-auto">
-    <section>
-      <h2 class="text-2xl font-bold mt-6 mb-4">Introduction</h2>
-      <p>Starting a ruck club is a rewarding way to build community, improve fitness, and share the benefits of rucking with others. This guide provides practical steps to launch your own successful ruck club.</p>
-    </section>
 
-    <section>
-      <h2 class="text-2xl font-bold mt-6 mb-4">Leadership Principles</h2>
-      <ul class="list-disc list-inside space-y-2">
-        <li>Vision: Clearly define what you want to achieve with your club.</li>
-        <li>Planning: Develop a structured approach to launching and growing.</li>
-        <li>Communication: Keep members informed and engaged.</li>
-        <li>Adaptability: Be ready to adjust based on feedback and circumstances.</li>
-        <li>Service: Focus on providing value to your members.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2 class="text-2xl font-bold mt-6 mb-4">Practical Checklist</h2>
-      <ol class="list-decimal list-inside space-y-2">
-        <li>Research local interest and potential meeting locations.</li>
-        <li>Define your club's purpose, values, and target audience.</li>
-        <li>Set up a simple communication system (social media group, email list).</li>
-        <li>Plan your first ruck event with a beginner-friendly route.</li>
-        <li>Establish basic safety guidelines and equipment recommendations.</li>
-        <li>Promote your launch through local networks and social media.</li>
-        <li>Host your first ruck and gather feedback for improvement.</li>
-        <li>Establish a regular meeting schedule based on member availability.</li>
-        <li>Continuously evaluate and improve the club experience.</li>
-      </ol>
-    </section>
-
-    <section>
-      <h2 class="text-2xl font-bold mt-6 mb-4">Downloadable Checklist</h2>
-      <p>
-        <a href="/checklists/start-a-club.pdf" class="btn btn-primary" download>
-          Download Printable Checklist (PDF)
-        </a>
+<Layout 
+  title="Start a Ruck Club - Step-by-Step Guide" 
+  description="Step-by-step guide to starting a ruck club. Build your crew from the ground up with proven strategies."
+>
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <!-- Hero -->
+    <header class="text-center mb-12">
+      <h1 class="text-4xl font-bold mb-4 text-foreground">Start a Club</h1>
+      <p class="text-xl text-muted max-w-2xl mx-auto">
+        Building a crew from scratch takes effort, but the rewards are worth it. Here's how to launch a ruck club that lasts.
       </p>
+    </header>
+
+    <!-- Before You Start -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4 text-foreground">Before You Start</h2>
+      <div class="prose lg:prose-xl max-w-none">
+        <p>Answer these questions before launching:</p>
+        <ul class="space-y-2 list-disc list-inside">
+          <li><strong>What's your mission?</strong> Fitness? Community? Readiness? Competition? Define your purpose.</li>
+          <li><strong>Who's your audience?</strong> Veterans? Beginners? Professionals? Families? Know who you're recruiting.</li>
+          <li><strong>What's your capacity?</strong> Start small. You can grow later, but don't overcommit early.</li>
+          <li><strong>What's the commitment level?</strong> Weekly? Bi-weekly? Monthly? Set expectations from day one.</li>
+        </ul>
+      </div>
     </section>
+
+    <!-- The Launch Checklist -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-6 text-foreground">Launch Checklist</h2>
+      <div class="space-y-8">
+        <!-- Phase 1 -->
+        <div class="border-l-4 border-primary pl-6">
+          <h3 class="text-xl font-bold mb-4 text-foreground">Phase 1: Foundation (Weeks 1-2)</h3>
+          <ol class="space-y-3 list-decimal list-inside text-muted">
+            <li>Define your club's purpose, values, and target audience</li>
+            <li>Choose a working name and identity</li>
+            <li>Research local areas for safe, accessible ruck routes</li>
+            <li>Set a regular meeting schedule (pick a day and time that works)</li>
+            <li>Establish basic safety guidelines and equipment recommendations</li>
+          </ol>
+        </div>
+
+        <!-- Phase 2 -->
+        <div class="border-l-4 border-primary pl-6">
+          <h3 class="text-xl font-bold mb-4 text-foreground">Phase 2: Outreach (Weeks 2-3)</h3>
+          <ol class="space-y-3 list-decimal list-inside text-muted">
+            <li>Create a communication channel (Discord, WhatsApp, Facebook group, or email list)</li>
+            <li>Spread the word through social media, local running stores, gyms, and veteran networks</li>
+            <li>Design simple promotional materials or graphics</li>
+            <li>Reach out to potential founding members (3-5 committed people minimum)</li>
+            <li>Plan your launch ruck with a beginner-friendly route</li>
+          </ol>
+        </div>
+
+        <!-- Phase 3 -->
+        <div class="border-l-4 border-primary pl-6">
+          <h3 class="text-xl font-bold mb-4 text-foreground">Phase 3: Launch (Week 3-4)</h3>
+          <ol class="space-y-3 list-decimal list-inside text-muted">
+            <li>Host your first "founding ruck" — keep it short (1-2 miles) and easy</li>
+            <li>Collect feedback from attendees immediately after</li>
+            <li>Set expectations for future rucks (pace, weight, format)</li>
+            <li>Establish a recurring schedule</li>
+            <li>Celebrate your launch and thank founding members</li>
+          </ol>
+        </div>
+
+        <!-- Phase 4 -->
+        <div class="border-l-4 border-primary pl-6">
+          <h3 class="text-xl font-bold mb-4 text-foreground">Phase 4: Growth (Month 2+)</h3>
+          <ol class="space-y-3 list-decimal list-inside text-muted">
+            <li>Consistently show up — reliability builds trust</li>
+            <li>Welcome new members and assign mentors</li>
+            <li>Create traditions (special rucks, end-of-season celebrations)</li>
+            <li>Document your club's story and share it</li>
+            <li>Iterate based on member feedback</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- Common Mistakes -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4 text-foreground">Common Mistakes to Avoid</h2>
+      <div class="grid gap-4 md:grid-cols-2">
+        <div class="bg-red-50 rounded-lg p-5 border border-red-200">
+          <h3 class="font-bold mb-2 text-red-700">Going Too Fast, Too Soon</h3>
+          <p class="text-sm text-red-600">Start with easy rucks. Many new clubs burn out by making first rucks too hard.</p>
+        </div>
+        <div class="bg-red-50 rounded-lg p-5 border border-red-200">
+          <h3 class="font-bold mb-2 text-red-700">No Clear Schedule</h3>
+          <p class="text-sm text-red-600">Random scheduling kills momentum. Pick a regular day/time and stick to it.</p>
+        </div>
+        <div class="bg-red-50 rounded-lg p-5 border border-red-200">
+          <h3 class="font-bold mb-2 text-red-700">Ignoring Beginners</h3>
+          <p class="text-sm text-red-600">Beginners build the club. If they don't return, neither does growth.</p>
+        </div>
+        <div class="bg-red-50 rounded-lg p-5 border border-red-200">
+          <h3 class="font-bold mb-2 text-red-700">No Communication System</h3>
+          <p class="text-sm text-red-600">Without a clear way to share updates, members drift away.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Leadership Tips -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4 text-foreground">Leadership Tips for New Club Founders</h2>
+      <div class="prose lg:prose-xl max-w-none">
+        <ul class="space-y-3 list-disc list-inside">
+          <li><strong>Serve first, lead second.</strong> Your job is to make others successful, not to be the star.</li>
+          <li><strong>Delegate early.</strong> Give members ownership of specific responsibilities.</li>
+          <li><strong>Rotate leadership.</strong> Others should eventually lead rucks, not just you.</li>
+          <li><strong>Document everything.</strong> Write down routes, lessons learned, and member info.</li>
+          <li><strong>Stay humble.</strong> You don't need to be the fittest — you need to be reliable.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Resources -->
+    <section class="mb-12">
+      <div class="bg-muted-50 rounded-lg p-6 border border-muted-200">
+        <h2 class="text-xl font-bold mb-4 text-foreground">Downloadable Resources</h2>
+        <p class="text-muted mb-4">Print these checklists to help with your club launch:</p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/checklists/start-a-club.pdf" class="btn btn-primary" download>
+            Download Club Starter Checklist (PDF)
+          </a>
+          <a href="/checklists/what-is-a-ruck-club.pdf" class="btn btn-secondary" download>
+            Download What is a Ruck Club (PDF)
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav class="flex gap-4">
+      <a href="/lead/ruck-clubs" class="btn btn-secondary">
+        ← Back to Ruck Clubs
+      </a>
+      <a href="/lead/ruck-clubs/leadership-principles" class="btn btn-utility">
+        Leadership Principles →
+      </a>
+    </nav>
   </div>
 </Layout>
