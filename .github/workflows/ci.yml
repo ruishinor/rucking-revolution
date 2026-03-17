@@ -29,6 +29,23 @@ jobs:
       if: always()
       run: npx browser-driver-manager install chrome
 
+    - name: Start preview server
+      if: always()
+      run: |
+        npm run preview -- --host 0.0.0.0 --port 4173 >/tmp/astro-preview.log 2>&1 &
+        for i in {1..20}; do
+          if curl -sSf http://localhost:4173 > /dev/null; then
+            echo "Preview server is up"
+            break
+          fi
+          sleep 1
+        done
+    
     - name: Run accessibility checks
       if: always()
-      run: npx axe ./dist --tags wcag2a,wcag2aa
+      run: npx axe http://localhost:4173 --tags wcag2a,wcag2aa
+
+    - name: Stop preview server
+      if: always()
+      run: |
+        lsof -ti:4173 | xargs -r kill
