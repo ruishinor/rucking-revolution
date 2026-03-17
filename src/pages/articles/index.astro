@@ -4,6 +4,10 @@ import { articles } from '@/data/articles';
 import Layout from '@/components/Layout.astro';
 import Card from '@/components/Card.astro';
 import Container from '@/components/Container.astro';
+import { existsSync } from 'node:fs';
+
+const publicAssetExists = (assetPath) =>
+  existsSync(new URL(`../../../public${assetPath}`, import.meta.url));
 
 // Get all unique tags from articles
 const allTags = [...new Set(articles.flatMap(article => article.tags))];
@@ -26,6 +30,11 @@ const paginatedArticles = filteredArticles.slice(
   (currentPage - 1) * pageSize,
   currentPage * pageSize
 );
+
+const articleCards = paginatedArticles.map((article) => ({
+  ...article,
+  hasHeroImage: publicAssetExists(article.heroImage.src),
+}));
 
 // Generate pagination links
 const generatePaginationLinks = (basePath) => {
@@ -90,20 +99,22 @@ const basePath = currentTag ? `/articles/tag/${currentTag}` : '/articles';
 
     {/* Articles Grid */}
     <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {paginatedArticles.map(article => (
+      {articleCards.map(article => (
         <article 
           key={article.id} 
           class="hover:shadow-lg transition-shadow flex flex-col h-full"
         >
           {/* Hero Image */}
-          <a href={`/articles/${article.slug}`} class="mb-4">
-            <img 
-              src={article.heroImage.src} 
-              alt={article.heroImage.alt} 
-              class="w-full h-48 object-cover rounded-t-lg"
-              loading="lazy"
-            />
-          </a>
+          {article.hasHeroImage && (
+            <a href={`/articles/${article.slug}`} class="mb-4">
+              <img 
+                src={article.heroImage.src} 
+                alt={article.heroImage.alt} 
+                class="w-full h-48 object-cover rounded-t-lg"
+                loading="lazy"
+              />
+            </a>
+          )}
           
           {/* Article Content */}
           <div class="flex-0 p-4">
