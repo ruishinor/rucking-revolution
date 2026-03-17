@@ -1,7 +1,8 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
-import image from '@astrojs/image';
+import vercel from '@astrojs/vercel';
+import { Image } from 'astro:assets';
 import Critters from 'critters';
 
 const crittersVitePlugin = {
@@ -19,5 +20,6 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss(), crittersVitePlugin]
   },
-  integrations: [sitemap(), image()]
+  integrations: [sitemap(), vercel()],
+  output: 'server'
 });
