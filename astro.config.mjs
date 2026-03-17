@@ -16,9 +16,10 @@ const crittersVitePlugin = {
 
 export default defineConfig({
   site: 'https://ruckingrevolution.org',
+  adapter: vercel(),
   vite: {
     plugins: [tailwindcss(), crittersVitePlugin]
   },
-  integrations: [sitemap(), vercel()],
+  integrations: [sitemap()],
   output: 'server'
 });
