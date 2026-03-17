@@ -1,6 +1,19 @@
-import type { APIContext } from 'astro';
+import type { APIRoute } from 'astro';
 
-export async function post({ request }: APIContext) {
+const methodNotAllowed = () =>
+  new Response(JSON.stringify({ success: false, error: 'Method not allowed' }), {
+    status: 405,
+    headers: {
+      'Allow': 'POST',
+      'Content-Type': 'application/json'
+    }
+  });
+
+export const GET: APIRoute = () => {
+  return methodNotAllowed();
+};
+
+export const POST: APIRoute = async ({ request }) => {
   const data = await request.formData();
   // In a real app, we would save to a database or send to a webhook.
   // For now, we'll just log and return a success response.
@@ -11,4 +24,4 @@ export async function post({ request }: APIContext) {
       'Content-Type': 'application/json'
     }
   });
-}
+};

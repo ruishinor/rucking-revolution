@@ -3,98 +3,161 @@ import Layout from '@/components/Layout.astro';
 import Button from '@/components/Button.astro';
 import Card from '@/components/Card.astro';
 import Container from '@/components/Container.astro';
-import Footer from '@/components/Footer.astro';
 import Grid from '@/components/Grid.astro';
-import Header from '@/components/Header.astro';
 ---
-<Layout>
-  <Container>
-    <h1 class="text-4xl font-bold text-center mb-8">Style Guide</h1>
+<Layout title="Style Guide" description="Production design tokens, typography, controls, and content surfaces.">
+  <Container class="py-12">
+    <header class="mx-auto mb-12 max-w-3xl text-center">
+      <p class="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-primary">Module 01</p>
+      <h1 class="mb-4 text-5xl font-bold text-foreground sm:text-6xl">Production Style Guide</h1>
+      <p class="text-lg text-muted">
+        This page reflects the live foundation layer: the production palette, typography, buttons, form fields,
+        content surfaces, and prose styling used by the site build.
+      </p>
+    </header>
 
     <section class="mb-12">
-      <h2 class="text-2xl font-semibold mb-4">Color Tokens</h2>
+      <h2 class="mb-5 text-3xl font-semibold">Palette</h2>
       <Grid columns={1} gap={4} class="sm:grid-cols-2 lg:grid-cols-3">
-        <div class="bg-primary text-white p-4 rounded">Primary: #8B0000</div>
-        <div class="bg-secondary text-white p-4 rounded">Secondary: #1C1C1C</div>
-        <div class="bg-accent text-white p-4 rounded">Accent: #E85C2A</div>
-        <div class="bg-background text-gray-900 p-4 rounded">Background: #F4F4F4</div>
-        <div class="bg-forest text-white p-4 rounded">Forest: #2E4A3F</div>
-        <div class="bg-steel text-white p-4 rounded">Steel: #6B6B6B</div>
-      </Grid>
-    </section>
-
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold mb-4">Typography</h2>
-      <div class="space-y-2">
-        <p class="text-xs">This is extra small text (text-xs)</p>
-        <p class="text-sm">This is small text (text-sm)</p>
-        <p class="text-base">This is base text (text-base)</p>
-        <p class="text-lg">This is large text (text-lg)</p>
-        <p class="text-xl">This is extra large text (text-xl)</p>
-        <p class="text-2xl">This is 2xl text (text-2xl)</p>
-        <p class="text-3xl">This is 3xl text (text-3xl)</p>
-        <p class="text-4xl">This is 4xl text (text-4xl)</p>
-        <p class="text-5xl">This is 5xl text (text-5xl)</p>
-        <p class="text-6xl">This is 6xl text (text-6xl)</p>
-      </div>
-    </section>
-
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold mb-4">Buttons</h2>
-      <div class="flex flex-wrap gap-4">
-        <Button variant="primary" size="sm">Primary Small</Button>
-        <Button variant="primary" size="md">Primary Medium</Button>
-        <Button variant="primary" size="lg">Primary Large</Button>
-        <Button variant="secondary" size="sm">Secondary Small</Button>
-        <Button variant="secondary" size="md">Secondary Medium</Button>
-        <Button variant="secondary" size="lg">Secondary Large</Button>
-        <Button variant="utility" size="sm">Utility Small</Button>
-        <Button variant="utility" size="md">Utility Medium</Button>
-        <Button variant="utility" size="lg">Utility Large</Button>
-      </div>
-    </section>
-
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold mb-4">Card</h2>
-      <Card class="w-64">
-        <div class="font-bold text-lg mb-2">Card Header</div>
-        <div class="text-gray-600">
-          This is the card content. It can contain any HTML or Astro components.
+        <div class="rounded-[1.25rem] bg-primary p-5 text-white shadow-[0_14px_28px_rgba(139,0,0,0.18)]">
+          <p class="text-sm uppercase tracking-[0.16em] text-white/70">Primary</p>
+          <p class="mt-3 text-3xl font-bold">#8B0000</p>
         </div>
-      </Card>
-    </section>
-
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold mb-4">Grid</h2>
-      <Grid columns={3} gap={4}>
-        <div class="bg-gray-200 p-4 text-center">1</div>
-        <div class="bg-gray-200 p-4 text-center">2</div>
-        <div class="bg-gray-200 p-4 text-center">3</div>
-        <div class="bg-gray-200 p-4 text-center">4</div>
-        <div class="bg-gray-200 p-4 text-center">5</div>
-        <div class="bg-gray-200 p-4 text-center">6</div>
-        <div class="bg-gray-200 p-4 text-center">7</div>
-        <div class="bg-gray-200 p-4 text-center">8</div>
-        <div class="bg-gray-200 p-4 text-center">9</div>
+        <div class="rounded-[1.25rem] bg-secondary p-5 text-white shadow-[0_14px_28px_rgba(28,28,28,0.18)]">
+          <p class="text-sm uppercase tracking-[0.16em] text-white/70">Secondary</p>
+          <p class="mt-3 text-3xl font-bold">#1C1C1C</p>
+        </div>
+        <div class="rounded-[1.25rem] bg-accent p-5 text-white shadow-[0_14px_28px_rgba(232,92,42,0.18)]">
+          <p class="text-sm uppercase tracking-[0.16em] text-white/70">Accent</p>
+          <p class="mt-3 text-3xl font-bold">#E85C2A</p>
+        </div>
+        <div class="rounded-[1.25rem] border border-muted-200 bg-background p-5 text-foreground">
+          <p class="text-sm uppercase tracking-[0.16em] text-muted">Background</p>
+          <p class="mt-3 text-3xl font-bold">#F5F1E8</p>
+        </div>
+        <div class="rounded-[1.25rem] bg-forest p-5 text-white shadow-[0_14px_28px_rgba(46,74,63,0.18)]">
+          <p class="text-sm uppercase tracking-[0.16em] text-white/70">Forest</p>
+          <p class="mt-3 text-3xl font-bold">#2E4A3F</p>
+        </div>
+        <div class="rounded-[1.25rem] bg-steel p-5 text-white shadow-[0_14px_28px_rgba(88,100,115,0.18)]">
+          <p class="text-sm uppercase tracking-[0.16em] text-white/70">Steel</p>
+          <p class="mt-3 text-3xl font-bold">#586473</p>
+        </div>
       </Grid>
     </section>
 
     <section class="mb-12">
-      <h2 class="text-2xl font-semibold mb-4">Header and Footer (Preview)</h2>
-      <Header currentPage="/" />
-      <div class="my-8">
-        <p class="text-center">Main content would go here.</p>
+      <h2 class="mb-5 text-3xl font-semibold">Typography</h2>
+      <div class="grid gap-6 lg:grid-cols-[1.4fr_0.9fr]">
+        <Card>
+          <p class="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-primary">Display</p>
+          <h2 class="mb-4 text-5xl font-bold text-foreground sm:text-6xl">Built for discipline, leadership, and field craft.</h2>
+          <p class="max-w-2xl text-lg text-muted-foreground">
+            Headings use a condensed display face to make the site feel intentional and distinct. Body copy stays
+            clean and readable across instructional pages, cards, and long-form editorial layouts.
+          </p>
+        </Card>
+        <Card>
+          <p class="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-primary">Scale</p>
+          <div class="space-y-3 text-foreground">
+            <p class="text-xs text-muted">Extra small supporting text</p>
+            <p class="text-sm text-muted-foreground">Small metadata and helper text</p>
+            <p class="text-base">Base body copy for product pages and utility pages</p>
+            <p class="text-lg">Large introductory text and emphasis copy</p>
+            <p class="font-serif text-lg">Optional serif treatment for editorial pull quotes and long-form emphasis.</p>
+            <p class="font-mono text-sm text-muted-foreground">Mono treatment for code, technical notes, and utility strings.</p>
+          </div>
+        </Card>
       </div>
-      <Footer />
     </section>
 
     <section class="mb-12">
-      <h2 class="text-2xl font-semibold mb-4">High Contrast Theme</h2>
-      <p>To enable high contrast theme, add the <code>high-contrast</code> class to the <code><html></code> element.</p>
-      <div class="high-contrast p-4 bg-gray-900 text-white rounded">
-        <p>This is a preview of the high contrast theme.</p>
-        <Button variant="primary">High Contrast Button</Button>
+      <h2 class="mb-5 text-3xl font-semibold">Buttons And Fields</h2>
+      <div class="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+        <Card>
+          <div class="mb-5 flex flex-wrap gap-4">
+            <Button variant="primary" size="sm">Primary Small</Button>
+            <Button variant="primary" size="md">Primary Medium</Button>
+            <Button variant="secondary" size="md">Secondary</Button>
+            <Button variant="utility" size="md">Utility</Button>
+          </div>
+          <p class="text-muted-foreground">
+            Primary actions are red and high-contrast. Secondary actions stay outlined and restrained. Utility actions
+            sit on the neutral surface layer so red remains an accent rather than the default treatment for every control.
+          </p>
+        </Card>
+        <Card>
+          <div class="space-y-4">
+            <label class="block">
+              <span class="mb-2 block text-sm font-semibold uppercase tracking-wide text-muted">Email field</span>
+              <input type="email" placeholder="you@example.com" class="w-full px-4 py-3" />
+            </label>
+            <label class="block">
+              <span class="mb-2 block text-sm font-semibold uppercase tracking-wide text-muted">Select</span>
+              <select class="w-full px-4 py-3">
+                <option>Choose a category</option>
+                <option>Training</option>
+                <option>Leadership</option>
+                <option>Field Notes</option>
+              </select>
+            </label>
+          </div>
+        </Card>
       </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="mb-5 text-3xl font-semibold">Cards</h2>
+      <div class="grid gap-6 lg:grid-cols-2">
+        <Card>
+          <div slot="header" class="flex items-center justify-between gap-3">
+            <p class="text-sm font-semibold uppercase tracking-[0.16em] text-primary">Knowledge Surface</p>
+            <span class="rounded-full bg-muted-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-muted">Editorial</span>
+          </div>
+          <h3 class="mb-3 text-2xl font-bold text-foreground">Field note cards now read as one system.</h3>
+          <p class="text-muted-foreground">
+            The card shell, border, spacing, and shadow values are all attached to the same token set the rest of the
+            site uses, so section pages no longer feel like a mixture of unrelated templates.
+          </p>
+          <div slot="footer" class="flex items-center justify-between gap-4 text-sm text-muted">
+            <span>Updated surface treatment</span>
+            <a href="/articles" class="text-primary hover:underline">Browse articles</a>
+          </div>
+        </Card>
+        <Card class="bg-muted-50/70">
+          <p class="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-primary">Muted Surface</p>
+          <p class="mb-4 text-foreground">
+            Neutral surfaces are warmer than the previous gray-on-gray treatment, which keeps the platform readable and
+            gives the red accent more control.
+          </p>
+          <div class="flex flex-wrap gap-3 text-sm text-muted-foreground">
+            <span class="rounded-full bg-white px-3 py-1 shadow-sm">Surface</span>
+            <span class="rounded-full bg-white px-3 py-1 shadow-sm">Muted 50</span>
+            <span class="rounded-full bg-white px-3 py-1 shadow-sm">Muted 200</span>
+          </div>
+        </Card>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="mb-5 text-3xl font-semibold">Prose</h2>
+      <Card>
+        <article class="prose lg:prose-xl">
+          <h3>Long-form content now has a real editorial baseline.</h3>
+          <p>
+            The site already contains article, field note, club, and route pages that rely on <code>prose</code>-style
+            formatting. This guide now demonstrates the live prose layer instead of assuming a plugin that was never wired
+            into the build.
+          </p>
+          <blockquote>
+            Shared discomfort only works as a teacher when the platform presenting it is calm, legible, and trustworthy.
+          </blockquote>
+          <p>
+            Links, inline code, headings, lists, and block quotes all inherit their production styling from the same
+            global foundation that powers the rest of the site.
+          </p>
+        </article>
+      </Card>
     </section>
   </Container>
 </Layout>

@@ -1,13 +1,22 @@
 ---
 // Card Props
-// children: HTMLElement (default slot)
-// header: HTMLElement (optional)
-// footer: HTMLElement (optional)
 // class: string (optional)
-const { children, header, footer, class: className = '' } = Astro.props;
+const { class: className = '' } = Astro.props;
+const hasHeader = Astro.slots.has('header');
+const hasFooter = Astro.slots.has('footer');
 ---
-<div class="border border-gray-200 rounded-lg bg-white shadow-sm flex flex-col {className}">
-  {header && <div class="px-4 py-3 border-b border-gray-200">{header}</div>}
-  <div class="flex-1 px-4 py-4">{children}</div>
-  {footer && <div class="px-4 py-3 border-t border-gray-200">{footer}</div>}
+<div class={`flex h-full flex-col rounded-[1.25rem] border border-muted-200 bg-white/90 shadow-[0_18px_36px_rgba(28,28,28,0.08)] backdrop-blur-sm ${className}`}>
+  {hasHeader && (
+    <div class="border-b border-muted-200 px-5 py-4">
+      <slot name="header" />
+    </div>
+  )}
+  <div class="flex-1 px-5 py-5">
+    <slot />
+  </div>
+  {hasFooter && (
+    <div class="border-t border-muted-200 px-5 py-4">
+      <slot name="footer" />
+    </div>
+  )}
 </div>

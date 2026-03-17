@@ -2,21 +2,20 @@
 // Button Props
 // variant: 'primary' | 'secondary' | 'utility'
 // size: 'sm' | 'md' | 'lg'
-// children: string | HTMLElement
-const { variant = 'primary', size = 'md', children, class: className = '' } = Astro.props;
+const { variant = 'primary', size = 'md', class: className = '' } = Astro.props;
 
 // Variant classes
 const variantClasses = {
-  primary: 'bg-primary text-white hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2',
-  secondary: 'border border-primary text-primary hover:bg-primary/10 focus:outline-none focus:ring-2 focus-ring-primary focus:ring-offset-2',
-  utility: 'text-sm text-primary hover:text-primary/80 p-1'
+  primary: 'btn btn-primary',
+  secondary: 'btn btn-secondary',
+  utility: 'btn btn-utility'
 };
 
 // Size classes
 const sizeClasses = {
-  sm: 'px-3 py-1.5 text-sm rounded-md',
-  md: 'px-4 py-2 text-base rounded-md',
-  lg: 'px-5 py-3 text-lg rounded-md'
+  sm: 'btn-sm',
+  md: 'btn-md',
+  lg: 'btn-lg'
 };
 ---
 <button class={`${variantClasses[variant]} ${sizeClasses[size]} ${className}`}>

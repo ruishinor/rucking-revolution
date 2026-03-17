@@ -10,19 +10,19 @@ let { category = 'all' } = Astro.props;
   <div class="flex flex-wrap items-center gap-4">
     <button 
       id="drawOneBtn"
-      class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+      class="btn btn-primary btn-md"
     >
       Draw 1 Card
     </button>
     <button 
       id="drawThreeBtn"
-      class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+      class="btn btn-secondary btn-md"
     >
       Draw 3 Cards
     </button>
     <select 
       id="categoryFilter"
-      class="border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      class="rounded-border border border-muted-200 bg-white px-3 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-accent"
     >
       <option value="all" {category === 'all' && 'selected'}>All Categories</option>
       <option value="Leadership" {category === 'Leadership' && 'selected'}>Leadership</option>
@@ -32,7 +32,7 @@ let { category = 'all' } = Astro.props;
     </select>
     <button 
       id="shuffleBtn"
-      class="bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded"
+      class="btn btn-utility btn-md"
     >
       Shuffle Deck
     </button>
@@ -44,7 +44,7 @@ let { category = 'all' } = Astro.props;
   </div>
 
   <!-- Status -->
-  <div id="status" class="text-center text-gray-600 dark:text-gray-400">
+  <div id="status" class="text-center text-muted">
     Initializing...
   </div>
 </div>
@@ -155,23 +155,23 @@ let { category = 'all' } = Astro.props;
     // Create and append card elements
     cards.forEach(card => {
       const cardDiv = document.createElement('div');
-      cardDiv.className = 'bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-lg shadow-lg p-6 m-4 flex flex-col h-full swipe-card';
+      cardDiv.className = 'bg-white/95 border border-muted-200 rounded-[1.25rem] shadow-[0_18px_36px_rgba(28,28,28,0.08)] p-6 m-4 flex flex-col h-full swipe-card';
       cardDiv.innerHTML = `
-        <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100 capitalize">
+        <h2 class="text-2xl font-bold mb-4 text-foreground capitalize">
           ${card.category}
         </h2>
-        <p class="text-xl text-gray-800 dark:text-gray-200 flex-grow leading-relaxed">
+        <p class="text-xl text-foreground flex-grow leading-relaxed">
           ${card.text}
         </p>
         ${card.prompts.length > 0 ? `
-          <div class="mt-4 text-base text-gray-700 dark:text-gray-300 space-y-2">
-            <h3 class="font-semibold mb-1 text-gray-900 dark:text-gray-100">Prompts:</h3>
+          <div class="mt-4 text-base text-muted-foreground space-y-2">
+            <h3 class="font-semibold mb-1 text-foreground">Prompts:</h3>
             <ul class="list-disc list-inside text-left space-y-1">
               ${card.prompts.map(p => `<li class="pl-2">${p}</li>`).join('')}
             </ul>
           </div>
         ` : ''}
-        <div class="mt-4 text-sm text-gray-600 dark:text-gray-400 font-medium">
+        <div class="mt-4 text-sm text-muted font-medium">
           Difficulty: ${card.difficulty} &bull; Duration: ${card.duration}s
         </div>
       `;
