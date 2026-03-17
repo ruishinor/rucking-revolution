@@ -13,6 +13,69 @@ import Container from '@/components/Container.astro';
     </header>
 
     <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">GDPR Compliance</h2>
+      <p class="text-muted mb-4">
+        Rucking Revolution is operated from Norway and complies with the General Data Protection Regulation (GDPR) as well as Norwegian privacy laws. If you are located in the European Economic Area (EEA), you have specific rights under GDPR.
+      </p>
+      <div class="grid gap-4 md:grid-cols-2">
+        <div class="p-4 border rounded-lg">
+          <h3 class="font-semibold mb-2">Your GDPR Rights</h3>
+          <ul class="list-disc list-inside text-muted text-sm space-y-2">
+            <li><strong>Right to Access:</strong> You can request a copy of your personal data</li>
+            <li><strong>Right to Rectification:</strong> You can request correction of inaccurate data</li>
+            <li><strong>Right to Erasure:</strong> You can request deletion of your data</li>
+            <li><strong>Right to Restrict Processing:</strong> You can limit how we use your data</li>
+          </ul>
+        </div>
+        <div class="p-4 border rounded-lg">
+          <h3 class="font-semibold mb-2">Additional GDPR Rights</h3>
+          <ul class="list-disc list-inside text-muted text-sm space-y-2">
+            <li><strong>Right to Data Portability:</strong> You can receive your data in a machine-readable format</li>
+            <li><strong>Right to Object:</strong> You can object to certain processing</li>
+            <li><strong>Rights Related to Automated Decision Making:</strong> You can request human intervention</li>
+            <li><strong>Right to Withdraw Consent:</strong> You can withdraw consent at any time</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Data Controller Information</h2>
+      <div class="p-6 border rounded-lg">
+        <p class="text-muted mb-2"><strong>Rucking Revolution</strong></p>
+        <p class="text-muted mb-2">Norway</p>
+        <p class="text-muted mb-2">Email: hello@ruckingrevolution.com</p>
+        <p class="text-muted mt-4 text-sm">
+          Our Data Protection Officer can be reached at the email address above. We are registered with the Norwegian Data Protection Authority (Datatilsynet).
+        </p>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">International Data Transfers</h2>
+      <p class="text-muted mb-4">
+        As we operate from Norway, your data may be transferred outside the EEA. We ensure appropriate safeguards are in place:
+      </p>
+      <ul class="list-disc list-inside text-muted space-y-2 mb-4">
+        <li>Standard Contractual Clauses approved by the European Commission</li>
+        <li>Adequacy decisions where available</li>
+        <li>Additional security measures for international transfers</li>
+      </ul>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Lodging Complaints</h2>
+      <p class="text-muted mb-4">
+        If you believe your data protection rights have been violated, you have the right to lodge a complaint with:
+      </p>
+      <div class="p-4 border rounded-lg">
+        <p class="text-muted"><strong>Norwegian Data Protection Authority (Datatilsynet)</strong></p>
+        <p class="text-muted text-sm">Website: https://www.datatilsynet.no</p>
+        <p class="text-muted text-sm">You may also lodge a complaint with your local data protection authority.</p>
+      </div>
+    </section>
+
+    <section class="mb-12">
       <h2 class="text-2xl font-semibold mb-4">Information We Collect</h2>
       <div class="space-y-4">
         <div class="p-6 border rounded-lg">
@@ -79,8 +142,36 @@ import Container from '@/components/Container.astro';
         <li>Improve site functionality</li>
         <li>Understand how you use our site</li>
       </ul>
-      <p class="text-muted">
-        You can control cookies through your browser settings. However, disabling cookies may limit your ability to use certain features of our site.
+
+      <div class="p-6 border rounded-lg bg-blue-50 mb-4">
+        <h3 class="text-lg font-semibold mb-3">Cookie Consent (GDPR)</h3>
+        <p class="text-muted text-sm mb-3">
+          Under GDPR and Norwegian law, we require your consent to use non-essential cookies. When you first visit our site, you will see a cookie consent banner that allows you to:
+        </p>
+        <ul class="list-disc list-inside text-muted text-sm space-y-1">
+          <li><strong>Accept all cookies</strong> - Enable all cookie categories</li>
+          <li><strong>Reject non-essential cookies</strong> - Only allow technically necessary cookies</li>
+          <li><strong>Customize preferences</strong> - Choose which cookie categories to enable</li>
+        </ul>
+      </div>
+
+      <div class="grid gap-4 md:grid-cols-2">
+        <div class="p-4 border rounded-lg">
+          <h3 class="font-semibold mb-2">Essential Cookies</h3>
+          <p class="text-muted text-sm">
+            These cookies are necessary for the website to function. They cannot be disabled. Without them, certain features would not work properly.
+          </p>
+        </div>
+        <div class="p-4 border rounded-lg">
+          <h3 class="font-semibold mb-2">Analytics Cookies</h3>
+          <p class="text-muted text-sm">
+            These cookies help us understand how visitors interact with our website by collecting anonymous information. You can disable these at any time.
+          </p>
+        </div>
+      </div>
+
+      <p class="text-muted mt-4">
+        You can manage your cookie preferences at any time by clearing your browser cookies or using our cookie settings. You can also control cookies through your browser settings.
       </p>
     </section>
 

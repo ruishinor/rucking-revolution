@@ -3,6 +3,7 @@
   import '@/styles/global.css';
   import SEO from '@/components/SEO.astro';
   import Header from '@/components/Header.astro';
+  import CookieConsent from '@/components/CookieConsent.astro';
 
   const { 
     title: layoutTitle = site.title,
@@ -187,5 +188,6 @@
          });
        });
      </script>
+    <CookieConsent />
   </body>
 </html>
