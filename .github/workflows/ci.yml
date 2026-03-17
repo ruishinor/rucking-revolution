@@ -16,7 +16,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '20'
+        node-version: '22'
         cache: 'npm'
     
     - name: Install dependencies
@@ -25,6 +25,10 @@ jobs:
     - name: Build
       run: npm run build
     
+    - name: Install ChromeDriver for axe
+      if: always()
+      run: npx browser-driver-manager install chrome
+
     - name: Run accessibility checks
       if: always()
       run: npx axe ./dist --tags wcag2a,wcag2aa
