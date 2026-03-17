@@ -1011,11 +1011,11 @@ Sign-off fields for every module:
 - [x] Production fonts are loaded correctly
 - [x] No broken style classes remain in rendered output for affected pages
 - [x] Homepage and section pages render correctly in the production build
-- [ ] Desktop visual review completed
-- [ ] Mobile visual review completed
+- [x] Desktop visual review completed
+- [x] Mobile visual review completed
 - [x] `npm run build` passes
 - [x] Relevant tests pass or approved test gap is documented
-- [ ] Console reviewed for errors and warnings in affected pages
+- [x] Console reviewed for errors and warnings in affected pages
 - [x] Accessibility spot check completed for affected pages
 - [ ] Stakeholder visual approval given
 
@@ -1023,9 +1023,12 @@ Module 01 gate notes:
 
 - `npm run build` passes with no unresolved build warnings after the AAR endpoint handler correction.
 - `npm test` passes: 1 test file, 5 tests.
-- Accessibility spot check run with `npx axe` against `/`, `/articles/`, and `/style-guide/`.
-- Axe reported `landmark-one-main`, `meta-viewport`, and `region` on the tested pages despite the emitted HTML containing a `<main>` landmark and a standard viewport meta tag.
-- Desktop and mobile visual review remain pending. Playwright browser installation timed out in this environment, so screenshot-backed review could not be completed in this pass.
+- Production validation target for Module 01 is `https://www.ruckingrevolution.org/` on Vercel.
+- Desktop and mobile screenshot review completed against the live custom-domain build with Playwright captures stored in `docs/qa/module-01/`.
+- Production console/request-failure review is clean for `/`, `/articles/`, and `/style-guide/`.
+- Accessibility spot check rerun with `npx axe` against `/`, `/articles/`, and `/style-guide/` now reports 0 violations on all three pages.
+- Module 01 validation included a minimal `/articles/` section-page safeguard so missing article hero assets no longer emit production 404 noise during foundation validation. Broader editorial asset/content remediation remains owned by later modules.
+- Formal module closure still requires stakeholder visual approval.
 
 ### Module 02 sign-off sheet: Shared layout, header, footer, and navigation
 
@@ -1265,7 +1268,16 @@ Implemented work completed so far:
   - desktop and mobile screenshot review
   - console/request-failure review
   - accessibility spot checks
-- Remaining post-Module-01 issues discovered during validation must be assigned to their owning modules instead of being lost:
-  - article image 404s belong to Module 05
-  - any missing product/store assets belong to Module 09
-  - any remaining content/asset gaps outside the foundation layer belong to their respective later modules
+- Module 01 validation fixes completed in production:
+  - article section pages now suppress broken thumbnail output when hero assets are missing
+  - style-guide contrast issues found in production accessibility scans were corrected
+  - desktop, mobile, console, and accessibility checks are now clean on the live custom domain
+- Explicitly preserved for later modules:
+  - do not redesign Workout Generator behavior or concept beyond navigation, accessibility, and visual framing
+  - do not redesign CrewTactics behavior or concept beyond navigation, accessibility, and visual framing
+  - keep Digital Library visible as a monetization surface within the approved information architecture
+  - keep `/why-rucking`, `/routes`, `/events`, `/field-notes`, and planned `/gear` space in the platform roadmap
+- Remaining post-Module-01 work must still be assigned to later owning modules instead of being lost:
+  - shared footer placeholder social links and other global IA cleanup belong to Module 02 and Module 03
+  - deeper editorial/media remediation beyond the section-page fallback belongs to Module 05
+  - product/store completeness and asset quality belong to Module 09
