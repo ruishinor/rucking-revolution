@@ -1,43 +1,14 @@
 ---
-import { generateWorkout } from '@/components/WorkoutGenerator.ts';
 import { workouts } from '@/data/workouts.ts';
-
-interface Props {
-  seed?: number;
-}
-
-const { seed } = Astro.props;
-
-let generatedWorkout: any = null;
-let error: string | null = null;
-
-if (Astro.request.method === 'POST') {
-  try {
-    const formData = await Astro.request.formData();
-    const difficulty = formData.get('difficulty') as 'beginner' | 'intermediate' | 'advanced' || 'beginner';
-    const timePreference = formData.get('timePreference') 
-      ? parseInt(formData.get('timePreference') as string) 
-      : undefined;
-    
-    generatedWorkout = generateWorkout(difficulty, seed, timePreference);
-  } catch (err) {
-    error = 'Failed to generate workout. Please try again.';
-    console.error(err);
-  }
-}
 ---
 
 <div class="max-w-4xl mx-auto px-4 py-8">
   <div class="bg-white rounded-lg shadow-md p-6">
     <h1 class="text-2xl font-bold text-center mb-6 text-red-800">Workout Generator</h1>
     
-    {error && (
-      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6" role="alert">
-        {error}
-      </div>
-    )}
+    <div id="workout-generator-error" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6" role="alert"></div>
     
-    <form method="POST" class="space-y-6">
+    <form id="workout-form" class="space-y-6">
       <div>
         <label for="difficulty" class="block text-sm font-medium text-gray-700 mb-2">
           Difficulty Level
@@ -47,15 +18,9 @@ if (Astro.request.method === 'POST') {
           name="difficulty"
           class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
         >
-          <option value="beginner" {generatedWorkout?.difficulty === 'beginner' ? 'selected' : ''}>
-            Beginner
-          </option>
-          <option value="intermediate" {generatedWorkout?.difficulty === 'intermediate' ? 'selected' : ''}>
-            Intermediate
-          </option>
-          <option value="advanced" {generatedWorkout?.difficulty === 'advanced' ? 'selected' : ''}>
-            Advanced
-          </option>
+          <option value="beginner">Beginner</option>
+          <option value="intermediate">Intermediate</option>
+          <option value="advanced">Advanced</option>
         </select>
       </div>
       
@@ -77,12 +42,6 @@ if (Astro.request.method === 'POST') {
         </p>
       </div>
       
-      {seed && (
-        <div class="text-sm text-gray-500">
-          Using seed: {seed} for deterministic generation
-        </div>
-      )}
-      
       <div class="flex justify-end">
         <button 
           type="submit"
@@ -93,88 +52,62 @@ if (Astro.request.method === 'POST') {
       </div>
     </form>
     
-    {generatedWorkout && (
-      <div class="mt-8">
-        <h2 class="text-xl font-bold mb-4">{generatedWorkout.title}</h2>
-        <p class="text-gray-600 mb-4">{generatedWorkout.description}</p>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-          <div class="bg-gray-50 p-3 rounded">
-            <h3 class="text-sm font-medium text-gray-700">Duration</h3>
-            <p class="text-gray-900">{generatedWorkout.duration} minutes</p>
-          </div>
-          <div class="bg-gray-50 p-3 rounded">
-            <h3 class="text-sm font-medium text-gray-700">Distance</h3>
-            <p class="text-gray-900">{generatedWorkout.distance} km</p>
-          </div>
-          <div class="bg-gray-50 p-3 rounded">
-            <h3 class="text-sm font-medium text-gray-700">Load</h3>
-            <p class="text-gray-900">{generatedWorkout.load} kg</p>
-          </div>
-          <div class="bg-gray-50 p-3 rounded">
-            <h3 class="text-sm font-medium text-gray-700">Difficulty</h3>
-            <p class="text-gray-900 capitalize">{generatedWorkout.difficulty}</p>
-          </div>
-          <div class="bg-gray-50 p-3 rounded">
-            <h3 class="text-sm font-medium text-gray-700">Terrain</h3>
-            <p class="text-gray-900">{generatedWorkout.terrain.map(t => t.charAt(0).toUpperCase() + t.slice(1)).join(', ')}</p>
-          </div>
-          {generatedWorkout.seed && (
-            <div class="bg-gray-50 p-3 rounded">
-              <h3 class="text-sm font-medium text-gray-700">Seed</h3>
-              <p class="text-gray-900">{generatedWorkout.seed}</p>
-            </div>
-          )}
+    <div id="generated-workout" class="hidden">
+      <h2 id="workout-title" class="text-xl font-bold mb-4"></h2>
+      <p id="workout-description" class="text-gray-600 mb-4"></p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+        <div class="bg-gray-50 p-3 rounded">
+          <h3 class="text-sm font-medium text-gray-700">Duration</h3>
+          <p id="workout-duration" class="text-gray-900"></p>
         </div>
-        
-        <div class="mb-6">
-          <h3 class="text-lg font-medium mb-2">Objectives</h3>
-          <ul class="list-disc list-inside space-y-1 text-gray-700">
-            {generatedWorkout.objectives.map((obj: string) => (
-              <li key={obj}>{obj}</li>
-            ))}
-          </ul>
+        <div class="bg-gray-50 p-3 rounded">
+          <h3 class="text-sm font-medium text-gray-700">Distance</h3>
+          <p id="workout-distance" class="text-gray-900"></p>
         </div>
-        
-        <div class="mb-6">
-          <h3 class="text-lg font-medium mb-2">Equipment</h3>
-          <p class="text-gray-700">{generatedWorkout.equipment.join(', ')}</p>
+        <div class="bg-gray-50 p-3 rounded">
+          <h3 class="text-sm font-medium text-gray-700">Load</h3>
+          <p id="workout-load" class="text-gray-900"></p>
         </div>
-        
-        <div class="mb-6">
-          <h3 class="text-lg font-medium mb-2">Workout Sections</h3>
-          {generatedWorkout.sections.map((section: any, index: number) => (
-            <div key={index} class="border-t pt-4 first:border-t-0">
-              <h4 class="text-lg font-semibold mb-2">{section.name} ({section.duration} min)</h4>
-              <p class="text-gray-600 mb-2">{section.description}</p>
-              {section.exercises && section.exercises.length > 0 && (
-                <ul class="list-disc list-inside space-y-1 text-gray-700 text-sm">
-                  {section.exercises.map((exercise: string) => (
-                    <li key={exercise}>{exercise}</li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          ))}
+        <div class="bg-gray-50 p-3 rounded">
+          <h3 class="text-sm font-medium text-gray-700">Difficulty</h3>
+          <p id="workout-difficulty" class="text-gray-900 capitalize"></p>
         </div>
-        
-        {generatedWorkout.notes && (
-          <div class="bg-blue-50 p-4 rounded mb-6">
-            <h3 class="text-lg font-medium mb-2">Notes</h3>
-            <p class="text-gray-800">{generatedWorkout.notes}</p>
-          </div>
-        )}
-        
-        <div class="flex justify-end">
-          <button 
-            onclick="window.print()"
-            class="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-900 focus:outline-none focus:ring-2 focus-ring-gray-800 focus-ring-offset-2 transition-colors"
-          >
-            Print Workout
-          </button>
+        <div class="bg-gray-50 p-3 rounded">
+          <h3 class="text-sm font-medium text-gray-700">Terrain</h3>
+          <p id="workout-terrain" class="text-gray-900"></p>
         </div>
       </div>
-    )}
+      
+      <div class="mb-6">
+        <h3 class="text-lg font-medium mb-2">Objectives</h3>
+        <ul id="workout-objectives" class="list-disc list-inside space-y-1 text-gray-700"></ul>
+      </div>
+      
+      <div class="mb-6">
+        <h3 class="text-lg font-medium mb-2">Equipment</h3>
+        <p id="workout-equipment" class="text-gray-700"></p>
+      </div>
+      
+      <div class="mb-6">
+        <h3 class="text-lg font-medium mb-2">Workout Sections</h3>
+        <div id="workout-sections"></div>
+      </div>
+      
+      <div id="workout-notes" class="hidden bg-blue-50 p-4 rounded mb-6">
+        <h3 class="text-lg font-medium mb-2">Notes</h3>
+        <p id="workout-notes-text" class="text-gray-800"></p>
+      </div>
+      
+      <div class="flex justify-end">
+        <button 
+          onclick="window.print()"
+          class="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-colors"
+        >
+          Print Workout
+        </button>
+      </div>
+    </div>
     
     {/* Sample Workouts Section */}
     <div class="mt-12 pt-8 border-t">
@@ -197,7 +130,7 @@ if (Astro.request.method === 'POST') {
               </div>
               <a 
                 href={`/train/workouts/${workout.slug}`}
-                class="block w-full text-center bg-red-800 text-white px-4 py-2 rounded-md hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-red-800 focus-ring-offset-2 transition-colors"
+                class="block w-full text-center bg-red-800 text-white px-4 py-2 rounded-md hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-red-800 focus:ring-offset-2 transition-colors"
               >
                 View Details
               </a>
@@ -217,6 +150,82 @@ if (Astro.request.method === 'POST') {
     </div>
   </div>
 </div>
+
+<script>
+  import { generateWorkout } from '@/components/WorkoutGenerator.ts';
+
+  const form = document.getElementById('workout-form') as HTMLFormElement;
+  const errorDiv = document.getElementById('workout-generator-error');
+  const workoutDiv = document.getElementById('generated-workout');
+
+  if (form && workoutDiv) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      try {
+        const formData = new FormData(form);
+        const difficulty = (formData.get('difficulty') as 'beginner' | 'intermediate' | 'advanced') || 'beginner';
+        const timePreferenceStr = formData.get('timePreference') as string;
+        const timePreference = timePreferenceStr ? parseInt(timePreferenceStr) : undefined;
+        
+        const workout = generateWorkout(difficulty, undefined, timePreference);
+        
+        // Hide error if shown
+        if (errorDiv) errorDiv.classList.add('hidden');
+        
+        // Populate workout details
+        document.getElementById('workout-title')!.textContent = workout.title;
+        document.getElementById('workout-description')!.textContent = workout.description;
+        document.getElementById('workout-duration')!.textContent = `${workout.duration} minutes`;
+        document.getElementById('workout-distance')!.textContent = `${workout.distance} km`;
+        document.getElementById('workout-load')!.textContent = `${workout.load} kg`;
+        document.getElementById('workout-difficulty')!.textContent = workout.difficulty;
+        document.getElementById('workout-terrain')!.textContent = workout.terrain.map(t => t.charAt(0).toUpperCase() + t.slice(1)).join(', ');
+        document.getElementById('workout-equipment')!.textContent = workout.equipment.join(', ');
+        
+        // Populate objectives
+        const objectivesList = document.getElementById('workout-objectives')!;
+        objectivesList.innerHTML = workout.objectives.map(obj => `<li>${obj}</li>`).join('');
+        
+        // Populate sections
+        const sectionsDiv = document.getElementById('workout-sections')!;
+        sectionsDiv.innerHTML = workout.sections.map((section, index) => `
+          <div class="border-t pt-4 ${index === 0 ? 'border-t-0' : ''}">
+            <h4 class="text-lg font-semibold mb-2">${section.name} (${section.duration} min)</h4>
+            <p class="text-gray-600 mb-2">${section.description}</p>
+            ${section.exercises && section.exercises.length > 0 ? `
+              <ul class="list-disc list-inside space-y-1 text-gray-700 text-sm">
+                ${section.exercises.map(ex => `<li>${ex}</li>`).join('')}
+              </ul>
+            ` : ''}
+          </div>
+        `).join('');
+        
+        // Populate notes
+        const notesDiv = document.getElementById('workout-notes')!;
+        if (workout.notes) {
+          notesDiv.classList.remove('hidden');
+          document.getElementById('workout-notes-text')!.textContent = workout.notes;
+        } else {
+          notesDiv.classList.add('hidden');
+        }
+        
+        // Show the workout
+        workoutDiv.classList.remove('hidden');
+        
+        // Scroll to workout
+        workoutDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        
+      } catch (err) {
+        console.error('Failed to generate workout:', err);
+        if (errorDiv) {
+          errorDiv.textContent = 'Failed to generate workout. Please try again.';
+          errorDiv.classList.remove('hidden');
+        }
+      }
+    });
+  }
+</script>
 
 <style>
   /* Print styles */

@@ -1,5 +1,6 @@
 ---
 import Layout from '@/components/Layout.astro';
+import MediaPlaceholder from '@/components/MediaPlaceholder.astro';
 import { exercises } from '@/data/exercises.ts';
 
 const exercise = exercises.find(ex => ex.slug === 'bent-over-row');
@@ -68,12 +69,7 @@ const exercise = exercises.find(ex => ex.slug === 'bent-over-row');
               <figcaption class="mt-2 text-center text-sm text-gray-500">{media.alt}</figcaption>
             </figure>
           ) : (
-            <div class="relative w-full h-0 pb-[56.25%] bg-gray-200 rounded-lg shadow-md">
-              {/* Placeholder for video/GIF */}
-              <div class="absolute inset-0 flex items-center justify-center text-secondary/70">
-                Video placeholder - {media.alt}
-              </div>
-            </div>
+            <MediaPlaceholder alt={`Illustration coming soon`} />
           )}
         </div>
       ))}

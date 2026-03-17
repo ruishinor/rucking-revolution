@@ -1,5 +1,6 @@
 ---
 import Layout from '@/components/Layout.astro';
+import MediaPlaceholder from '@/components/MediaPlaceholder.astro';
 ---
 <Layout title="Release Ball - Performance Kit" description="Myofascial release techniques using a lacrosse or massage ball">
   <h1 class="text-3xl font-bold mb-6">Release Ball</h1>
@@ -79,24 +80,14 @@ import Layout from '@/components/Layout.astro';
       {/* Example: Glute release */}
       <div class="border rounded-lg p-4 bg-gray-50">
         <h3 class="text-xl font-semibold mb-2">Glute Release</h3>
-        <div class="relative w-full h-0 pb-[56.25%] bg-gray-200 rounded-lg">
-          {/* Placeholder for video/GIF */}
-          <div class="absolute inset-0 flex items-center justify-center text-secondary/70">
-            Video placeholder - Demonstrating glute release with a lacrosse ball
-          </div>
-        </div>
+        <MediaPlaceholder alt="Illustration coming soon" />
         <p class="mt-2 text-center text-sm text-gray-500">Sit on the ball, place it under one glute, and roll slowly to find tender spots.</p>
       </div>
       
       {/* Example: Foot release */}
       <div class="border rounded-lg p-4 bg-gray-50">
         <h3 class="text-xl font-semibold mb-2">Foot Release (Plantar Fascia)</h3>
-        <div class="relative w-full h-0 pb-[56.25%] bg-gray-200 rounded-lg">
-          {/* Placeholder for video/GIF */}
-          <div class="absolute inset-0 flex items-center justify-center text-secondary/70">
-            Video placeholder - Demonstrating foot release with a ball
-          </div>
-        </div>
+        <MediaPlaceholder alt="Illustration coming soon" />
         <p class="mt-2 text-center text-sm text-gray-500">Stand or sit, place the ball under your foot, and roll from heel to toe.</p>
       </div>
     </div>
