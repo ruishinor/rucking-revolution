@@ -65,6 +65,11 @@ const { class: className = '' } = Astro.props;
         <li>
           <a href="/terms" class="hover:text-white transition-colors duration-200">Terms of Service</a>
         </li>
+        <li>
+          <button id="cookie-prefs-btn" type="button" class="hover:text-white transition-colors duration-200 text-left bg-transparent border-none p-0 cursor-pointer">
+            Cookie Preferences
+          </button>
+        </li>
       </ul>
     </section>
   </div>
@@ -78,4 +83,10 @@ const { class: className = '' } = Astro.props;
 
 <script client:idle>
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Cookie preferences button handler
+  document.getElementById('cookie-prefs-btn')?.addEventListener('click', () => {
+    // Dispatch event to show cookie banner
+    window.dispatchEvent(new CustomEvent('showCookieBanner'));
+  });
 </script>

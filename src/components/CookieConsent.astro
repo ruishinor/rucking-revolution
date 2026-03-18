@@ -57,6 +57,9 @@
     }
   }
 
+  // Expose showBanner globally for footer button
+  (window as unknown as { showCookieBanner: () => void }).showCookieBanner = showBanner;
+
   function isConsentExpired(): boolean {
     const expiry = localStorage.getItem(`${CONSENT_KEY}_expiry`);
     if (!expiry) return true;
@@ -74,6 +77,11 @@
       // Initialize analytics if accepted
       initializeAnalytics();
     }
+
+    // Listen for showCookieBanner event from footer button
+    window.addEventListener('showCookieBanner', () => {
+      showBanner();
+    });
   });
 
   // Accept all cookies
