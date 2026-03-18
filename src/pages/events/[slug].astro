@@ -21,17 +21,20 @@ const event = events.find(e => e.slug === slug);
 if (!event) {
   return Astro.redirect('/404');
 }
----
-<Layout title={`${event.title} - Rucking Revolution`} description={event.description} currentPage={`/events/${event.slug}`}>
-  <meta name="title" content={`${event.title} - Rucking Revolution`} />
-  <meta name="description" content={event.description} />
-  <meta property="og:title" content={`${event.title} - Rucking Revolution`} />
-  <meta property="og:description" content={event.description} />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content={`${site.baseUrl}/events/${event.slug}`} />
-  <meta property="og:image" content={`${site.baseUrl}${event.heroImage.src}`} />
-  <meta name="twitter:card" content="summary_large_image" />
 
+const pageTitle = `${event.title} - Rucking Revolution`;
+---
+<Layout 
+  title={pageTitle}
+  description={event.description}
+  currentPage={`/events/${event.slug}`}
+  openGraph={{
+    type: 'website',
+    url: `${site.baseUrl}/events/${event.slug}`,
+    image: `${site.baseUrl}${event.heroImage.src}`
+  }}
+  twitter={{ card: 'summary_large_image' }}
+>
   <Container>
     {/* Event Header */}
     <header class="mb-8">

@@ -21,17 +21,21 @@ const note = fieldNotes.find(n => n.slug === slug);
 if (!note) {
   return Astro.redirect('/404');
 }
----
-<Layout title={`${note.title} - Rucking Revolution`} description={note.observations.join(' ')} currentPage={`/field-notes/${note.slug}`}>
-  <meta name="title" content={`${note.title} - Rucking Revolution`} />
-  <meta name="description" content={note.observations.join(' ')} />
-  <meta property="og:title" content={`${note.title} - Rucking Revolution`} />
-  <meta property="og:description" content={note.observations.join(' ')} />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content={`${site.baseUrl}/field-notes/${note.slug}`} />
-  <meta property="og:image" content={`${site.baseUrl}${note.heroImage.src}`} />
-  <meta name="twitter:card" content="summary_large_image" />
 
+const pageTitle = `${note.title} - Rucking Revolution`;
+const pageDescription = note.observations.join(' ');
+---
+<Layout 
+  title={pageTitle}
+  description={pageDescription}
+  currentPage={`/field-notes/${note.slug}`}
+  openGraph={{
+    type: 'website',
+    url: `${site.baseUrl}/field-notes/${note.slug}`,
+    image: `${site.baseUrl}${note.heroImage.src}`
+  }}
+  twitter={{ card: 'summary_large_image' }}
+>
   <Container>
     {/* Field Note Header */}
     <header class="mb-8">

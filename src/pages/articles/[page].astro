@@ -73,18 +73,20 @@ const generatePaginationLinks = (basePath) => {
 };
 
 const basePath = '/articles';
+
+const pageTitle = `Articles (Page ${currentPage}) - Rucking Revolution`;
+const pageDescription = `Explore our collection of articles on rucking, leadership, and community resilience. Page ${currentPage}.`;
 ---
-
-<Layout>
-  <meta name="title" content={`Articles (Page ${currentPage}) - Rucking Revolution`} />
-  <meta name="description" content={`Explore our collection of articles on rucking, leadership, and community resilience. Page ${currentPage}.`} />
-  <meta property="og:title" content={`Articles (Page ${currentPage}) - Rucking Revolution`} />
-  <meta property="og:description" content={`Explore our collection of articles on rucking, leadership, and community resilience. Page ${currentPage}.`} />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content={`${site.baseUrl}/articles/${currentPage}`} />
-  <meta property="og:image" content={`${site.baseUrl}/og-articles.jpg`} />
-  <meta name="twitter:card" content="summary_large_image" />
-
+<Layout 
+  title={pageTitle}
+  description={pageDescription}
+  openGraph={{
+    type: 'website',
+    url: `${site.baseUrl}/articles/${currentPage}`,
+    image: `${site.baseUrl}/og-articles.jpg`
+  }}
+  twitter={{ card: 'summary_large_image' }}
+>
   <Container>
     <header class="mb-8">
       <h1 class="text-3xl font-bold text-center">Articles</h1>

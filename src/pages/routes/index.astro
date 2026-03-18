@@ -4,17 +4,19 @@ import { routes } from '@/data/routes';
 import Layout from '@/components/Layout.astro';
 import Container from '@/components/Container.astro';
 
+const pageTitle = 'Routes - Rucking Revolution';
+const pageDescription = 'Explore our curated rucking routes with detailed metadata.';
 ---
-<Layout>
-  <meta name="title" content="Routes - Rucking Revolution" />
-  <meta name="description" content="Explore our curated rucking routes with detailed metadata." />
-  <meta property="og:title" content="Routes - Rucking Revolution" />
-  <meta property="og:description" content="Explore our curated rucking routes with detailed metadata." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content={`${site.baseUrl}/routes`} />
-  <meta property="og:image" content={`${site.baseUrl}/og-routes.jpg`} />
-  <meta name="twitter:card" content="summary_large_image" />
-
+<Layout 
+  title={pageTitle}
+  description={pageDescription}
+  openGraph={{
+    type: 'website',
+    url: `${site.baseUrl}/routes`,
+    image: `${site.baseUrl}/og-routes.jpg`
+  }}
+  twitter={{ card: 'summary_large_image' }}
+>
   <Container>
     <header class="mb-8">
       <h1 class="text-3xl font-bold text-center">Routes</h1>

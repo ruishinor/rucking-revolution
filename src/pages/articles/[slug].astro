@@ -55,51 +55,51 @@ const linkedinShareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${
 // Author avatar - use initials as fallback since no real images exist
 const authorInitials = article.author.split(' ').map(n => n[0]).join('');
 
----
-<Layout>
-  <meta name="title" content={`${article.title} - Rucking Revolution`} />
-  <meta name="description" content={article.excerpt} />
-  <meta property="og:title" content={`${article.title} - Rucking Revolution`} />
-  <meta property="og:description" content={article.excerpt} />
-  <meta property="og:type" content="article" />
-  <meta property="og:url" content={`${site.baseUrl}/articles/${article.slug}`} />
-  <meta property="og:image" content={`${site.baseUrl}${article.heroImage.src}`} />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content={`${article.title} - Rucking Revolution`} />
-  <meta name="twitter:description" content={article.excerpt} />
-  <meta name="twitter:image" content={`${site.baseUrl}${article.heroImage.src}`} />
+const pageTitle = `${article.title} - Rucking Revolution`;
 
-  {/* Structured Data (JSON-LD) */}
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Article",
-      "headline": article.title,
-      "description": article.excerpt,
-      "image": [
-        `${site.baseUrl}${article.heroImage.src}`
-      ],
-      "author": {
-        "@type": "Person",
-        "name": article.author
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "Rucking Revolution",
-        "logo": {
-          "@type": "ImageObject",
-          "url": `${site.baseUrl}/logo.png`
-        }
-      },
-      "datePublished": article.date,
-      "dateModified": article.date,
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": `${site.baseUrl}/articles/${article.slug}`
-      }
+// JSON-LD structured data for articles
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": article.title,
+  "description": article.excerpt,
+  "image": [`${site.baseUrl}${article.heroImage.src}`],
+  "author": {
+    "@type": "Person",
+    "name": article.author
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rucking Revolution",
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${site.baseUrl}/logo.png`
     }
-  </script>
-
+  },
+  "datePublished": article.date,
+  "dateModified": article.date,
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `${site.baseUrl}/articles/${article.slug}`
+  }
+};
+---
+<Layout 
+  title={pageTitle}
+  description={article.excerpt}
+  openGraph={{
+    type: 'article',
+    url: `${site.baseUrl}/articles/${article.slug}`,
+    image: `${site.baseUrl}${article.heroImage.src}`
+  }}
+  twitter={{
+    card: 'summary_large_image',
+    title: pageTitle,
+    description: article.excerpt,
+    image: `${site.baseUrl}${article.heroImage.src}`
+  }}
+  structuredData={structuredData}
+>
   <Container>
     {/* Article Header */}
     <header class="mb-8">

@@ -4,17 +4,20 @@ import { fieldNotes } from '@/data/fieldnotes';
 import Layout from '@/components/Layout.astro';
 import Container from '@/components/Container.astro';
 
+const pageTitle = 'Field Notes - Rucking Revolution';
+const pageDescription = 'Read short essays and observations from real-world rucking experiences.';
 ---
-<Layout title="Field Notes - Rucking Revolution" description="Read short essays and observations from real-world rucking experiences." currentPage="/field-notes">
-  <meta name="title" content="Field Notes - Rucking Revolution" />
-  <meta name="description" content="Read short essays and observations from real-world rucking experiences." />
-  <meta property="og:title" content="Field Notes - Rucking Revolution" />
-  <meta property="og:description" content="Read short essays and observations from real-world rucking experiences." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content={`${site.baseUrl}/field-notes`} />
-  <meta property="og:image" content={`${site.baseUrl}/og-field-notes.jpg`} />
-  <meta name="twitter:card" content="summary_large_image" />
-
+<Layout 
+  title={pageTitle} 
+  description={pageDescription}
+  currentPage="/field-notes"
+  openGraph={{
+    type: 'website',
+    url: `${site.baseUrl}/field-notes`,
+    image: `${site.baseUrl}/og-field-notes.jpg`
+  }}
+  twitter={{ card: 'summary_large_image' }}
+>
   <Container>
     <header class="mb-8">
       <h1 class="text-3xl font-bold text-center">Field Notes</h1>

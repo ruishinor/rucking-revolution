@@ -20,17 +20,19 @@ export async function getStaticPaths() {
     props: { route: item }
   }));
 }
----
-<Layout>
-  <meta name="title" content={`${route.title} - Rucking Revolution`} />
-  <meta name="description" content={route.description} />
-  <meta property="og:title" content={`${route.title} - Rucking Revolution`} />
-  <meta property="og:description" content={route.description} />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content={`${site.baseUrl}/routes/${route.slug}`} />
-  <meta property="og:image" content={`${site.baseUrl}${route.heroImage.src}`} />
-  <meta name="twitter:card" content="summary_large_image" />
 
+const pageTitle = `${route.title} - Rucking Revolution`;
+---
+<Layout 
+  title={pageTitle}
+  description={route.description}
+  openGraph={{
+    type: 'website',
+    url: `${site.baseUrl}/routes/${route.slug}`,
+    image: `${site.baseUrl}${route.heroImage.src}`
+  }}
+  twitter={{ card: 'summary_large_image' }}
+>
   <Container>
     <header class="mb-8">
       <div class="flex items-center space-x-4">

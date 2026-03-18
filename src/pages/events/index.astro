@@ -4,17 +4,20 @@ import { events } from '@/data/events';
 import Layout from '@/components/Layout.astro';
 import Container from '@/components/Container.astro';
 
+const pageTitle = 'Events - Rucking Revolution';
+const pageDescription = 'Discover upcoming rucking events and challenges.';
 ---
-<Layout title="Events - Rucking Revolution" description="Discover upcoming rucking events and challenges." currentPage="/events">
-  <meta name="title" content="Events - Rucking Revolution" />
-  <meta name="description" content="Discover upcoming rucking events and challenges." />
-  <meta property="og:title" content="Events - Rucking Revolution" />
-  <meta property="og:description" content="Discover upcoming rucking events and challenges." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content={`${site.baseUrl}/events`} />
-  <meta property="og:image" content={`${site.baseUrl}/og-events.jpg`} />
-  <meta name="twitter:card" content="summary_large_image" />
-
+<Layout 
+  title={pageTitle} 
+  description={pageDescription}
+  currentPage="/events"
+  openGraph={{
+    type: 'website',
+    url: `${site.baseUrl}/events`,
+    image: `${site.baseUrl}/og-events.jpg`
+  }}
+  twitter={{ card: 'summary_large_image' }}
+>
   <Container>
     <header class="mb-8">
       <h1 class="text-3xl font-bold text-center">Events</h1>
