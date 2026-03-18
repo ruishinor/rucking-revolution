@@ -1,12 +1,5 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "astro",
-  "buildCommand": "npm run build",
-  "redirects": [
-    {
-      "source": "/((?!coming-soon).*)",
-      "destination": "/coming-soon",
-      "statusCode": 307
-    }
-  ]
+  "buildCommand": "npm run build"
 }
