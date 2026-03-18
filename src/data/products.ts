@@ -23,6 +23,7 @@ export interface Product {
 }
 
 export const products: Product[] = [
+  // All existing products hidden (published: false)
   {
     id: 'prod-1',
     sku: 'RR-BOOK-001',
@@ -65,8 +66,9 @@ export const products: Product[] = [
        'Basic techniques for beginners and experienced practitioners',
        'How to progress from walking to weighted rucking',
        'Essential gear selection for different terrains and distances'
-     ]
-   },
+     ],
+     published: false
+  },
   {
     id: 'prod-2',
     sku: 'RR-BOOK-002',
@@ -103,8 +105,9 @@ export const products: Product[] = [
        'Community applications of rucking',
        'Leadership development through group rucking',
        'How to organize and lead rucking events'
-     ]
-   },
+     ],
+     published: false
+  },
   {
     id: 'prod-3',
     sku: 'RR-PLAN-001',
@@ -147,8 +150,9 @@ export const products: Product[] = [
        'Weekly schedule templates for different fitness levels',
        'How to adjust training based on recovery and performance',
        'Building endurance, strength, and resilience systematically'
-     ]
-   },
+     ],
+     published: false
+  },
   {
     id: 'prod-4',
     sku: 'RR-GUIDE-001',
@@ -185,8 +189,9 @@ export const products: Product[] = [
        'Clothing systems for various weather conditions',
        'Essential accessories for safety and comfort',
        'Budget-friendly gear options without sacrificing quality'
-     ]
-   },
+     ],
+     published: false
+  },
   {
     id: 'prod-5',
     sku: 'RR-NUTR-001',
@@ -229,8 +234,9 @@ export const products: Product[] = [
        'Timing guidelines for pre, during, and post-ruck nutrition',
        'Field-expedient solutions for extended operations',
        'Hydration and electrolyte balance for different climates'
-     ]
-   },
+     ],
+     published: false
+  },
   {
     id: 'prod-6',
     sku: 'RR-LEAD-001',
@@ -273,8 +279,9 @@ export const products: Product[] = [
        'Communication techniques under physical stress',
        'Leadership skills development through rucking',
        'Designing effective team-based rucking programs'
-     ]
-   },
+     ],
+     published: false
+  },
   {
     id: 'prod-7',
     sku: 'RR-FAM-001',
@@ -311,8 +318,9 @@ export const products: Product[] = [
        'Family-friendly rucking games and activities',
        'Building resilience across generations through shared challenges',
        'Creating sustainable family rucking habits'
-     ]
-   },
+     ],
+     published: false
+  },
   {
     id: 'prod-8',
     sku: 'RR-MIND-001',
@@ -355,8 +363,9 @@ export const products: Product[] = [
        'Sensory awareness exercises for different environments',
        'Mind-body connection enhancement through movement',
        'Practical meditation techniques for active individuals'
-     ]
-   },
+     ],
+     published: false
+  },
   {
     id: 'prod-9',
     sku: 'RR-CERT-001',
@@ -405,8 +414,9 @@ export const products: Product[] = [
        'How to design safe and effective rucking programs',
        'Assessment and evaluation techniques for rucking skills',
        'Business and marketing strategies for rucking instructors'
-     ]
-   },
+     ],
+     published: false
+  },
   {
     id: 'prod-10',
     sku: 'RR-CHAL-001',
@@ -449,8 +459,9 @@ export const products: Product[] = [
        'Progress tracking techniques for long-term success',
        'Community support strategies for accountability',
        'How to overcome common obstacles to regular rucking'
-     ]
-   },
+     ],
+     published: false
+  },
   {
     id: 'prod-11',
     sku: 'RR-MAP-001',
@@ -493,8 +504,9 @@ export const products: Product[] = [
        'Navigation and map reading skills for rucking',
        'Historical context and significance of famous marches',
        'How to create your own historic rucking route'
-     ]
-   },
+     ],
+     published: false
+  },
   {
     id: 'prod-12',
     sku: 'RR-APP-001',
@@ -537,6 +549,26 @@ export const products: Product[] = [
       'Participate in community challenges and leaderboards',
       'Access exclusive content and training plans',
       'Connect with other ruckers and share progress'
-    ]
+    ],
+    published: false
+  },
+  // Coming Soon placeholder product
+  {
+    id: 'coming-soon',
+    sku: 'RR-COMING-SOON',
+    title: 'Coming Soon!',
+    description: 'New rucking resources, guides, and training materials are on the way. Stay tuned for updates!',
+    category: 'guides',
+    priceEUR: 0,
+    files: [],
+    purchaseLink: '#',
+    previewImages: [
+      {
+        src: '/images/products/coming-soon.jpg',
+        alt: 'Coming Soon - New products launching soon'
+      }
+    ],
+    whatYouLearn: [],
+    published: true
   }
 ];
