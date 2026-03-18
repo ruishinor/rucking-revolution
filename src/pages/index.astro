@@ -14,7 +14,7 @@ const latestArticles = [...articles]
 const featuredComic = comics[0];
 
 // Get 4 featured products for Digital Library showcase
-const featuredProducts = products.slice(0, 4);
+const featuredProducts = products.filter(p => p.published !== false).slice(0, 4);
 
 // Homepage structured data - WebSite schema with search action for Google
 const homepageStructuredData = {

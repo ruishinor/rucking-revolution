@@ -4,8 +4,9 @@ import { products } from '@/data/products';
 
 const { slug } = Astro.params;
 
-// Find product by id (using slug as id)
-const product = products.find(p => p.id === slug);
+// Find product by id (using slug as id) - only published products
+const publishedProducts = products.filter(p => p.published !== false);
+const product = publishedProducts.find(p => p.id === slug);
 
 // If product not found, redirect to library index
 if (!product) {
@@ -13,7 +14,10 @@ if (!product) {
 }
 
 export async function getStaticPaths() {
-  return products.map(product => ({
+  // Import products inside getStaticPaths to ensure correct context
+  const { products } = await import('@/data/products');
+  const published = products.filter(p => p.published !== false);
+  return published.map(product => ({
     params: { slug: product.id },
     props: { product }
   }));

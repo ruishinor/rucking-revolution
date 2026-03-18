@@ -15,14 +15,15 @@ const categories = [
 // Get selected category from URL params
 const selectedCategory = Astro.url.searchParams.get('category') || 'all';
 
-// Filter products by category
+// Filter products by category (only show published products)
+const publishedProducts = products.filter(p => p.published !== false);
 const filteredProducts = selectedCategory === 'all' 
-  ? products 
-  : products.filter(p => p.category === selectedCategory);
+  ? publishedProducts 
+  : publishedProducts.filter(p => p.category === selectedCategory);
 
-// Calculate totals
-const totalProducts = products.length;
-const totalValue = products.reduce((sum, p) => sum + p.priceEUR, 0);
+// Calculate totals (only published products)
+const totalProducts = publishedProducts.length;
+const totalValue = publishedProducts.reduce((sum, p) => sum + p.priceEUR, 0);
 ---
 
 <Layout 

@@ -19,6 +19,7 @@ export interface Product {
      height?: number;
    }[];
    whatYouLearn: string[]; // Array of learning outcomes
+   published?: boolean; // Set to false to hide product while building
 }
 
 export const products: Product[] = [
