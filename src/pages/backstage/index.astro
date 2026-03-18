@@ -13,22 +13,22 @@ const stats = {
 ---
 
 <Layout 
-  title="Admin Dashboard - Rucking Revolution" 
-  description="Admin dashboard for managing newsletter subscribers and contact messages"
-  currentPage="/admin"
+  title="Dashboard - Rucking Revolution" 
+  description="Dashboard for managing newsletter subscribers and contact messages"
+  currentPage="/backstage"
 >
   <script is:inline>
     // Client-side auth check
-    const isAuthenticated = sessionStorage.getItem('admin_auth');
+    const isAuthenticated = sessionStorage.getItem('backstage_auth');
     if (!isAuthenticated) {
-      window.location.href = '/admin/login';
+      window.location.href = '/backstage/login';
     }
   </script>
 
   <Container>
     <div class="max-w-6xl mx-auto py-12">
       <header class="mb-12">
-        <h1 class="text-4xl font-bold mb-4">Admin Dashboard</h1>
+        <h1 class="text-4xl font-bold mb-4">Dashboard</h1>
         <p class="text-muted">
           Manage newsletter subscribers and view contact submissions.
         </p>
@@ -170,8 +170,8 @@ const stats = {
 
   <script is:inline>
     document.getElementById('logoutBtn').addEventListener('click', function() {
-      sessionStorage.removeItem('admin_auth');
-      window.location.href = '/admin/login';
+      sessionStorage.removeItem('backstage_auth');
+      window.location.href = '/backstage/login';
     });
   </script>
 </Layout>
