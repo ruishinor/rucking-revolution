@@ -1,0 +1,162 @@
+---
+import Layout from '@/components/Layout.astro';
+import Container from '@/components/Container.astro';
+
+// In production, this would fetch from a database/API
+// For now, this is a placeholder showing structure
+const stats = {
+  newsletterSubscribers: 0,
+  contactMessages: 0,
+  notifyMeRequests: 0,
+  recentSignups: []
+};
+---
+
+<Layout 
+  title="Admin Dashboard - Rucking Revolution" 
+  description="Admin dashboard for managing newsletter subscribers and contact messages"
+  currentPage="/admin"
+>
+  <Container>
+    <div class="max-w-6xl mx-auto py-12">
+      <header class="mb-12">
+        <h1 class="text-4xl font-bold mb-4">Admin Dashboard</h1>
+        <p class="text-muted">
+          Manage newsletter subscribers and view contact submissions.
+        </p>
+      </header>
+
+      <!-- Stats Overview -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-6">Overview</h2>
+        <div class="grid gap-6 md:grid-cols-3">
+          <!-- Newsletter Subscribers -->
+          <div class="p-6 border rounded-lg bg-white">
+            <div class="flex items-center justify-between mb-4">
+              <div class="text-3xl">📧</div>
+              <span class="text-3xl font-bold">{stats.newsletterSubscribers}</span>
+            </div>
+            <h3 class="font-semibold">Newsletter Subscribers</h3>
+            <p class="text-sm text-muted">Active subscribers</p>
+          </div>
+
+          <!-- Contact Messages -->
+          <div class="p-6 border rounded-lg bg-white">
+            <div class="flex items-center justify-between mb-4">
+              <div class="text-3xl">💬</div>
+              <span class="text-3xl font-bold">{stats.contactMessages}</span>
+            </div>
+            <h3 class="font-semibold">Contact Messages</h3>
+            <p class="text-sm text-muted">Total submissions</p>
+          </div>
+
+          <!-- Notify Me Requests -->
+          <div class="p-6 border rounded-lg bg-white">
+            <div class="flex items-center justify-between mb-4">
+              <div class="text-3xl">🔔</div>
+              <span class="text-3xl font-bold">{stats.notifyMeRequests}</span>
+            </div>
+            <h3 class="font-semibold">Notify Me Requests</h3>
+            <p class="text-sm text-muted">Interested in new products</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Newsletter Actions -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-6">Newsletter</h2>
+        <div class="p-6 border rounded-lg bg-gray-50">
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="font-semibold mb-1">Send Newsletter</h3>
+              <p class="text-sm text-muted">Compose and send to your subscriber list</p>
+            </div>
+            <button 
+              type="button"
+              class="px-6 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors"
+            >
+              Compose Email
+            </button>
+          </div>
+          <hr class="my-6" />
+          <div class="text-sm text-muted">
+            <p class="mb-2"><strong>Note:</strong> This is a placeholder dashboard.</p>
+            <p>To enable full functionality, connect an email service like:</p>
+            <ul class="list-disc pl-5 mt-2 space-y-1">
+              <li><a href="https://convertkit.com" target="_blank" rel="noopener" class="text-primary hover:underline">ConvertKit</a> - Recommended for newsletters</li>
+              <li><a href="https://mailchimp.com" target="_blank" rel="noopener" class="text-primary hover:underline">Mailchimp</a> - Popular choice</li>
+              <li><a href="https://buttondown.email" target="_blank" rel="noopener" class="text-primary hover:underline">Buttondown</a> - Simple & minimal</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Submissions -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-6">Recent Contact Messages</h2>
+        <div class="border rounded-lg overflow-hidden">
+          <table class="w-full">
+            <thead class="bg-gray-50">
+              <tr>
+                <th class="px-4 py-3 text-left text-sm font-semibold">Date</th>
+                <th class="px-4 py-3 text-left text-sm font-semibold">Name</th>
+                <th class="px-4 py-3 text-left text-sm font-semibold">Email</th>
+                <th class="px-4 py-3 text-left text-sm font-semibold">Subject</th>
+                <th class="px-4 py-3 text-left text-sm font-semibold">Status</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y">
+              <tr>
+                <td colspan="5" class="px-4 py-8 text-center text-muted">
+                  No contact messages yet. They will appear here when users submit the contact form.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Notify Me Requests -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-6">Notify Me Requests</h2>
+        <div class="border rounded-lg overflow-hidden">
+          <table class="w-full">
+            <thead class="bg-gray-50">
+              <tr>
+                <th class="px-4 py-3 text-left text-sm font-semibold">Date</th>
+                <th class="px-4 py-3 text-left text-sm font-semibold">Email</th>
+                <th class="px-4 py-3 text-left text-sm font-semibold">Status</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y">
+              <tr>
+                <td colspan="3" class="px-4 py-8 text-center text-muted">
+                  No notify requests yet. They will appear here when users click "Notify Me" on Coming Soon products.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Quick Links -->
+      <section>
+        <h2 class="text-2xl font-semibold mb-6">Quick Links</h2>
+        <div class="grid gap-4 md:grid-cols-2">
+          <a href="/newsletter" class="p-4 border rounded-lg hover:bg-gray-50 transition-colors">
+            <span class="font-semibold">Newsletter Signup Page →</span>
+          </a>
+          <a href="/contact" class="p-4 border rounded-lg hover:bg-gray-50 transition-colors">
+            <span class="font-semibold">Contact Page →</span>
+          </a>
+          <a href="/library" class="p-4 border rounded-lg hover:bg-gray-50 transition-colors">
+            <span class="font-semibold">Digital Library →</span>
+          </a>
+          <a href="/" class="p-4 border rounded-lg hover:bg-gray-50 transition-colors">
+            <span class="font-semibold">Back to Home →</span>
+          </a>
+        </div>
+      </section>
+    </div>
+  </Container>
+</Layout>
