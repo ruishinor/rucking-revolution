@@ -1,7 +1,12 @@
 ---
 import Layout from '@/components/Layout.astro';
 import Container from '@/components/Container.astro';
+
+// Get URL params for pre-filling form
+const subjectParam = Astro.url.searchParams.get('subject') || '';
+const messageParam = Astro.url.searchParams.get('message') || '';
 ---
+
 <Layout title="Contact - Rucking Revolution" description="Get in touch with the Rucking Revolution team" currentPage="/contact">
   <Container>
     <header class="mb-12 text-center">
@@ -13,47 +18,135 @@ import Container from '@/components/Container.astro';
 
     <section class="mb-12">
       <div class="grid gap-8 md:grid-cols-2">
+        <!-- Contact Form -->
         <div>
-          <h2 class="text-2xl font-semibold mb-4">General Inquiries</h2>
+          <h2 class="text-2xl font-semibold mb-4">Send Us a Message</h2>
           <p class="text-muted mb-6">
-            For questions about the platform, partnerships, or general information about rucking, reach out to our team.
+            Fill out the form below and we'll get back to you as soon as possible.
           </p>
-          <div class="p-6 border rounded-lg">
-            <h3 class="text-lg font-semibold mb-3">Email</h3>
-            <p class="text-muted mb-2">hello@ruckingrevolution.com</p>
-            <p class="text-sm text-muted">
-              We typically respond within 2-3 business days.
+          
+          <form 
+            action="mailto:hello@ruckingrevolution.org?subject=Contact%20Form%20Submission" 
+            method="post" 
+            enctype="text/plain"
+            class="space-y-4 p-6 border rounded-lg bg-gray-50"
+          >
+            <div>
+              <label for="name" class="block text-sm font-medium mb-1">Name</label>
+              <input 
+                type="text" 
+                id="name" 
+                name="name" 
+                required
+                class="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                placeholder="Your name"
+              />
+            </div>
+            
+            <div>
+              <label for="email" class="block text-sm font-medium mb-1">Email</label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                required
+                class="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                placeholder="your@email.com"
+              />
+            </div>
+            
+            <div>
+              <label for="subject" class="block text-sm font-medium mb-1">Subject</label>
+              <select 
+                id="subject" 
+                name="subject" 
+                class="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+              >
+                <option value="General Inquiry">General Inquiry</option>
+                <option value="Partnerships & Collaborations">Partnerships & Collaborations</option>
+                <option value="Crew Support">Crew Support</option>
+                <option value="Content Submissions">Content Submissions</option>
+                <option value="Technical Issues">Technical Issues</option>
+                <option value="Product Updates Interest">Product Updates Interest</option>
+              </select>
+            </div>
+            
+            <div>
+              <label for="message" class="block text-sm font-medium mb-1">Message</label>
+              <textarea 
+                id="message" 
+                name="message" 
+                rows="5" 
+                required
+                class="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                placeholder="Tell us what's on your mind..."
+              >{messageParam}</textarea>
+            </div>
+            
+            <button 
+              type="submit" 
+              class="w-full px-6 py-3 bg-primary text-white font-medium rounded-md hover:bg-primary/90 transition-colors"
+            >
+              Send Message
+            </button>
+            
+            <p class="text-xs text-muted text-center">
+              Opens your email client to send the message. We'll respond within 2-3 business days.
             </p>
-          </div>
+          </form>
         </div>
 
+        <!-- Contact Info -->
         <div>
-          <h2 class="text-2xl font-semibold mb-4">Subject Guidance</h2>
+          <h2 class="text-2xl font-semibold mb-4">Other Ways to Reach Us</h2>
           <p class="text-muted mb-6">
-            To help us route your inquiry efficiently, please use the appropriate subject line:
+            Choose the method that works best for you.
           </p>
-          <div class="space-y-4">
-            <div class="p-4 border rounded-lg">
-              <h3 class="font-semibold mb-1">Partnerships & Collaborations</h3>
-              <p class="text-sm text-muted">For brands, media, and business inquiries</p>
+          
+          <div class="space-y-4 mb-8">
+            <div class="p-6 border rounded-lg">
+              <h3 class="text-lg font-semibold mb-3">📧 Email</h3>
+              <p class="text-muted mb-2">hello@ruckingrevolution.org</p>
+              <p class="text-sm text-muted">
+                We typically respond within 2-3 business days.
+              </p>
             </div>
-            <div class="p-4 border rounded-lg">
-              <h3 class="font-semibold mb-1">Crew Support</h3>
-              <p class="text-sm text-muted">For existing crews needing platform help</p>
+            
+            <div class="p-6 border rounded-lg">
+              <h3 class="text-lg font-semibold mb-3">Subject Guidance</h3>
+              <p class="text-sm text-muted mb-3">
+                To help us route your inquiry efficiently:
+              </p>
+              <ul class="text-sm space-y-2">
+                <li><strong>Partnerships</strong> - For brands, media, and business</li>
+                <li><strong>Crew Support</strong> - For existing crews needing help</li>
+                <li><strong>Content Submissions</strong> - Articles, guides, field notes</li>
+                <li><strong>Technical Issues</strong> - Bugs, broken links</li>
+              </ul>
             </div>
-            <div class="p-4 border rounded-lg">
-              <h3 class="font-semibold mb-1">Content Submissions</h3>
-              <p class="text-sm text-muted">For articles, guides, or field notes</p>
-            </div>
-            <div class="p-4 border rounded-lg">
-              <h3 class="font-semibold mb-1">Technical Issues</h3>
-              <p class="text-sm text-muted">For bugs, broken links, or site problems</p>
-            </div>
+          </div>
+
+          <!-- Social Links -->
+          <h3 class="text-lg font-semibold mb-4">Follow Us</h3>
+          <div class="flex flex-wrap gap-3">
+            <a href="https://facebook.com/ruckingrevolution" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-4 py-2 border rounded-lg hover:bg-gray-50 transition-colors text-sm">
+              📘 Facebook
+            </a>
+            <a href="https://instagram.com/ruckingrevolution" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-4 py-2 border rounded-lg hover:bg-gray-50 transition-colors text-sm">
+              📸 Instagram
+            </a>
+            <a href="https://twitter.com/ruckingrevolution" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-4 py-2 border rounded-lg hover:bg-gray-50 transition-colors text-sm">
+              🐦 Twitter
+            </a>
+            <a href="https://youtube.com/@ruckingrevolution" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-4 py-2 border rounded-lg hover:bg-gray-50 transition-colors text-sm">
+              📺 YouTube
+            </a>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- What to Expect -->
     <section class="mb-12">
       <h2 class="text-2xl font-semibold mb-4">What to Expect</h2>
       <div class="grid gap-6 md:grid-cols-3">
@@ -81,27 +174,7 @@ import Container from '@/components/Container.astro';
       </div>
     </section>
 
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold mb-4">Connect With Us</h2>
-      <p class="text-muted mb-6">
-        Follow us on social media for daily inspiration, training tips, and community highlights.
-      </p>
-      <div class="flex flex-wrap gap-4">
-        <a href="https://facebook.com/ruckingrevolution" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-6 py-3 border rounded-lg hover:bg-gray-50 transition-colors">
-          <span class="mr-2">📘</span> Facebook
-        </a>
-        <a href="https://instagram.com/ruckingrevolution" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-6 py-3 border rounded-lg hover:bg-gray-50 transition-colors">
-          <span class="mr-2">📸</span> Instagram
-        </a>
-        <a href="https://twitter.com/ruckingrevolution" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-6 py-3 border rounded-lg hover:bg-gray-50 transition-colors">
-          <span class="mr-2">🐦</span> Twitter
-        </a>
-        <a href="https://youtube.com/@ruckingrevolution" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-6 py-3 border rounded-lg hover:bg-gray-50 transition-colors">
-          <span class="mr-2">📺</span> YouTube
-        </a>
-      </div>
-    </section>
-
+    <!-- Quick Links -->
     <section class="mb-12">
       <h2 class="text-2xl font-semibold mb-4">Explore Before You Go</h2>
       <p class="text-muted mb-6">
