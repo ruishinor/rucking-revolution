@@ -1,6 +1,5 @@
 ---
 import Layout from '@/components/Layout.astro';
-import Container from '@/components/Container.astro';
 
 // Get URL params for pre-filling form
 const subjectParam = Astro.url.searchParams.get('subject') || '';
@@ -8,13 +7,15 @@ const messageParam = Astro.url.searchParams.get('message') || '';
 ---
 
 <Layout title="Contact - Rucking Revolution" description="Get in touch with the Rucking Revolution team" currentPage="/contact">
-  <Container>
-    <header class="mb-12 text-center">
-      <h1 class="text-4xl font-bold mb-4">Contact Us</h1>
-      <p class="text-xl text-muted">
-        We'd hear from you. Here's how to reach the right team.
-      </p>
-    </header>
+  <div class="bg-surface py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Header Section -->
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-heading text-secondary mb-4">CONTACT</h1>
+        <p class="text-lg font-serif text-muted-foreground max-w-3xl mx-auto">
+          We'd hear from you. Here's how to reach the right team.
+        </p>
+      </div>
 
     <section class="mb-12">
       <div class="grid gap-8 md:grid-cols-2">
@@ -195,5 +196,6 @@ const messageParam = Astro.url.searchParams.get('message') || '';
         </a>
       </div>
     </section>
-  </Container>
+    </div>
+  </div>
 </Layout>

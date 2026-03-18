@@ -1,117 +1,119 @@
 ---
 import Layout from '@/components/Layout.astro';
-import Container from '@/components/Container.astro';
 ---
 <Layout title="About - Rucking Revolution" description="Our mission, philosophy, the movement, and contact information" currentPage="/about">
-  <Container>
-    <header class="mb-12 text-center">
-      <h1 class="text-4xl font-bold mb-4">About Rucking Revolution</h1>
-      <p class="text-xl text-muted">
-        Building a movement through discipline, leadership, and field readiness
-      </p>
-    </header>
-
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold mb-4">Our Mission</h2>
-      <p class="text-lg text-muted mb-6">
-        Rucking Revolution exists to professionalize rucking as a discipline and make it accessible to anyone ready to carry the load. We believe that weighted walking is more than exercise—it's a practice that builds physical resilience, mental toughness, and community bonds.
-      </p>
-      <p class="text-lg text-muted">
-        We provide structured knowledge, training programs, and leadership resources that help individuals and crews develop the skills, doctrine, and culture needed for rucking as a lifelong pursuit.
-      </p>
-    </section>
-
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold mb-4">Our Philosophy</h2>
-      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <div class="p-6 border rounded-lg">
-          <h3 class="text-xl font-semibold mb-3">Discipline First</h3>
-          <p class="text-muted">
-            Rucking rewards consistency over intensity. We emphasize progressive overload, proper form, and sustainable training habits that build resilience over time.
-          </p>
-        </div>
-        <div class="p-6 border rounded-lg">
-          <h3 class="text-xl font-semibold mb-3">Leadership in Motion</h3>
-          <p class="text-muted">
-            Every ruck is an opportunity to lead and be led. Our platform teaches leadership principles through crew dynamics, after-action reviews, and field exercises.
-          </p>
-        </div>
-        <div class="p-6 border rounded-lg">
-          <h3 class="text-xl font-semibold mb-3">Community Sustains</h3>
-          <p class="text-muted">
-            Individual ruckers are strong. Rucking crews are unstoppable. We build tools and resources that help crews form, grow, and sustain their practice together.
-          </p>
-        </div>
+  <div class="bg-surface py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Header Section -->
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-heading text-secondary mb-4">ABOUT</h1>
+        <p class="text-lg font-serif text-muted-foreground max-w-3xl mx-auto">
+          Building a movement through discipline, leadership, and field readiness
+        </p>
       </div>
-    </section>
 
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold mb-4">The Movement</h2>
-      <p class="text-lg text-muted mb-6">
-        Rucking Revolution is more than a website—it's a growing network of individuals, crews, and communities who share a commitment to carrying the load together. From weekend warriors to professional ruckers, our platform serves everyone who answers the call of the weighted march.
-      </p>
-      <div class="grid gap-6 md:grid-cols-2">
-        <div class="p-6 border rounded-lg">
-          <h3 class="text-xl font-semibold mb-3">For Individuals</h3>
-          <ul class="list-disc list-inside text-muted space-y-2">
-            <li>Training programs and workout generators</li>
-            <li>Performance kit guides and recommendations</li>
-            <li>Route planning and event discovery</li>
-            <li>Leadership development resources</li>
-          </ul>
+      <section class="mb-12">
+        <h2 class="text-2xl font-heading text-secondary mb-4">OUR MISSION</h2>
+        <p class="text-lg text-muted-foreground mb-6">
+          Rucking Revolution exists to professionalize rucking as a discipline and make it accessible to anyone ready to carry the load. We believe that weighted walking is more than exercise—it's a practice that builds physical resilience, mental toughness, and community bonds.
+        </p>
+        <p class="text-lg text-muted-foreground">
+          We provide structured knowledge, training programs, and leadership resources that help individuals and crews develop the skills, doctrine, and culture needed for rucking as a lifelong pursuit.
+        </p>
+      </section>
+
+      <section class="mb-12">
+        <h2 class="text-2xl font-heading text-secondary mb-4">OUR PHILOSOPHY</h2>
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div class="p-6 border border-border card-border">
+            <h3 class="text-xl font-heading text-secondary mb-3">DISCIPLINE FIRST</h3>
+            <p class="text-muted-foreground text-sm">
+              Rucking rewards consistency over intensity. We emphasize progressive overload, proper form, and sustainable training habits that build resilience over time.
+            </p>
+          </div>
+          <div class="p-6 border border-border card-border">
+            <h3 class="text-xl font-heading text-secondary mb-3">LEADERSHIP IN MOTION</h3>
+            <p class="text-muted-foreground text-sm">
+              Every ruck is an opportunity to lead and be led. Our platform teaches leadership principles through crew dynamics, after-action reviews, and field exercises.
+            </p>
+          </div>
+          <div class="p-6 border border-border card-border">
+            <h3 class="text-xl font-heading text-secondary mb-3">COMMUNITY SUSTAINS</h3>
+            <p class="text-muted-foreground text-sm">
+              Individual ruckers are strong. Rucking crews are unstoppable. We build tools and resources that help crews form, grow, and sustain their practice together.
+            </p>
+          </div>
         </div>
-        <div class="p-6 border rounded-lg">
-          <h3 class="text-xl font-semibold mb-3">For Crews</h3>
-          <ul class="list-disc list-inside text-muted space-y-2">
-            <li>Crew formation and culture building</li>
-            <li>After-action review systems</li>
-            <li>Team training programming</li>
-            <li>Event coordination tools</li>
-          </ul>
+      </section>
+
+      <section class="mb-12">
+        <h2 class="text-2xl font-heading text-secondary mb-4">THE MOVEMENT</h2>
+        <p class="text-lg text-muted-foreground mb-6">
+          Rucking Revolution is more than a website—it's a growing network of individuals, crews, and communities who share a commitment to carrying the load together. From weekend warriors to professional ruckers, our platform serves everyone who answers the call of the weighted march.
+        </p>
+        <div class="grid gap-6 md:grid-cols-2">
+          <div class="p-6 border border-border card-border">
+            <h3 class="text-xl font-heading text-secondary mb-3">FOR INDIVIDUALS</h3>
+            <ul class="list-disc list-inside text-muted-foreground space-y-2 text-sm">
+              <li>Training programs and workout generators</li>
+              <li>Performance kit guides and recommendations</li>
+              <li>Route planning and event discovery</li>
+              <li>Leadership development resources</li>
+            </ul>
+          </div>
+          <div class="p-6 border border-border card-border">
+            <h3 class="text-xl font-heading text-secondary mb-3">FOR CREWS</h3>
+            <ul class="list-disc list-inside text-muted-foreground space-y-2 text-sm">
+              <li>Crew formation and culture building</li>
+              <li>After-action review systems</li>
+              <li>Team training programming</li>
+              <li>Event coordination tools</li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold mb-4">What We Offer</h2>
-      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <a href="/learn" class="block p-6 border rounded-lg hover:shadow-lg transition-shadow">
-          <h3 class="text-xl font-semibold mb-2">Knowledge Base</h3>
-          <p class="text-muted">
-            In-depth articles, guides, and digital resources covering rucking theory, training methodology, and leadership principles.
-          </p>
-        </a>
-        <a href="/train" class="block p-6 border rounded-lg hover:shadow-lg transition-shadow">
-          <h3 class="text-xl font-semibold mb-2">Training Programs</h3>
-          <p class="text-muted">
-            Structured workout generators, performance kit guides, and progressive training programs for all skill levels.
-          </p>
-        </a>
-        <a href="/lead" class="block p-6 border rounded-lg hover:shadow-lg transition-shadow">
-          <h3 class="text-xl font-semibold mb-2">Leadership & Crews</h3>
-          <p class="text-muted">
-            Resources for building and leading rucking crews, including crew tactics, after-action reviews, and club development.
-          </p>
-        </a>
-      </div>
-    </section>
+      <section class="mb-12">
+        <h2 class="text-2xl font-heading text-secondary mb-4">WHAT WE OFFER</h2>
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <a href="/learn" class="block p-6 border border-border card-border hover:border-primary transition-colors">
+            <h3 class="text-xl font-heading text-secondary mb-2">KNOWLEDGE BASE</h3>
+            <p class="text-muted-foreground text-sm">
+              In-depth articles, guides, and digital resources covering rucking theory, training methodology, and leadership principles.
+            </p>
+          </a>
+          <a href="/train" class="block p-6 border border-border card-border hover:border-primary transition-colors">
+            <h3 class="text-xl font-heading text-secondary mb-2">TRAINING PROGRAMS</h3>
+            <p class="text-muted-foreground text-sm">
+              Structured workout generators, performance kit guides, and progressive training programs for all skill levels.
+            </p>
+          </a>
+          <a href="/lead" class="block p-6 border border-border card-border hover:border-primary transition-colors">
+            <h3 class="text-xl font-heading text-secondary mb-2">LEADERSHIP & CREWS</h3>
+            <p class="text-muted-foreground text-sm">
+              Resources for building and leading rucking crews, including crew tactics, after-action reviews, and club development.
+            </p>
+          </a>
+        </div>
+      </section>
 
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold mb-4">Join the Revolution</h2>
-      <p class="text-lg text-muted mb-6">
-        Whether you're carrying your first ruck or leading a crew of hundreds, there's a place for you in the Rucking Revolution.
-      </p>
-      <div class="flex flex-wrap gap-4">
-        <a href="/learn/articles" class="inline-block px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-colors">
-          Start Learning
-        </a>
-        <a href="/train" class="inline-block px-6 py-3 border border-primary text-primary font-semibold rounded-lg hover:bg-primary/10 transition-colors">
-          Begin Training
-        </a>
-        <a href="/contact" class="inline-block px-6 py-3 border border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-50 transition-colors">
-          Get in Touch
-        </a>
-      </div>
-    </section>
-  </Container>
+      <section>
+        <h2 class="text-2xl font-heading text-secondary mb-4">JOIN THE REVOLUTION</h2>
+        <p class="text-lg text-muted-foreground mb-6">
+          Whether you're carrying your first ruck or leading a crew of hundreds, there's a place for you in the Rucking Revolution.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/learn/articles" class="btn btn-primary">
+            START LEARNING
+          </a>
+          <a href="/train" class="btn btn-secondary">
+            BEGIN TRAINING
+          </a>
+          <a href="/contact" class="btn btn-utility">
+            GET IN TOUCH
+          </a>
+        </div>
+      </section>
+    </div>
+  </div>
 </Layout>

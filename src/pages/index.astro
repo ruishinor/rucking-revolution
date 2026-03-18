@@ -10,6 +10,9 @@ const latestArticles = [...articles]
   .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
   .slice(0, 3);
 
+// Get first article as featured
+const featuredArticle = articles[0];
+
 // Get first comic for preview
 const featuredComic = comics[0];
 
@@ -36,136 +39,249 @@ const homepageStructuredData = {
     "name": "Rucking Revolution"
   }
 };
+
+const proofPoints = [
+  { value: 'Field-Tested', label: 'Methods proven in terrain' },
+  { value: 'Crew-Built', label: 'By active ruck leaders' },
+  { value: 'Beginner to Leader', label: 'Proven pathway' },
+];
+
+const pillars = [
+  { 
+    title: 'LEARN', 
+    label: 'Knowledge Base',
+    description: 'Field manual, guides, and foundational principles for understanding rucking as practice.',
+    href: '/learn',
+  },
+  { 
+    title: 'TRAIN', 
+    label: 'Training',
+    description: 'Programming, workouts, and performance kit. Build your fitness.',
+    href: '/train',
+  },
+  { 
+    title: 'LEAD', 
+    label: 'Leadership',
+    description: 'Crew tactics, ruck clubs, and leadership. Learn to lead and organize.',
+    href: '/lead',
+  },
+];
+
+const communityItems = [
+  { title: 'Why Rucking', desc: 'The philosophy and practice', href: '/why-rucking', icon: 'question' },
+  { title: 'Routes', desc: 'Navigate terrain with verified paths', href: '/routes', icon: 'route' },
+  { title: 'Events', desc: 'Join scheduled events', href: '/events', icon: 'calendar' },
+  { title: 'Field Notes', desc: 'Real reports from the crew', href: '/field-notes', icon: 'note' },
+  { title: 'Crews', desc: 'Find or start your crew', href: '/lead/ruck-clubs', icon: 'users' },
+];
 ---
 
 <Layout title="Home" description={site.description} currentPage="/" structuredData={homepageStructuredData}>
-  <!-- Hero Section -->
-  <section class="relative bg-gray-50 overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-      <div class="text-center">
-        <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
-          {site.title}
+  
+  <!-- ==================== HERO SECTION ==================== -->
+  <section class="hero-section">
+    <div class="hero-bg"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+      <div class="max-w-3xl">
+        <span class="stamp stamp-primary mb-6">FIELD MANUAL</span>
+        <h1 class="hero-title">
+          RUCK WITH<br/>
+          <span class="text-primary">PURPOSE</span>
         </h1>
-        <p class="mt-6 max-w-2xl mx-auto text-xl text-gray-500">
-          {site.description}
+        <p class="hero-deck">
+          Train for life, stay fit into old age, build your community and join crews worldwide.
         </p>
-        <div class="mt-10 flex flex-wrap justify-center gap-4">
-          <a href="/learn" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm bg-primary text-white hover:bg-primary/90">
-            Start Learning
+        <div class="hero-actions">
+          <a href="/train" class="btn-military btn-military-primary">
+            START TRAINING
           </a>
-          <a href="/train" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm bg-white text-primary border-primary hover:bg-primary/10">
-            Start Training
-          </a>
-          <a href="/lead" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm bg-white text-primary border-primary hover:bg-primary/10">
-            Start Leading
+          <a href="/learn" class="btn-military btn-military-secondary">
+            READ THE FIELD GUIDE
           </a>
         </div>
       </div>
     </div>
+    <div class="hero-divider"></div>
   </section>
 
-  <!-- Core Pillars -->
-  <section class="py-16 bg-white">
+  <!-- ==================== PROOF STRIP ==================== -->
+  <section class="proof-strip">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">
-        Core Pillars
-      </h2>
-      <div class="grid gap-8 md:grid-cols-3">
-        <!-- Training Pillar -->
-        <a href="/train" class="block bg-gray-50 p-6 rounded-lg hover:bg-gray-100 transition-colors duration-200">
-          <div class="flex items-center mb-4">
-            <div class="flex-shrink-0">
-              <svg class="h-8 w-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 014.438 0" />
-              </svg>
-            </div>
-            <div class="ml-3">
-              <h3 class="text-lg font-medium text-gray-900">Training</h3>
-              <p class="mt-1 text-sm text-gray-500">
-                Field-tested methods for rucking strength and mobility
-              </p>
-            </div>
+      <div class="proof-grid">
+        {proofPoints.map((point) => (
+          <div class="proof-item">
+            <span class="proof-value">{point.value}</span>
+            <span class="proof-label">{point.label}</span>
           </div>
-        </a>
-
-        <!-- Leadership Pillar -->
-        <a href="/lead" class="block bg-gray-50 p-6 rounded-lg hover:bg-gray-100 transition-colors duration-200">
-          <div class="flex items-center mb-4">
-            <div class="flex-shrink-0">
-              <svg class="h-8 w-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v9a2 2 0 002 2h10a2 2 0 002-2V8m0 13a2 2 0 100-4h14a2 2 0 100 4v-1a2 2 0 00-2-2H5a2 2 0 00-2 2z" />
-              </svg>
-            </div>
-            <div class="ml-3">
-              <h3 class="text-lg font-medium text-gray-900">Leadership</h3>
-              <p class="mt-1 text-sm text-gray-500">
-                Tools for crew leaders and team development
-              </p>
-            </div>
-          </div>
-        </a>
-
-        <!-- Field Lessons Pillar -->
-        <a href="/field-notes" class="block bg-gray-50 p-6 rounded-lg hover:bg-gray-100 transition-colors duration-200">
-          <div class="flex items-center mb-4">
-            <div class="flex-shrink-0">
-              <svg class="h-8 w-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h3m8 0h3m-8 5a2 2 0 112.232 3.124a31.213 31.213 0 011.418.448A31.11 31.11 0 0016.75 13.5c-3.036 0-5.888-.75-8.238-1.79a31.114 31.114 0 01-1.418-.448A2.98 2.98 0 017 12V9a2 2 0 012-2h2.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293h2.586a2 2 0 012 2v3.586l-.293.293a2 2 0 01-1.414 1.414A2 2 0 0111 16h-5a2 2 0 01-2-2zm0 0a2 2 0 104 0v-1a2 2 0 00-2-2zm0 0a2 2 0 002 2v1a2 2 0 10-4 0v-1z" />
-              </svg>
-            </div>
-            <div class="ml-3">
-              <h3 class="text-lg font-medium text-gray-900">Field Lessons</h3>
-              <p class="mt-1 text-sm text-gray-500">
-                Real experiences documented and shared
-              </p>
-            </div>
-          </div>
-        </a>
+        ))}
       </div>
     </div>
   </section>
 
-  <!-- Latest Articles -->
-  <section class="py-16 bg-gray-50">
+  <!-- ==================== PILLAR COMMAND CARDS ==================== -->
+  <section class="py-16 md:py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center mb-12">
-        <h2 class="text-3xl font-bold text-gray-900">
-          Latest Articles
-        </h2>
-        <a href="/learn/articles" class="text-primary hover:underline font-medium">
-          View All Articles →
-        </a>
+      <div class="section-header mb-10">
+        <span class="section-marker">///</span>
+        <h2 class="text-2xl md:text-3xl font-heading text-secondary">SELECT YOUR PATH</h2>
       </div>
-      <div class="grid gap-6 md:grid-cols-3">
-        {latestArticles.map((article) => (
-          <article class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden">
-            <div class="p-6">
-              <div class="flex items-center text-sm text-gray-500 mb-3">
-                <span class="mr-4">{article.author}</span>
-                <span class="mr-4">{new Date(article.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-                <span>{article.readingTime} min read</span>
-              </div>
-              <h3 class="text-lg font-medium text-gray-900 mb-3">
-                <a href={`/articles/${article.slug}`} class="hover:text-primary transition-colors">
-                  {article.title}
-                </a>
-              </h3>
-              <p class="mb-4 text-gray-600 line-clamp-3">
-                {article.excerpt}
-              </p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                {article.tags.slice(0, 3).map((tag) => (
-                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <a href={`/articles/${article.slug}`} class="inline-flex items-center px-3 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-primary hover:bg-primary/10 transition-colors">
-                Read Article
-                <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11h10m0 0l3-3m-3 3l3 3" />
+      <div class="grid md:grid-cols-3 gap-6">
+        {pillars.map((pillar) => (
+          <a href={pillar.href} class="card-military p-8 group">
+            <span class="label-mono block mb-2">{pillar.label}</span>
+            <h3 class="text-4xl font-heading text-secondary mb-4 group-hover:text-primary transition-colors">{pillar.title}</h3>
+            <p class="text-muted-foreground text-sm leading-relaxed">{pillar.description}</p>
+            <div class="mt-6 text-primary opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-2">
+              <span class="text-sm font-heading tracking-wider">ENTER</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+              </svg>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FEATURED CONTENT ==================== -->
+  {featuredArticle && (
+    <section class="featured-section">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <div class="featured-image">
+            <div class="aspect-[4/3] bg-panel flex items-center justify-center">
+              <span class="stamp stamp-secondary">FEATURED</span>
+            </div>
+          </div>
+          <div class="featured-content">
+            <div class="flex items-center gap-4 mb-4">
+              <span class="label-mono">{new Date(featuredArticle.date).toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' })}</span>
+              <span class="stamp stamp-primary text-xs py-1">{featuredArticle.tags[0]}</span>
+            </div>
+            <h3 class="text-3xl md:text-4xl font-heading text-secondary mb-4 leading-tight">
+              {featuredArticle.title}
+            </h3>
+            <p class="text-muted-foreground text-lg leading-relaxed font-serif mb-6">
+              {featuredArticle.excerpt}
+            </p>
+            <a href={`/articles/${featuredArticle.slug}`} class="btn btn-secondary">
+              READ ARTICLE
+              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ==================== RESOURCES ==================== -->
+  <section class="py-16 md:py-20 bg-panel">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="section-header mb-10">
+        <span class="section-marker">///</span>
+        <h2 class="text-2xl md:text-3xl font-heading text-secondary">EXPLORE THE PLATFORM</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        {communityItems.map((item, index) => (
+          <a href={item.href} class={`resource-card resource-card-${index % 2 === 0 ? 'forest' : 'steel'} group`}>
+            <div class="resource-card-icon">
+              {item.icon === 'route' && (
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
                 </svg>
-              </a>
+              )}
+              {item.icon === 'calendar' && (
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                  <line x1="16" y1="2" x2="16" y2="6"/>
+                  <line x1="8" y1="2" x2="8" y2="6"/>
+                  <line x1="3" y1="10" x2="21" y2="10"/>
+                </svg>
+              )}
+              {item.icon === 'note' && (
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                  <polyline points="14 2 14 8 20 8"/>
+                  <line x1="16" y1="13" x2="8" y2="13"/>
+                  <line x1="16" y1="17" x2="8" y2="17"/>
+                </svg>
+              )}
+              {item.icon === 'users' && (
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+              )}
+              {item.icon === 'question' && (
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                  <line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+              )}
+            </div>
+            <h3 class="resource-card-title">{item.title.toUpperCase()}</h3>
+            <p class="resource-card-desc">{item.desc}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== LIBRARY ==================== -->
+  <section class="py-16 md:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="section-header mb-10">
+        <span class="section-marker">///</span>
+        <h2 class="text-2xl md:text-3xl font-heading text-secondary">DIGITAL LIBRARY</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {featuredProducts.map((product) => (
+          <a href={`/library/${product.id}`} class="card-border p-4 group">
+            <div class="aspect-[3/4] bg-panel mb-4 flex items-center justify-center">
+              <svg class="w-12 h-12 text-muted-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+              </svg>
+            </div>
+            <span class="label-mono block mb-1">{product.type || 'RESOURCE'}</span>
+            <h3 class="font-medium text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">{product.title}</h3>
+            <span class="text-primary font-bold">€{product.priceEUR.toFixed(2)}</span>
+          </a>
+        ))}
+      </div>
+      <div class="mt-8 text-center">
+        <a href="/learn/library" class="btn btn-utility">VIEW FULL LIBRARY</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== RED RUCKER ==================== -->
+  <section class="py-16 md:py-20 bg-panel">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="section-header mb-10">
+        <span class="section-marker">///</span>
+        <h2 class="text-2xl md:text-3xl font-heading text-secondary">LATEST ARTICLES</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        {latestArticles.map((article) => (
+          <article class="card-border p-6 group">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="label-mono">{new Date(article.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
+              <span class="w-px h-3 bg-border"></span>
+              <span class="label-mono">{article.readingTime} MIN</span>
+            </div>
+            <h3 class="text-xl font-heading text-secondary mb-3 group-hover:text-primary transition-colors">
+              <a href={`/articles/${article.slug}`}>{article.title}</a>
+            </h3>
+            <p class="text-muted-foreground text-sm line-clamp-3 mb-4">{article.excerpt}</p>
+            <div class="flex flex-wrap gap-2">
+              {article.tags.slice(0, 2).map((tag) => (
+                <span class="label-mono text-xs">{tag}</span>
+              ))}
             </div>
           </article>
         ))}
@@ -173,186 +289,192 @@ const homepageStructuredData = {
     </div>
   </section>
 
-  <!-- Training Resources -->
-  <section class="py-16 bg-white">
+  <!-- ==================== RECENT ARTICLES ==================== -->
+  <section class="py-16 md:py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center mb-12">
-        <h2 class="text-3xl font-bold text-gray-900">
-          Training Resources
-        </h2>
-        <a href="/train" class="text-primary hover:underline font-medium">
-          View All Training →
-        </a>
-      </div>
-      <div class="grid gap-6 md:grid-cols-4">
-        <!-- Mobility Tutorials -->
-        <a href="/train/performance-kit/mobility-band/lower-body" class="block bg-gray-50 p-6 rounded-lg hover:bg-gray-100 transition-colors duration-200 text-center">
-          <div class="flex-shrink-0 h-12 w-12 mx-auto mb-4">
-            <svg class="h-6 w-6 text-primary mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 014.438 0" />
-            </svg>
-          </div>
-          <h3 class="text-lg font-medium text-gray-900 mb-3">
-            Mobility Tutorials
-          </h3>
-          <p class="text-sm text-gray-500">
-            Improve your range of motion and prevent injury with guided mobility routines.
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        <div>
+          <span class="section-marker block mb-4">///</span>
+          <h2 class="text-3xl md:text-4xl font-heading text-secondary mb-4">RED RUCKER</h2>
+          <p class="text-muted-foreground text-lg leading-relaxed font-serif mb-6">
+            Follow the adventures and lessons of Red Rucker as he navigates the challenges of rucking leadership and community building.
           </p>
-        </a>
-        
-        <!-- Workout Generator -->
-        <a href="/train/workouts" class="block bg-gray-50 p-6 rounded-lg hover:bg-gray-100 transition-colors duration-200 text-center">
-          <div class="flex-shrink-0 h-12 w-12 mx-auto mb-4">
-            <svg class="h-6 w-6 text-primary mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3M6 5.636A11.044 11.044 0 0112 5c5.954 0 10.777 4.31 10.999 9.514-.085 1.79-.288 3.497-.64 5.013A11.022 11.022 0 0116.025 18H7.975a11.022 11.022 0 01-5.639-3.373C5.263 9.133 4.44 7.434 4.44 5.636z" />
-            </svg>
+          <div class="flex flex-wrap gap-6 mb-6">
+            <span class="label-mono">{comics.length} ISSUES</span>
+            <span class="label-mono">NEW UPDATES REGULARLY</span>
           </div>
-          <h3 class="text-lg font-medium text-gray-900 mb-3">
-            Workout Generator
-          </h3>
-          <p class="text-sm text-gray-500">
-            Create customized rucking workouts based on your goals, experience level, and available time.
-          </p>
-        </a>
-        
-        <!-- Crew Leadership Tools -->
-        <a href="/lead/crew-tactics" class="block bg-gray-50 p-6 rounded-lg hover:bg-gray-100 transition-colors duration-200 text-center">
-          <div class="flex-shrink-0 h-12 w-12 mx-auto mb-4">
-            <svg class="h-6 w-6 text-primary mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293H19a2 2 0 012 2v6a2 2 0 01-2 2h-1" />
-            </svg>
-          </div>
-          <h3 class="text-lg font-medium text-gray-900 mb-3">
-            Crew Leadership Tools
-          </h3>
-          <p class="text-sm text-gray-500">
-            Resources for developing effective leadership skills within your ruck crew.
-          </p>
-        </a>
-        
-        <!-- Digital Library -->
-        <a href="/learn/library" class="block bg-gray-50 p-6 rounded-lg hover:bg-gray-100 transition-colors duration-200 text-center">
-          <div class="flex-shrink-0 h-12 w-12 mx-auto mb-4">
-            <svg class="h-6 w-6 text-primary mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h3m8 0h3m-8 5a2 2 0 112.232 3.124a31.213 31.213 0 011.418.448A31.11 31.11 0 0016.75 13.5c-3.036 0-5.888-.75-8.238-1.79a31.114 31.114 0 01-1.418-.448A2.98 2.98 0 017 12V9a2 2 0 012-2h2.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293h2.586a2 2 0 012 2v3.586l-.293.293a2 2 0 01-1.414 1.414A2 2 0 0111 16h-5a2 2 0 01-2-2zm0 0a2 2 0 104 0v-1a2 2 0 00-2-2zm0 0a2 2 0 002 2v1a2 2 0 10-4 0v-1z" />
-            </svg>
-          </div>
-          <h3 class="text-lg font-medium text-gray-900 mb-3">
-            Digital Library
-          </h3>
-          <p class="text-sm text-gray-500">
-            Access our collection of guides, books, card decks, and training materials.
-          </p>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Digital Library Showcase -->
-  <section class="py-16 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center mb-12">
-        <h2 class="text-3xl font-bold text-gray-900">
-          Digital Library
-        </h2>
-        <a href="/learn/library" class="text-primary hover:underline font-medium">
-          Browse Full Library →
-        </a>
-      </div>
-      <div class="grid gap-6 md:grid-cols-4">
-        {featuredProducts.map((product) => (
-          <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden">
-            <div class="aspect-[3/4] bg-gray-200 relative">
-              <div class="absolute inset-0 flex items-center justify-center text-gray-400">
-                <svg class="h-12 w-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                </svg>
-              </div>
-            </div>
-            <div class="p-4">
-              <h3 class="text-sm font-medium text-gray-900 mb-1 line-clamp-2">
-                {product.title}
-              </h3>
-              <p class="text-lg font-bold text-primary">
-                €{product.priceEUR.toFixed(2)}
-              </p>
-              <a href={`/library/${product.id}`} class="mt-3 block w-full text-center px-3 py-2 border border-primary text-sm font-medium rounded-md text-primary hover:bg-primary/10 transition-colors">
-                View Details
-              </a>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Red Rucker Comic Preview -->
-  <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col md:flex-row items-center gap-8">
-        <div class="flex-1">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            Red Rucker Comics
-          </h2>
-          <p class="text-gray-600 mb-6">
-            Follow the adventures and lessons of Red Rucker as he navigates the challenges of rucking leadership and community building. Each episode delivers valuable insights through engaging storytelling.
-          </p>
-          <div class="flex items-center gap-4 mb-6">
-            <span class="text-sm text-gray-500">{comics.length} Episodes Available</span>
-            <span class="text-sm text-gray-500">•</span>
-            <span class="text-sm text-gray-500">New episodes regularly</span>
-          </div>
-          <a href="/red-rucker" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm bg-primary text-white hover:bg-primary/90">
-            Read the Comics
+          <a href="/red-rucker" class="btn btn-primary">
+            READ COMICS
           </a>
         </div>
-        <div class="flex-1 w-full max-w-md">
-          <div class="rounded-lg overflow-hidden shadow-md bg-gray-100">
-            <img 
-              src={featuredComic.image} 
-              alt={`Red Rucker - ${featuredComic.title}`}
-              class="w-full aspect-[4/3] object-cover"
-            />
-            <div class="px-4 py-3 bg-white">
-              <div class="flex justify-between items-center">
-                <span class="text-sm font-medium text-gray-900">
-                  Episode {featuredComic.episode}: {featuredComic.title}
-                </span>
-                <a href="/red-rucker" class="text-sm text-primary hover:underline">
-                  Read More
-                </a>
-              </div>
+        {featuredComic && (
+          <a href={`/red-rucker/${featuredComic.episode}`} class="block group">
+            <div class="aspect-[4/3] bg-panel mb-4 overflow-hidden">
+              <img 
+                src={featuredComic.image} 
+                alt={`Red Rucker - ${featuredComic.title}`}
+                class="w-full h-full object-cover"
+              />
             </div>
-          </div>
-        </div>
+            <div>
+              <h3 class="font-medium text-foreground group-hover:text-primary transition-colors">Episode {featuredComic.episode}: {featuredComic.title}</h3>
+            </div>
+          </a>
+        )}
       </div>
     </div>
   </section>
 
-  <!-- Platform Quick Links -->
-  <section class="py-16 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">
-        Explore the Platform
-      </h2>
-      <div class="grid gap-6 md:grid-cols-4">
-        <a href="/why-rucking" class="block bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 text-center">
-          <h3 class="text-lg font-medium text-gray-900 mb-2">Why Rucking</h3>
-          <p class="text-sm text-gray-500">Discover the discipline and its benefits</p>
-        </a>
-        <a href="/routes" class="block bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 text-center">
-          <h3 class="text-lg font-medium text-gray-900 mb-2">Routes</h3>
-          <p class="text-sm text-gray-500">Discover rucking routes for all levels</p>
-        </a>
-        <a href="/events" class="block bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 text-center">
-          <h3 class="text-lg font-medium text-gray-900 mb-2">Events</h3>
-          <p class="text-sm text-gray-500">Join community rucking events</p>
-        </a>
-        <a href="/field-notes" class="block bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 text-center">
-          <h3 class="text-lg font-medium text-gray-900 mb-2">Field Notes</h3>
-          <p class="text-sm text-gray-500">Real-world rucking experiences</p>
-        </a>
-      </div>
+  <!-- ==================== RECRUITMENT FOOTER ==================== -->
+  <section class="recruit-section">
+    <div class="recruit-bg"></div>
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+      <span class="stamp stamp-primary mb-6">RECRUITMENT</span>
+      <h2 class="text-4xl md:text-5xl font-heading text-white mb-6">JOIN THE MOVEMENT</h2>
+      <p class="text-muted-200 text-lg font-serif mb-8">
+        Not a newsletter. Intelligence briefings for operators who ruck with purpose.
+      </p>
+      <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto mb-4">
+        <input 
+          type="email" 
+          placeholder="ENTER EMAIL" 
+          class="flex-1 px-4 py-3 bg-surface border border-muted-300 text-foreground placeholder:text-muted focus:border-primary focus:outline-none"
+        />
+        <button type="submit" class="btn-military btn-military-primary whitespace-nowrap">
+          ENLIST
+        </button>
+      </form>
+      <p class="label-muted text-xs">No spam. Operational frequency only.</p>
     </div>
   </section>
+
 </Layout>
+
+<style>
+  /* Hero */
+  .hero-section {
+    position: relative;
+    background: var(--rr-color-background);
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 100px,
+        rgba(138, 30, 30, 0.02) 100px,
+        rgba(138, 30, 30, 0.02) 101px
+      );
+  }
+
+  .hero-title {
+    font-family: var(--rr-font-heading);
+    font-size: clamp(3rem, 10vw, 5.5rem);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    color: var(--rr-color-secondary);
+    margin: 0 0 1.5rem 0;
+  }
+
+  .hero-deck {
+    font-family: var(--rr-font-serif);
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: var(--rr-color-muted-foreground);
+    max-width: 520px;
+    margin-bottom: 2rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .hero-divider {
+    height: 4px;
+    background: var(--rr-color-primary);
+  }
+
+  /* Proof Strip */
+  .proof-strip {
+    background: var(--rr-color-secondary);
+    padding: 2rem 0;
+  }
+
+  .proof-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .proof-value {
+    display: block;
+    font-family: var(--rr-font-heading);
+    font-size: 1.75rem;
+    color: var(--rr-color-white);
+    margin-bottom: 0.25rem;
+  }
+
+  .proof-label {
+    font-family: var(--rr-font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--rr-color-muted-300);
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 640px) {
+    .proof-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+
+  /* Section header */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  /* Featured Section */
+  .featured-section {
+    background: var(--rr-color-muted-50);
+    border-top: 1px solid var(--rr-color-border);
+    border-bottom: 1px solid var(--rr-color-border);
+  }
+
+  /* Recruitment */
+  .recruit-section {
+    position: relative;
+    background: var(--rr-color-secondary);
+    overflow: hidden;
+  }
+
+  .recruit-bg {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 50px,
+        rgba(138, 30, 30, 0.08) 50px,
+        rgba(138, 30, 30, 0.08) 51px
+      );
+  }
+
+  .label-muted {
+    color: var(--rr-color-muted);
+  }
+
+  .text-muted-200 {
+    color: var(--rr-color-muted-200);
+  }
+</style>

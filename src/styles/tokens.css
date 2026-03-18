@@ -1,24 +1,25 @@
 :root {
   color-scheme: light;
 
-  /* Brand palette */
-  --rr-color-primary: #8b0000;
-  --rr-color-primary-dark: #660000;
-  --rr-color-secondary: #1c1c1c;
-  --rr-color-accent: #e85c2a;
-  --rr-color-forest: #2e4a3f;
-  --rr-color-steel: #586473;
+  /* Brand palette - Cool mineral paper system */
+  --rr-color-primary: #8a1e1e;
+  --rr-color-primary-dark: #651515;
+  --rr-color-secondary: #11161a;
+  --rr-color-accent: #c44c28;
+  --rr-color-forest: #32443c;
+  --rr-color-steel: #667684;
 
-  /* Surfaces */
-  --rr-color-background: #f5f1e8;
-  --rr-color-surface: #fffdf9;
-  --rr-color-foreground: #201913;
-  --rr-color-muted: #75695d;
-  --rr-color-muted-foreground: #5d5349;
-  --rr-color-muted-50: #efe7da;
-  --rr-color-muted-200: #d8c8b4;
-  --rr-color-muted-300: #c6b197;
-  --rr-color-border: #d7cab9;
+  /* Surfaces - Cool mineral paper */
+  --rr-color-background: #eef2f4;
+  --rr-color-surface: #f7f9fa;
+  --rr-color-panel: #e1e7eb;
+  --rr-color-foreground: #11161a;
+  --rr-color-muted: #5c6872;
+  --rr-color-muted-foreground: #4f5a63;
+  --rr-color-muted-50: #eef2f4;
+  --rr-color-muted-200: #c9d3da;
+  --rr-color-muted-300: #a8b5c2;
+  --rr-color-border: #c9d3da;
   --rr-color-white: #ffffff;
   --rr-color-black: #000000;
 
@@ -33,12 +34,12 @@
   --rr-leading-tight: 1.08;
   --rr-tracking-heading: 0.05em;
 
-  /* Radius */
-  --rr-radius-border: 0.75rem;
-  --rr-radius-panel: 1.25rem;
+  /* Radius - Firmer shapes, less pill */
+  --rr-radius-border: 0.5rem;
+  --rr-radius-panel: 0.75rem;
   --rr-radius-pill: 999px;
 
-  /* Shadows */
-  --rr-shadow-card: 0 20px 40px rgba(28, 28, 28, 0.08);
-  --rr-shadow-button: 0 10px 20px rgba(139, 0, 0, 0.16);
+  /* Shadows - Subtle, iron-like */
+  --rr-shadow-card: 0 8px 24px rgba(17, 22, 26, 0.08);
+  --rr-shadow-button: 0 4px 12px rgba(138, 30, 30, 0.15);
 }

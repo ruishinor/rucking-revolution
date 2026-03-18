@@ -2,7 +2,6 @@
 import { site } from '@/data/site';
 import { events } from '@/data/events';
 import Layout from '@/components/Layout.astro';
-import Container from '@/components/Container.astro';
 
 const pageTitle = 'Events - Rucking Revolution';
 const pageDescription = 'Discover upcoming rucking events and challenges.';
@@ -18,60 +17,61 @@ const pageDescription = 'Discover upcoming rucking events and challenges.';
   }}
   twitter={{ card: 'summary_large_image' }}
 >
-  <Container>
-    <header class="mb-8">
-      <h1 class="text-3xl font-bold text-center">Events</h1>
-      <p class="text-center text-muted mt-2">
-        Discover upcoming rucking events and challenges.
-      </p>
-    </header>
+  <div class="bg-surface py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Header Section -->
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-heading text-secondary mb-4">EVENTS</h1>
+        <p class="text-lg font-serif text-muted-foreground max-w-3xl mx-auto">
+          Discover upcoming rucking events and challenges.
+        </p>
+      </div>
 
-    {/* Events Grid */}
-    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {events.map(event => (
-        <article
-          key={event.id}
-          class="hover:shadow-lg transition-shadow flex flex-col h-full border rounded-lg overflow-hidden"
-        >
-          {/* Hero Image */}
-          <a href={`/events/${event.slug}`} class="mb-0">
-            <img
-              src={event.heroImage.src}
-              alt={event.heroImage.alt}
-              class="w-full h-48 object-cover"
-              loading="lazy"
-            />
-          </a>
+      {/* Events Grid */}
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {events.map(event => (
+          <article
+            key={event.id}
+            class="card-border flex flex-col h-full border border-border hover:border-primary transition-colors"
+          >
+            {/* Hero Image */}
+            <a href={`/events/${event.slug}`} class="mb-0">
+              <img
+                src={event.heroImage.src}
+                alt={event.heroImage.alt}
+                class="w-full h-48 object-cover"
+                loading="lazy"
+              />
+            </a>
 
-          {/* Event Content */}
-          <div class="flex-0 p-4">
-            <h2 class="text-xl font-semibold mb-2 line-clamp-2">
-              <a href={`/events/${event.slug}`} class="hover:underline">
-                {event.title}
-              </a>
-            </h2>
-            <p class="text-muted-foreground mb-2 line-clamp-3">{event.description}</p>
+            {/* Event Content */}
+            <div class="flex-0 p-4">
+              <h2 class="text-xl font-heading text-secondary mb-2 line-clamp-2">
+                <a href={`/events/${event.slug}`} class="hover:underline">
+                  {event.title}
+                </a>
+              </h2>
+              <p class="text-muted-foreground mb-2 line-clamp-3 text-sm">{event.description}</p>
 
-            {/* Metadata */}
-            <div class="mt-auto space-y-2 text-sm text-muted-foreground">
-              <div class="flex flex-wrap gap-4">
-                <span>Date: {new Date(event.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-                <span>Location: {event.location}</span>
-                <span>Duration: {event.duration}</span>
-              </div>
-              <div class="flex flex-wrap gap-4">
-                <span>Distance: {event.distance} km</span>
-                <span>Load: {event.load} kg</span>
-                <span>Difficulty: 
-                  {event.difficulty === 'beginner' ? 'Beginner' : 
-                   event.difficulty === 'intermediate' ? 'Intermediate' : 'Advanced'}
-                </span>
-                <span>Price: €{event.priceEUR.toFixed(2)}</span>
+              {/* Metadata */}
+              <div class="mt-auto space-y-2 text-sm">
+                <div class="flex flex-wrap gap-4 font-mono text-xs text-muted-foreground">
+                  <span>DATE: {new Date(event.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                  <span>LOC: {event.location}</span>
+                  <span>DUR: {event.duration}</span>
+                </div>
+                <div class="flex flex-wrap gap-4 font-mono text-xs text-muted-foreground">
+                  <span>DIST: {event.distance} KM</span>
+                  <span>LOAD: {event.load} KG</span>
+                  <span>DIFF: {event.difficulty === 'beginner' ? 'BEGINNER' : 
+                   event.difficulty === 'intermediate' ? 'INTERMEDIATE' : 'ADVANCED'}</span>
+                  <span>PRICE: €{event.priceEUR.toFixed(2)}</span>
+                </div>
               </div>
             </div>
-          </div>
-        </article>
-      ))}
+          </article>
+        ))}
+      </div>
     </div>
-  </Container>
+  </div>
 </Layout>

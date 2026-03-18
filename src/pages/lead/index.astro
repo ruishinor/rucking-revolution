@@ -1,38 +1,40 @@
 ---
 import Layout from '@/components/Layout.astro';
-import Container from '@/components/Container.astro';
 ---
-<Layout title="Lead - Rucking Revolution" description="Movement infrastructure: CrewTactics, Ruck Clubs, After Action Reviews">
-  <Container>
-    <header class="mb-12 text-center">
-      <h1 class="text-4xl font-bold mb-4">Lead</h1>
-      <p class="text-xl text-muted">
-        Movement infrastructure: CrewTactics, Ruck Clubs, After Action Reviews
-      </p>
-    </header>
-
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold mb-6">Leadership & Community</h2>
-      <div class="grid gap-6 md:grid-cols-3">
-        <a href="/lead/crew-tactics" class="block p-6 border rounded-lg hover:shadow-lg transition-shadow">
-          <h3 class="text-xl font-semibold mb-2">CrewTactics</h3>
-          <p class="text-muted">
-            Leadership tactic cards and generator for rucks.
-          </p>
-        </a>
-        <a href="/lead/ruck-clubs" class="block p-6 border rounded-lg hover:shadow-lg transition-shadow">
-          <h3 class="text-xl font-semibold mb-2">Ruck Clubs</h3>
-          <p class="text-muted">
-            Resources for starting and running ruck crews.
-          </p>
-        </a>
-        <a href="/lead/after-action-reviews" class="block p-6 border rounded-lg hover:shadow-lg transition-shadow">
-          <h3 class="text-xl font-semibold mb-2">After Action Reviews</h3>
-          <p class="text-muted">
-            Community reflections and lessons learned.
-          </p>
-        </a>
+<Layout title="Lead - Rucking Revolution" description="Leadership, crew tactics, and community building for rucking.">
+  <div class="bg-surface py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Header Section -->
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-heading text-secondary mb-4">LEAD</h1>
+        <p class="text-lg font-serif text-muted-foreground max-w-3xl mx-auto">
+          Learn to lead crews, build community, and develop leadership skills through rucking. Your journey from participant to leader starts here.
+        </p>
       </div>
-    </section>
-  </Container>
+
+      <section class="mb-12">
+        <h2 class="text-2xl font-heading text-secondary mb-6">LEADERSHIP & COMMUNITY</h2>
+        <div class="grid gap-6 md:grid-cols-3">
+          <a href="/lead/crew-tactics" class="block p-6 border border-border card-border hover:border-primary transition-colors">
+            <h3 class="text-xl font-heading text-secondary mb-2">CREW TACTICS</h3>
+            <p class="text-muted-foreground text-sm">
+              Leadership tactic cards and generator for rucks.
+            </p>
+          </a>
+          <a href="/lead/ruck-clubs" class="block p-6 border border-border card-border hover:border-primary transition-colors">
+            <h3 class="text-xl font-heading text-secondary mb-2">RUCK CLUBS</h3>
+            <p class="text-muted-foreground text-sm">
+              Resources for starting and running ruck crews.
+            </p>
+          </a>
+          <a href="/lead/after-action-reviews" class="block p-6 border border-border card-border hover:border-primary transition-colors">
+            <h3 class="text-xl font-heading text-secondary mb-2">AFTER ACTION REVIEWS</h3>
+            <p class="text-muted-foreground text-sm">
+              Community reflections and lessons learned.
+            </p>
+          </a>
+        </div>
+      </section>
+    </div>
+  </div>
 </Layout>

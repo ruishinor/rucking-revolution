@@ -1,6 +1,5 @@
 ---
 import Layout from '@/components/Layout.astro';
-import Container from '@/components/Container.astro';
 ---
 
 <Layout 
@@ -8,12 +7,13 @@ import Container from '@/components/Container.astro';
   description="Subscribe to the Rucking Revolution newsletter for training tips, community updates, and exclusive content"
   currentPage="/newsletter"
 >
-  <Container>
-    <div class="max-w-2xl mx-auto py-12">
+  <div class="bg-surface py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl mx-auto">
       <header class="text-center mb-12">
         <div class="text-5xl mb-4">📰</div>
-        <h1 class="text-4xl font-bold mb-4">Join the Rucking Revolution</h1>
-        <p class="text-xl text-muted">
+        <h1 class="text-4xl font-heading text-secondary mb-4">JOIN THE REVOLUTION</h1>
+        <p class="text-lg font-serif text-muted-foreground">
           Get weekly training tips, community highlights, and exclusive content delivered to your inbox.
         </p>
       </header>
@@ -131,7 +131,7 @@ import Container from '@/components/Container.astro';
         </a>
       </div>
     </div>
-  </Container>
+  </div>
 
   <script>
     const form = document.getElementById('newsletter-form');
