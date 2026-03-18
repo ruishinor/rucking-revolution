@@ -17,6 +17,14 @@ const stats = {
   description="Admin dashboard for managing newsletter subscribers and contact messages"
   currentPage="/admin"
 >
+  <script is:inline>
+    // Client-side auth check
+    const isAuthenticated = sessionStorage.getItem('admin_auth');
+    if (!isAuthenticated) {
+      window.location.href = '/admin/login';
+    }
+  </script>
+
   <Container>
     <div class="max-w-6xl mx-auto py-12">
       <header class="mb-12">
@@ -152,11 +160,18 @@ const stats = {
           <a href="/library" class="p-4 border rounded-lg hover:bg-gray-50 transition-colors">
             <span class="font-semibold">Digital Library →</span>
           </a>
-          <a href="/" class="p-4 border rounded-lg hover:bg-gray-50 transition-colors">
-            <span class="font-semibold">Back to Home →</span>
-          </a>
+          <button id="logoutBtn" class="p-4 border rounded-lg hover:bg-red-50 transition-colors text-left">
+            <span class="font-semibold text-red-600">Logout →</span>
+          </button>
         </div>
       </section>
     </div>
   </Container>
+
+  <script is:inline>
+    document.getElementById('logoutBtn').addEventListener('click', function() {
+      sessionStorage.removeItem('admin_auth');
+      window.location.href = '/admin/login';
+    });
+  </script>
 </Layout>
