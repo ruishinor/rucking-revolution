@@ -3,8 +3,11 @@ import Layout from '@/components/Layout.astro';
 import ProductCard from '@/components/ProductCard.astro';
 import { products } from '@/data/products';
 
+// Get published products only
+const publishedProducts = products.filter(p => p.published !== false);
+
 // Get featured products (limit to 6)
-const featuredProducts = products.slice(0, 6);
+const featuredProducts = publishedProducts.slice(0, 6);
 ---
 
 <Layout title="Digital Library - Rucking Revolution" description="Expertly crafted guides, books, and training materials">
