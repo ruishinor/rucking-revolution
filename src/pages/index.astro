@@ -15,9 +15,30 @@ const featuredComic = comics[0];
 
 // Get 4 featured products for Digital Library showcase
 const featuredProducts = products.slice(0, 4);
+
+// Homepage structured data - WebSite schema with search action for Google
+const homepageStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": site.title,
+  "url": site.baseUrl,
+  "description": site.description,
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": `${site.baseUrl}/articles?search={search_term_string}`
+    },
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rucking Revolution"
+  }
+};
 ---
 
-<Layout title="Home" description={site.description} currentPage="/">
+<Layout title="Home" description={site.description} currentPage="/" structuredData={homepageStructuredData}>
   <!-- Hero Section -->
   <section class="relative bg-gray-50 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -55,7 +76,7 @@ const featuredProducts = products.slice(0, 4);
           <div class="flex items-center mb-4">
             <div class="flex-shrink-0">
               <svg class="h-8 w-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 014.438 0" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 014.438 0" />
               </svg>
             </div>
             <div class="ml-3">
