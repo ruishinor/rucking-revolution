@@ -367,22 +367,22 @@ Imagine each step releasing a worry or stressor, physically leaving it behind on
     tags: ['family', 'beginners', 'community'],
     body: `# Family Rucking: Building Resilience Together
 
-Rucking isn't just for soldiers and athletes—it's a remarkably accessible activity that families can enjoy together, building not just physical strength but shared resilience and lasting memories.
+Rucking isn't just for soldiers and athletes—it's a remarkably accessible activity that families can enjoy together and bond through, building not just physical strength but shared resilience and lasting memories.
 
 ## Why Rucking Works for Families
 
 ### Scalable Challenge
 The beauty of rucking is its infinite scalability:
 - Toddlers can carry small backpacks with water bottles
-- Children can carry age-appropriate weights (start with 5-10% of body weight)
+- Children can carry age-appropriate weights (start with 5-10% of body weight max)
 - Adults can adjust loads to match fitness levels
 - Everyone moves at their own pace while staying together
 
 ### Shared Accomplishment
-Few activities create as clear a sense of shared achievement as completing a ruck together. When everyone finishes, regardless of individual speed or load, there's a collective sense of "we did this."
+Few activities create as clear a sense of shared achievement as completing a ruck together. When everyone finishes something that challenged them, regardless of individual speed or load, there's a collective sense of "we did this."
 
 ### Conversation Mileage
-The side-by-side nature of walking (rather than face-to-face) often facilitates deeper conversation, especially with teenagers who might resist direct questioning.
+The side-by-side nature of walking (rather than face-to-face) with weight often facilitates deeper conversation, especially with teenagers who might resist direct questioning.
 
 ## Age-Appropriate Guidelines
 
@@ -409,7 +409,7 @@ The side-by-side nature of walking (rather than face-to-face) often facilitates 
   {
     id: '10',
     slug: 'rucking-gear-guide-essentials-for-every-mission',
-    title: 'Rucking Gear Guide: Essentials for Every Mission',
+    title: 'Rucking Gear Guide: Essentials',
     excerpt: 'Comprehensive breakdown of necessary equipment, from rucksacks to footwear, with recommendations for different use cases.',
     heroImage: {
       src: '/images/articles/rucking-gear-guide-hero.jpg',
@@ -419,7 +419,7 @@ The side-by-side nature of walking (rather than face-to-face) often facilitates 
     date: '2024-06-01',
     readingTime: 12,
     tags: ['gear', 'equipment', 'beginners'],
-    body: `# Rucking Gear Guide: Essentials for Every Mission
+    body: `# Rucking Gear Guide: Essentials
 
 Having the right gear doesn't just make rucking more comfortable—it directly impacts performance, safety, and long-term sustainability. This guide covers the essentials for everyone from beginners to experienced ruckers.
 
