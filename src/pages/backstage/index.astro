@@ -1,9 +1,23 @@
 ---
+export const prerender = false;
+
 import Layout from '@/components/Layout.astro';
 import Container from '@/components/Container.astro';
 
-// In production, this would fetch from a database/API
-// For now, this is a placeholder showing structure
+const backstageEnabled =
+  !import.meta.env.PROD || process.env.BACKSTAGE_ENABLED === 'true';
+
+if (!backstageEnabled) {
+  return new Response(null, {
+    status: 404,
+    statusText: 'Not found'
+  });
+}
+
+Astro.response.headers.set('X-Robots-Tag', 'noindex, nofollow, noarchive');
+
+// In production, this would fetch from a database/API.
+// For now, this is a placeholder showing structure.
 const stats = {
   newsletterSubscribers: 0,
   contactMessages: 0,
@@ -25,7 +39,7 @@ const stats = {
           Manage newsletter subscribers and view contact submissions.
         </p>
         <p class="text-sm text-muted mt-2">
-          <em>This page is protected by Vercel's built-in password protection.</em>
+          <em>This page is disabled by default in production. Re-enable it only behind separate access controls.</em>
         </p>
       </header>
 

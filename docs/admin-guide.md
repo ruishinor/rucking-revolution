@@ -1,5 +1,7 @@
 # Rucking Revolution Admin Guide
 
+The `/backstage` route is disabled by default in production. Do not treat it as a public admin surface unless it is intentionally re-enabled behind separate access controls.
+
 This guide provides step-by-step instructions for managing content on the Rucking Revolution website. No technical expertise is required - follow these instructions to add and update content through the website's data files.
 
 ## How to Add an Article

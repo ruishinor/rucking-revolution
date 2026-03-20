@@ -20,5 +20,9 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss(), crittersVitePlugin]
   },
-  integrations: [sitemap()]
+  integrations: [
+    sitemap({
+      filter: (page) => !new URL(page).pathname.startsWith('/backstage')
+    })
+  ]
 });

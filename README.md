@@ -40,6 +40,7 @@ This project is configured to let Vercel build from source on every push. The re
 4. Set the following environment variables in Vercel project settings (if applicable):
     - `CMS_API_KEY`: Your CMS API key
     - `PAYMENT_WEBHOOK_URL`: URL for payment webhooks
+    - `BACKSTAGE_ENABLED`: Optional. Leave unset unless `/backstage` is intentionally re-enabled behind separate access controls.
 
 ### Vercel Configuration
 
@@ -56,6 +57,7 @@ After setting the environment variables, Vercel will automatically build and dep
 |----------|-------------|--------------|
 | `CMS_API_KEY` | API key for headless CMS (if used) | Vercel Project Settings -> Environment Variables |
 | `PAYMENT_WEBHOOK_URL` | Webhook URL for payment processing | Vercel Project Settings -> Environment Variables |
+| `BACKSTAGE_ENABLED` | Enables the `/backstage` route when set to `true`. Default behavior is disabled in production. | Vercel Project Settings -> Environment Variables |
 
 ## Project Structure
 
