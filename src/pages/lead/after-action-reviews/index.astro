@@ -1,11 +1,13 @@
 ---
+export const prerender = false;
+
 import Layout from '@/components/Layout.astro';
 import { aarEntries } from '@/data/aar';
-import { site } from '@/data/site';
+import { getAarConfiguration } from '@/lib/aarSubmission';
 
 const approvedAARs = aarEntries.filter(aar => aar.approved);
 const hasAARs = approvedAARs.length > 0;
-const allowPublicSubmissions = site.allowPublicSubmissions ?? false;
+const allowPublicSubmissions = getAarConfiguration().enabled;
 ---
 <Layout 
   title="After Action Reviews | Rucking Revolution"

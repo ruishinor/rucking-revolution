@@ -1,3 +1,5 @@
+import { publicAarSubmissionsEnabled } from '@/lib/aarSubmission';
+
 export const site = {
   title: 'Rucking Revolution',
   description: 'A structured knowledge platform for rucking as discipline, leadership practice, and practical field activity.',
@@ -32,5 +34,5 @@ export const site = {
   useCMS: false, // Set to true to enable Ghost CMS integration
   cmsProvider: 'ghost', // Options: 'ghost' or 'none'
   // AAR Submission Settings
-  allowPublicSubmissions: true, // Toggle to allow public submissions to AAR system
+  allowPublicSubmissions: publicAarSubmissionsEnabled, // Requires AAR_PUBLIC_SUBMISSIONS_ENABLED plus webhook and Turnstile config
 };

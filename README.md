@@ -41,6 +41,12 @@ This project is configured to let Vercel build from source on every push. The re
     - `CMS_API_KEY`: Your CMS API key
     - `PAYMENT_WEBHOOK_URL`: URL for payment webhooks
     - `BACKSTAGE_ENABLED`: Optional. Leave unset unless `/backstage` is intentionally re-enabled behind separate access controls.
+    - `STYLE_GUIDE_ENABLED`: Optional. Leave unset unless the internal `/style-guide` route should be exposed in production.
+    - `BRANDING_MOCKUP_ENABLED`: Optional. Leave unset unless the internal `/branding-mockup` route should be exposed in production.
+    - `AAR_PUBLIC_SUBMISSIONS_ENABLED`: Optional. Only set to `true` when the AAR moderation webhook and Turnstile keys are also configured.
+    - `AAR_SUBMISSIONS_WEBHOOK_URL`: Required before public AAR submissions can be enabled.
+    - `AAR_TURNSTILE_SITE_KEY`: Cloudflare Turnstile site key for the public AAR form.
+    - `AAR_TURNSTILE_SECRET_KEY`: Cloudflare Turnstile secret used to verify submission challenges server-side.
 
 ### Vercel Configuration
 
@@ -58,6 +64,12 @@ After setting the environment variables, Vercel will automatically build and dep
 | `CMS_API_KEY` | API key for headless CMS (if used) | Vercel Project Settings -> Environment Variables |
 | `PAYMENT_WEBHOOK_URL` | Webhook URL for payment processing | Vercel Project Settings -> Environment Variables |
 | `BACKSTAGE_ENABLED` | Enables the `/backstage` route when set to `true`. Default behavior is disabled in production. | Vercel Project Settings -> Environment Variables |
+| `STYLE_GUIDE_ENABLED` | Enables the internal `/style-guide` reference route in production when set to `true`. | Vercel Project Settings -> Environment Variables |
+| `BRANDING_MOCKUP_ENABLED` | Enables the internal `/branding-mockup` prototype route in production when set to `true`. | Vercel Project Settings -> Environment Variables |
+| `AAR_PUBLIC_SUBMISSIONS_ENABLED` | Master switch for public AAR submissions. It is ignored unless the webhook and Turnstile variables are also configured. | Vercel Project Settings -> Environment Variables |
+| `AAR_SUBMISSIONS_WEBHOOK_URL` | Moderation or ingestion webhook for accepted AAR submissions. | Vercel Project Settings -> Environment Variables |
+| `AAR_TURNSTILE_SITE_KEY` | Cloudflare Turnstile site key rendered on the public AAR submission form. | Vercel Project Settings -> Environment Variables |
+| `AAR_TURNSTILE_SECRET_KEY` | Cloudflare Turnstile secret used by `/api/aar` to verify challenge responses. | Vercel Project Settings -> Environment Variables |
 
 ## Project Structure
 
@@ -80,7 +92,7 @@ This project implements a design system with CSS tokens and reusable components:
   - Container
   - Header
   - Footer
-- **Style Guide**: View all components and tokens at `/style-guide`
+- **Style Guide**: Available in development by default and in production only when `STYLE_GUIDE_ENABLED=true`
 
 ### Color Tokens & Accessibility
 

@@ -57,7 +57,7 @@ const hasImages = product.previewImages && product.previewImages.length > 0;
                   src={image.src} 
                   alt={image.alt} 
                   class="w-full h-auto object-cover"
-                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                  data-image-fallback="next"
                 />
                 <div class="hidden w-full h-64 bg-gray-100 items-center justify-center text-gray-400">
                   <div class="text-center">

@@ -29,7 +29,7 @@ const hasImage = product.previewImages && product.previewImages.length > 0 && pr
           alt={product.previewImages[0].alt || product.title}
           class="w-full h-full object-cover"
           loading="lazy"
-          onerror="this.style.display='none';"
+          data-hide-on-error="true"
         />
       ) : (
         <div class="text-center text-gray-500">
@@ -80,7 +80,7 @@ const hasImage = product.previewImages && product.previewImages.length > 0 && pr
             alt={product.previewImages[0].alt || product.title}
             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
             loading="lazy"
-            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            data-image-fallback="next"
           />
         ) : null}
         <!-- Fallback placeholder when image fails or is missing -->

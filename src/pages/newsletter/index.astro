@@ -133,43 +133,5 @@ import Layout from '@/components/Layout.astro';
     </div>
   </div>
 
-  <script>
-    const form = document.getElementById('newsletter-form');
-    const successMessage = document.getElementById('success-message');
-
-    if (form && successMessage) {
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        const formData = new FormData(e.target as HTMLFormElement);
-        const email = formData.get('email');
-        
-        // Get selected interests
-        const interests = [];
-        formData.getAll('interests').forEach((interest: FormDataEntryValue) => {
-          interests.push(interest);
-        });
-        
-        const data = {
-          email,
-          name: formData.get('name'),
-          interests,
-          subscribedAt: new Date().toISOString()
-        };
-        
-        try {
-          // In production, this would POST to an API endpoint
-          // For now, we'll simulate success
-          console.log('Newsletter signup:', data);
-          
-          // Show success message
-          (form as HTMLElement).style.display = 'none';
-          successMessage.classList.remove('hidden');
-        } catch (error) {
-          console.error('Error:', error);
-          alert('Something went wrong. Please try again.');
-        }
-      });
-    }
-  </script>
+  <script type="module" src="/scripts/newsletter-signup.js" is:inline></script>
 </Layout>

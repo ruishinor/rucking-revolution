@@ -1,11 +1,30 @@
 ---
+export const prerender = false;
+
 import Layout from '@/components/Layout.astro';
 import Button from '@/components/Button.astro';
 import Card from '@/components/Card.astro';
 import Container from '@/components/Container.astro';
 import Grid from '@/components/Grid.astro';
+
+const styleGuideEnabled =
+  !import.meta.env.PROD || process.env.STYLE_GUIDE_ENABLED === 'true';
+
+if (!styleGuideEnabled) {
+  return new Response(null, {
+    status: 404,
+    statusText: 'Not found',
+  });
+}
+
+Astro.response.headers.set('X-Robots-Tag', 'noindex, nofollow, noarchive');
 ---
-<Layout title="Style Guide" description="Production design tokens, typography, controls, and content surfaces.">
+<Layout
+  title="Style Guide"
+  description="Production design tokens, typography, controls, and content surfaces."
+  noindex={true}
+  nofollow={true}
+>
   <Container class="py-12">
     <header class="mx-auto mb-12 max-w-3xl text-center">
       <p class="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-primary">Module 01</p>

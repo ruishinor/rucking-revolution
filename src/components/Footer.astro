@@ -2,6 +2,7 @@
 // Footer Props
 // class: string (optional)
 const { class: className = '' } = Astro.props;
+const year = new Date().getFullYear();
 ---
 <footer class={`bg-gray-800 py-8 text-gray-200 ${className}`}>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 gap-8 sm:grid-cols-4">
@@ -73,17 +74,7 @@ const { class: className = '' } = Astro.props;
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 pt-4 border-t border-gray-700">
     <section class="text-xs text-gray-400">
-      <p>&copy; <span id="year"></span> Rucking Revolution. All rights reserved.</p>
+      <p>&copy; {year} Rucking Revolution. All rights reserved.</p>
     </section>
   </div>
 </footer>
-
-<script client:idle>
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  // Cookie preferences button handler
-  document.getElementById('cookie-prefs-btn')?.addEventListener('click', () => {
-    // Dispatch event to show cookie banner
-    window.dispatchEvent(new CustomEvent('showCookieBanner'));
-  });
-</script>

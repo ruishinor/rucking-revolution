@@ -4,6 +4,13 @@ import sitemap from '@astrojs/sitemap';
 import vercel from '@astrojs/vercel';
 import Critters from 'critters';
 
+const hiddenRoutes = new Set([
+  '/backstage',
+  '/style-guide',
+  '/branding-mockup',
+  '/lead/after-action-reviews/submit',
+]);
+
 const crittersVitePlugin = {
   name: 'critters',
   transformIndexHtml: {
@@ -22,7 +29,10 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      filter: (page) => !new URL(page).pathname.startsWith('/backstage')
+      filter: (page) => {
+        const pathname = new URL(page).pathname.replace(/\/$/, '') || '/';
+        return !hiddenRoutes.has(pathname);
+      }
     })
   ]
 });

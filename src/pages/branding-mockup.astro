@@ -1,4 +1,6 @@
 ---
+export const prerender = false;
+
 // Branding Mockup - Field Manual Design Direction
 // This file demonstrates the new homepage design based on the brand guidelines:
 // - Manual-first clarity, manifesto-level conviction
@@ -6,8 +8,19 @@
 // - Typography: Bebas Neue (hero), Inter (UI), Merriweather (editorial), IBM Plex Mono (metadata)
 // - Colors: warm paper canvas, deep red authority, charcoal structure, orange activation, forest/steel modules
 import Layout from '@/components/Layout.astro';
-import { site } from '@/data/site.ts';
 import { articles } from '@/data/articles.ts';
+
+const brandingMockupEnabled =
+  !import.meta.env.PROD || process.env.BRANDING_MOCKUP_ENABLED === 'true';
+
+if (!brandingMockupEnabled) {
+  return new Response(null, {
+    status: 404,
+    statusText: 'Not found',
+  });
+}
+
+Astro.response.headers.set('X-Robots-Tag', 'noindex, nofollow, noarchive');
 
 // Mock data for the mockup
 const proofPoints = [
@@ -44,7 +57,13 @@ const commandCards = [
 const featuredArticle = articles[0];
 ---
 
-<Layout title="Branding Mockup - Field Manual" description="New homepage design mockup" currentPage="/">
+<Layout
+  title="Branding Mockup - Field Manual"
+  description="New homepage design mockup"
+  currentPage="/"
+  noindex={true}
+  nofollow={true}
+>
   
   <!-- ==================== HERO SECTION ==================== -->
   <section class="hero-section">

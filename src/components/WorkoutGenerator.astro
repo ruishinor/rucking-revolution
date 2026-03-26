@@ -101,7 +101,8 @@ import { workouts } from '@/data/workouts.ts';
       
       <div class="flex justify-end">
         <button 
-          onclick="window.print()"
+          type="button"
+          data-print-trigger="true"
           class="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-colors"
         >
           Print Workout
@@ -151,81 +152,7 @@ import { workouts } from '@/data/workouts.ts';
   </div>
 </div>
 
-<script>
-  import { generateWorkout } from '@/components/WorkoutGenerator.ts';
-
-  const form = document.getElementById('workout-form') as HTMLFormElement;
-  const errorDiv = document.getElementById('workout-generator-error');
-  const workoutDiv = document.getElementById('generated-workout');
-
-  if (form && workoutDiv) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      
-      try {
-        const formData = new FormData(form);
-        const difficulty = (formData.get('difficulty') as 'beginner' | 'intermediate' | 'advanced') || 'beginner';
-        const timePreferenceStr = formData.get('timePreference') as string;
-        const timePreference = timePreferenceStr ? parseInt(timePreferenceStr) : undefined;
-        
-        const workout = generateWorkout(difficulty, undefined, timePreference);
-        
-        // Hide error if shown
-        if (errorDiv) errorDiv.classList.add('hidden');
-        
-        // Populate workout details
-        document.getElementById('workout-title')!.textContent = workout.title;
-        document.getElementById('workout-description')!.textContent = workout.description;
-        document.getElementById('workout-duration')!.textContent = `${workout.duration} minutes`;
-        document.getElementById('workout-distance')!.textContent = `${workout.distance} km`;
-        document.getElementById('workout-load')!.textContent = `${workout.load} kg`;
-        document.getElementById('workout-difficulty')!.textContent = workout.difficulty;
-        document.getElementById('workout-terrain')!.textContent = workout.terrain.map(t => t.charAt(0).toUpperCase() + t.slice(1)).join(', ');
-        document.getElementById('workout-equipment')!.textContent = workout.equipment.join(', ');
-        
-        // Populate objectives
-        const objectivesList = document.getElementById('workout-objectives')!;
-        objectivesList.innerHTML = workout.objectives.map(obj => `<li>${obj}</li>`).join('');
-        
-        // Populate sections
-        const sectionsDiv = document.getElementById('workout-sections')!;
-        sectionsDiv.innerHTML = workout.sections.map((section, index) => `
-          <div class="border-t pt-4 ${index === 0 ? 'border-t-0' : ''}">
-            <h4 class="text-lg font-semibold mb-2">${section.name} (${section.duration} min)</h4>
-            <p class="text-gray-600 mb-2">${section.description}</p>
-            ${section.exercises && section.exercises.length > 0 ? `
-              <ul class="list-disc list-inside space-y-1 text-gray-700 text-sm">
-                ${section.exercises.map(ex => `<li>${ex}</li>`).join('')}
-              </ul>
-            ` : ''}
-          </div>
-        `).join('');
-        
-        // Populate notes
-        const notesDiv = document.getElementById('workout-notes')!;
-        if (workout.notes) {
-          notesDiv.classList.remove('hidden');
-          document.getElementById('workout-notes-text')!.textContent = workout.notes;
-        } else {
-          notesDiv.classList.add('hidden');
-        }
-        
-        // Show the workout
-        workoutDiv.classList.remove('hidden');
-        
-        // Scroll to workout
-        workoutDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        
-      } catch (err) {
-        console.error('Failed to generate workout:', err);
-        if (errorDiv) {
-          errorDiv.textContent = 'Failed to generate workout. Please try again.';
-          errorDiv.classList.remove('hidden');
-        }
-      }
-    });
-  }
-</script>
+<script type="module" src="/scripts/workout-generator.js" is:inline></script>
 
 <style>
   /* Print styles */

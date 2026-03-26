@@ -1,12 +1,19 @@
 ---
-import Layout from '@/components/Layout.astro';
-import { site } from '@/data/site';
+export const prerender = false;
 
-const allowPublicSubmissions = site.allowPublicSubmissions ?? false;
+import Layout from '@/components/Layout.astro';
+import { getAarConfiguration } from '@/lib/aarSubmission';
+
+const aarConfiguration = getAarConfiguration();
+const allowPublicSubmissions = aarConfiguration.enabled;
+
+Astro.response.headers.set('X-Robots-Tag', 'noindex, nofollow, noarchive');
 ---
 <Layout 
   title="Submit AAR | Rucking Revolution"
   description="Submit your After Action Review to contribute to the crew knowledge base."
+  noindex={true}
+  nofollow={true}
 >
   <div class="bg-surface py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -42,8 +49,9 @@ const allowPublicSubmissions = site.allowPublicSubmissions ?? false;
               </p>
             </div>
           </div>
-          <button 
-            onclick="document.getElementById('success-message').classList.add('hidden'); document.getElementById('aar-form').reset();"
+          <button
+            id="submit-another-btn"
+            type="button"
             class="mt-4 text-sm text-green-700 underline hover:text-green-900"
           >
             Submit another AAR
@@ -72,6 +80,17 @@ const allowPublicSubmissions = site.allowPublicSubmissions ?? false;
           action="/api/aar" 
           class="space-y-6"
         >
+          <div class="absolute left-[-9999px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
+            <label for="website">Website</label>
+            <input
+              type="text"
+              id="website"
+              name="website"
+              tabindex="-1"
+              autocomplete="off"
+            />
+          </div>
+
           <!-- Event Info -->
           <fieldset class="border border-gray-200 rounded-lg p-6">
             <legend class="text-lg font-bold text-gray-900 px-2">Event Information</legend>
@@ -279,6 +298,18 @@ const allowPublicSubmissions = site.allowPublicSubmissions ?? false;
             </div>
           </fieldset>
 
+          <fieldset class="border border-gray-200 rounded-lg p-6">
+            <legend class="text-lg font-bold text-gray-900 px-2">Verification</legend>
+            <p class="text-sm text-gray-600 mb-4">
+              Complete the challenge below to keep the archive open to real crews and closed to bots.
+            </p>
+            <div
+              class="cf-turnstile"
+              data-sitekey={aarConfiguration.turnstileSiteKey}
+              data-action="aar_submission"
+            ></div>
+          </fieldset>
+
           <!-- Submit Button -->
           <div class="flex justify-end">
             <button
@@ -298,7 +329,7 @@ const allowPublicSubmissions = site.allowPublicSubmissions ?? false;
         </svg>
         <h2 class="text-xl font-bold text-gray-900 mb-2">Submissions Currently Disabled</h2>
         <p class="text-gray-600 mb-4">
-          Public submissions to the AAR system are currently disabled by the site administrator.
+          Public submissions to the AAR system remain disabled until the moderation webhook and spam controls are configured.
         </p>
         <a 
           href="/lead/after-action-reviews" 
@@ -310,53 +341,8 @@ const allowPublicSubmissions = site.allowPublicSubmissions ?? false;
     )}
   </div>
 
-  <script>
-    const form = document.getElementById('aar-form') as HTMLFormElement;
-    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
-    const successMessage = document.getElementById('success-message');
-    const errorMessage = document.getElementById('error-message');
-    const errorText = document.getElementById('error-text');
-
-    if (form) {
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        // Disable button during submission
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Submitting...';
-        submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
-
-        try {
-          const formData = new FormData(form);
-          const response = await fetch('/api/aar', {
-            method: 'POST',
-            body: formData
-          });
-
-          const result = await response.json();
-
-          if (response.ok && result.success) {
-            // Show success message
-            form.classList.add('hidden');
-            if (successMessage) successMessage.classList.remove('hidden');
-          } else {
-            // Show error message
-            if (errorText && result.error) {
-              errorText.textContent = result.error;
-            }
-            if (errorMessage) errorMessage.classList.remove('hidden');
-          }
-        } catch (error) {
-          // Show generic error message
-          console.error('Form submission error:', error);
-          if (errorMessage) errorMessage.classList.remove('hidden');
-        } finally {
-          // Re-enable button
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Submit AAR';
-          submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-        }
-      });
-    }
-  </script>
+  {allowPublicSubmissions ? (
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  ) : null}
+  <script type="module" src="/scripts/aar-submit.js" is:inline></script>
 </Layout>

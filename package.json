@@ -18,13 +18,20 @@
   "type": "commonjs",
   "dependencies": {
     "@astrojs/sitemap": "^3.7.1",
-    "@astrojs/vercel": "^10.0.1",
+    "@astrojs/vercel": "^10.0.2",
     "@tailwindcss/postcss": "^4.2.1",
     "@tailwindcss/vite": "^4.2.1",
     "@vercel/kv": "^3.0.0",
-    "astro": "^6.0.5",
+    "astro": "^6.0.8",
     "marked": "^17.0.4",
+    "sanitize-html": "^2.17.2",
     "sharp": "^0.34.5"
+  },
+  "overrides": {
+    "h3": "^1.15.9",
+    "@vercel/routing-utils": {
+      "path-to-regexp": "npm:path-to-regexp@6.3.0"
+    }
   },
   "devDependencies": {
     "@axe-core/cli": "^4.11.1",
