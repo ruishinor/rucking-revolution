@@ -1,0 +1,17 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#F5F0E6"/>
+  <rect x="52" y="52" width="1496" height="796" rx="44" fill="#FFFDF8" stroke="#D8CEBF" stroke-width="4"/>
+  <circle cx="1260" cy="228" r="156" fill="#6E8B62" fill-opacity="0.15"/>
+  <circle cx="1322" cy="632" r="170" fill="#C49A4A" fill-opacity="0.18"/>
+  <rect x="1134" y="362" width="158" height="282" rx="32" fill="#2F4B3C"/>
+  <rect x="1170" y="410" width="86" height="124" rx="18" fill="#FFFDF8" fill-opacity="0.2"/>
+  <path d="M1294 574L1386 512" stroke="#BB6A3A" stroke-width="16" stroke-linecap="round"/>
+  <path d="M1294 574L1370 654" stroke="#BB6A3A" stroke-width="16" stroke-linecap="round"/>
+  <path d="M200 210H458" stroke="#BB6A3A" stroke-width="10" stroke-linecap="round"/>
+  <text x="200" y="174" fill="#BB6A3A" font-family="Arial, sans-serif" font-size="34" font-weight="700" letter-spacing="5">QUICK START</text>
+  <text x="200" y="332" fill="#172023" font-family="Arial, sans-serif" font-size="86" font-weight="700">The First</text>
+  <text x="200" y="424" fill="#172023" font-family="Arial, sans-serif" font-size="86" font-weight="700">10 Minutes</text>
+  <text x="200" y="520" fill="#2F4B3C" font-family="Georgia, serif" font-size="42">How to take your first ruck today with the bag,</text>
+  <text x="200" y="576" fill="#2F4B3C" font-family="Georgia, serif" font-size="42">weight, and route you already have.</text>
+  <text x="200" y="686" fill="#172023" font-family="Courier New, monospace" font-size="26" font-weight="700" letter-spacing="4">ONE SHORT WALK IS ENOUGH TO START THE HABIT.</text>
+</svg>

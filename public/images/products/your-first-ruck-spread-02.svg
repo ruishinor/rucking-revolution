@@ -1,0 +1,19 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="900" fill="#F5F0E6"/>
+  <rect x="56" y="56" width="1088" height="788" rx="34" fill="#FFFDF8" stroke="#D8CEBF" stroke-width="4"/>
+  <path d="M110 170H308" stroke="#BB6A3A" stroke-width="8" stroke-linecap="round"/>
+  <text x="110" y="140" fill="#BB6A3A" font-family="Courier New, monospace" font-size="24" font-weight="700" letter-spacing="4">WEEK 01</text>
+  <text x="110" y="284" fill="#172023" font-family="Arial Narrow, Arial, sans-serif" font-size="88" font-weight="700">The First</text>
+  <text x="110" y="376" fill="#172023" font-family="Arial Narrow, Arial, sans-serif" font-size="88" font-weight="700">Three Rucks</text>
+  <rect x="110" y="450" width="410" height="236" rx="26" fill="#F5F0E6"/>
+  <text x="148" y="514" fill="#172023" font-family="Arial, sans-serif" font-size="32" font-weight="700">Checklist</text>
+  <text x="148" y="574" fill="#2F4B3C" font-family="Georgia, serif" font-size="30">1. Keep the load modest</text>
+  <text x="148" y="618" fill="#2F4B3C" font-family="Georgia, serif" font-size="30">2. Choose the simplest route</text>
+  <text x="148" y="662" fill="#2F4B3C" font-family="Georgia, serif" font-size="30">3. Repeat before motivation fades</text>
+  <rect x="690" y="216" width="318" height="470" rx="30" fill="#172023"/>
+  <rect x="754" y="286" width="190" height="82" rx="24" fill="#BB6A3A"/>
+  <text x="786" y="342" fill="#FFFDF8" font-family="Arial, sans-serif" font-size="34" font-weight="700">Day 1</text>
+  <text x="760" y="468" fill="#FFFDF8" font-family="Courier New, monospace" font-size="28" font-weight="700" letter-spacing="4">SHORT ROUTE</text>
+  <text x="760" y="518" fill="#FFFDF8" font-family="Courier New, monospace" font-size="28" font-weight="700" letter-spacing="4">LIGHT LOAD</text>
+  <text x="760" y="568" fill="#FFFDF8" font-family="Courier New, monospace" font-size="28" font-weight="700" letter-spacing="4">CLEAN FINISH</text>
+</svg>

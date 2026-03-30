@@ -1,0 +1,11 @@
+<svg width="720" height="220" viewBox="0 0 720 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="220" rx="30" fill="#FFFDF8"/>
+  <text x="30" y="88" fill="#172023" font-family="Arial Narrow, Arial, sans-serif" font-size="58" font-weight="700">Rucking</text>
+  <text x="30" y="150" fill="#2F4B3C" font-family="Arial Narrow, Arial, sans-serif" font-size="58" font-weight="700">Revolution</text>
+  <rect x="530" y="120" width="26" height="18" rx="7" fill="#172023"/>
+  <rect x="568" y="106" width="26" height="32" rx="7" fill="#172023"/>
+  <rect x="606" y="86" width="26" height="52" rx="7" fill="#172023"/>
+  <circle cx="582" cy="70" r="10" fill="#BB6A3A"/>
+  <path d="M530 70H582" stroke="#172023" stroke-width="8" stroke-linecap="round"/>
+  <text x="32" y="186" fill="#BB6A3A" font-family="Courier New, monospace" font-size="18" font-weight="700" letter-spacing="4">QUIET MOMENTUM</text>
+</svg>

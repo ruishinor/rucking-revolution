@@ -1,0 +1,17 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#F5F0E6"/>
+  <rect x="52" y="52" width="1496" height="796" rx="44" fill="#FFFDF8" stroke="#D8CEBF" stroke-width="4"/>
+  <circle cx="1298" cy="230" r="158" fill="#C49A4A" fill-opacity="0.18"/>
+  <circle cx="1194" cy="660" r="196" fill="#6E8B62" fill-opacity="0.14"/>
+  <path d="M1090 690C1144 560 1212 500 1314 474C1389 456 1456 472 1500 510" stroke="#2F4B3C" stroke-width="16" stroke-linecap="round"/>
+  <rect x="1128" y="418" width="134" height="188" rx="34" fill="#172023"/>
+  <rect x="1154" y="444" width="82" height="46" rx="16" fill="#FFFDF8" fill-opacity="0.22"/>
+  <circle cx="1254" cy="380" r="42" fill="#BB6A3A"/>
+  <path d="M200 210H458" stroke="#BB6A3A" stroke-width="10" stroke-linecap="round"/>
+  <text x="200" y="174" fill="#BB6A3A" font-family="Arial, sans-serif" font-size="34" font-weight="700" letter-spacing="5">BEGINNER SERIES</text>
+  <text x="200" y="332" fill="#172023" font-family="Arial, sans-serif" font-size="86" font-weight="700">The "I Will Look</text>
+  <text x="200" y="424" fill="#172023" font-family="Arial, sans-serif" font-size="86" font-weight="700">Stupid" Myth</text>
+  <text x="200" y="520" fill="#2F4B3C" font-family="Georgia, serif" font-size="42">Why almost nobody is paying as much attention</text>
+  <text x="200" y="576" fill="#2F4B3C" font-family="Georgia, serif" font-size="42">to your first ruck as you think they are.</text>
+  <text x="200" y="686" fill="#172023" font-family="Courier New, monospace" font-size="26" font-weight="700" letter-spacing="4">START SIMPLE. BUILD STRENGTH. STAY CONSISTENT.</text>
+</svg>

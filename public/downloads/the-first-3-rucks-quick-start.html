@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The First 3 Rucks</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --canvas: #f5f0e6;
+      --paper: #fffdf8;
+      --pine: #2f4b3c;
+      --graphite: #172023;
+      --clay: #bb6a3a;
+      --border: #d8cebf;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "IBM Plex Sans", Arial, sans-serif;
+      background: var(--canvas);
+      color: var(--graphite);
+      line-height: 1.65;
+    }
+
+    .page {
+      width: min(960px, calc(100% - 32px));
+      margin: 24px auto;
+      padding: 32px;
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      box-shadow: 0 20px 48px rgba(23, 32, 35, 0.08);
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--clay);
+      font: 700 0.78rem/1 "Courier New", monospace;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    h1, h2 {
+      font-family: "Arial Narrow", Arial, sans-serif;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 7vw, 5rem);
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-top: 24px;
+    }
+
+    .lede {
+      margin: 18px 0 0;
+      max-width: 64ch;
+      font: 400 1.15rem/1.8 Georgia, serif;
+      color: var(--pine);
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .grid.three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      padding: 20px;
+      border-radius: 22px;
+      border: 1px solid var(--border);
+      background: #fbf8f2;
+    }
+
+    .card p { margin: 0; }
+
+    .label {
+      color: var(--clay);
+      font: 700 0.75rem/1 "Courier New", monospace;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    ul {
+      margin: 14px 0 0;
+      padding-left: 20px;
+    }
+
+    li + li {
+      margin-top: 8px;
+    }
+
+    .note {
+      margin-top: 28px;
+      padding: 18px 20px;
+      border-left: 6px solid var(--clay);
+      background: #fff7f1;
+      border-radius: 0 18px 18px 0;
+      font-family: Georgia, serif;
+      color: var(--graphite);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid var(--pine);
+      background: var(--pine);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--pine);
+    }
+
+    @media print {
+      body { background: #fff; }
+      .page {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+      }
+      .actions { display: none; }
+    }
+
+    @media (max-width: 780px) {
+      .grid.three {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <p class="eyebrow">Rucking Revolution / Quiet Momentum</p>
+    <h1>The First 3 Rucks</h1>
+    <p class="lede">A one-page beginner quick start for ordinary adults who want a calm way into weighted walking.</p>
+
+    <div class="grid three">
+      <section class="card">
+        <p class="label">Ruck 1</p>
+        <h2>Keep it easy</h2>
+        <ul>
+          <li>Choose a backpack you already own.</li>
+          <li>Use a light load that feels noticeable, not dramatic.</li>
+          <li>Walk 10 to 20 minutes on the simplest route possible.</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <p class="label">Ruck 2</p>
+        <h2>Repeat it</h2>
+        <ul>
+          <li>Use the same bag and route if they worked.</li>
+          <li>Stand tall, look ahead, and keep your pace conversational.</li>
+          <li>Only change one variable if the first session felt too easy.</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <p class="label">Ruck 3</p>
+        <h2>Lock it in</h2>
+        <ul>
+          <li>Schedule the next outing before the week gets away from you.</li>
+          <li>Write one note about what felt better this time.</li>
+          <li>Decide whether you are ready for a 30-day progression.</li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="note">
+      The goal of the first week is not to impress anyone. The goal is to make the next session easy enough to repeat.
+    </div>
+
+    <div class="actions">
+      <a href="#" onclick="window.print(); return false;" class="button">Print this page</a>
+      <a href="/library/your-first-ruck" class="button secondary">See the lead book</a>
+    </div>
+  </main>
+</body>
+</html>

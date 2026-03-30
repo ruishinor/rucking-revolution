@@ -1,0 +1,18 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="900" fill="#F5F0E6"/>
+  <rect x="56" y="56" width="1088" height="788" rx="34" fill="#FFFDF8" stroke="#D8CEBF" stroke-width="4"/>
+  <path d="M110 170H308" stroke="#BB6A3A" stroke-width="8" stroke-linecap="round"/>
+  <text x="110" y="140" fill="#BB6A3A" font-family="Courier New, monospace" font-size="24" font-weight="700" letter-spacing="4">CHAPTER 01</text>
+  <text x="110" y="284" fill="#172023" font-family="Arial Narrow, Arial, sans-serif" font-size="88" font-weight="700">Start</text>
+  <text x="110" y="376" fill="#172023" font-family="Arial Narrow, Arial, sans-serif" font-size="88" font-weight="700">Without Drama</text>
+  <text x="110" y="472" fill="#2F4B3C" font-family="Georgia, serif" font-size="38">The first week is about repeatability, not heroics.</text>
+  <rect x="760" y="176" width="300" height="420" rx="28" fill="#F5F0E6"/>
+  <text x="806" y="246" fill="#172023" font-family="Arial, sans-serif" font-size="34" font-weight="700">Milestone</text>
+  <text x="806" y="318" fill="#2F4B3C" font-family="Georgia, serif" font-size="32">Finish three short</text>
+  <text x="806" y="362" fill="#2F4B3C" font-family="Georgia, serif" font-size="32">rucks with a load</text>
+  <text x="806" y="406" fill="#2F4B3C" font-family="Georgia, serif" font-size="32">you can recover from.</text>
+  <rect x="110" y="596" width="448" height="152" rx="24" fill="#FFF7F1" stroke="#BB6A3A" stroke-width="3"/>
+  <text x="146" y="650" fill="#BB6A3A" font-family="Arial, sans-serif" font-size="30" font-weight="700">Reality Check</text>
+  <text x="146" y="702" fill="#172023" font-family="Georgia, serif" font-size="30">A first week that feels easy is usually a first week</text>
+  <text x="146" y="740" fill="#172023" font-family="Georgia, serif" font-size="30">that survives long enough to become a habit.</text>
+</svg>

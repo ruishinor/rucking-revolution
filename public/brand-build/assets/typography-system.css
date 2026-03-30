@@ -1,0 +1,40 @@
+.type-a-display {
+  font-family: "Archivo", "Segoe UI", sans-serif;
+  letter-spacing: -0.04em;
+}
+
+.type-a-reading {
+  font-family: "Source Serif 4", Georgia, serif;
+  line-height: 1.8;
+}
+
+.type-a-ui {
+  font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+}
+
+.type-a-meta {
+  font-family: "IBM Plex Mono", monospace;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.type-b-display {
+  font-family: "Syne", "Segoe UI", sans-serif;
+  letter-spacing: -0.04em;
+}
+
+.type-b-reading {
+  font-family: "Literata", Georgia, serif;
+  line-height: 1.85;
+}
+
+.type-b-ui {
+  font-family: "Public Sans", "Segoe UI", sans-serif;
+}
+
+.type-b-meta {
+  font-family: "IBM Plex Mono", monospace;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+

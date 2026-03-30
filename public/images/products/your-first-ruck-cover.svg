@@ -1,0 +1,21 @@
+<svg width="1600" height="2560" viewBox="0 0 1600 2560" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="2560" fill="#F5F0E6"/>
+  <rect x="6" y="6" width="1588" height="2548" rx="58" stroke="#B7B0A4" stroke-width="12"/>
+  <rect x="88" y="88" width="1424" height="2384" rx="68" fill="#FFFDF8" stroke="#D8CEBF" stroke-width="8"/>
+  <circle cx="1272" cy="458" r="214" fill="#C49A4A" fill-opacity="0.16"/>
+  <circle cx="1142" cy="1988" r="312" fill="#6E8B62" fill-opacity="0.13"/>
+  <path d="M1138 1884C1206 1716 1296 1590 1428 1538" stroke="#2F4B3C" stroke-width="22" stroke-linecap="round"/>
+  <rect x="1040" y="1494" width="168" height="118" rx="38" fill="#172023"/>
+  <rect x="1242" y="1356" width="168" height="256" rx="38" fill="#172023"/>
+  <rect x="1040" y="1648" width="168" height="270" rx="38" fill="#172023"/>
+  <circle cx="1240" cy="1252" r="34" fill="#BB6A3A"/>
+  <path d="M216 334H492" stroke="#BB6A3A" stroke-width="12" stroke-linecap="round"/>
+  <text x="216" y="288" fill="#BB6A3A" font-family="Arial Narrow, Arial, sans-serif" font-size="40" font-weight="700" letter-spacing="6">QUIET MOMENTUM</text>
+  <text x="216" y="736" fill="#172023" font-family="Arial Narrow, Arial, sans-serif" font-size="192" font-weight="700">Your</text>
+  <text x="216" y="938" fill="#172023" font-family="Arial Narrow, Arial, sans-serif" font-size="192" font-weight="700">First</text>
+  <text x="216" y="1140" fill="#2F4B3C" font-family="Arial Narrow, Arial, sans-serif" font-size="192" font-weight="700">Ruck</text>
+  <text x="216" y="1336" fill="#2F4B3C" font-family="Georgia, serif" font-size="62">A 30-Day Beginner Plan for</text>
+  <text x="216" y="1418" fill="#2F4B3C" font-family="Georgia, serif" font-size="62">Strength, Stamina, and Consistency</text>
+  <text x="216" y="2164" fill="#172023" font-family="Courier New, monospace" font-size="34" font-weight="700" letter-spacing="5">START SIMPLE. BUILD STRENGTH. STAY CONSISTENT.</text>
+  <text x="216" y="2280" fill="#172023" font-family="Arial Narrow, Arial, sans-serif" font-size="62" font-weight="700">Alexander</text>
+</svg>

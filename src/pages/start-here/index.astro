@@ -1,0 +1,99 @@
+---
+import Layout from '@/components/Layout.astro';
+import { site } from '@/data/site';
+---
+
+<Layout
+  title="Start Here"
+  description="Get the free beginner quick-start guide and take your first three rucks without overcomplicating it."
+  currentPage="/start-here"
+>
+  <section class="px-4 py-12 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="grid gap-8 lg:grid-cols-[1.15fr_0.85fr]">
+        <div class="soft-panel p-8 sm:p-10">
+          <p class="eyebrow">Free Quick-Start</p>
+          <h1 class="mt-5 font-heading text-5xl tracking-[-0.055em] text-secondary sm:text-6xl">
+            {site.leadMagnet.title}
+          </h1>
+          <p class="mt-3 label-mono">{site.leadMagnet.subtitle}</p>
+          <p class="mt-6 max-w-3xl font-serif text-xl leading-9 text-muted-foreground">
+            This is the cleanest way into the brand: one page, three sessions, and a quiet confidence boost before you
+            decide whether the full 30-day book is for you.
+          </p>
+
+          <div class="mt-8 grid gap-4 sm:grid-cols-3">
+            <div class="card-border p-5">
+              <p class="label-mono">Ruck 1</p>
+              <p class="mt-2 text-sm leading-7 text-muted-foreground">Choose a manageable load and walk short enough to finish wanting more.</p>
+            </div>
+            <div class="card-border p-5">
+              <p class="label-mono">Ruck 2</p>
+              <p class="mt-2 text-sm leading-7 text-muted-foreground">Repeat the setup with a little more confidence and one small improvement.</p>
+            </div>
+            <div class="card-border p-5">
+              <p class="label-mono">Ruck 3</p>
+              <p class="mt-2 text-sm leading-7 text-muted-foreground">Lock the pattern in and decide whether you are ready for the 30-day plan.</p>
+            </div>
+          </div>
+
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a href={site.leadMagnet.download} class="btn btn-primary">Open the guide now</a>
+            <a href={site.leadBook.link} class="btn btn-secondary">See the lead book</a>
+          </div>
+        </div>
+
+        <div class="soft-panel p-8">
+          <p class="eyebrow">Optional capture</p>
+          <h2 class="mt-4 font-heading text-4xl tracking-[-0.05em] text-secondary">Use the on-site handoff flow.</h2>
+          <p class="mt-4 text-sm leading-7 text-muted-foreground">
+            This static build uses a simple lead capture interaction: submit the short form, reveal the guide, and move
+            the reader forward immediately.
+          </p>
+
+          <form id="newsletter-form" class="mt-6 space-y-4">
+            <label class="block">
+              <span class="mb-2 block text-sm font-semibold text-secondary">First name</span>
+              <input type="text" name="name" class="w-full px-4 py-3" placeholder="Alex" />
+            </label>
+
+            <label class="block">
+              <span class="mb-2 block text-sm font-semibold text-secondary">Email</span>
+              <input type="email" name="email" required class="w-full px-4 py-3" placeholder="you@example.com" />
+            </label>
+
+            <label class="block">
+              <span class="mb-2 block text-sm font-semibold text-secondary">What do you want most right now?</span>
+              <select name="focus" class="w-full px-4 py-3">
+                <option>Starting without feeling behind</option>
+                <option>Choosing the right beginner weight</option>
+                <option>Staying consistent after the first week</option>
+              </select>
+            </label>
+
+            <button type="submit" class="btn btn-primary w-full">Get the guide</button>
+            <p class="text-xs text-muted-foreground">
+              This build reveals the guide immediately after submit so the launch path can be tested end to end.
+            </p>
+          </form>
+
+          <div id="success-message" class="hidden">
+            <div class="mt-6 card-border p-6">
+              <p class="eyebrow">Guide unlocked</p>
+              <h3 class="mt-4 font-heading text-3xl tracking-[-0.04em] text-secondary">The next step is ready.</h3>
+              <p class="mt-3 text-sm leading-7 text-muted-foreground">
+                Open the one-page guide, take the first three rucks, then come back for the lead book when you want a fuller plan.
+              </p>
+              <div class="mt-6 flex flex-col gap-3">
+                <a href={site.leadMagnet.download} class="btn btn-primary w-full">Open the guide</a>
+                <a href="/articles" class="btn btn-secondary w-full">Read the launch articles</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script type="module" src="/scripts/newsletter-signup.js" is:inline></script>
+</Layout>

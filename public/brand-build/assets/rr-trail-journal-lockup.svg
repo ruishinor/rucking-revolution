@@ -1,0 +1,15 @@
+<svg width="720" height="220" viewBox="0 0 720 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="220" rx="30" fill="#FFFDF8"/>
+  <g transform="translate(28 30)">
+    <rect width="160" height="160" rx="34" fill="#FFFDF8"/>
+    <circle cx="80" cy="80" r="52" stroke="#2F4B3C" stroke-width="8"/>
+    <path d="M54 100C54 80.1177 68.1177 66 88 66H110" stroke="#2F4B3C" stroke-width="10" stroke-linecap="round"/>
+    <path d="M81 50V114" stroke="#BB6A3A" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="81" cy="50" r="10" fill="#C49A4A"/>
+    <circle cx="110" cy="66" r="10" fill="#2F4B3C"/>
+  </g>
+  <text x="220" y="90" fill="#172023" font-family="Archivo, Arial, sans-serif" font-size="52" font-weight="700" letter-spacing="-1">Rucking</text>
+  <text x="220" y="146" fill="#2F4B3C" font-family="Archivo, Arial, sans-serif" font-size="52" font-weight="700" letter-spacing="-1">Revolution</text>
+  <text x="222" y="178" fill="#BB6A3A" font-family="IBM Plex Mono, monospace" font-size="16" font-weight="700" letter-spacing="4">TRAIL JOURNAL SYSTEM</text>
+</svg>
+

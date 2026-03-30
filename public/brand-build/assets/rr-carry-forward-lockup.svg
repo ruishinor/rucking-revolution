@@ -1,0 +1,13 @@
+<svg width="720" height="220" viewBox="0 0 720 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="220" rx="30" fill="#151A22"/>
+  <g transform="translate(30 30)">
+    <rect width="160" height="160" rx="36" fill="#151A22"/>
+    <path d="M48 122V64L80 44L112 64V122" stroke="#E6C368" stroke-width="10" stroke-linejoin="round"/>
+    <path d="M48 82H112" stroke="#D94B33" stroke-width="10" stroke-linecap="round"/>
+    <path d="M64 122V92H96V122" stroke="#426A63" stroke-width="10" stroke-linejoin="round"/>
+  </g>
+  <text x="220" y="92" fill="#FCFAF6" font-family="Syne, Arial, sans-serif" font-size="54" font-weight="700" letter-spacing="-1">Rucking</text>
+  <text x="220" y="148" fill="#D94B33" font-family="Syne, Arial, sans-serif" font-size="54" font-weight="700" letter-spacing="-1">Revolution</text>
+  <text x="222" y="180" fill="#E6C368" font-family="IBM Plex Mono, monospace" font-size="16" font-weight="700" letter-spacing="4">CARRY FORWARD SYSTEM</text>
+</svg>
+
