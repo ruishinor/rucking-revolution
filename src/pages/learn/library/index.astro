@@ -2,108 +2,152 @@
 import Layout from '@/components/Layout.astro';
 import ProductCard from '@/components/ProductCard.astro';
 import { products } from '@/data/products';
+import { site } from '@/data/site';
 
-// Get published products only
+// Get unique categories
+const categories = [
+  { id: 'all', name: 'All Products', icon: '📚' },
+  { id: 'books', name: 'Books', icon: '📖' },
+  { id: 'guides', name: 'Guides', icon: '📋' },
+  { id: 'training-materials', name: 'Training Materials', icon: '📊' },
+  { id: 'workout-packs', name: 'Workout Packs', icon: '💪' },
+];
+
+// Get selected category from URL params
+const selectedCategory = Astro.url.searchParams.get('category') || 'all';
+
+// Filter products by category (only show published products)
 const publishedProducts = products.filter(p => p.published !== false);
+const filteredProducts = selectedCategory === 'all'
+  ? publishedProducts
+  : publishedProducts.filter(p => p.category === selectedCategory);
 
-// Get lead book and coming soon products
-const leadBook = publishedProducts.find(p => p.id === 'your-first-ruck');
-const comingSoonProducts = publishedProducts.filter(p => p.id === 'coming-soon');
-const otherProducts = publishedProducts.filter(p => p.id !== 'your-first-ruck' && p.id !== 'coming-soon');
+// Calculate totals (only published products)
+const totalProducts = publishedProducts.length;
+const totalValue = publishedProducts.reduce((sum, p) => sum + p.priceEUR, 0);
+
+// Structured data for ItemList of products
+const libraryStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Digital Library - Rucking Revolution",
+  "description": "Browse and purchase rucking guides, books, and training materials",
+  "url": `${site.baseUrl}/learn/library`,
+  "mainEntity": {
+    "@type": "ItemList",
+    "numberOfItems": totalProducts,
+    "itemListElement": publishedProducts.map((product, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "Product",
+        "name": product.title,
+        "url": `${site.baseUrl}/library/${product.id}`,
+        "image": product.previewImages?.[0]?.src ? `${site.baseUrl}${product.previewImages[0].src}` : undefined,
+        "offers": {
+          "@type": "Offer",
+          "price": product.priceEUR,
+          "priceCurrency": "EUR"
+        }
+      }
+    }))
+  }
+};
 ---
 
-<Layout title="Digital Library - Rucking Revolution" description="Expertly crafted guides, books, and training materials">
+<Layout
+  title="Digital Library & Storefront"
+  description="Browse and purchase rucking guides, books, and training materials"
+  structuredData={libraryStructuredData}
+  canonicalUrl={`${site.baseUrl}/learn/library`}
+>
   <div class="bg-surface py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Header Section -->
       <div class="text-center mb-12">
         <h1 class="text-4xl font-heading text-secondary mb-4">DIGITAL LIBRARY</h1>
         <p class="text-lg font-serif text-muted-foreground max-w-3xl mx-auto">
-          Expertly crafted guides, books, and training materials to elevate your rucking practice
+          Expertly crafted guides, books, and training materials to elevate your rucking practice.
+          Download instantly and start improving today.
         </p>
+
+        <!-- Stats -->
+        <div class="flex justify-center gap-8 mt-6 font-mono text-xs text-muted-foreground">
+          <div class="flex items-center gap-2">
+            <span class="text-2xl font-bold text-secondary">{totalProducts}</span>
+            <span>PRODUCTS</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-2xl font-bold text-secondary">€{totalValue.toFixed(2)}</span>
+            <span>TOTAL VALUE</span>
+          </div>
+        </div>
       </div>
 
-      <!-- E-Commerce Teaser: Featured Product -->
-      {leadBook && (
-        <section class="mb-12 border border-border rounded-lg p-6 bg-white" aria-labelledby="featured-product-heading">
-          <div class="grid md:grid-cols-2 gap-8 items-center">
-            <!-- Product Image -->
-            <div class="aspect-[4/5] bg-panel overflow-hidden rounded">
-              <img 
-                src={leadBook.previewImages[0]?.src}
-                alt={leadBook.previewImages[0]?.alt || leadBook.title}
-                class="w-full h-full object-cover"
-                loading="eager"
-              />
-            </div>
-            <!-- Product Details -->
-            <div>
-              <span class="label-mono block mb-2">Quiet Momentum release</span>
-              <h2 id="featured-product-heading" class="text-3xl font-heading text-secondary mb-3">
-                {leadBook.title}
-              </h2>
-              <p class="text-muted-foreground text-base leading-relaxed mb-6">
-                {leadBook.description}
-              </p>
-              <!-- Status and Pricing -->
-              <div class="flex items-center gap-6 mb-6">
-                <div>
-                  <span class="label-mono block mb-1">Status</span>
-                  <span class="text-sm font-bold text-green-700 bg-green-100 px-3 py-1 rounded-full">Available Now</span>
-                </div>
-                <div>
-                  <span class="label-mono block mb-1">Price</span>
-                  <span class="text-2xl font-bold text-secondary">€{leadBook.priceEUR.toFixed(2)}</span>
-                </div>
-              </div>
-              <!-- Feature List -->
-              {leadBook.whatYouLearn && leadBook.whatYouLearn.length > 0 && (
-                <div class="border border-border rounded p-4 mb-6">
-                  <h3 class="font-heading text-xs text-secondary mb-3 tracking-wider uppercase">Inside</h3>
-                  <ul class="space-y-2 text-sm text-muted-foreground" aria-label="Product features">
-                    {leadBook.whatYouLearn.map((feature) => (
-                      <li class="flex items-start gap-2">
-                        <span class="text-primary mt-0.5 flex-shrink-0" aria-hidden="true">
-                          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                          </svg>
-                        </span>
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+      <!-- Category Navigation -->
+      <nav aria-label="Product categories" class="mb-8">
+        <div class="flex flex-wrap justify-center gap-2" role="list">
+          {categories.map((cat) => (
+            <a
+              href={`/learn/library${cat.id === 'all' ? '' : `?category=${cat.id}`}`}
+              class:list={[
+                "px-4 py-2 rounded text-sm font-medium transition-all duration-200 border border-border card-border",
+                selectedCategory === cat.id
+                  ? "bg-primary text-white border-primary"
+                  : "bg-surface text-muted-foreground hover:border-primary hover:text-primary"
+              ]}
+              aria-current={selectedCategory === cat.id ? 'page' : undefined}
+              role="listitem"
+            >
+              <span class="mr-1" aria-hidden="true">{cat.icon}</span>
+              {cat.name}
+              {cat.id !== 'all' && (
+                <span class="ml-1 text-xs opacity-75">
+                  ({products.filter(p => p.category === cat.id).length})
+                </span>
               )}
-              <!-- Purchase Link -->
-              <a href={leadBook.purchaseLink} class="btn btn-primary" aria-label={`View details for ${leadBook.title}`}>
-                View Book Details
-              </a>
-            </div>
+            </a>
+          ))}
+        </div>
+      </nav>
+
+      <!-- Products Grid -->
+      <section aria-label="Product catalog">
+        {filteredProducts.length > 0 ? (
+          <div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+            {filteredProducts.map((product) => (
+              <ProductCard product={product} />
+            ))}
           </div>
-        </section>
-      )}
+        ) : (
+          <div class="text-center py-12">
+            <p class="text-muted-foreground text-lg">No products found in this category.</p>
+            <a href="/learn/library" class="text-primary hover:underline mt-2 inline-block">
+              View all products
+            </a>
+          </div>
+        )}
+      </section>
 
-      <!-- Product Grid -->
-      {otherProducts.length > 0 ? (
-        <div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-          {otherProducts.map((product) => (
-            <ProductCard product={product} />
-          ))}
+      <!-- Trust Badges -->
+      <div class="mt-16 pt-8 border-t border-border">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+          <div class="p-4">
+            <div class="text-3xl mb-2" aria-hidden="true">🔒</div>
+            <h3 class="font-heading text-secondary mb-1">SECURE CHECKOUT</h3>
+            <p class="text-sm text-muted-foreground">Safe payment via Gumroad or PayPal</p>
+          </div>
+          <div class="p-4">
+            <div class="text-3xl mb-2" aria-hidden="true">📥</div>
+            <h3 class="font-heading text-secondary mb-1">INSTANT DOWNLOAD</h3>
+            <p class="text-sm text-muted-foreground">Get your files immediately after purchase</p>
+          </div>
+          <div class="p-4">
+            <div class="text-3xl mb-2" aria-hidden="true">⭐</div>
+            <h3 class="font-heading text-secondary mb-1">EXPERT CONTENT</h3>
+            <p class="text-sm text-muted-foreground">Created by experienced rucking professionals</p>
+          </div>
         </div>
-      ) : (
-        <!-- E-Commerce Teaser: Coming Soon placeholder -->
-        <div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-          {comingSoonProducts.map((product) => (
-            <ProductCard product={product} />
-          ))}
-        </div>
-      )}
-
-      <!-- VIEW FULL LIBRARY -->
-      <div class="mt-12 text-center">
-        <a href="/library" class="btn btn-primary" aria-label="View all products in the library">
-          VIEW FULL LIBRARY
-        </a>
       </div>
     </div>
   </div>
