@@ -2,6 +2,7 @@
 import Layout from '@/components/Layout.astro';
 import ProductCard from '@/components/ProductCard.astro';
 import { products } from '@/data/products';
+import { site } from '@/data/site';
 
 // Get unique categories
 const categories = [
@@ -24,11 +25,41 @@ const filteredProducts = selectedCategory === 'all'
 // Calculate totals (only published products)
 const totalProducts = publishedProducts.length;
 const totalValue = publishedProducts.reduce((sum, p) => sum + p.priceEUR, 0);
+
+// Structured data for ItemList of products
+const libraryStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Digital Library - Rucking Revolution",
+  "description": "Browse and purchase rucking guides, books, and training materials",
+  "url": `${site.baseUrl}/library`,
+  "mainEntity": {
+    "@type": "ItemList",
+    "numberOfItems": totalProducts,
+    "itemListElement": publishedProducts.map((product, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "Product",
+        "name": product.title,
+        "url": `${site.baseUrl}/library/${product.id}`,
+        "image": product.previewImages?.[0]?.src ? `${site.baseUrl}${product.previewImages[0].src}` : undefined,
+        "offers": {
+          "@type": "Offer",
+          "price": product.priceEUR,
+          "priceCurrency": "EUR"
+        }
+      }
+    }))
+  }
+};
 ---
 
 <Layout 
   title="Digital Library & Storefront" 
   description="Browse and purchase rucking guides, books, and training materials"
+  structuredData={libraryStructuredData}
+  canonicalUrl={`${site.baseUrl}/library`}
 >
   <div class="bg-surface py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -54,8 +85,8 @@ const totalValue = publishedProducts.reduce((sum, p) => sum + p.priceEUR, 0);
       </div>
 
       <!-- Category Navigation -->
-      <div class="mb-8">
-        <div class="flex flex-wrap justify-center gap-2">
+      <nav aria-label="Product categories" class="mb-8">
+        <div class="flex flex-wrap justify-center gap-2" role="list">
           {categories.map((cat) => (
             <a 
               href={`/library${cat.id === 'all' ? '' : `?category=${cat.id}`}`}
@@ -65,8 +96,10 @@ const totalValue = publishedProducts.reduce((sum, p) => sum + p.priceEUR, 0);
                   ? "bg-primary text-white border-primary" 
                   : "bg-surface text-muted-foreground hover:border-primary hover:text-primary"
               ]}
+              aria-current={selectedCategory === cat.id ? 'page' : undefined}
+              role="listitem"
             >
-              <span class="mr-1">{cat.icon}</span>
+              <span class="mr-1" aria-hidden="true">{cat.icon}</span>
               {cat.name}
               {cat.id !== 'all' && (
                 <span class="ml-1 text-xs opacity-75">
@@ -76,39 +109,41 @@ const totalValue = publishedProducts.reduce((sum, p) => sum + p.priceEUR, 0);
             </a>
           ))}
         </div>
-      </div>
+      </nav>
 
       <!-- Products Grid -->
-      {filteredProducts.length > 0 ? (
-        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {filteredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-      ) : (
-        <div class="text-center py-12">
-          <p class="text-muted-foreground text-lg">No products found in this category.</p>
-          <a href="/library" class="text-primary hover:underline mt-2 inline-block">
-            View all products
-          </a>
-        </div>
-      )}
+      <section aria-label="Product catalog">
+        {filteredProducts.length > 0 ? (
+          <div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+            {filteredProducts.map((product) => (
+              <ProductCard product={product} />
+            ))}
+          </div>
+        ) : (
+          <div class="text-center py-12">
+            <p class="text-muted-foreground text-lg">No products found in this category.</p>
+            <a href="/library" class="text-primary hover:underline mt-2 inline-block">
+              View all products
+            </a>
+          </div>
+        )}
+      </section>
 
       <!-- Trust Badges -->
       <div class="mt-16 pt-8 border-t border-border">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
           <div class="p-4">
-            <div class="text-3xl mb-2">🔒</div>
+            <div class="text-3xl mb-2" aria-hidden="true">🔒</div>
             <h3 class="font-heading text-secondary mb-1">SECURE CHECKOUT</h3>
             <p class="text-sm text-muted-foreground">Safe payment via Gumroad or PayPal</p>
           </div>
           <div class="p-4">
-            <div class="text-3xl mb-2">📥</div>
+            <div class="text-3xl mb-2" aria-hidden="true">📥</div>
             <h3 class="font-heading text-secondary mb-1">INSTANT DOWNLOAD</h3>
             <p class="text-sm text-muted-foreground">Get your files immediately after purchase</p>
           </div>
           <div class="p-4">
-            <div class="text-3xl mb-2">⭐</div>
+            <div class="text-3xl mb-2" aria-hidden="true">⭐</div>
             <h3 class="font-heading text-secondary mb-1">EXPERT CONTENT</h3>
             <p class="text-sm text-muted-foreground">Created by experienced rucking professionals</p>
           </div>

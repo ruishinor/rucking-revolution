@@ -23,7 +23,51 @@ export interface Product {
 }
 
 export const products: Product[] = [
-  // All existing products hidden (published: false)
+  // Lead Book - Your First Ruck (published)
+  {
+    id: 'your-first-ruck',
+    sku: 'RR-EBOOK-001',
+    title: 'Your First Ruck',
+    description: 'A 30-day beginner plan for strength, stamina, and consistency. Start simple, build strength, stay consistent.',
+    category: 'books',
+    priceEUR: 12.99,
+    files: [
+      {
+        name: 'Your First Ruck - PDF',
+        src: '/files/products/your-first-ruck.pdf',
+        type: 'pdf',
+        size: '4.8 MB'
+      },
+      {
+        name: 'Your First Ruck - EPUB',
+        src: '/files/products/your-first-ruck.epub',
+        type: 'epub',
+        size: '3.2 MB'
+      }
+    ],
+    purchaseLink: '/library/your-first-ruck',
+    previewImages: [
+      {
+        src: '/images/products/your-first-ruck-cover.svg',
+        alt: 'Cover of Your First Ruck ebook showing title and subtitle: A 30-Day Beginner Plan for Strength, Stamina, and Consistency'
+      },
+      {
+        src: '/images/products/your-first-ruck-spread-01.svg',
+        alt: 'Interior spread from Your First Ruck showing weekly training schedule and progression'
+      },
+      {
+        src: '/images/products/your-first-ruck-spread-02.svg',
+        alt: 'Interior spread from Your First Ruck showing gear checklist and form tips'
+      }
+    ],
+    whatYouLearn: [
+      'How to build a consistent rucking habit in 30 days',
+      'Proper form and load progression for beginners',
+      'Gear essentials without overspending'
+    ],
+    published: true
+  },
+  // Existing products (published: false)
   {
     id: 'prod-1',
     sku: 'RR-BOOK-001',

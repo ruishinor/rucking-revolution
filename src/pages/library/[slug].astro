@@ -1,6 +1,7 @@
 ---
 import Layout from '@/components/Layout.astro';
 import { products } from '@/data/products';
+import { site } from '@/data/site';
 
 const { slug } = Astro.params;
 
@@ -34,52 +35,87 @@ const categoryLabels: Record<string, string> = {
 
 // Check if images exist
 const hasImages = product.previewImages && product.previewImages.length > 0;
+
+// Structured data for product page
+const productStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": product.title,
+  "description": product.description,
+  "image": hasImages ? `${site.baseUrl}${product.previewImages[0].src}` : undefined,
+  "sku": product.sku,
+  "brand": {
+    "@type": "Brand",
+    "name": "Quiet Momentum"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": product.priceEUR,
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock",
+    "url": `${site.baseUrl}/library/${product.id}`
+  },
+  ...(product.whatYouLearn && product.whatYouLearn.length > 0 ? {
+    "review": {
+      "@type": "Review",
+      "reviewBody": product.whatYouLearn.join(". ")
+    }
+  } : {})
+};
 ---
 
-<Layout title={`${product.title} - Rucking Revolution Store`} description={product.description}>
+<Layout 
+  title={`${product.title} - Rucking Revolution Store`} 
+  description={product.description}
+  structuredData={productStructuredData}
+  canonicalUrl={`${site.baseUrl}/library/${product.id}`}
+>
   <div class="max-w-6xl mx-auto px-4 py-8">
     <!-- Back Navigation -->
-    <a href="/library" class="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 transition-colors">
-      <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-      </svg>
-      Back to Library
-    </a>
+    <nav aria-label="Breadcrumb" class="mb-6">
+      <a href="/library" class="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors">
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+        </svg>
+        Back to Library
+      </a>
+    </nav>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
       <!-- Product Images -->
-      <div class="lg:w-1/2">
+      <section aria-label="Product images" class="lg:w-1/2">
         <div class="space-y-4">
           {hasImages ? (
-            product.previewImages.map((image, index) => (
-              <div key={index} class="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+            product.previewImages.map((image) => (
+              <figure class="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
                 <img 
                   src={image.src} 
                   alt={image.alt} 
                   class="w-full h-auto object-cover"
+                  loading="lazy"
                   data-image-fallback="next"
                 />
                 <div class="hidden w-full h-64 bg-gray-100 items-center justify-center text-gray-400">
                   <div class="text-center">
-                    <div class="text-4xl mb-2">📚</div>
+                    <div class="text-4xl mb-2" aria-hidden="true">📚</div>
                     <div class="text-sm">Image not available</div>
                   </div>
                 </div>
-              </div>
+              </figure>
             ))
           ) : (
             <div class="w-full h-64 bg-gray-100 rounded-lg flex items-center justify-center text-gray-400">
               <div class="text-center">
-                <div class="text-6xl mb-2">📚</div>
+                <div class="text-6xl mb-2" aria-hidden="true">📚</div>
                 <div class="text-lg">No preview images available</div>
               </div>
             </div>
           )}
         </div>
-      </div>
+      </section>
 
       <!-- Product Details -->
-      <div class="lg:w-1/2 space-y-6">
+      <section aria-label="Product details" class="lg:w-1/2 space-y-6">
         <!-- Category Badge -->
         <div>
           <span class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">
@@ -99,10 +135,10 @@ const hasImages = product.previewImages && product.previewImages.length > 0;
         {product.whatYouLearn && product.whatYouLearn.length > 0 && (
           <div class="bg-gray-50 rounded-lg p-6">
             <h2 class="text-xl font-semibold mb-4 text-gray-900">What You'll Learn</h2>
-            <ul class="space-y-2">
-              {product.whatYouLearn.map((learn, index) => (
-                <li key={index} class="flex items-start">
-                  <span class="text-green-500 mr-2">✓</span>
+            <ul class="space-y-2" aria-label="Learning outcomes">
+              {product.whatYouLearn.map((learn) => (
+                <li class="flex items-start">
+                  <span class="text-green-500 mr-2" aria-hidden="true">✓</span>
                   <span class="text-gray-700">{learn}</span>
                 </li>
               ))}
@@ -114,11 +150,11 @@ const hasImages = product.previewImages && product.previewImages.length > 0;
         {product.files && product.files.length > 0 && (
           <div>
             <h2 class="text-xl font-semibold mb-3 text-gray-900">What's Included</h2>
-            <div class="space-y-2">
-              {product.files.map((file, index) => (
-                <div key={index} class="flex items-center justify-between bg-white border border-gray-200 rounded-lg p-3">
+            <div class="space-y-2" aria-label="Included files">
+              {product.files.map((file) => (
+                <div class="flex items-center justify-between bg-white border border-gray-200 rounded-lg p-3">
                   <div class="flex items-center">
-                    <span class="text-2xl mr-3">
+                    <span class="text-2xl mr-3" aria-hidden="true">
                       {file.type === 'pdf' ? '📄' : file.type === 'epub' ? '📱' : file.type === 'zip' ? '📦' : file.type === 'spreadsheet' ? '📊' : '📁'}
                     </span>
                     <span class="font-medium text-gray-900">{file.name}</span>
@@ -142,6 +178,7 @@ const hasImages = product.previewImages && product.previewImages.length > 0;
               target="_blank"
               rel="noopener noreferrer"
               class="bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium text-lg w-full sm:w-auto text-center"
+              aria-label={`Buy ${product.title} for €${product.priceEUR.toFixed(2)}`}
             >
               Buy Now
             </a>
@@ -158,21 +195,21 @@ const hasImages = product.previewImages && product.previewImages.length > 0;
             </span>
           </div>
         </div>
-      </div>
+      </section>
     </div>
 
     <!-- Related Products Section -->
-    <div class="mt-16">
+    <section class="mt-16" aria-label="Related products">
       <h2 class="text-2xl font-bold mb-6 text-gray-900">More in {categoryLabels[product.category] || 'Products'}</h2>
       <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {products
           .filter(p => p.category === product.category && p.id !== product.id)
           .slice(0, 4)
           .map((relatedProduct) => (
-            <a href={`/library/${relatedProduct.id}`} class="block group">
+            <a href={`/library/${relatedProduct.id}`} class="block group" aria-label={`View ${relatedProduct.title}`}>
               <div class="border border-gray-200 rounded-lg bg-white shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden">
                 <div class="h-32 bg-gray-100 flex items-center justify-center">
-                  <span class="text-4xl">📚</span>
+                  <span class="text-4xl" aria-hidden="true">📚</span>
                 </div>
                 <div class="p-4">
                   <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-1">
@@ -184,6 +221,6 @@ const hasImages = product.previewImages && product.previewImages.length > 0;
             </a>
           ))}
       </div>
-    </div>
+    </section>
   </div>
 </Layout>

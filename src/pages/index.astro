@@ -1,5 +1,6 @@
 ---
 import Layout from '@/components/Layout.astro';
+import ProductCard from '@/components/ProductCard.astro';
 import { site } from '@/data/site.ts';
 import { articles } from '@/data/articles.ts';
 import { products } from '@/data/products.ts';
@@ -16,28 +17,70 @@ const featuredArticle = articles[0];
 // Get first comic for preview
 const featuredComic = comics[0];
 
-// Get 4 featured products for Digital Library showcase
-const featuredProducts = products.filter(p => p.published !== false).slice(0, 4);
+// Get lead book product for Product Teaser
+const leadBook = products.find(p => p.id === 'your-first-ruck');
+
+// Get published products for Digital Library catalog
+const publishedProducts = products.filter(p => p.published !== false && p.id !== 'your-first-ruck');
 
 // Homepage structured data - WebSite schema with search action for Google
 const homepageStructuredData = {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": site.title,
-  "url": site.baseUrl,
-  "description": site.description,
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": {
-      "@type": "EntryPoint",
-      "urlTemplate": `${site.baseUrl}/articles?search={search_term_string}`
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "name": site.title,
+      "url": site.baseUrl,
+      "description": site.description,
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": `${site.baseUrl}/articles?search={search_term_string}`
+        },
+        "query-input": "required name=search_term_string"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Rucking Revolution",
+        "url": site.baseUrl
+      }
     },
-    "query-input": "required name=search_term_string"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Rucking Revolution"
-  }
+    ...(featuredArticle ? [{
+      "@type": "Article",
+      "headline": featuredArticle.title,
+      "description": featuredArticle.excerpt,
+      "url": `${site.baseUrl}/articles/${featuredArticle.slug}`,
+      "datePublished": featuredArticle.date,
+      "author": {
+        "@type": "Person",
+        "name": featuredArticle.author
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Rucking Revolution"
+      },
+      "keywords": featuredArticle.tags.join(", ")
+    }] : []),
+    ...(leadBook ? [{
+      "@type": "Product",
+      "name": leadBook.title,
+      "description": leadBook.description,
+      "url": `${site.baseUrl}${leadBook.purchaseLink}`,
+      "image": `${site.baseUrl}${leadBook.previewImages[0]?.src}`,
+      "offers": {
+        "@type": "Offer",
+        "price": leadBook.priceEUR,
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock",
+        "url": `${site.baseUrl}${leadBook.purchaseLink}`
+      },
+      "brand": {
+        "@type": "Brand",
+        "name": "Quiet Momentum"
+      }
+    }] : [])
+  ]
 };
 
 const proofPoints = [
@@ -143,38 +186,103 @@ const communityItems = [
     </div>
   </section>
 
-  <!-- ==================== FEATURED CONTENT ==================== -->
-  {featuredArticle && (
-    <section class="featured-section">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div class="grid md:grid-cols-2 gap-8 items-center">
-          <div class="featured-image">
-            <div class="aspect-[4/3] bg-panel flex items-center justify-center">
-              <span class="stamp stamp-secondary">FEATURED</span>
-            </div>
-          </div>
-          <div class="featured-content">
+  <!-- ==================== FEATURED CONTENT & E-COMMERCE MODULE ==================== -->
+  <section class="featured-module">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
+        <!-- Featured Article Card -->
+        {featuredArticle && (
+          <article class="featured-article-card" aria-labelledby="featured-article-title">
             <div class="flex items-center gap-4 mb-4">
-              <span class="label-mono">{new Date(featuredArticle.date).toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' })}</span>
-              <span class="stamp stamp-primary text-xs py-1">{featuredArticle.tags[0]}</span>
+              <time datetime={featuredArticle.date} class="label-mono">
+                {new Date(featuredArticle.date).toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' })}
+              </time>
             </div>
-            <h3 class="text-3xl md:text-4xl font-heading text-secondary mb-4 leading-tight">
+            <h3 id="featured-article-title" class="text-3xl md:text-4xl font-heading text-secondary mb-4 leading-tight">
               {featuredArticle.title}
             </h3>
             <p class="text-muted-foreground text-lg leading-relaxed font-serif mb-6">
               {featuredArticle.excerpt}
             </p>
-            <a href={`/articles/${featuredArticle.slug}`} class="btn btn-secondary">
+            <!-- Taxonomy Tags -->
+            <div class="flex flex-wrap gap-2 mb-6" role="list" aria-label="Article topics">
+              {featuredArticle.tags.map((tag) => (
+                <span class="stamp stamp-primary text-xs py-1" role="listitem">{tag}</span>
+              ))}
+            </div>
+            <a href={`/articles/${featuredArticle.slug}`} class="btn btn-secondary" aria-label={`Read article: ${featuredArticle.title}`}>
               READ ARTICLE
-              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
               </svg>
             </a>
-          </div>
-        </div>
+          </article>
+        )}
+
+        <!-- Product Teaser (Lead Book) -->
+        {leadBook && (
+          <aside class="product-teaser" aria-labelledby="lead-book-title">
+            <a href={leadBook.purchaseLink} class="block group" aria-label={`View ${leadBook.title} details`}>
+              <!-- Cover Image -->
+              <div class="aspect-[4/5] bg-panel mb-5 overflow-hidden rounded relative">
+                <img 
+                  src={leadBook.previewImages[0]?.src} 
+                  alt={leadBook.previewImages[0]?.alt || leadBook.title}
+                  class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300"
+                  loading="lazy"
+                  data-image-fallback="next"
+                />
+                <div class="hidden w-full h-full items-center justify-center text-muted-300">
+                  <div class="text-center">
+                    <div class="text-4xl mb-2">📚</div>
+                    <p class="text-sm">Preview unavailable</p>
+                  </div>
+                </div>
+                <!-- Format Stamp -->
+                <span class="absolute top-3 left-3 stamp stamp-secondary text-xs bg-white/90 backdrop-blur-sm">ebook first</span>
+                <!-- Price Pill -->
+                <span class="absolute top-3 right-3 bg-secondary text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-sm">
+                  EUR {leadBook.priceEUR.toFixed(2)}
+                </span>
+              </div>
+              <!-- Metadata -->
+              <span class="label-mono block mb-2">Quiet Momentum release</span>
+              <!-- Title -->
+              <h3 id="lead-book-title" class="text-2xl font-heading text-secondary mb-3 group-hover:text-primary transition-colors">
+                {leadBook.title}
+              </h3>
+              <!-- Pitch Description -->
+              <p class="text-muted-foreground text-sm leading-relaxed mb-4">
+                {leadBook.description}
+              </p>
+            </a>
+            <!-- Feature List -->
+            {leadBook.whatYouLearn && leadBook.whatYouLearn.length > 0 && (
+              <div class="border border-border rounded p-4 mb-5">
+                <h4 class="font-heading text-xs text-secondary mb-3 tracking-wider uppercase">Inside</h4>
+                <ul class="space-y-2 text-sm text-muted-foreground" aria-label="Product features">
+                  {leadBook.whatYouLearn.map((feature) => (
+                    <li class="flex items-start gap-2">
+                      <span class="text-primary mt-0.5" aria-hidden="true">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                      </span>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            <!-- Purchase Link -->
+            <a href={leadBook.purchaseLink} class="text-primary font-bold text-sm hover:underline" aria-label={`View book details for ${leadBook.title}`}>
+              View book details →
+            </a>
+          </aside>
+        )}
       </div>
-    </section>
-  )}
+    </div>
+  </section>
 
   <!-- ==================== RESOURCES ==================== -->
   <section class="py-16 md:py-20 bg-panel">
@@ -232,29 +340,29 @@ const communityItems = [
     </div>
   </section>
 
-  <!-- ==================== LIBRARY ==================== -->
+  <!-- ==================== DIGITAL LIBRARY ==================== -->
   <section class="py-16 md:py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="section-header mb-10">
         <span class="section-marker">///</span>
         <h2 class="text-2xl md:text-3xl font-heading text-secondary">DIGITAL LIBRARY</h2>
       </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {featuredProducts.map((product) => (
-          <a href={`/library/${product.id}`} class="card-border p-4 group">
-            <div class="aspect-[3/4] bg-panel mb-4 flex items-center justify-center">
-              <svg class="w-12 h-12 text-muted-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-              </svg>
-            </div>
-            <span class="label-mono block mb-1">{product.type || 'RESOURCE'}</span>
-            <h3 class="font-medium text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">{product.title}</h3>
-            <span class="text-primary font-bold">€{product.priceEUR.toFixed(2)}</span>
-          </a>
-        ))}
-      </div>
+      {publishedProducts.length > 0 ? (
+        <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-6">
+          {publishedProducts.map((product) => (
+            <ProductCard product={product} />
+          ))}
+        </div>
+      ) : (
+        <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-6">
+          <!-- Coming Soon placeholder when no other products exist -->
+          {products.filter(p => p.id === 'coming-soon').map((product) => (
+            <ProductCard product={product} />
+          ))}
+        </div>
+      )}
       <div class="mt-8 text-center">
-        <a href="/learn/library" class="btn btn-utility">VIEW FULL LIBRARY</a>
+        <a href="/library" class="btn btn-utility">VIEW FULL LIBRARY</a>
       </div>
     </div>
   </section>
@@ -443,11 +551,30 @@ const communityItems = [
     gap: 1rem;
   }
 
-  /* Featured Section */
-  .featured-section {
+  /* Featured Module - Article + Product Teaser */
+  .featured-module {
     background: var(--rr-color-muted-50);
     border-top: 1px solid var(--rr-color-border);
     border-bottom: 1px solid var(--rr-color-border);
+  }
+
+  .featured-article-card {
+    padding: 1.5rem 0;
+  }
+
+  .product-teaser {
+    padding: 1.5rem 0;
+  }
+
+  @media (max-width: 767px) {
+    .featured-module .grid {
+      gap: 2rem;
+    }
+
+    .product-teaser {
+      border-top: 1px solid var(--rr-color-border);
+      padding-top: 2.5rem;
+    }
   }
 
   /* Recruitment */
