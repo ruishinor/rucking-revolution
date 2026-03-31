@@ -22,8 +22,10 @@ const categoryLabels: Record<string, string> = {
 // Handle missing image - use a placeholder
 const hasImage = product.previewImages && product.previewImages.length > 0 && product.previewImages[0]?.src;
 
-// Format price for display
-const formattedPrice = `EUR ${product.priceEUR.toFixed(2)}`;
+// Format price for display (USD and EUR)
+const priceUSD = (product.priceEUR * 1.08).toFixed(2);
+const priceEUR = product.priceEUR.toFixed(2);
+const formattedPrice = product.priceEUR > 0 ? `$${priceUSD} / EUR ${priceEUR}` : 'Free';
 ---
 
 {isComingSoon ? (
@@ -124,7 +126,7 @@ const formattedPrice = `EUR ${product.priceEUR.toFixed(2)}`;
       <!-- Product Info -->
       <div class="flex-1 px-4 py-4 flex flex-col">
         <!-- Metadata Field -->
-        <span class="label-mono block mb-2">Quiet Momentum release</span>
+        <span class="label-mono block mb-2">Rucking Revolution release</span>
         
         <!-- Title Field -->
         <h3 class="text-lg font-heading text-secondary mb-2 group-hover:text-primary transition-colors">

@@ -440,10 +440,10 @@
     will-change: transform;
   }
 
-  /* Get in Touch pill - forest green stroke on hover */
+  /* Get in Touch pill - match btn-military-secondary hover behavior with lighter forest green */
   .btn-get-in-touch:hover {
-    border-color: var(--rr-color-forest);
-    color: var(--rr-color-forest);
+    background-color: var(--rr-color-forest);
+    color: var(--rr-color-white);
   }
 }
 

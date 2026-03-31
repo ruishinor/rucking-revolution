@@ -209,14 +209,14 @@ export function generateWorkout(
   ].filter((value, index, self) => self.indexOf(value) === index);
   
   // Determine terrain based on difficulty
-  const terrainOptions: Record<'beginner' | 'intermediate' | 'advanced', ('road' | 'trail' | 'mixed' | 'hills' | 'sand')[]> = {
+  const terrainOptions: Record<'beginner' | 'intermediate' | 'advanced', ('road' | 'trail' | 'mixed' | 'hills')[]> = {
     beginner: ['road', 'trail'],
     intermediate: ['trail', 'hills', 'mixed'],
-    advanced: ['mixed', 'trail', 'hills', 'sand']
+    advanced: ['mixed', 'trail', 'hills']
   };
   
   const terrain = terrainOptions[difficulty];
-  const selectedTerrain: ('road' | 'trail' | 'mixed' | 'hills' | 'sand')[] = [];
+  const selectedTerrain: ('road' | 'trail' | 'mixed' | 'hills')[] = [];
   
   // Select 1-2 terrain types
   const terrainCount = rand() < 0.5 ? 1 : 2;
@@ -279,7 +279,6 @@ export function generateWorkout(
   if (difficulty === 'intermediate' || difficulty === 'advanced') equipment.push('hydration system (2L)');
   if (difficulty === 'advanced') equipment.push('navigation tools');
   if (selectedTerrain.includes('trail') || selectedTerrain.includes('hills')) equipment.push('trekking poles (optional)');
-  if (selectedTerrain.includes('sand')) equipment.push('foot care supplies');
   if (teamChallengeExercisesSelected.some(ex => ex.includes('partner') || ex.includes('team'))) equipment.push('communication devices');
   
   // Add basics

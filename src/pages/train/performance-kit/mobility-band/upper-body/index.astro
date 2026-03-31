@@ -2,19 +2,26 @@
 import Layout from '@/components/Layout.astro';
 import { exercises } from '@/data/exercises.ts';
 
-// Filter for upper body exercises (first 10, or we can check if id starts with 'upper-')
 const upperBodyExercises = exercises.slice(0, 10);
 ---
 <Layout title="Mobility Band - Upper Body" description="Upper body exercises using resistance bands">
-  <h1 class="text-3xl font-bold mb-6">Mobility Band - Upper Body</h1>
-  <p class="mb-6">Exercises for upper body strength and mobility using resistance bands</p>
-  
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-    {upperBodyExercises.map(exercise => (
-      <a href={`/train/performance-kit/mobility-band/upper-body/${exercise.slug}`} class="bg-white p-4 rounded-lg shadow hover:shadow-md transition-shadow flex flex-col h-full">
-        <h2 class="text-xl font-semibold mb-2">{exercise.title}</h2>
-        <p class="text-gray-600 flex-grow">Difficulty: {exercise.difficulty}</p>
-      </a>
-    ))}
+  <div class="bg-surface py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-heading text-secondary mb-4">MOBILITY BAND - UPPER BODY</h1>
+        <p class="text-lg font-serif text-muted-foreground max-w-3xl mx-auto">
+          Exercises for upper body strength and mobility using resistance bands.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {upperBodyExercises.map(exercise => (
+          <a href={`/train/performance-kit/mobility-band/upper-body/${exercise.slug}`} class="border border-border rounded-lg p-4 bg-background hover:border-primary transition-colors flex flex-col h-full">
+            <h2 class="text-xl font-heading text-secondary mb-2">{exercise.title.toUpperCase()}</h2>
+            <p class="text-muted-foreground text-sm flex-grow">Difficulty: {exercise.difficulty}</p>
+          </a>
+        ))}
+      </div>
+    </div>
   </div>
 </Layout>

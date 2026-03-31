@@ -6,92 +6,84 @@ import { exercises } from '@/data/exercises.ts';
 const exercise = exercises.find(ex => ex.slug === 'bent-over-row');
 ---
 <Layout title={`${exercise?.title} - Performance Kit`} description={`Learn proper form for ${exercise?.title} with step-by-step instructions, common mistakes, and progressions`}>
-  <div class="max-w-4xl mx-auto px-4 py-8">
-    <h1 class="text-3xl font-bold mb-6">{exercise?.title}</h1>
-    
-    {/* Purpose/Overview */}
-    <section class="mb-8">
-      <h2 class="text-2xl font-semibold mb-4">Purpose</h2>
-      <p class="text-gray-700 mb-4">The bent-over row is a fundamental upper body pulling exercise that builds back thickness and strength while engaging the biceps and core for stability.</p>
-      <p class="text-gray-600">Primary muscles worked: {exercise?.targetMuscles.join(', ')}</p>
-      <p class="text-gray-600">Equipment needed: {exercise?.equipment.join(', ')}</p>
-      <p class="text-gray-600">Difficulty level: {exercise?.difficulty}</p>
-    </section>
-    
-    {/* Step-by-step */}
-    <section class="mb-8">
-      <h2 class="text-2xl font-semibold mb-4">Step-by-Step Technique</h2>
-      <ol class="list-decimal list-inside space-y-3 text-gray-700">
-        {exercise?.steps.map((step, index) => (
-          <li key={index} class="flex">
-            <span class="flex-shrink-0 text-red-600">{index + 1}.</span>
-            <span class="flex-grow">{step}</span>
-          </li>
-        ))}
-      </ol>
-    </section>
-    
-    {/* Common Mistakes */}
-    <section class="mb-8">
-      <h2 class="text-2xl font-semibold mb-4">Common Mistakes to Avoid</h2>
-      <ul class="list-disc list-inside space-y-2 text-gray-700">
-        {exercise?.mistakes.map((mistake, index) => (
-          <li key={index}>
-            <span class="flex-shrink-0 text-red-600">•</span>
-            <span class="flex-grow">{mistake}</span>
-          </li>
-        ))}
-      </ul>
-    </section>
-    
-    {/* Progressions */}
-    <section class="mb-8">
-      <h2 class="text-2xl font-semibold mb-4">Progressions</h2>
-      <p class="text-gray-600 mb-2">Start with easier variations and gradually progress to more challenging ones as you build strength:</p>
-      <ol class="list-decimal list-inside space-y-2 text-gray-700">
-        {exercise?.progressions.map((progression, index) => (
-          <li key={index}>
-            <span class="flex-shrink-0 text-red-600">{index + 1}.</span>
-            <span class="flex-grow">{progression}</span>
-          </li>
-        ))}
-      </ol>
-    </section>
-    
-    {/* Media */}
-    <section class="mb-8">
-      <h2 class="text-2xl font-semibold mb-4">Exercise Demonstration</h2>
-      {exercise?.media.map((media, index) => (
-        <div key={index} class="mb-6">
-          {media.type === 'image' ? (
-            <figure>
-              <img src={media.src} alt={media.alt} class="rounded-lg shadow-md w-full h-auto" loading="lazy" />
-              <figcaption class="mt-2 text-center text-sm text-gray-500">{media.alt}</figcaption>
-            </figure>
-          ) : (
-            <MediaPlaceholder alt={`Illustration coming soon`} />
-          )}
+  <div class="bg-surface py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-heading text-secondary mb-4">{exercise?.title?.toUpperCase()}</h1>
+        <p class="text-lg font-serif text-muted-foreground max-w-3xl mx-auto">
+          Step-by-step instructions, common mistakes, and progressions for the {exercise?.title}.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <div>
+          <h2 class="text-2xl font-heading text-secondary mb-4">PURPOSE</h2>
+          <p class="text-muted-foreground mb-4">The bent-over row is a fundamental upper body pulling exercise that builds back thickness and strength while engaging the biceps and core for stability.</p>
+          <p class="text-muted">Primary muscles: {exercise?.targetMuscles?.join(', ')}</p>
+          <p class="text-muted">Equipment: {exercise?.equipment?.join(', ')}</p>
+          <p class="text-muted">Difficulty: {exercise?.difficulty}</p>
         </div>
-      ))}
-    </section>
-    
-    {/* Progress Indicator */}
-    <section class="mb-8 pt-6 border-t">
-      <h2 class="text-xl font-semibold mb-4">Track Your Progress</h2>
-      <div class="space-y-3">
-        <div class="flex items-center">
-          <span class="w-20">Sets:</span>
-          <input type="number" min="1" value="3" class="w-20 px-2 py-1 border rounded" />
-        </div>
-        <div class="flex items-center">
-          <span class="w-20">Reps:</span>
-          <input type="number" min="1" value="10" class="w-20 px-2 py-1 border rounded" />
-        </div>
-        <div class="flex items-center">
-          <span class="w-20">Rest:</span>
-          <input type="number" min="0" value="90" class="w-20 px-2 py-1 border rounded" /> seconds
+        <div>
+          <h2 class="text-2xl font-heading text-secondary mb-4">PROGRESSIONS</h2>
+          <ol class="list-decimal list-inside space-y-2 text-muted-foreground">
+            {exercise?.progressions?.map((progression) => (
+              <li>{progression}</li>
+            ))}
+          </ol>
         </div>
       </div>
-    </section>
+
+      <div class="mb-12">
+        <h2 class="text-2xl font-heading text-secondary mb-4">STEP-BY-STEP TECHNIQUE</h2>
+        <ol class="list-decimal list-inside space-y-3 text-muted-foreground">
+          {exercise?.steps?.map((step) => (
+            <li>{step}</li>
+          ))}
+        </ol>
+      </div>
+
+      <div class="mb-12">
+        <h2 class="text-2xl font-heading text-secondary mb-4">COMMON MISTAKES</h2>
+        <ul class="list-disc list-inside space-y-2 text-muted-foreground">
+          {exercise?.mistakes?.map((mistake) => (
+            <li>{mistake}</li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="mb-12">
+        <h2 class="text-2xl font-heading text-secondary mb-4">EXERCISE DEMONSTRATION</h2>
+        {exercise?.media?.map((media) => (
+          <div class="mb-6">
+            {media.type === 'image' ? (
+              <figure>
+                <img src={media.src} alt={media.alt} class="rounded-lg shadow-md w-full h-auto" loading="lazy" />
+                <figcaption class="mt-2 text-center text-sm text-muted">{media.alt}</figcaption>
+              </figure>
+            ) : (
+              <MediaPlaceholder alt="Illustration coming soon" />
+            )}
+          </div>
+        ))}
+      </div>
+
+      <div class="pt-6 border-t border-border">
+        <h2 class="text-xl font-heading text-secondary mb-4">TRACK YOUR PROGRESS</h2>
+        <div class="space-y-3">
+          <div class="flex items-center gap-3">
+            <span class="label-mono w-16">SETS</span>
+            <input type="number" min="1" value="3" class="w-20 px-2 py-1 border border-border rounded bg-background" />
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="label-mono w-16">REPS</span>
+            <input type="number" min="1" value="10" class="w-20 px-2 py-1 border border-border rounded bg-background" />
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="label-mono w-16">REST</span>
+            <input type="number" min="0" value="90" class="w-20 px-2 py-1 border border-border rounded bg-background" /> <span class="text-muted-foreground text-sm">seconds</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </Layout>

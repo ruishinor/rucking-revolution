@@ -30,7 +30,7 @@ export const products: Product[] = [
     title: 'Your First Ruck',
     description: 'A 30-day beginner plan for strength, stamina, and consistency. Start simple, build strength, stay consistent.',
     category: 'books',
-    priceEUR: 12.99,
+    priceEUR: 7.99,
     files: [
       {
         name: 'Your First Ruck - PDF',

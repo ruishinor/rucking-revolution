@@ -3,115 +3,93 @@ import Layout from '@/components/Layout.astro';
 import MediaPlaceholder from '@/components/MediaPlaceholder.astro';
 ---
 <Layout title="Release Ball - Performance Kit" description="Myofascial release techniques using a lacrosse or massage ball">
-  <h1 class="text-3xl font-bold mb-6">Release Ball</h1>
-  <p class="mb-6">Myofascial release techniques using a lacrosse or massage ball to relieve muscle tension and improve mobility.</p>
-  
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-    <div>
-      <h2 class="text-2xl font-semibold mb-4">Purpose</h2>
-      <p class="text-gray-700 mb-4">The release ball is used for self-myofascial release (SMR) to alleviate muscle tightness, improve blood flow, and enhance recovery. It targets trigger points and knots in the muscles.</p>
-      <p class="text-gray-600">Equipment needed: Lacrosse ball, massage ball, or similar firm ball</p>
-      <p class="text-gray-600">Difficulty level: Beginner</p>
-    </div>
-    <div>
-      <h2 class="text-2xl font-semibold mb-4">Common Areas to Target</h2>
-      <ul class="list-disc list-inside space-y-2 text-gray-700">
-        <li>
-          <span class="flex-shrink-0 text-red-600">•</span>
-          <span class="flex-grow">Upper back (thoracic spine)</span>
-        </li>
-        <li>
-          <span class="flex-shrink-0 text-red-600">•</span>
-          <span class="flex-grow">Glutes and piriformis</span>
-        </li>
-        <li>
-          <span class="flex-shrink-0 text-red-600">•</span>
-          <span class="flex-grow">Quadriceps and IT band</span>
-        </li>
-        <li>
-          <span class="flex-shrink-0 text-red-600">•</span>
-          <span class="flex-grow">Hamstrings</span>
-        </li>
-        <li>
-          <span class="flex-shrink-0 text-red-600">•</span>
-          <span class="flex-grow">Calves</span>
-        </li>
-        <li>
-          <span class="flex-shrink-0 text-red-600">•</span>
-          <span class="flex-grow">Feet (plantar fascia)</span>
-        </li>
-      </ul>
-    </div>
-  </div>
-  
-  <div class="mt-8">
-    <h2 class="text-2xl font-semibold mb-4">Technique</h2>
-    <ol class="list-decimal list-inside space-y-3 text-gray-700">
-      <li class="flex">
-        <span class="flex-shrink-0 text-red-600">1.</span>
-        <span class="flex-grow">Place the ball on the target area (e.g., under your glute while sitting or lying down).</span>
-      </li>
-      <li class="flex">
-        <span class="flex-shrink-0 text-red-600">2.</span>
-        <span class="flex-grow">Apply gentle pressure by leaning into the ball, using your body weight.</span>
-      </li>
-      <li class="flex">
-        <span class="flex-shrink-0 text-red-600">3.</span>
-        <span class="flex-grow">Slowly roll the ball to search for tender spots (trigger points).</span>
-      </li>
-      <li class="flex">
-        <span class="flex-shrink-0 text-red-600">4.</span>
-        <span class="flex-grow">Once you find a tender spot, hold pressure on it for 20-30 seconds or until the pain decreases by about 50%.</span>
-      </li>
-      <li class="flex">
-        <span class="flex-shrink-0 text-red-600">5.</span>
-        <span class="flex-grow">Move slowly to the next spot and repeat.</span>
-      </li>
-      <li class="flex">
-        <span class="flex-shrink-0 text-red-600">6.</span>
-        <span class="flex-grow">Breathe deeply and relax into the pressure.</span>
-      </li>
-    </ol>
-  </div>
-  
-  <div class="mt-8">
-    <h2 class="text-2xl font-semibold mb-4">Exercise Demonstration</h2>
-    <div class="space-y-6">
-      {/* Example: Glute release */}
-      <div class="border rounded-lg p-4 bg-gray-50">
-        <h3 class="text-xl font-semibold mb-2">Glute Release</h3>
-        <MediaPlaceholder alt="Illustration coming soon" />
-        <p class="mt-2 text-center text-sm text-gray-500">Sit on the ball, place it under one glute, and roll slowly to find tender spots.</p>
+  <div class="bg-surface py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-heading text-secondary mb-4">RELEASE BALL</h1>
+        <p class="text-lg font-serif text-muted-foreground max-w-3xl mx-auto">
+          Myofascial release techniques using a lacrosse or massage ball to relieve muscle tension and improve mobility.
+        </p>
       </div>
-      
-      {/* Example: Foot release */}
-      <div class="border rounded-lg p-4 bg-gray-50">
-        <h3 class="text-xl font-semibold mb-2">Foot Release (Plantar Fascia)</h3>
-        <MediaPlaceholder alt="Illustration coming soon" />
-        <p class="mt-2 text-center text-sm text-gray-500">Stand or sit, place the ball under your foot, and roll from heel to toe.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <div>
+          <h2 class="text-2xl font-heading text-secondary mb-4">PURPOSE</h2>
+          <p class="text-muted-foreground mb-4">The release ball is used for self-myofascial release (SMR) to alleviate muscle tightness, improve blood flow, and enhance recovery. It targets trigger points and knots in the muscles.</p>
+          <p class="text-muted">Equipment needed: Lacrosse ball, massage ball, or similar firm ball</p>
+          <p class="text-muted">Difficulty level: Beginner</p>
+        </div>
+        <div>
+          <h2 class="text-2xl font-heading text-secondary mb-4">COMMON AREAS TO TARGET</h2>
+          <ul class="list-disc list-inside space-y-2 text-muted-foreground">
+            <li>Upper back (thoracic spine)</li>
+            <li>Glutes and piriformis</li>
+            <li>Quadriceps and IT band</li>
+            <li>Hamstrings</li>
+            <li>Calves</li>
+            <li>Feet (plantar fascia)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mb-12">
+        <h2 class="text-2xl font-heading text-secondary mb-4">TECHNIQUE</h2>
+        <ol class="list-decimal list-inside space-y-3 text-muted-foreground">
+          <li>Place the ball on the target area (e.g., under your glute while sitting or lying down).</li>
+          <li>Apply gentle pressure by leaning into the ball, using your body weight.</li>
+          <li>Slowly roll the ball to search for tender spots (trigger points).</li>
+          <li>Once you find a tender spot, hold pressure on it for 20-30 seconds or until the pain decreases by about 50%.</li>
+          <li>Move slowly to the next spot and repeat.</li>
+          <li>Breathe deeply and relax into the pressure.</li>
+        </ol>
+      </div>
+
+      <div class="mb-12">
+        <h2 class="text-2xl font-heading text-secondary mb-4">EXERCISE DEMONSTRATIONS</h2>
+        <div class="space-y-6">
+          <div class="border border-border rounded-lg p-4 bg-background">
+            <h3 class="text-xl font-heading text-secondary mb-2">GLUTE RELEASE</h3>
+            <div class="relative w-full h-0 pb-[56.25%] bg-panel rounded-lg">
+              <div class="absolute inset-0 flex items-center justify-center text-muted">
+                <div class="text-center p-4">
+                  <svg class="w-16 h-16 mx-auto mb-2 text-muted-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                  <p class="text-sm">Illustration coming soon</p>
+                </div>
+              </div>
+            </div>
+            <p class="mt-2 text-center text-sm text-muted">Sit on the ball, place it under one glute, and roll slowly to find tender spots.</p>
+          </div>
+
+          <div class="border border-border rounded-lg p-4 bg-background">
+            <h3 class="text-xl font-heading text-secondary mb-2">FOOT RELEASE (PLANTAR FASCIA)</h3>
+            <div class="relative w-full h-0 pb-[56.25%] bg-panel rounded-lg">
+              <div class="absolute inset-0 flex items-center justify-center text-muted">
+                <div class="text-center p-4">
+                  <svg class="w-16 h-16 mx-auto mb-2 text-muted-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                  <p class="text-sm">Illustration coming soon</p>
+                </div>
+              </div>
+            </div>
+            <p class="mt-2 text-center text-sm text-muted">Stand or sit, place the ball under your foot, and roll from heel to toe.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-6 border-t border-border">
+        <h2 class="text-xl font-heading text-secondary mb-4">SAFETY TIPS</h2>
+        <ul class="list-disc list-inside space-y-2 text-muted-foreground">
+          <li>Avoid rolling directly on bones or joints.</li>
+          <li>Do not roll on injured or inflamed areas without professional guidance.</li>
+          <li>If you feel sharp or shooting pain, stop immediately.</li>
+          <li>Stay hydrated after SMR to help flush out toxins.</li>
+        </ul>
       </div>
     </div>
-  </div>
-  
-  <div class="mt-8 pt-6 border-t">
-    <h2 class="text-xl font-semibold mb-4">Safety Tips</h2>
-    <ul class="list-disc list-inside space-y-2 text-gray-700">
-      <li>
-        <span class="flex-shrink-0 text-red-600">•</span>
-        <span class="flex-grow">Avoid rolling directly on bones or joints.</span>
-      </li>
-      <li>
-        <span class="flex-shrink-0 text-red-600">•</span>
-        <span class="flex-grow">Do not roll on injured or inflamed areas without professional guidance.</span>
-      </li>
-      <li>
-        <span class="flex-shrink-0 text-red-600">•</span>
-        <span class="flex-grow">If you feel sharp or shooting pain, stop immediately.</span>
-      </li>
-      <li>
-        <span class="flex-shrink-0 text-red-600">•</span>
-        <span class="flex-grow">Stay hydrated after SMR to help flush out toxins.</span>
-      </li>
-    </ul>
   </div>
 </Layout>

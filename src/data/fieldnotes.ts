@@ -8,7 +8,7 @@ export interface FieldNote {
   distance: number; // in kilometers
   load: number; // in kilograms
   weather: string;
-  terrain: ('road' | 'trail' | 'mixed' | 'hills' | 'mountain' | 'sand' | 'snow' | 'rocky' | 'mud')[];
+  terrain: ('road' | 'trail' | 'mixed' | 'hills' | 'mountain' | 'snow' | 'rocky' | 'mud')[];
   observations: string[];
   insights: string[];
   questions: string[];
@@ -58,39 +58,39 @@ export const fieldNotes: FieldNote[] = [
   },
   {
     id: 'fn-2',
-    slug: 'desert-heat-adaptation',
-    title: 'Desert Heat Adaptation Observations',
+    slug: 'camino-de-santiago-prep',
+    title: 'Camino de Santiago Preparation Ruck',
     date: '2024-03-05',
-    location: 'Sonoran Desert Training Area',
-    duration: 120,
-    distance: 15.0,
-    load: 18,
-    weather: 'Clear, 38°C, 10% humidity, intense sun',
-    terrain: ['sand', 'rocky'],
+    location: 'Coastal Trail Network',
+    duration: 180,
+    distance: 25.0,
+    load: 8,
+    weather: 'Mild, 18°C, partly cloudy, light breeze',
+    terrain: ['trail', 'mixed', 'hills'],
     observations: [
-      'Sweat rate was extremely high but evaporated instantly, creating false sense of dryness',
-      'Foot temperature in boots reached uncomfortable levels after 30 minutes',
-      'Water consumption needed to be proactive - drinking only when thirsty was insufficient',
-      'Salt accumulation on skin and clothing was visible after 60 minutes',
-      'Mental clarity began to decline after 90 minutes despite adequate hydration'
+      'Light pack weight suited well for long-distance pilgrimage-style rucking',
+      'Feet showed hot spots after 15 km on mixed surfaces - sock changes essential',
+      'Pacing was steadier than expected with lighter load over longer distance',
+      'Waymarking navigation practice useful for unfamiliar trail networks',
+      'Break scheduling at 10 km intervals maintained energy levels throughout'
     ],
     insights: [
-      'Electrolyte replacement needs to begin before activity in hot conditions',
-      'Boot ventilation is critical in hot environments - consider gaiters for sand, not just snow',
-      'Mental fatigue from heat appears before physical exhaustion',
-      'Shade utilization during rest stops provides disproportionate recovery benefit',
-      'Heat management requires constant attention, not just periodic checks'
+      'Camino-style rucking prioritises distance over load - keep pack under 10% body weight',
+      'Sock rotation every 10 km prevents most blister formation on mixed terrain',
+      'Daily stages of 20-25 km are sustainable with proper pacing and foot care',
+      'Walking pole technique significantly reduces knee strain on descents',
+      'Mental rhythm of pilgrimage walking differs from tactical rucking - more meditative'
     ],
     questions: [
-      'What is the optimal electrolyte replacement strategy for desert conditions?',
-      'How does clothing color and material affect heat gain during movement?',
-      'What are the cognitive effects of mild dehydration during endurance activity?',
-      'How should pacing strategies change in extreme heat vs moderate conditions?',
-      'What foot care protocols prevent blisters and hot spots in sandy, hot conditions?'
+      'What is the optimal sock change frequency for multi-day pilgrimage rucking?',
+      'How should training pace differ from on-trail pace for Camino preparation?',
+      'What lightweight foot care kit is essential for 4-6 week pilgrimages?',
+      'How does load reduction affect daily distance capacity over sustained periods?',
+      'What mental strategies help maintain motivation across weeks of daily walking?'
     ],
     heroImage: {
-      src: '/images/fieldnotes/desert-heat-adaptation.jpg',
-      alt: 'Person rucking in desert environment with sun hat, light clothing, and visible sweat salt on skin'
+      src: '/images/fieldnotes/camino-prep.jpg',
+      alt: 'Person rucking on coastal trail with lightweight pack and walking poles, simulating Camino de Santiago conditions'
     }
   },
   {
@@ -132,76 +132,76 @@ export const fieldNotes: FieldNote[] = [
   },
   {
     id: 'fn-4',
-    slug: 'high-altitude-acclimatization',
-    title: 'High Altitude Acclimatization Process',
+    slug: 'nijmegen-marches-prep',
+    title: 'Nijmegen Marches Preparation Training',
     date: '2024-04-12',
-    location: 'Mountainous Training Area (2400m elevation)',
-    duration: 180,
-    distance: 12.0,
-    load: 16,
-    weather: 'Partly cloudy, 2°C, moderate wind, strong sun',
-    terrain: ['trail', 'hills', 'mountain'],
+    location: 'Urban and Rural Circuit',
+    duration: 240,
+    distance: 40.0,
+    load: 10,
+    weather: 'Overcast, 14°C, light drizzle',
+    terrain: ['road', 'mixed'],
     observations: [
-      'Breathing rate increased noticeably even at rest upon arrival',
-      'First day with load felt equivalent to carrying 50% more weight at sea level',
-      'Sleep quality was poor first night despite moderate exertion',
-      'Headache developed mid-way through activity on second day',
-      'Recovery between intervals took significantly longer than expected'
+      'Sustained pace of 5-6 km/h maintained through first 30 km with light load',
+      'Foot deterioration began around km 25 - hot spots on both heels',
+      'Hydration strategy needed adjustment - plain water insufficient after 3 hours',
+      'Urban road surfaces harder on joints than expected over extended distance',
+      'Mental endurance became the primary challenge after hour 4'
     ],
     insights: [
-      'Altitude affects cognitive function before physical performance',
-      'Hydration needs increase substantially at altitude due to respiratory water loss',
-      'The first 24-48 hours at altitude are critical for symptom monitoring',
-      'Individual variability in acclimatization requires personalized approaches',
-      'Pre-acclimatization interventions (if possible) significantly reduce symptoms'
+      'Nijmegen-style distance marching requires different training than tactical rucking',
+      'Light loads (8-10 kg) allow much higher daily distances but demand foot resilience',
+      'Pre-taping known blister zones before starting is more effective than reactive care',
+      'Salt and electrolyte tablets essential for distances beyond 25 km',
+      'Walking in formation with others naturally regulates pace and boosts morale'
     ],
     questions: [
-      'What is the optimal ascent rate for load-bearing activities at altitude?',
-      'How does altitude affect muscle recovery and protein synthesis?',
-      'What preventive measures are most effective for altitude sickness?',
-      'How should nutrition change at altitude for sustained activity?',
-      'What are the early cognitive symptoms of altitude impairment?'
+      'What is the optimal training progression for 40 km daily marches over 4 days?',
+      'How should boot selection differ for road-heavy distance marching vs trail rucking?',
+      'What insole and lacing systems best prevent fatigue on hard surfaces?',
+      'How does the Nijmegen categorisation (military vs civilian) affect preparation strategy?',
+      'What recovery protocol between daily marches maximises multi-day sustainability?'
     ],
     heroImage: {
-      src: '/images/fieldnotes/high-altitude-acclimatization.jpg',
-      alt: 'Person rucking on mountain trail with visible breath and panoramic valley view'
+      src: '/images/fieldnotes/nijmegen-prep.jpg',
+      alt: 'Person rucking on paved road with military-style pack, simulating Nijmegen Four Days Marches conditions'
     }
   },
   {
     id: 'fn-5',
-    slug: 'jungle-humidity-adaptation',
-    title: 'Jungle Humidity and Heat Adaptation',
+    slug: 'multi-day-distance-march',
+    title: 'Multi-Day Distance March Recovery Study',
     date: '2024-05-03',
-    location: 'Tropical Forest Training Area',
-    duration: 100,
-    distance: 9.0,
-    load: 15,
-    weather: 'Hot, 30°C, 90% humidity, light rain',
-    terrain: ['trail', 'hills', 'mud'],
+    location: 'Mixed Urban-Rural Circuit',
+    duration: 300,
+    distance: 42.0,
+    load: 10,
+    weather: 'Warm, 22°C, sunny with cloud cover',
+    terrain: ['road', 'trail', 'mixed'],
     observations: [
-      'Sweat did not evaporate, leading to soaked clothing and rapid heat buildup',
-      'Boot drainage was critical - water accumulation caused slipping and blisters',
-      'Trail conditions changed rapidly with rainfall - became slick and treacherous',
-      'Equipment corrosion began visible on metal surfaces after 60 minutes exposure',
-      'Mental fatigue from constant discomfort set in earlier than expected'
+      'Day 1 distance of 42 km completed in 8 hours with two rest stops',
+      'Day 2 recovery showed reduced stiffness after proper post-march protocol',
+      'Foot care between days was the single biggest performance determinant',
+      'Hydration strategy using electrolyte mix performed better than water alone',
+      'Pace regulation at start prevented early fatigue in later stages'
     ],
     insights: [
-      'Ventilation and quick-dry materials are essential in high humidity',
-      'Foot care requires proactive measures in wet conditions - change socks frequently',
-      'Equipment maintenance needs increase dramatically in wet tropical environments',
-      'Navigation becomes more challenging as trails wash out or become obscured',
-      'Psychological resilience is as important as physical preparation in unpleasant conditions'
+      'Multi-day distance marches require inter-day recovery protocols, not just in-march care',
+      'Compression socks overnight significantly improve next-day readiness',
+      'Caloric intake must increase proportionally with daily distance above 30 km',
+      'Mental preparation for multi-day events is as important as physical conditioning',
+      'Group pacing strategies prevent faster walkers from exhausting slower participants'
     ],
     questions: [
-      'What clothing materials perform best in hot, humid, wet conditions?',
-      'How often should socks be changed to prevent foot breakdown in wet conditions?',
-      'What equipment maintenance procedures prevent corrosion in tropical environments?',
-      'How should navigation techniques adapt to rapidly changing trail conditions?',
-      'What mental strategies help maintain motivation in consistently uncomfortable conditions?'
+      'What is the optimal sleep duration for recovery between long march days?',
+      'How should nutrition timing differ on rest days vs march days?',
+      'What compression garment strategy best aids multi-day recovery?',
+      'How does cumulative fatigue affect injury risk over 4+ day events?',
+      'What team-based pacing strategies maintain group cohesion over distance?'
     ],
     heroImage: {
-      src: '/images/fieldnotes/jungle-humidity-adaptation.jpg',
-      alt: 'Person rucking on muddy tropical trail with wet clothing and water draining from boots'
+      src: '/images/fieldnotes/multi-day-distance.jpg',
+      alt: 'Group of marchers on mixed terrain completing a multi-day distance march with varied pack loads'
     }
   },
   {

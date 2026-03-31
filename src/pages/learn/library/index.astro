@@ -16,13 +16,14 @@ const categories = [
 // Get selected category from URL params
 const selectedCategory = Astro.url.searchParams.get('category') || 'all';
 
-// Filter products by category (only show published products)
-const publishedProducts = products.filter(p => p.published !== false);
+// Filter products by category (only show published, non-placeholder products)
+const liveProducts = products.filter(p => p.published !== false && p.id !== 'coming-soon');
+const publishedProducts = liveProducts;
 const filteredProducts = selectedCategory === 'all'
   ? publishedProducts
   : publishedProducts.filter(p => p.category === selectedCategory);
 
-// Calculate totals (only published products)
+// Calculate totals (only live products)
 const totalProducts = publishedProducts.length;
 const totalValue = publishedProducts.reduce((sum, p) => sum + p.priceEUR, 0);
 
@@ -103,7 +104,7 @@ const libraryStructuredData = {
               {cat.name}
               {cat.id !== 'all' && (
                 <span class="ml-1 text-xs opacity-75">
-                  ({products.filter(p => p.category === cat.id).length})
+                  ({liveProducts.filter(p => p.category === cat.id).length})
                 </span>
               )}
             </a>

@@ -7,7 +7,7 @@ export interface Route {
   estimatedTime: string; // e.g., "2-3 hours"
   difficulty: 'beginner' | 'intermediate' | 'advanced';
   elevationGain: number; // in meters
-  terrain: ('road' | 'trail' | 'mixed' | 'hills' | 'mountain' | 'sand')[];
+  terrain: ('road' | 'trail' | 'mixed' | 'hills' | 'mountain')[];
   waypoints: {
     name: string;
     distanceFromStart: number; // in kilometers
@@ -215,57 +215,57 @@ export const routes: Route[] = [
   },
   {
     id: 'route-5',
-    slug: 'sand-dune-circuit',
-    title: 'Sand Dune Circuit',
-    description: 'Challenging sandy terrain workout building leg strength and endurance through variable resistance.',
-    distance: 6.0,
-    estimatedTime: '2-2.5 hours',
-    difficulty: 'advanced',
-    elevationGain: 80,
-    terrain: ['sand'],
+    slug: 'camino-pilgrim-stage',
+    title: 'Camino Pilgrim Stage',
+    description: 'Pilgrimage-style route simulating a typical Camino de Santiago daily stage with mixed surfaces and lightweight pack.',
+    distance: 25.0,
+    estimatedTime: '5-6 hours',
+    difficulty: 'intermediate',
+    elevationGain: 200,
+    terrain: ['trail', 'road', 'mixed'],
     waypoints: [
       {
-        name: 'Beach Access Point',
+        name: 'Village Start Point',
         distanceFromStart: 0,
-        description: 'Start at designated beach access with parking'
+        description: 'Begin at village square with water fountain and pilgrim waymarks'
       },
       {
-        name: 'First Dune Base',
-        distanceFromStart: 1.0,
-        description: 'Begin ascent of first major dune'
+        name: 'Farm Track Junction',
+        distanceFromStart: 4.0,
+        description: 'Transition from road to farm track with scallop shell waymark'
       },
       {
-        name: 'Dune Crest',
-        distanceFromStart: 1.5,
-        description: 'Top of first dune with ocean view'
+        name: 'Ridge Path',
+        distanceFromStart: 8.0,
+        description: 'Open ridge with panoramic views - good rest point'
       },
       {
-        name: 'Interdunal Walk',
-        distanceFromStart: 2.5,
-        description: 'Travel between dunes on firmer sand'
+        name: 'Forest Trail',
+        distanceFromStart: 12.0,
+        description: 'Shaded forest section - cooler in summer heat'
       },
       {
-        name: 'Second Dune Base',
-        distanceFromStart: 3.5,
-        description: 'Base of second dune for ascent'
+        name: 'River Crossing',
+        distanceFromStart: 16.0,
+        description: 'Bridge crossing with nearby cafe - natural lunch stop'
       },
       {
-        name: 'Return Path',
-        distanceFromStart: 5.0,
-        description: 'Return route along beach at water line'
+        name: 'Roman Road Section',
+        distanceFromStart: 20.0,
+        description: 'Historic paved section following original Roman route'
       },
       {
-        name: 'Beach Access Finish',
-        distanceFromStart: 6.0,
-        description: 'Return to start point'
+        name: 'Town Arrival',
+        distanceFromStart: 25.0,
+        description: 'Arrive at pilgrim hostel - end of stage'
       }
     ],
-    loadRecommendation: 10,
-    bestSeason: ['fall', 'winter', 'spring'],
-    notes: 'Check tide schedules - best attempted during low tide. Foot care critical in sandy conditions.',
+    loadRecommendation: 8,
+    bestSeason: ['spring', 'summer', 'fall'],
+    notes: 'Keep pack under 10% body weight for Camino simulation. Practice sock changes at midpoint. Walking poles recommended for descents.',
     heroImage: {
-      src: '/images/routes/sand-dune-circuit-hero.jpg',
-      alt: 'Sand dune circuit showing rucker ascending sandy slope with ocean in background and footprints in sand'
+      src: '/images/routes/camino-pilgrim-stage.jpg',
+      alt: 'Pilgrim-style rucker on waymarked trail with scallop shell symbol and lightweight pack, simulating Camino de Santiago stage'
     }
   },
   {

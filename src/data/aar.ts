@@ -259,50 +259,50 @@ export const aarEntries: AAR[] = [
   },
   {
     id: 'aar-6',
-    title: 'Desert Conditioning Trek - After Action Report',
+    title: 'Camino Preparation Trek - After Action Report',
     date: '2024-04-05',
     author: 'Red Rucker',
-    duration: 150,
-    distance: 16.0,
-    load: 20,
+    duration: 240,
+    distance: 30.0,
+    load: 8,
     participants: 8,
-    conditions: 'Hot, 35°C, low humidity, sandy terrain with limited shade',
+    conditions: 'Mild, 16°C, mixed trail and road, sunny intervals',
     planned: [
-      'Test hydration strategies in hot, dry conditions',
-      'Evaluate foot care in sandy environments',
-      'Practice navigation with limited visual references',
-      'Assess heat illness prevention procedures'
+      'Test lightweight pack strategy for long-distance pilgrimage',
+      'Evaluate foot care protocols over extended road and trail distances',
+      'Practice waymarking navigation with minimal map reliance',
+      'Assess pacing strategies for sustainable daily stages'
     ],
     actual: [
-      'Hydration plan prevented heat illness despite challenging conditions',
-      'Foot care protocol effective in sandy terrain',
-      'Navigation accuracy maintained despite featureless terrain',
-      'Team monitored each other for heat stress symptoms'
+      'Light pack proved comfortable over full distance with proper fitting',
+      'Foot care protocol effective when followed proactively at rest stops',
+      'Waymarking navigation successful on well-marked trail sections',
+      'Steady pace of 5 km/h sustainable with regular micro-breaks'
     ],
     whatWentWell: [
-      'Hydration plan prevented heat illness despite challenging conditions',
-      'Foot care protocol effective in sandy terrain',
-      'Navigation accuracy maintained despite featureless terrain',
-      'Team monitored each other for heat stress symptoms'
+      'Light pack proved comfortable over full distance with proper fitting',
+      'Foot care protocol effective when followed proactively at rest stops',
+      'Waymarking navigation successful on well-marked trail sections',
+      'Steady pace of 5 km/h sustainable with regular micro-breaks'
     ],
     improvements: [
-      'Pacing strategies for extreme heat conditions',
-      'Equipment protection from sand intrusion',
-      'Shade utilization during rest periods',
-      'Electrolyte replacement timing and amounts'
+      'Earlier first sock change to prevent initial hot spots',
+      'Better hydration planning for road sections without shade',
+      'Walking pole technique refinement for descents',
+      'End-of-day stretching routine standardisation'
     ],
     lessonsLearned: [
-      'Hydration must begin before thirst develops in hot conditions',
-      'Sand intrusion causes equipment failure and personal discomfort',
-      'Strategic rest in available shade significantly improves performance',
-      'Electrolyte replacement requires proactive, not reactive, approach'
+      'Pilgrimage-style rucking requires different pacing than tactical loads',
+      'Proactive foot care at set intervals prevents most blister issues',
+      'Light loads allow much higher daily distances when trained for it',
+      'Mental preparation for repetitive daily stages is crucial for multi-week treks'
     ],
     heroImage: {
-      src: '/images/aar/desert-sim-hero.jpg',
-      alt: 'Team of 8 ruckers in sandy desert terrain, checking hydration and foot care during rest stop'
+      src: '/images/aar/camino-prep-hero.jpg',
+      alt: 'Team of 8 ruckers on mixed trail with lightweight packs and walking poles, practising Camino de Santiago preparation'
     },
     location: '',
-    approved: false
+    approved: true
   },
   {
     id: 'aar-7',
@@ -353,47 +353,47 @@ export const aarEntries: AAR[] = [
   },
   {
     id: 'aar-8',
-    title: 'High Altitude Preparation Trek - After Action Report',
+    title: 'Nijmegen Marches Preparation - After Action Report',
     date: '2024-03-15',
     author: 'Red Rucker',
-    duration: 180,
-    distance: 12.0,
-    load: 16,
-    participants: 5,
-    conditions: 'High elevation (2500m), clear, -5°C, strong winds',
+    duration: 300,
+    distance: 40.0,
+    load: 10,
+    participants: 12,
+    conditions: 'Overcast, 12°C, flat terrain, paved roads and paths',
     planned: [
-      'Assess individual response to altitude stress with load',
-      'Test acclimatization strategies for mountain trekking',
-      'Evaluate breathing techniques under load at altitude',
-      'Build foundation for higher altitude operations'
+      'Complete full 40 km stage in Nijmegen marches format',
+      'Test military categorisation weight requirements (10 kg)',
+      'Evaluate foot care and blister prevention over sustained road distance',
+      'Practise team formation walking and pace regulation'
     ],
     actual: [
-      'Acclimatization protocol prevented altitude sickness',
-      'Breathing techniques effective in managing exertion symptoms',
-      'Team monitored each other for altitude-related issues',
-      'All participants completed within predicted time ranges'
+      'Full 40 km completed by all 12 participants within time standard',
+      '10 kg pack manageable but foot care became critical after 25 km',
+      'Formation walking helped regulate pace and maintain group cohesion',
+      'Blister prevention protocol effective for most participants'
     ],
     whatWentWell: [
-      'Acclimatization protocol prevented altitude sickness',
-      'Breathing techniques effective in managing exertion symptoms',
-      'Team monitored each other for altitude-related issues',
-      'All participants completed within predicted time ranges'
+      'Full 40 km completed by all 12 participants within time standard',
+      '10 kg pack manageable but foot care became critical after 25 km',
+      'Formation walking helped regulate pace and maintain group cohesion',
+      'Blister prevention protocol effective for most participants'
     ],
     improvements: [
-      'Pacing strategies for altitude combined with load',
-      'Hydration monitoring in cold, dry altitude conditions',
-      'Individual symptom recognition and reporting',
-      'Equipment performance evaluation in extreme cold'
+      'Earlier first aid station for foot checks at 15 km mark',
+      'Better road-to-trail surface transition planning',
+      'Improved hydration timing on flat road sections',
+      'Team morale techniques for final 10 km fatigue zone'
     ],
     lessonsLearned: [
-      'Altitude affects load carriage capacity more than pure endurance',
-      'Hydration needs change significantly in cold, dry altitude conditions',
-      'Early symptom recognition prevents serious altitude issues',
-      'Individual variability requires personalized altitude approaches'
+      'Road marching for 40 km requires specific boot conditioning different from trail work',
+      'Proactive foot taping before starting prevents more issues than reactive treatment',
+      'Team formation naturally regulates pace and provides social motivation',
+      'Multi-day Nijmegen preparation must train inter-day recovery, not just daily distance'
     ],
     heroImage: {
-      src: '/images/aar/high-altitude-hero.jpg',
-      alt: 'Small team of 5 ruckers at high elevation with mountain backdrop, checking equipment and monitoring breathing'
+      src: '/images/aar/nijmegen-prep-hero.jpg',
+      alt: 'Team of 12 ruckers in formation on paved road, completing Nijmegen-style distance march preparation'
     },
     location: '',
     approved: true

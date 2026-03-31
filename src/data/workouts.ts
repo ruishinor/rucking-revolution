@@ -7,7 +7,7 @@ export interface Workout {
   distance: number; // in kilometers
   load: number; // in kilograms
   difficulty: 'beginner' | 'intermediate' | 'advanced';
-  terrain: ('road' | 'trail' | 'mixed' | 'hills' | 'sand')[];
+  terrain: ('road' | 'trail' | 'mixed' | 'hills')[];
   objectives: string[];
   equipment: string[];
   notes?: string;
@@ -206,22 +206,22 @@ export const workouts: Workout[] = [
   },
   {
     id: 'wk-11',
-    slug: 'long-distance-sand',
-    title: 'Long Distance Sand Workout',
-    description: 'Challenging beach or desert workout that builds exceptional strength and endurance through sand resistance.',
-    duration: 100,
-    distance: 8.0,
-    load: 20,
+    slug: 'nijmegen-distance-march',
+    title: 'Nijmegen Distance March',
+    description: 'Pilgrimage-style distance march simulating the Nijmegen Four Days Marches format with lightweight pack over sustained road and path distance.',
+    duration: 300,
+    distance: 40.0,
+    load: 10,
     difficulty: 'advanced',
-    terrain: ['sand'],
+    terrain: ['road', 'mixed'],
     objectives: [
-      'Build exceptional lower body strength',
-      'Develop mental toughness through challenging terrain',
-      'Improve balance and proprioception',
-      'Build work capacity in unstable conditions'
+      'Complete 40 km in single stage with military-category pack weight',
+      'Develop sustainable pacing for extended road marches',
+      'Practice foot care protocols for multi-day distance events',
+      'Build team cohesion through formation walking'
     ],
-    equipment: ['ruck (20kg)', 'hydration system (3L)', 'sun protection', 'foot care supplies'],
-    notes: 'Sand increases energy expenditure by 1.6x compared to road. Start with shorter distances and build gradually.'
+    equipment: ['ruck (10kg)', 'walking poles', 'foot care kit (tape, blister plasters)', 'hydration system (2L)', 'electrolyte tablets', 'compression socks (for recovery)'],
+    notes: 'Simulates Nijmegen Four Day Marches daily stage. Keep pack at or under 10 kg for military category. Start early, maintain steady 5 km/h pace, and take 10-minute breaks every 10 km.'
   },
   {
     id: 'wk-12',

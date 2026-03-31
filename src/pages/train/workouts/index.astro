@@ -3,10 +3,18 @@ import Layout from '@/components/Layout.astro';
 import WorkoutGenerator from '@/components/WorkoutGenerator.astro';
 ---
 <Layout title="Workouts" description="Training overview, workout generator, sample workouts, and programming principles">
-  <h1 class="text-3xl font-bold mb-6">Workouts</h1>
-  <p>Training overview, workout generator, sample workouts, and programming principles</p>
-  
-  <div class="mt-8">
-    <WorkoutGenerator />
+  <div class="bg-surface py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-heading text-secondary mb-4">WORKOUTS</h1>
+        <p class="text-lg font-serif text-muted-foreground max-w-3xl mx-auto">
+          Generate workouts, access sample routines, and learn programming principles for rucking fitness.
+        </p>
+      </div>
+
+      <div class="mb-12">
+        <WorkoutGenerator />
+      </div>
+    </div>
   </div>
 </Layout>
