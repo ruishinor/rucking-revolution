@@ -117,7 +117,7 @@ export const products: Product[] = [
     id: 'prod-2',
     sku: 'RR-BOOK-002',
     title: 'Advanced Rucking: Community Applications',
-    description: 'Advanced guide for experienced ruckers focusing on community applications, mission planning, and operational readiness.',
+    description: 'Advanced guide for experienced ruckers focusing on community applications, event planning, and group readiness.',
     category: 'books',
     priceEUR: 29.99,
     files: [
@@ -140,7 +140,7 @@ export const products: Product[] = [
        },
        {
          src: '/images/products/rr-advanced-preview2.jpg',
-         alt: 'Preview page showing mission planning templates and checklists'
+         alt: 'Preview page showing event planning templates and checklists'
        }
      ],
      whatYouLearn: [

@@ -107,8 +107,8 @@
   }
 
   ::selection {
-    background-color: rgba(138, 30, 30, 0.2);
-    color: var(--rr-color-foreground);
+    background-color: rgba(138, 30, 30, 0.3);
+    color: var(--rr-color-black);
   }
 }
 

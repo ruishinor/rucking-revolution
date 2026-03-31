@@ -141,6 +141,9 @@ const communityItems = [
           <a href="/learn" class="btn-military btn-military-secondary">
             READ THE FIELD GUIDE
           </a>
+          <a href="/contact" class="btn-military btn-military-secondary">
+            GET IN TOUCH
+          </a>
         </div>
       </div>
     </div>
@@ -224,7 +227,7 @@ const communityItems = [
           <aside class="product-teaser" aria-labelledby="lead-book-title">
             <a href={leadBook.purchaseLink} class="block group" aria-label={`View ${leadBook.title} details`}>
               <!-- Cover Image -->
-              <div class="aspect-[4/5] bg-panel mb-5 overflow-hidden rounded relative">
+              <div class="aspect-[3/4] max-w-xs mx-auto bg-panel mb-5 overflow-hidden rounded relative">
                 <img 
                   src={leadBook.previewImages[0]?.src} 
                   alt={leadBook.previewImages[0]?.alt || leadBook.title}
@@ -437,10 +440,10 @@ const communityItems = [
   <section class="recruit-section">
     <div class="recruit-bg"></div>
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
-      <span class="stamp stamp-primary mb-6">RECRUITMENT</span>
+      <span class="stamp stamp-primary mb-6">NEWSLETTER</span>
       <h2 class="text-4xl md:text-5xl font-heading text-white mb-6">JOIN THE MOVEMENT</h2>
       <p class="text-muted-200 text-lg font-serif mb-8">
-        Not a newsletter. Intelligence briefings for operators who ruck with purpose.
+        Training tips, community updates, and exclusive content for those who ruck with purpose.
       </p>
       <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto mb-4">
         <input 
@@ -449,10 +452,10 @@ const communityItems = [
           class="flex-1 px-4 py-3 bg-surface border border-muted-300 text-foreground placeholder:text-muted focus:border-primary focus:outline-none"
         />
         <button type="submit" class="btn-military btn-military-primary whitespace-nowrap">
-          ENLIST
+          SUBSCRIBE
         </button>
       </form>
-      <p class="label-muted text-xs">No spam. Operational frequency only.</p>
+      <p class="label-muted text-xs">No spam. Updates at a steady rhythm.</p>
     </div>
   </section>
 

@@ -134,7 +134,7 @@ export const crewTactics: CrewTactic[] = [
   {
     id: 'ct-comm-1',
     category: 'Communication',
-    text: 'Repeat back the mission-critical details you heard before acknowledging receipt.',
+    text: 'Repeat back the critical details you heard before acknowledging receipt.',
     difficulty: 'beginner',
     duration: 20,
     prompts: [

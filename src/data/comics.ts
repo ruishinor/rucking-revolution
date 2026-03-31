@@ -29,7 +29,7 @@ export const comics: Comic[] = [
     title: 'Rain or Shine',
     episode: 3,
     image: '/assets/sample-webcomic-03.png',
-    caption: 'Weather turns bad, but the mission continues.',
+    caption: 'Weather turns bad, but the trek continues.',
     lesson: 'Adaptability is key—adjust your pace, but never quit.'
   }
 ];

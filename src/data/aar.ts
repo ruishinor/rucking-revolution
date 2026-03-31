@@ -302,7 +302,7 @@ export const aarEntries: AAR[] = [
       alt: 'Team of 8 ruckers in sandy desert terrain, checking hydration and foot care during rest stop'
     },
     location: '',
-    approved: true
+    approved: false
   },
   {
     id: 'aar-7',
