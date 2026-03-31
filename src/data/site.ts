@@ -35,4 +35,14 @@ export const site = {
   cmsProvider: 'ghost', // Options: 'ghost' or 'none'
   // AAR Submission Settings
   allowPublicSubmissions: publicAarSubmissionsEnabled, // Requires AAR_PUBLIC_SUBMISSIONS_ENABLED plus webhook and Turnstile config
+  // Lead Magnet (free quick-start guide)
+  leadMagnet: {
+    title: 'Your First 3 Rucks',
+    subtitle: 'One page. Three sessions. A quiet confidence boost.',
+    download: '/downloads/the-first-3-rucks-quick-start.html',
+  },
+  // Lead Book (primary paid product)
+  leadBook: {
+    link: '/library',
+  },
 };
