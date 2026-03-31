@@ -36,7 +36,7 @@ const homepageStructuredData = {
         "@type": "SearchAction",
         "target": {
           "@type": "EntryPoint",
-          "urlTemplate": `${site.baseUrl}/articles?search={search_term_string}`
+          "urlTemplate": `${site.baseUrl}/learn/articles?search={search_term_string}`
         },
         "query-input": "required name=search_term_string"
       },
@@ -50,7 +50,7 @@ const homepageStructuredData = {
       "@type": "Article",
       "headline": featuredArticle.title,
       "description": featuredArticle.excerpt,
-      "url": `${site.baseUrl}/articles/${featuredArticle.slug}`,
+      "url": `${site.baseUrl}/learn/articles/${featuredArticle.slug}`,
       "datePublished": featuredArticle.date,
       "author": {
         "@type": "Person",
@@ -141,7 +141,7 @@ const communityItems = [
           <a href="/learn" class="btn-military btn-military-secondary">
             READ THE FIELD GUIDE
           </a>
-          <a href="/contact" class="btn-military btn-military-secondary">
+          <a href="/contact" class="btn-military btn-military-secondary btn-get-in-touch">
             GET IN TOUCH
           </a>
         </div>
@@ -213,7 +213,7 @@ const communityItems = [
                 <span class="stamp stamp-primary text-xs py-1" role="listitem">{tag}</span>
               ))}
             </div>
-            <a href={`/articles/${featuredArticle.slug}`} class="btn btn-secondary" aria-label={`Read article: ${featuredArticle.title}`}>
+            <a href={`/learn/articles/${featuredArticle.slug}`} class="btn btn-secondary" aria-label={`Read article: ${featuredArticle.title}`}>
               READ ARTICLE
               <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
@@ -386,7 +386,7 @@ const communityItems = [
               <span class="label-mono">{article.readingTime} MIN</span>
             </div>
             <h3 class="text-xl font-heading text-secondary mb-3 group-hover:text-primary transition-colors">
-              <a href={`/articles/${article.slug}`}>{article.title}</a>
+              <a href={`/learn/articles/${article.slug}`}>{article.title}</a>
             </h3>
             <p class="text-muted-foreground text-sm line-clamp-3 mb-4">{article.excerpt}</p>
             <div class="flex flex-wrap gap-2">
@@ -445,10 +445,13 @@ const communityItems = [
       <p class="text-muted-200 text-lg font-serif mb-8">
         Training tips, community updates, and exclusive content for those who ruck with purpose.
       </p>
-      <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto mb-4">
+      <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto mb-4" onsubmit="event.preventDefault()">
+        <label for="homepage-newsletter-email" class="sr-only">Email address</label>
         <input 
+          id="homepage-newsletter-email"
           type="email" 
           placeholder="ENTER EMAIL" 
+          aria-label="Email address for newsletter"
           class="flex-1 px-4 py-3 bg-surface border border-muted-300 text-foreground placeholder:text-muted focus:border-primary focus:outline-none"
         />
         <button type="submit" class="btn-military btn-military-primary whitespace-nowrap">

@@ -23,6 +23,28 @@ const allowPublicSubmissions = getAarConfiguration().enabled;
         </p>
       </div>
 
+    <!-- Browse Archive - Top Section -->
+    <section class="mb-12">
+      <div class="bg-gray-100 rounded-lg p-6 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div>
+          <h2 class="text-xl font-bold text-gray-900 mb-2">Browse the Archive</h2>
+          <p class="text-gray-600 text-sm">
+            Learn from {approvedAARs.length} approved After Action Reviews from crews across the network.
+          </p>
+        </div>
+        {hasAARs ? (
+          <a
+            href="/lead/after-action-reviews/archive"
+            class="inline-block bg-red-800 text-white font-semibold px-6 py-3 rounded-md hover:bg-red-900 transition-colors whitespace-nowrap"
+          >
+            View Archive ({approvedAARs.length} entries)
+          </a>
+        ) : (
+          <p class="text-gray-500 text-sm">No AARs available yet.</p>
+        )}
+      </div>
+    </section>
+
     <!-- What is an AAR Section -->
     <section class="mb-12">
       <h2 class="text-2xl font-bold text-gray-900 mb-4">What is an After Action Review?</h2>
@@ -155,42 +177,21 @@ const allowPublicSubmissions = getAarConfiguration().enabled;
     <!-- CTA Section -->
     <section class="mb-12">
       <h2 class="text-2xl font-bold text-gray-900 mb-6">Take Action</h2>
-      <div class="grid md:grid-cols-2 gap-6">
-        <!-- Submit AAR -->
-        <div class="bg-red-800 rounded-lg p-6 text-white">
-          <h3 class="text-xl font-bold mb-3">Submit Your AAR</h3>
-          <p class="text-red-100 mb-4">
-            Document your crew's experience and contribute to the collective knowledge base.
-          </p>
-          {allowPublicSubmissions ? (
-            <a 
-              href="/lead/after-action-reviews/submit"
-              class="inline-block bg-white text-red-800 font-semibold px-6 py-3 rounded-md hover:bg-red-50 transition-colors"
-            >
-              Submit an AAR
-            </a>
-          ) : (
-            <p class="text-red-200 text-sm">Public submissions are currently disabled.</p>
-          )}
-        </div>
-
-        <!-- Browse Archive -->
-        <div class="bg-gray-100 rounded-lg p-6">
-          <h3 class="text-xl font-bold text-gray-900 mb-3">Browse the Archive</h3>
-          <p class="text-gray-600 mb-4">
-            Learn from {approvedAARs.length} approved After Action Reviews from crews across the network.
-          </p>
-          {hasAARs ? (
-            <a 
-              href="/lead/after-action-reviews/archive"
-              class="inline-block bg-red-800 text-white font-semibold px-6 py-3 rounded-md hover:bg-red-900 transition-colors"
-            >
-              View Archive ({approvedAARs.length} entries)
-            </a>
-          ) : (
-            <p class="text-gray-500 text-sm">No AARs available yet.</p>
-          )}
-        </div>
+      <div class="bg-red-800 rounded-lg p-6 text-white">
+        <h3 class="text-xl font-bold mb-3">Submit Your AAR</h3>
+        <p class="text-red-100 mb-4">
+          Document your crew's experience and contribute to the collective knowledge base.
+        </p>
+        {allowPublicSubmissions ? (
+          <a
+            href="/lead/after-action-reviews/submit"
+            class="inline-block bg-white text-red-800 font-semibold px-6 py-3 rounded-md hover:bg-red-50 transition-colors"
+          >
+            Submit an AAR
+          </a>
+        ) : (
+          <p class="text-red-200 text-sm">Public submissions are currently disabled.</p>
+        )}
       </div>
     </section>
 

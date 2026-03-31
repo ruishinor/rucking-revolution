@@ -2,6 +2,13 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "astro",
   "buildCommand": "npm run build",
+  "redirects": [
+    { "source": "/articles", "destination": "/learn/articles", "statusCode": 301 },
+    { "source": "/articles/:slug", "destination": "/learn/articles/:slug", "statusCode": 301 },
+    { "source": "/articles/:page", "destination": "/learn/articles/:page", "statusCode": 301 },
+    { "source": "/articles/tag/:tag", "destination": "/learn/articles/tag/:tag", "statusCode": 301 },
+    { "source": "/articles/tag/:tag/:page", "destination": "/learn/articles/tag/:tag/:page", "statusCode": 301 }
+  ],
   "headers": [
     {
       "source": "/(.*)",

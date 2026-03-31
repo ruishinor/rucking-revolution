@@ -36,70 +36,70 @@ const pageDescription = note.observations.join(' ');
   }}
   twitter={{ card: 'summary_large_image' }}
 >
-  <Container>
-    {/* Field Note Header */}
-    <header class="mb-8">
-      <div class="flex items-center space-x-4">
-        {/* Back Link */}
-        <a href="/field-notes" class="text-sm text-muted-foreground hover:underline">
-          ← All Field Notes
-        </a>
-        <h1 class="text-3xl font-bold">{note.title}</h1>
-      </div>
-      <div class="space-y-2 text-muted-foreground text-sm">
-        <span>Date: {new Date(note.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-        <span>Location: {note.location}</span>
-        <span>Distance: {note.distance} km • Duration: {note.duration} min • Load: {note.load} kg</span>
-        <span>Weather: {note.weather}</span>
-        <span>Terrain: {note.terrain.map(t => t.charAt(0).toUpperCase() + t.slice(1)).join(', ')}</span>
-      </div>
-    </header>
+  <div class="bg-surface py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="mb-6">
+        <a href="/field-notes" class="text-sm text-muted-foreground hover:underline">← Back to Field Notes</a>
+      </nav>
 
-    {/* Field Note Content */}
-    <div class="prose lg:prose-xl">
+      <header class="mb-8">
+        <h1 class="text-3xl font-heading text-secondary mb-4">{note.title.toUpperCase()}</h1>
+        <div class="flex flex-wrap gap-4 text-sm font-mono text-muted-foreground">
+          <span>DATE: {new Date(note.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+          <span>LOC: {note.location}</span>
+          <span>DIST: {note.distance} km ({(note.distance * 0.621371).toFixed(1)} mi)</span>
+          <span>DUR: {note.duration} min</span>
+          <span>LOAD: {note.load} kg ({(note.load * 2.20462).toFixed(1)} lb)</span>
+          <span>WX: {note.weather}</span>
+          <span>TERRAIN: {note.terrain.map(t => t.charAt(0).toUpperCase() + t.slice(1)).join(', ')}</span>
+        </div>
+      </header>
+
       {/* Hero Image */}
-      <div class="mb-8">
+      <figure class="mb-8">
         <img
           src={note.heroImage.src}
           alt={note.heroImage.alt}
           class="w-full rounded-lg shadow-lg"
           loading="lazy"
         />
-      </div>
+      </figure>
 
-      {/* Observations */}
-      <section class="mb-8">
-        <h2 class="text-2xl font-semibold mb-4">Observations</h2>
-        <ul class="list-disc list-inside space-y-3">
-          {note.observations.map((obs, index) => (
-            <li key={index}>{obs}</li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Insights */}
-      {note.insights.length > 0 && (
+      <article class="prose lg:prose-xl">
+        {/* Observations */}
         <section class="mb-8">
-          <h2 class="text-2xl font-semibold mb-4">Insights</h2>
+          <h2 class="font-heading text-secondary">OBSERVATIONS</h2>
           <ul class="list-disc list-inside space-y-3">
-            {note.insights.map((insight, index) => (
-              <li key={index}>{insight}</li>
+            {note.observations.map((obs, index) => (
+              <li key={index}>{obs}</li>
             ))}
           </ul>
         </section>
-      )}
 
-      {/* Questions */}
-      {note.questions.length > 0 && (
-        <section class="mb-8">
-          <h2 class="text-2xl font-semibold mb-4">Questions for Further Exploration</h2>
-          <ul class="list-disc list-inside space-y-3">
-            {note.questions.map((question, index) => (
-              <li key={index}>{question}</li>
-            ))}
-          </ul>
-        </section>
-      )}
+        {/* Insights */}
+        {note.insights.length > 0 && (
+          <section class="mb-8">
+            <h2 class="font-heading text-secondary">INSIGHTS</h2>
+            <ul class="list-disc list-inside space-y-3">
+              {note.insights.map((insight, index) => (
+                <li key={index}>{insight}</li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        {/* Questions */}
+        {note.questions.length > 0 && (
+          <section class="mb-8">
+            <h2 class="font-heading text-secondary">QUESTIONS FOR FURTHER EXPLORATION</h2>
+            <ul class="list-disc list-inside space-y-3">
+              {note.questions.map((question, index) => (
+                <li key={index}>{question}</li>
+              ))}
+            </ul>
+          </section>
+        )}
+      </article>
     </div>
-  </Container>
+  </div>
 </Layout>

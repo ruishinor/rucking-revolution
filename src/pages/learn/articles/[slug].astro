@@ -1,0 +1,209 @@
+---
+import { site } from '@/data/site';
+import { articles } from '@/data/articles';
+import Layout from '@/components/Layout.astro';
+import { sanitizeArticleHtml } from '@/lib/security';
+import { marked } from 'marked';
+import { existsSync } from 'node:fs';
+
+export async function getStaticPaths() {
+  return articles.map(article => ({
+    params: { slug: article.slug },
+    props: { article }
+  }));
+}
+
+const { slug } = Astro.params;
+const article = articles.find(a => a.slug === slug);
+
+if (!article) {
+  return Astro.redirect('/404');
+}
+
+const renderedContent = sanitizeArticleHtml(marked.parse(article.body));
+const heroImageExists = existsSync(new URL(`../../public${article.heroImage.src}`, import.meta.url));
+
+const relatedArticles = articles
+  .filter(a => a.id !== article.id && a.tags.some(tag => article.tags.includes(tag)))
+  .slice(0, 3);
+
+const formattedDate = new Date(article.date).toLocaleDateString('en-US', {
+  month: 'long',
+  day: 'numeric',
+  year: 'numeric'
+});
+
+const authorInitials = article.author.split(' ').map(n => n[0]).join('');
+
+const pageTitle = `${article.title} - Rucking Revolution`;
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": article.title,
+  "description": article.excerpt,
+  "image": [`${site.baseUrl}${article.heroImage.src}`],
+  "author": {
+    "@type": "Person",
+    "name": article.author
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rucking Revolution",
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${site.baseUrl}/logo.png`
+    }
+  },
+  "datePublished": article.date,
+  "dateModified": article.date,
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `${site.baseUrl}/learn/articles/${article.slug}`
+  }
+};
+---
+<Layout 
+  title={pageTitle}
+  description={article.excerpt}
+  openGraph={{
+    type: 'article',
+    url: `${site.baseUrl}/learn/articles/${article.slug}`,
+    image: `${site.baseUrl}${article.heroImage.src}`
+  }}
+  twitter={{
+    card: 'summary_large_image',
+    title: pageTitle,
+    description: article.excerpt,
+    image: `${site.baseUrl}${article.heroImage.src}`
+  }}
+  structuredData={structuredData}
+>
+  <div class="bg-surface py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="mb-6">
+        <a href="/learn/articles" class="text-sm text-muted-foreground hover:underline">← Back to Articles</a>
+      </nav>
+
+      {/* Article Header */}
+      <header class="mb-8">
+        {heroImageExists ? (
+          <figure class="mb-6">
+            <img 
+              src={article.heroImage.src} 
+              alt={article.heroImage.alt} 
+              class="w-full h-64 object-cover rounded-lg"
+              loading="lazy"
+              width="1200"
+              height="630"
+            />
+          </figure>
+        ) : (
+          <figure class="mb-6">
+            <div class="w-full h-64 bg-muted-200 rounded-lg flex items-center justify-center">
+              <span class="text-muted-foreground text-lg">Article hero image</span>
+            </div>
+          </figure>
+        )}
+        
+        <h1 class="text-3xl font-heading text-secondary mb-4">{article.title}</h1>
+        <div class="flex flex-wrap gap-4 text-sm font-mono text-muted-foreground mb-6">
+          <span>BY {article.author.toUpperCase()}</span>
+          <span>|</span>
+          <time dateTime={article.date}>{formattedDate}</time>
+          <span>|</span>
+          <span>{article.readingTime} MIN READ</span>
+          {article.estimatedCaloriesBurned && (
+            <>
+              <span>|</span>
+              <span>{article.estimatedCaloriesBurned} KCAL BURNED</span>
+            </>
+          )}
+        </div>
+      </header>
+
+      {/* Article Body */}
+      <article class="prose prose-editorial lg:prose-xl mx-auto mb-8" set:html={renderedContent} />
+
+      {/* Author Module */}
+      <section class="mb-8 bg-muted-50 rounded-lg p-6 flex flex-col md:flex-row items-start">
+        <div class="flex-shrink-0 mb-4 md:mb-0 md:mr-6">
+          <div class="w-24 h-24 rounded-full bg-primary flex items-center justify-center text-white text-2xl font-bold">
+            {authorInitials}
+          </div>
+        </div>
+        <div class="flex-1">
+          <h2 class="font-heading text-secondary mb-2">ABOUT THE AUTHOR</h2>
+          <p class="text-muted-foreground text-sm">
+            {article.author} is a dedicated rucking enthusiast and contributor to Rucking Revolution.
+          </p>
+        </div>
+      </section>
+
+      {/* Related Articles */}
+      {relatedArticles.length > 0 && (
+        <section class="mb-8">
+          <h2 class="font-heading text-secondary mb-4">RELATED ARTICLES</h2>
+          <div class="grid gap-4 md:grid-cols-3">
+            {relatedArticles.map(related => (
+              <article class="card-border flex flex-col h-full border border-border hover:border-primary transition-colors">
+                <a href={`/learn/articles/${related.slug}`} class="mb-0">
+                  <img 
+                    src={related.heroImage.src} 
+                    alt={related.heroImage.alt} 
+                    class="w-full h-36 object-cover"
+                    loading="lazy"
+                  />
+                </a>
+                <div class="p-4 flex-0">
+                  <h3 class="text-lg font-heading text-secondary mb-2 line-clamp-2">
+                    <a href={`/learn/articles/${related.slug}`} class="hover:underline">
+                      {related.title}
+                    </a>
+                  </h3>
+                  <p class="text-muted-foreground mb-2 line-clamp-2 text-sm">{related.excerpt}</p>
+                  <div class="flex flex-wrap gap-2 text-xs font-mono text-muted-foreground mt-auto">
+                    <span>{related.readingTime} MIN READ</span>
+                    <span>|</span>
+                    <span>{new Date(related.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Share Links */}
+      <section class="mb-8 bg-muted-50 rounded-lg p-6">
+        <h2 class="font-heading text-secondary mb-4">SHARE THIS ARTICLE</h2>
+        <div class="flex flex-wrap gap-3">
+          <a 
+            href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(article.title)}&url=${encodeURIComponent(`${site.baseUrl}/learn/articles/${article.slug}`)}`} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="flex-1 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors text-center text-sm"
+          >
+            Twitter
+          </a>
+          <a 
+            href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`${site.baseUrl}/learn/articles/${article.slug}`)}`} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="flex-1 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors text-center text-sm"
+          >
+            Facebook
+          </a>
+          <a 
+            href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(`${site.baseUrl}/learn/articles/${article.slug}`)}&title=${encodeURIComponent(article.title)}`} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="flex-1 px-4 py-2 bg-blue-800 text-white rounded hover:bg-blue-900 transition-colors text-center text-sm"
+          >
+            LinkedIn
+          </a>
+        </div>
+      </section>
+    </div>
+  </div>
+</Layout>

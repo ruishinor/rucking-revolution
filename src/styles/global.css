@@ -360,7 +360,7 @@
     font-size: 0.875rem;
     line-height: 1.5;
     margin: 0;
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(255, 255, 255, 0.95);
   }
 
   /* Prose styles */
@@ -438,6 +438,12 @@
 
   .swipe-card {
     will-change: transform;
+  }
+
+  /* Get in Touch pill - forest green stroke on hover */
+  .btn-get-in-touch:hover {
+    border-color: var(--rr-color-forest);
+    color: var(--rr-color-forest);
   }
 }
 

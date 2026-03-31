@@ -1,0 +1,169 @@
+---
+import { site } from '@/data/site';
+import { articles } from '@/data/articles';
+import Layout from '@/components/Layout.astro';
+import { existsSync } from 'node:fs';
+
+const publicAssetExists = (assetPath) =>
+  existsSync(new URL(`../../../../../public${assetPath}`, import.meta.url));
+
+const allTags = [...new Set(articles.flatMap(article => article.tags))];
+
+export async function getStaticPaths() {
+  const tags = [...new Set(articles.flatMap(article => article.tags))];
+  const paths = [];
+  for (const tag of tags) {
+    const filteredArticles = articles.filter(article => article.tags.includes(tag));
+    const sortedArticles = [...filteredArticles].sort((a, b) => 
+      new Date(b.date).getTime() - new Date(a.date).getTime()
+    );
+    const pageSize = 6;
+    const totalPages = Math.ceil(sortedArticles.length / pageSize);
+    if (totalPages > 1) {
+      for (let page = 2; page <= totalPages; page++) {
+        paths.push({ params: { tag, page: page.toString() } });
+      }
+    }
+  }
+  return paths;
+}
+
+const { tag, page } = Astro.params;
+const currentTag = tag;
+const currentPage = parseInt(page) || 1;
+
+const filteredArticles = articles.filter(article => article.tags.includes(currentTag));
+const sortedArticles = [...filteredArticles].sort((a, b) => 
+  new Date(b.date).getTime() - new Date(a.date).getTime()
+);
+
+const pageSize = 6;
+const totalPages = Math.max(1, Math.ceil(sortedArticles.length / pageSize));
+
+if (currentPage > totalPages || currentPage < 1) {
+  return Astro.redirect(`/learn/articles/tag/${currentTag}`);
+}
+
+const paginatedArticles = sortedArticles.slice(
+  (currentPage - 1) * pageSize,
+  currentPage * pageSize
+);
+
+const articleCards = paginatedArticles.map((article) => ({
+  ...article,
+  hasHeroImage: publicAssetExists(article.heroImage.src),
+}));
+
+const displayTag = currentTag.split('-').map(word => 
+  word.charAt(0).toUpperCase() + word.slice(1)
+).join(' ');
+
+const pageTitle = `${displayTag} Articles (Page ${currentPage}) - Rucking Revolution`;
+const pageDescription = `Explore our collection of ${displayTag.toLowerCase()} articles. Page ${currentPage}.`;
+---
+<Layout 
+  title={pageTitle}
+  description={pageDescription}
+  openGraph={{
+    type: 'website',
+    url: `${site.baseUrl}/learn/articles/tag/${currentTag}/${currentPage}`,
+    image: `${site.baseUrl}/og-articles.jpg`
+  }}
+  twitter={{ card: 'summary_large_image' }}
+>
+  <div class="bg-surface py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-heading text-secondary mb-4">{displayTag.toUpperCase()} ARTICLES</h1>
+        <p class="text-sm font-mono text-muted-foreground mb-2">Page {currentPage} of {totalPages}</p>
+        <p class="text-lg font-serif text-muted-foreground max-w-3xl mx-auto">
+          {sortedArticles.length} article{sortedArticles.length !== 1 ? 's' : ''} found
+        </p>
+      </div>
+
+      <div class="mb-6 flex flex-wrap gap-2 justify-center">
+        <a 
+          href="/learn/articles" 
+          class="px-4 py-2 text-sm font-medium border transition-colors card-border bg-surface text-muted-foreground border-border hover:border-primary hover:text-primary"
+        >
+          ALL
+        </a>
+        {allTags.map(t => (
+          <a 
+            href={`/learn/articles/tag/${t}`} 
+            class={`px-4 py-2 text-sm font-medium border transition-colors card-border
+              ${currentTag === t ? 'bg-primary text-white border-primary' : 'bg-surface text-muted-foreground border-border hover:border-primary hover:text-primary'}`}
+          >
+            {t.toUpperCase()}
+          </a>
+        ))}
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {articleCards.map(article => (
+          <article class="card-border flex flex-col h-full border border-border hover:border-primary transition-colors">
+            {article.hasHeroImage ? (
+              <a href={`/learn/articles/${article.slug}`} class="mb-0">
+                <img 
+                  src={article.heroImage.src} 
+                  alt={article.heroImage.alt} 
+                  class="w-full h-48 object-cover"
+                  loading="lazy"
+                />
+              </a>
+            ) : (
+              <a href={`/learn/articles/${article.slug}`} class="mb-0 block">
+                <div class="w-full h-48 bg-muted flex items-center justify-center">
+                  <span class="text-muted-foreground text-sm font-mono">NO IMAGE</span>
+                </div>
+              </a>
+            )}
+            <div class="flex-0 p-4">
+              <h2 class="text-xl font-heading text-secondary mb-2 line-clamp-2">
+                <a href={`/learn/articles/${article.slug}`} class="hover:underline">{article.title}</a>
+              </h2>
+              <p class="text-muted-foreground mb-2 line-clamp-3 text-sm">{article.excerpt}</p>
+              <div class="flex flex-wrap gap-3 text-xs font-mono text-muted-foreground mt-auto">
+                <span>BY {article.author.toUpperCase()}</span>
+                <time dateTime={article.date}>
+                  {new Date(article.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                </time>
+                <span>{article.readingTime} MIN READ</span>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      {totalPages > 1 && (
+        <div class="mt-8 flex justify-center gap-2">
+          {currentPage > 1 && (
+            <a 
+              href={currentPage === 2 ? `/learn/articles/tag/${currentTag}` : `/learn/articles/tag/${currentTag}/${currentPage - 1}`} 
+              class="px-4 py-2 text-sm font-medium border transition-colors card-border bg-surface text-muted-foreground border-border hover:border-primary hover:text-primary"
+            >
+              Previous
+            </a>
+          )}
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map(p => (
+            <a 
+              href={p === 1 ? `/learn/articles/tag/${currentTag}` : `/learn/articles/tag/${currentTag}/${p}`} 
+              class={`px-4 py-2 text-sm font-medium border transition-colors card-border
+                ${p === currentPage ? 'bg-primary text-white border-primary' : 'bg-surface text-muted-foreground border-border hover:border-primary hover:text-primary'}`}
+            >
+              {p}
+            </a>
+          ))}
+          {currentPage < totalPages && (
+            <a 
+              href={`/learn/articles/tag/${currentTag}/${currentPage + 1}`} 
+              class="px-4 py-2 text-sm font-medium border transition-colors card-border bg-surface text-muted-foreground border-border hover:border-primary hover:text-primary"
+            >
+              Next
+            </a>
+          )}
+        </div>
+      )}
+    </div>
+  </div>
+</Layout>
