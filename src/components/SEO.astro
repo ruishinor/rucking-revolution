@@ -54,7 +54,7 @@ const {
   description: defaultDescription = site.description,
   openGraph: og = {},
   twitter: tw = {},
-  structuredData: structuredData = null,
+  structuredData = null,
   canonicalUrl: defaultCanonicalUrl = site.baseUrl,
   noindex = false,
   nofollow = false,
@@ -68,33 +68,35 @@ const description = Astro.props.description ?? defaultDescription;
 const canonicalUrl = Astro.props.canonicalUrl ?? defaultCanonicalUrl;
 
 // Construct Open Graph properties
-const ogProperties = {
+const ogProperties: Record<string, string> = {
   'og:title': title,
   'og:description': description,
   'og:url': Astro.props.openGraph?.url || canonicalUrl,
   'og:type': og.type || 'website',
+  'og:locale': 'en_US',
+  'og:site_name': site.title,
   ...(og.image && { 'og:image': og.image }),
   ...Object.entries(og).filter(([key]) => !['type', 'image', 'url'].includes(key)).reduce((acc, [key, value]) => {
-    acc[`og:${key}`] = value;
+    acc[`og:${key}`] = String(value);
     return acc;
-  }, {} as Record<string, any>),
+  }, {} as Record<string, string>),
 };
 
 // Construct Twitter card properties
-const twitterProperties = {
-  'twitter:card': tw.card || 'summary',
-  'twitter:site': tw.site || '',
-  'twitter:creator': tw.creator || '',
+const twitterProperties: Record<string, string> = {
+  'twitter:card': tw.card || 'summary_large_image',
+  'twitter:site': tw.site || '@ruckingrevolution',
+  'twitter:creator': tw.creator || '@ruckingrevolution',
   ...Object.entries(tw).filter(([key]) => !['card', 'site', 'creator'].includes(key)).reduce((acc, [key, value]) => {
-    acc[`twitter:${key}`] = value;
+    acc[`twitter:${key}`] = String(value);
     return acc;
-  }, {} as Record<string, any>),
+  }, {} as Record<string, string>),
 };
 ---
 <title>{title}</title>
 {description && <meta name="description" content={description} />}
-{Object.entries(ogProperties).map(([key, value]) => <meta property={key} content={String(value)} />)}
-{Object.entries(twitterProperties).map(([key, value]) => <meta property={key} content={String(value)} />)}
+{Object.entries(ogProperties).map(([key, value]) => <meta property={key} content={value} />)}
+{Object.entries(twitterProperties).map(([key, value]) => <meta name={key} content={value} />)}
 {structuredData && <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>}
 {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
 {noindex || nofollow ? <meta name="robots" content={`${noindex ? 'noindex' : 'index'},${nofollow ? 'nofollow' : 'follow'}`} /> : null}
