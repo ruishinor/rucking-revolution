@@ -26,8 +26,8 @@ export const site = {
       accent: '#E85C2A', // Signal Orange
     },
     fonts: {
-      heading: 'Bebas Neue, sans-serif',
-      body: 'Inter, sans-serif',
+      heading: 'Archivo, sans-serif',
+      body: 'IBM Plex Sans, sans-serif',
     },
   },
   // CMS Configuration

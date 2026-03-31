@@ -24,15 +24,15 @@
   --rr-color-black: #000000;
 
   /* Typography */
-  --rr-font-body: "Inter", "Segoe UI", sans-serif;
-  --rr-font-heading: "Bebas Neue", "Arial Narrow", sans-serif;
-  --rr-font-serif: "Merriweather", Georgia, serif;
+  --rr-font-body: "IBM Plex Sans", "Segoe UI", sans-serif;
+  --rr-font-heading: "Archivo", "Arial Narrow", sans-serif;
+  --rr-font-serif: "Source Serif 4", Georgia, serif;
   --rr-font-mono: "IBM Plex Mono", "SFMono-Regular", monospace;
 
   /* Rhythm */
   --rr-leading-body: 1.7;
   --rr-leading-tight: 1.08;
-  --rr-tracking-heading: 0.05em;
+  --rr-tracking-heading: -0.04em;
 
   /* Radius - Firmer shapes, less pill */
   --rr-radius-border: 0.5rem;

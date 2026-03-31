@@ -5,7 +5,7 @@ export const prerender = false;
 // This file demonstrates the new homepage design based on the brand guidelines:
 // - Manual-first clarity, manifesto-level conviction
 // - Field manual aesthetic: issued handbook, not glossy fitness brand
-// - Typography: Bebas Neue (hero), Inter (UI), Merriweather (editorial), IBM Plex Mono (metadata)
+// - Typography: Archivo (heading), IBM Plex Sans (UI), Source Serif 4 (editorial), IBM Plex Mono (metadata)
 // - Colors: warm paper canvas, deep red authority, charcoal structure, orange activation, forest/steel modules
 import Layout from '@/components/Layout.astro';
 import { articles } from '@/data/articles.ts';
@@ -326,7 +326,7 @@ const featuredArticle = articles[0];
     font-family: var(--rr-font-heading);
     font-size: clamp(3rem, 10vw, 6rem);
     line-height: 0.92;
-    letter-spacing: 0.02em;
+    letter-spacing: -0.055em;
     color: var(--rr-color-secondary);
     margin: 0 0 1.5rem 0;
   }

@@ -405,7 +405,7 @@
     text-align: center;
   }
 
-  /* Editorial prose - Uses Merriweather */
+  /* Editorial prose - Uses Source Serif 4 */
   .prose-editorial {
     font-family: var(--rr-font-serif);
   }
