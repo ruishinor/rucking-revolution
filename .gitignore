@@ -16,7 +16,9 @@ _bmad/
 _bmad-output/
 
 # resource-database
+docs/
 project-documents-ugc
+inspiration-ideas-and-drafts-and-other-things-to-extrapolate-and-learn-from
 
 # IDE and editor directories
 .agents/
