@@ -3,80 +3,22 @@ import {
   getAarConfiguration,
   validateAarSubmission,
 } from '@/lib/aarSubmission';
+import {
+  checkRateLimit,
+  createRequestId,
+  getRequesterKey,
+  isSameOriginRequest,
+  jsonResponse,
+  logApiEvent,
+  sanitizeErrorForClient,
+  validateWebhookUrl,
+} from '@/lib/api-utils';
 
 export const prerender = false;
 
 const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
 const RATE_LIMIT_MAX_REQUESTS = 5;
 const MAX_BODY_SIZE = 50 * 1024;
-
-type RateLimitStore = Map<string, number[]>;
-
-declare global {
-  // eslint-disable-next-line no-var
-  var __aarRateLimitStore: RateLimitStore | undefined;
-}
-
-function jsonResponse(status: number, body: Record<string, unknown>, extraHeaders?: Record<string, string>): Response {
-  const headers: Record<string, string> = {
-    'Allow': 'POST',
-    'Content-Type': 'application/json',
-    'Cache-Control': 'no-store',
-    'X-Content-Type-Options': 'nosniff',
-    ...extraHeaders,
-  };
-  return new Response(JSON.stringify(body), { status, headers });
-}
-
-function getRequesterKey(request: Request): string {
-  const forwardedFor =
-    request.headers.get('x-forwarded-for') ??
-    request.headers.get('x-real-ip') ??
-    request.headers.get('cf-connecting-ip');
-
-  const ip = forwardedFor?.split(',')[0]?.trim() || 'unknown';
-  const userAgent = request.headers.get('user-agent') || '';
-  return `${ip}:${userAgent.substring(0, 64)}`;
-}
-
-function isSameOriginRequest(request: Request): boolean {
-  const origin = request.headers.get('origin');
-  const referer = request.headers.get('referer');
-
-  if (!origin && !referer) {
-    return false;
-  }
-
-  try {
-    const requestOrigin = origin || new URL(referer!).origin;
-    return requestOrigin === new URL(request.url).origin;
-  } catch {
-    return false;
-  }
-}
-
-function getRateLimitStore(): RateLimitStore {
-  globalThis.__aarRateLimitStore ??= new Map<string, number[]>();
-  return globalThis.__aarRateLimitStore;
-}
-
-function checkRateLimit(requesterKey: string): { allowed: boolean; remaining: number; resetAt: number } {
-  const now = Date.now();
-  const windowStart = now - RATE_LIMIT_WINDOW_MS;
-  const store = getRateLimitStore();
-  const attempts = (store.get(requesterKey) ?? []).filter((timestamp) => timestamp >= windowStart);
-
-  const resetAt = attempts.length > 0 ? attempts[0] + RATE_LIMIT_WINDOW_MS : now + RATE_LIMIT_WINDOW_MS;
-
-  if (attempts.length >= RATE_LIMIT_MAX_REQUESTS) {
-    store.set(requesterKey, attempts);
-    return { allowed: false, remaining: 0, resetAt };
-  }
-
-  attempts.push(now);
-  store.set(requesterKey, attempts);
-  return { allowed: true, remaining: RATE_LIMIT_MAX_REQUESTS - attempts.length, resetAt };
-}
 
 async function verifyTurnstileToken(request: Request, token: string): Promise<boolean> {
   const { turnstileSecretKey } = getAarConfiguration();
@@ -130,21 +72,11 @@ async function verifyTurnstileToken(request: Request, token: string): Promise<bo
   return true;
 }
 
-function sanitizeErrorForClient(error: unknown): string {
-  if (error instanceof Error && error.message) {
-    const safeMessages = [
-      'timeout',
-      'network',
-      'unavailable',
-      'rejected',
-    ];
-    const msg = error.message.toLowerCase();
-    if (safeMessages.some((safe) => msg.includes(safe))) {
-      return 'Service unavailable. Please try again later.';
-    }
-  }
-  return 'An unexpected error occurred. Please try again later.';
-}
+const RATE_LIMIT_CONFIG = {
+  windowMs: RATE_LIMIT_WINDOW_MS,
+  maxRequests: RATE_LIMIT_MAX_REQUESTS,
+  storeKey: '__aarRateLimitStore',
+};
 
 export const GET: APIRoute = () =>
   jsonResponse(405, { success: false, error: 'Method not allowed' });
@@ -162,9 +94,11 @@ export const PATCH: APIRoute = () =>
   jsonResponse(405, { success: false, error: 'Method not allowed' });
 
 export const POST: APIRoute = async ({ request }) => {
+  const requestId = createRequestId();
   const aarConfig = getAarConfiguration();
 
   if (!aarConfig.enabled) {
+    logApiEvent('/api/aar', 'warn', 'AAR disabled', undefined, requestId);
     return jsonResponse(403, {
       success: false,
       error: 'Public AAR submissions are currently disabled until moderation safeguards are configured.',
@@ -172,34 +106,15 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   if (!isSameOriginRequest(request)) {
+    logApiEvent('/api/aar', 'warn', 'Cross-origin request blocked', undefined, requestId);
     return jsonResponse(403, {
       success: false,
       error: 'Cross-origin submissions are not allowed.',
     });
   }
 
-  const contentLength = request.headers.get('content-length');
-  if (contentLength && parseInt(contentLength, 10) > MAX_BODY_SIZE) {
-    return jsonResponse(413, {
-      success: false,
-      error: 'Request body too large.',
-    });
-  }
-
-  const contentType = request.headers.get('content-type') ?? '';
-  const isSupportedContentType =
-    contentType.includes('multipart/form-data') ||
-    contentType.includes('application/x-www-form-urlencoded');
-
-  if (!isSupportedContentType) {
-    return jsonResponse(415, {
-      success: false,
-      error: 'Unsupported content type.',
-    });
-  }
-
-  const requesterKey = getRequesterKey(request);
-  const rateLimit = checkRateLimit(requesterKey);
+  const requesterKey = `${getRequesterKey(request)}:${(request.headers.get('user-agent') || '').substring(0, 64)}`;
+  const rateLimit = checkRateLimit(requesterKey, RATE_LIMIT_CONFIG);
 
   const rateLimitHeaders = {
     'X-RateLimit-Limit': String(RATE_LIMIT_MAX_REQUESTS),
@@ -209,6 +124,7 @@ export const POST: APIRoute = async ({ request }) => {
 
   if (!rateLimit.allowed) {
     const retryAfterSeconds = Math.ceil((rateLimit.resetAt - Date.now()) / 1000);
+    logApiEvent('/api/aar', 'warn', 'Rate limit exceeded', { requesterKey }, requestId);
     return jsonResponse(
       429,
       {
@@ -230,39 +146,50 @@ export const POST: APIRoute = async ({ request }) => {
     return jsonResponse(400, {
       success: false,
       error: 'Invalid request body.',
-    });
+    }, rateLimitHeaders);
   }
 
   if (String(formData.get(aarConfig.honeypotField) ?? '').trim().length > 0) {
-    return jsonResponse(200, { success: true });
+    logApiEvent('/api/aar', 'warn', 'Honeypot triggered', { requesterKey }, requestId);
+    return jsonResponse(200, { success: true }, rateLimitHeaders);
   }
 
   const turnstileToken = String(formData.get('cf-turnstile-response') ?? '').trim();
   try {
     const verified = await verifyTurnstileToken(request, turnstileToken);
     if (!verified) {
+      logApiEvent('/api/aar', 'warn', 'Turnstile verification failed', { requesterKey }, requestId);
       return jsonResponse(403, {
         success: false,
         error: 'Spam verification failed. Please retry the challenge and submit again.',
-      });
+      }, rateLimitHeaders);
     }
   } catch {
     return jsonResponse(502, {
       success: false,
       error: 'Spam verification is unavailable. Please try again shortly.',
-    });
+    }, rateLimitHeaders);
   }
 
   const validation = validateAarSubmission(formData);
   if (!validation.success) {
-    return jsonResponse(400, validation);
+    logApiEvent('/api/aar', 'warn', 'Validation failed', { errors: validation.errors }, requestId);
+    return jsonResponse(400, validation, rateLimitHeaders);
   }
 
   if (!aarConfig.webhookUrl) {
     return jsonResponse(503, {
       success: false,
       error: 'The AAR submission pipeline is not configured.',
-    });
+    }, rateLimitHeaders);
+  }
+
+  if (!validateWebhookUrl(aarConfig.webhookUrl)) {
+    logApiEvent('/api/aar', 'error', 'Invalid webhook URL', undefined, requestId);
+    return jsonResponse(503, {
+      success: false,
+      error: 'The AAR submission pipeline is misconfigured.',
+    }, rateLimitHeaders);
   }
 
   try {
@@ -277,17 +204,20 @@ export const POST: APIRoute = async ({ request }) => {
     });
 
     if (!upstreamResponse.ok) {
+      logApiEvent('/api/aar', 'error', 'Webhook rejected request', { status: upstreamResponse.status }, requestId);
       return jsonResponse(502, {
         success: false,
         error: 'The AAR submission service rejected the request.',
-      });
+      }, rateLimitHeaders);
     }
-  } catch {
+  } catch (error) {
+    logApiEvent('/api/aar', 'error', 'Webhook service unavailable', { error: sanitizeErrorForClient(error) }, requestId);
     return jsonResponse(502, {
       success: false,
       error: 'The AAR submission service is unavailable.',
-    });
+    }, rateLimitHeaders);
   }
 
+  logApiEvent('/api/aar', 'info', 'Submission successful', { requesterKey }, requestId);
   return jsonResponse(202, { success: true }, rateLimitHeaders);
 };

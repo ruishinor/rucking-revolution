@@ -4,8 +4,8 @@
   "buildCommand": "npm run build",
   "redirects": [
     { "source": "/articles", "destination": "/learn/articles", "statusCode": 301 },
-    { "source": "/articles/:slug", "destination": "/learn/articles/:slug", "statusCode": 301 },
-    { "source": "/articles/:page", "destination": "/learn/articles/:page", "statusCode": 301 },
+    { "source": "/articles/:slug((?!tag)[^/]+)", "destination": "/learn/articles/:slug", "statusCode": 301 },
+    { "source": "/articles/:page(\\d+)", "destination": "/learn/articles/:page", "statusCode": 301 },
     { "source": "/articles/tag/:tag", "destination": "/learn/articles/tag/:tag", "statusCode": 301 },
     { "source": "/articles/tag/:tag/:page", "destination": "/learn/articles/tag/:tag/:page", "statusCode": 301 }
   ],
@@ -35,7 +35,7 @@
         },
         {
           "key": "X-DNS-Prefetch-Control",
-          "value": "on"
+          "value": "off"
         },
         {
           "key": "Permissions-Policy",

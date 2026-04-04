@@ -1,3 +1,13 @@
+import sanitizeHtml from 'sanitize-html';
+import { emailPattern } from '@/lib/api-utils';
+
+function sanitizeText(text: string): string {
+  return sanitizeHtml(text, {
+    allowedTags: [],
+    allowedAttributes: {},
+  });
+}
+
 export interface AarSubmissionPayload {
   eventName: string;
   location: string;
@@ -45,10 +55,8 @@ const listConstraints: Record<string, FieldConstraint> = {
   lessonsLearned: { label: 'Lessons learned', min: 10, max: 2000 },
 };
 
-const emailPattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-
 function readEnv(name: string): string {
-  return process.env[name]?.trim() ?? '';
+  return process.env[name]?.trim() || '';
 }
 
 export function getAarConfiguration(): AarConfiguration {
@@ -83,8 +91,6 @@ export function getAarConfiguration(): AarConfiguration {
     requirements,
   };
 }
-
-export const publicAarSubmissionsEnabled = getAarConfiguration().enabled;
 
 function normalizeText(value: FormDataEntryValue | null): string {
   return typeof value === 'string' ? value.replace(/\r\n/g, '\n').trim() : '';
@@ -206,19 +212,19 @@ export function validateAarSubmission(
   return {
     success: true,
     data: {
-      eventName: eventName.value,
-      location: location.value,
+      eventName: sanitizeText(eventName.value),
+      location: sanitizeText(location.value),
       distance: distance.value,
       load: load.value,
       crewSize: crewSize.value,
-      conditions: conditions.value,
-      planned: planned.value,
-      actual: actual.value,
-      whatWentWell: whatWentWell.value,
-      improvements: improvements.value,
-      lessonsLearned: lessonsLearned.value,
-      author: author.value,
-      ...(email ? { email } : {}),
+      conditions: sanitizeText(conditions.value),
+      planned: planned.value.map(sanitizeText),
+      actual: actual.value.map(sanitizeText),
+      whatWentWell: whatWentWell.value.map(sanitizeText),
+      improvements: improvements.value.map(sanitizeText),
+      lessonsLearned: lessonsLearned.value.map(sanitizeText),
+      author: sanitizeText(author.value),
+      ...(email ? { email: sanitizeText(email) } : {}),
       submittedAt: new Date().toISOString(),
     },
   };

@@ -1,85 +1,29 @@
 import type { APIRoute } from 'astro';
+import {
+  checkRateLimit,
+  createRequestId,
+  emailPattern,
+  getRequesterKey,
+  isSameOriginRequest,
+  jsonResponse,
+  logApiEvent,
+  readWithSizeLimit,
+  sanitizeErrorForClient,
+  validateWebhookUrl,
+} from '@/lib/api-utils';
 
 export const prerender = false;
 
-const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
-const RATE_LIMIT_MAX_REQUESTS = 3;
 const MAX_BODY_SIZE = 1024;
 const MAX_EMAIL_LENGTH = 254;
 const MAX_NAME_LENGTH = 100;
 
-type RateLimitStore = Map<string, number[]>;
-
-declare global {
-  var __newsletterRateLimitStore: RateLimitStore | undefined;
-}
-
-function jsonResponse(status: number, body: Record<string, unknown>): Response {
-  return new Response(JSON.stringify(body), {
-    status,
-    headers: {
-      'Allow': 'POST',
-      'Content-Type': 'application/json',
-      'Cache-Control': 'no-store',
-      'X-Content-Type-Options': 'nosniff',
-    },
-  });
-}
-
-function getRequesterKey(request: Request): string {
-  const forwardedFor =
-    request.headers.get('x-forwarded-for') ??
-    request.headers.get('x-real-ip') ??
-    request.headers.get('cf-connecting-ip');
-  return forwardedFor?.split(',')[0]?.trim() || 'unknown';
-}
-
-function getRateLimitStore(): RateLimitStore {
-  globalThis.__newsletterRateLimitStore ??= new Map<string, number[]>();
-  return globalThis.__newsletterRateLimitStore;
-}
-
-function checkRateLimit(requesterKey: string): boolean {
-  const now = Date.now();
-  const windowStart = now - RATE_LIMIT_WINDOW_MS;
-  const store = getRateLimitStore();
-  const attempts = (store.get(requesterKey) ?? []).filter((timestamp) => timestamp >= windowStart);
-
-  if (attempts.length >= RATE_LIMIT_MAX_REQUESTS) {
-    store.set(requesterKey, attempts);
-    return false;
-  }
-
-  attempts.push(now);
-  store.set(requesterKey, attempts);
-  return true;
-}
-
-function isSameOriginRequest(request: Request): boolean {
-  const origin = request.headers.get('origin');
-  const referer = request.headers.get('referer');
-
-  if (!origin && !referer) {
-    return false;
-  }
-
-  try {
-    const requestOrigin = origin || new URL(referer!).origin;
-    return requestOrigin === new URL(request.url).origin;
-  } catch {
-    return false;
-  }
-}
-
-async function verifyTurnstileToken(request: Request, token: string): Promise<boolean> {
+async function verifyTurnstileToken(token: string, ip?: string): Promise<boolean> {
   const secretKey = process.env.NEWSLETTER_TURNSTILE_SECRET_KEY;
 
   if (!secretKey || !token || typeof token !== 'string' || token.length > 2048) {
     return false;
   }
-
-  const requesterKey = getRequesterKey(request);
-  const ip = requesterKey !== 'unknown' ? requesterKey : undefined;
 
   const verificationBody = new URLSearchParams({
     secret: secretKey,
@@ -107,24 +51,14 @@ async function verifyTurnstileToken(request: Request, token: string): Promise<bo
   return verification?.success === true;
 }
 
-function sanitizeErrorForClient(error: unknown): string {
-  if (error instanceof Error && error.message) {
-    const safeMessages = ['timeout', 'network', 'unavailable', 'rejected'];
-    const msg = error.message.toLowerCase();
-    if (safeMessages.some((safe) => msg.includes(safe))) {
-      return 'Service unavailable. Please try again later.';
-    }
-  }
-  return 'An unexpected error occurred. Please try again later.';
-}
-
-const emailPattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-
 export const GET: APIRoute = () =>
   jsonResponse(405, { success: false, error: 'Method not allowed' });
 
 export const POST: APIRoute = async ({ request }) => {
+  const requestId = createRequestId();
+
   if (!isSameOriginRequest(request)) {
+    logApiEvent('/api/newsletter', 'warn', 'Cross-origin request blocked', undefined, requestId);
     return jsonResponse(403, {
       success: false,
       error: 'Cross-origin requests are not allowed.',
@@ -132,27 +66,35 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   const requesterKey = getRequesterKey(request);
-  if (!checkRateLimit(requesterKey)) {
+  const rateLimit = checkRateLimit(requesterKey, {
+    windowMs: 60 * 60 * 1000,
+    maxRequests: 3,
+    storeKey: '__newsletterRateLimitStore',
+  });
+
+  if (!rateLimit.allowed) {
+    logApiEvent('/api/newsletter', 'warn', 'Rate limit exceeded', { requesterKey }, requestId);
     return jsonResponse(429, {
       success: false,
       error: 'Too many requests. Please try again later.',
     });
   }
 
-  const contentLength = request.headers.get('content-length');
-  if (contentLength && parseInt(contentLength, 10) > MAX_BODY_SIZE) {
-    return jsonResponse(413, { success: false, error: 'Request body too large.' });
-  }
-
-  const contentType = request.headers.get('content-type') ?? '';
-  if (!contentType.includes('application/json')) {
-    return jsonResponse(415, { success: false, error: 'Unsupported content type.' });
-  }
-
   let payload: Record<string, unknown>;
   try {
-    payload = await request.json();
-  } catch {
+    const rawBody = await readWithSizeLimit(request, MAX_BODY_SIZE);
+    if (!rawBody) {
+      return jsonResponse(400, { success: false, error: 'Invalid request body.' });
+    }
+    const contentType = request.headers.get('content-type') ?? '';
+    if (!contentType.includes('application/json')) {
+      return jsonResponse(415, { success: false, error: 'Unsupported content type.' });
+    }
+    payload = JSON.parse(rawBody);
+  } catch (err) {
+    if (err instanceof Error && err.message.includes('maximum size')) {
+      return jsonResponse(413, { success: false, error: 'Request body too large.' });
+    }
     return jsonResponse(400, { success: false, error: 'Invalid request body.' });
   }
 
@@ -164,14 +106,17 @@ export const POST: APIRoute = async ({ request }) => {
   const turnstileEnabled = !!process.env.NEWSLETTER_TURNSTILE_SITE_KEY && !!process.env.NEWSLETTER_TURNSTILE_SECRET_KEY;
   if (turnstileEnabled) {
     try {
-      const verified = await verifyTurnstileToken(request, turnstileToken);
+      const ip = requesterKey !== 'unknown' ? requesterKey : undefined;
+      const verified = await verifyTurnstileToken(turnstileToken, ip);
       if (!verified) {
+        logApiEvent('/api/newsletter', 'warn', 'Turnstile verification failed', undefined, requestId);
         return jsonResponse(403, {
           success: false,
           error: 'Spam verification failed. Please retry the challenge.',
         });
       }
     } catch {
+      logApiEvent('/api/newsletter', 'error', 'Turnstile verification error', undefined, requestId);
       return jsonResponse(502, {
         success: false,
         error: 'Spam verification is unavailable. Please try again shortly.',
@@ -210,6 +155,14 @@ export const POST: APIRoute = async ({ request }) => {
     });
   }
 
+  if (!validateWebhookUrl(webhookUrl)) {
+    logApiEvent('/api/newsletter', 'error', 'Invalid webhook URL scheme', undefined, requestId);
+    return jsonResponse(500, {
+      success: false,
+      error: 'Newsletter service is misconfigured.',
+    });
+  }
+
   try {
     const response = await fetch(webhookUrl, {
       method: 'POST',
@@ -228,18 +181,21 @@ export const POST: APIRoute = async ({ request }) => {
     });
 
     if (!response.ok) {
+      logApiEvent('/api/newsletter', 'error', 'Webhook returned error', { status: response.status }, requestId);
       return jsonResponse(502, {
         success: false,
         error: 'Newsletter service is unavailable. Please try again later.',
       });
     }
-  } catch {
+  } catch (err) {
+    logApiEvent('/api/newsletter', 'error', 'Webhook fetch failed', { error: sanitizeErrorForClient(err) }, requestId);
     return jsonResponse(502, {
       success: false,
-      error: sanitizeErrorForClient(new Error('Newsletter service error')),
+      error: sanitizeErrorForClient(err),
     });
   }
 
+  logApiEvent('/api/newsletter', 'info', 'Subscription successful', { email }, requestId);
   return jsonResponse(200, {
     success: true,
     message: 'Thank you for subscribing!',

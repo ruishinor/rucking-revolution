@@ -1,4 +1,4 @@
-import { publicAarSubmissionsEnabled } from '@/lib/aarSubmission';
+import { getAarConfiguration } from '@/lib/aarSubmission';
 
 export const site = {
   title: 'Rucking Revolution',
@@ -21,27 +21,25 @@ export const site = {
   ],
   brand: {
     colors: {
-      primary: '#8B0000', // Deep Red
-      secondary: '#1C1C1C', // Charcoal
-      accent: '#E85C2A', // Signal Orange
+      primary: '#8B0000',
+      secondary: '#1C1C1C',
+      accent: '#E85C2A',
     },
     fonts: {
       heading: 'Archivo, sans-serif',
       body: 'IBM Plex Sans, sans-serif',
     },
   },
-  // CMS Configuration
-  useCMS: false, // Set to true to enable Ghost CMS integration
-  cmsProvider: 'ghost', // Options: 'ghost' or 'none'
-  // AAR Submission Settings
-  allowPublicSubmissions: publicAarSubmissionsEnabled, // Requires AAR_PUBLIC_SUBMISSIONS_ENABLED plus webhook and Turnstile config
-  // Lead Magnet (free quick-start guide)
+  useCMS: false,
+  cmsProvider: 'ghost',
+  get allowPublicSubmissions() {
+    return getAarConfiguration().enabled;
+  },
   leadMagnet: {
     title: 'Your First 3 Rucks',
     subtitle: 'One page. Three sessions. A quiet confidence boost.',
     download: '/downloads/the-first-3-rucks-quick-start.html',
   },
-  // Lead Book (primary paid product)
   leadBook: {
     link: '/library',
   },

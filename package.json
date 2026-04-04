@@ -1,16 +1,21 @@
 {
   "name": "website-rucking-revolution",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Rucking Revolution - structured knowledge platform for rucking as discipline and leadership practice",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rucking-revolution/website-rucking-revolution"
+  },
   "directories": {
     "doc": "docs"
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build || exit 0",
+    "build": "astro build",
     "preview": "astro preview",
-    "test": "vitest"
+    "test": "vitest",
+    "lint": "astro check",
+    "typecheck": "tsc --noEmit"
   },
   "keywords": [],
   "author": "",

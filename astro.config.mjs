@@ -11,18 +11,27 @@ const hiddenRoutes = new Set([
   '/lead/after-action-reviews/submit',
 ]);
 
+const config = {
+  site: 'https://ruckingrevolution.org',
+};
+
 const crittersVitePlugin = {
   name: 'critters',
   transformIndexHtml: {
     order: 'post',
-    async handler(html) {
-      return await new Critters().process(html);
+    async handler(html, ctx) {
+      const criticalPaths = ['/', '/learn/articles', '/start-here', '/why-rucking'];
+      const pathname = ctx?.filename ? new URL(ctx.filename, config.site).pathname : '';
+      if (criticalPaths.some((p) => pathname === p || pathname.startsWith(p + '/'))) {
+        return await new Critters().process(html);
+      }
+      return html;
     }
   }
 };
 
 export default defineConfig({
-  site: 'https://ruckingrevolution.org',
+  site: config.site,
   adapter: vercel(),
   vite: {
     plugins: [tailwindcss(), crittersVitePlugin]
