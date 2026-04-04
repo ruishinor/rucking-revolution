@@ -15,6 +15,19 @@ if (!backstageEnabled) {
 }
 
 Astro.response.headers.set('X-Robots-Tag', 'noindex, nofollow, noarchive');
+Astro.response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+Astro.response.headers.set('Pragma', 'no-cache');
+Astro.response.headers.set('Expires', '0');
+
+const adminSecret = process.env.BACKSTAGE_SECRET;
+const providedSecret = Astro.url.searchParams.get('access_key');
+
+if (import.meta.env.PROD && adminSecret && providedSecret !== adminSecret) {
+  return new Response(null, {
+    status: 403,
+    statusText: 'Forbidden'
+  });
+}
 
 // In production, this would fetch from a database/API.
 // For now, this is a placeholder showing structure.

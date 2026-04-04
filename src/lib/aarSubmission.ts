@@ -45,7 +45,7 @@ const listConstraints: Record<string, FieldConstraint> = {
   lessonsLearned: { label: 'Lessons learned', min: 10, max: 2000 },
 };
 
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const emailPattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
 function readEnv(name: string): string {
   return process.env[name]?.trim() ?? '';
