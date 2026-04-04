@@ -45,7 +45,7 @@ const listConstraints: Record<string, FieldConstraint> = {
   lessonsLearned: { label: 'Lessons learned', min: 10, max: 2000 },
 };
 
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const emailPattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
 function readEnv(name: string): string {
   return process.env[name]?.trim() ?? '';
@@ -85,10 +85,6 @@ export function getAarConfiguration(): AarConfiguration {
 }
 
 export const publicAarSubmissionsEnabled = getAarConfiguration().enabled;
-export const aarWebhookUrl = getAarConfiguration().webhookUrl;
-export const aarHoneypotField = getAarConfiguration().honeypotField;
-export const aarTurnstileSiteKey = getAarConfiguration().turnstileSiteKey;
-export const aarTurnstileSecretKey = getAarConfiguration().turnstileSecretKey;
 
 function normalizeText(value: FormDataEntryValue | null): string {
   return typeof value === 'string' ? value.replace(/\r\n/g, '\n').trim() : '';

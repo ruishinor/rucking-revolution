@@ -18,6 +18,8 @@ if (!styleGuideEnabled) {
 }
 
 Astro.response.headers.set('X-Robots-Tag', 'noindex, nofollow, noarchive');
+Astro.response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+Astro.response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
 ---
 <Layout
   title="Style Guide"

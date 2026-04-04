@@ -23,6 +23,11 @@ import Layout from '@/components/Layout.astro';
         id="newsletter-form"
         class="p-8 border rounded-lg bg-gray-50"
       >
+        <div class="mb-6" style="position:absolute;left:-9999px;" aria-hidden="true">
+          <label for="website">Website</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+        </div>
+
         <div class="mb-6">
           <label for="email" class="block text-sm font-medium mb-2">Email Address</label>
           <input 

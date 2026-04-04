@@ -8,6 +8,8 @@ const aarConfiguration = getAarConfiguration();
 const allowPublicSubmissions = aarConfiguration.enabled;
 
 Astro.response.headers.set('X-Robots-Tag', 'noindex, nofollow, noarchive');
+Astro.response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate');
+Astro.response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate');
 ---
 <Layout 
   title="Submit AAR | Rucking Revolution"

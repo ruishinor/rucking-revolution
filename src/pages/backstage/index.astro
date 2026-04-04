@@ -3,6 +3,7 @@ export const prerender = false;
 
 import Layout from '@/components/Layout.astro';
 import Container from '@/components/Container.astro';
+import { timingSafeEqual } from 'node:crypto';
 
 const backstageEnabled =
   !import.meta.env.PROD || process.env.BACKSTAGE_ENABLED === 'true';
@@ -14,10 +15,30 @@ if (!backstageEnabled) {
   });
 }
 
-Astro.response.headers.set('X-Robots-Tag', 'noindex, nofollow, noarchive');
+const adminSecret = process.env.BACKSTAGE_SECRET;
+const providedSecret = Astro.url.searchParams.get('access_key');
 
-// In production, this would fetch from a database/API.
-// For now, this is a placeholder showing structure.
+function secretsMatch(a: string, b: string): boolean {
+  if (a.length !== b.length) return false;
+  const aBuf = Buffer.from(a);
+  const bBuf = Buffer.from(b);
+  return timingSafeEqual(aBuf, bBuf);
+}
+
+if (import.meta.env.PROD && adminSecret) {
+  if (!providedSecret || !secretsMatch(providedSecret, adminSecret)) {
+    return new Response(null, {
+      status: 403,
+      statusText: 'Forbidden'
+    });
+  }
+}
+
+Astro.response.headers.set('X-Robots-Tag', 'noindex, nofollow, noarchive');
+Astro.response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+Astro.response.headers.set('Pragma', 'no-cache');
+Astro.response.headers.set('Expires', '0');
+
 const stats = {
   newsletterSubscribers: 0,
   contactMessages: 0,
@@ -43,11 +64,9 @@ const stats = {
         </p>
       </header>
 
-      <!-- Stats Overview -->
       <section class="mb-12">
         <h2 class="text-2xl font-semibold mb-6">Overview</h2>
         <div class="grid gap-6 md:grid-cols-3">
-          <!-- Newsletter Subscribers -->
           <div class="p-6 border rounded-lg bg-white">
             <div class="flex items-center justify-between mb-4">
               <div class="text-3xl">📧</div>
@@ -57,7 +76,6 @@ const stats = {
             <p class="text-sm text-muted">Active subscribers</p>
           </div>
 
-          <!-- Contact Messages -->
           <div class="p-6 border rounded-lg bg-white">
             <div class="flex items-center justify-between mb-4">
               <div class="text-3xl">💬</div>
@@ -67,7 +85,6 @@ const stats = {
             <p class="text-sm text-muted">Total submissions</p>
           </div>
 
-          <!-- Notify Me Requests -->
           <div class="p-6 border rounded-lg bg-white">
             <div class="flex items-center justify-between mb-4">
               <div class="text-3xl">🔔</div>
@@ -79,7 +96,6 @@ const stats = {
         </div>
       </section>
 
-      <!-- Newsletter Actions -->
       <section class="mb-12">
         <h2 class="text-2xl font-semibold mb-6">Newsletter</h2>
         <div class="p-6 border rounded-lg bg-gray-50">
@@ -108,7 +124,6 @@ const stats = {
         </div>
       </section>
 
-      <!-- Contact Submissions -->
       <section class="mb-12">
         <h2 class="text-2xl font-semibold mb-6">Recent Contact Messages</h2>
         <div class="border rounded-lg overflow-hidden">
@@ -133,7 +148,6 @@ const stats = {
         </div>
       </section>
 
-      <!-- Notify Me Requests -->
       <section class="mb-12">
         <h2 class="text-2xl font-semibold mb-6">Notify Me Requests</h2>
         <div class="border rounded-lg overflow-hidden">
@@ -156,7 +170,6 @@ const stats = {
         </div>
       </section>
 
-      <!-- Quick Links -->
       <section>
         <h2 class="text-2xl font-semibold mb-6">Quick Links</h2>
         <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
