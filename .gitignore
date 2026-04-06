@@ -20,6 +20,12 @@ docs/
 project-documents-ugc
 inspiration-ideas-and-drafts-and-other-things-to-extrapolate-and-learn-from
 
+# Quote source files (compiled into src/data/quotes.ts)
+quote-db/
+
+# Quote source files (compiled into src/data/quotes.ts)
+quote-db/
+
 # IDE and editor directories
 .agents/
 .astro/

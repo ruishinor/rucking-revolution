@@ -491,5 +491,493 @@ export const aarEntries: AAR[] = [
     },
     location: '',
     approved: true
+  },
+  {
+    id: 'aar-bastogne-2014-10',
+    title: 'Bastogne 2014 - After Action Report',
+    date: '2014-10-26',
+    author: 'Red Rucker',
+    duration: 540,
+    distance: 16.0,
+    load: 35,
+    participants: 28,
+    conditions: 'Cold, 8°C, forest terrain, significant mud, historical battlefield',
+    planned: [
+      'Experience GORUCK event on Battle of the Bulge location',
+      'Walk the terrain of the famous siege',
+      'Practice navigation in forest and mud',
+      'Connect with European GRT community'
+    ],
+    actual: [
+      'Completed event on Bastogne battlefield terrain',
+      'Forest and mud conditions added challenge',
+      'Historical context of the siege created emotional weight',
+      'Connected with GRTs from Belgium and neighboring countries',
+      'Battled through conditions that mirrored historical hardships'
+    ],
+    whatWentWell: [
+      'Forest navigation under canopy',
+      'Mud condition management',
+      'Team cohesion in adverse weather',
+      'Historical connection to the Bulge'
+    ],
+    improvements: [
+      'Better wet weather foot care',
+      'Forest terrain specific training',
+      'Mud drainage strategies',
+      'Cold weather layer management'
+    ],
+    lessonsLearned: [
+      'Forest terrain requires different navigation than open ground',
+      'Mud and cold compound to create real hardship',
+      'Walking where heroes walked creates profound connection',
+      'European events create deep bonds with local GRTs'
+    ],
+    heroImage: {
+      src: '/images/aar/bastogne-2014-hero.jpg',
+      alt: 'Team of ruckers in forest near Bastogne, autumn colors and mud visible'
+    },
+    location: 'Bastogne, Belgium',
+    approved: true
+  },
+  {
+    id: 'aar-bragg-heavy-2015-05',
+    title: 'Fort Bragg Heavy - After Action Report',
+    date: '2015-05-17',
+    author: 'Red Rucker',
+    duration: 660,
+    distance: 22.0,
+    load: 45,
+    participants: 30,
+    conditions: 'Clear, 24°C, military terrain with tactical obstacles',
+    planned: [
+      'Experience Heavy event at active military installation',
+      'Practice tactical movement with heavy loads',
+      'Evaluate team performance under military-style pressure',
+      'Connect with military community through shared challenge'
+    ],
+    actual: [
+      'Completed Heavy event on Fort Bragg training grounds',
+      'Tactical obstacles tested team coordination',
+      'Military environment added authenticity to event',
+      'Connected with GRTs from various military backgrounds'
+    ],
+    whatWentWell: [
+      'Tactical obstacle navigation was smooth',
+      'Team coordination under military-style pressure',
+      'Load carriage over rough terrain',
+      'Authentic military environment experience'
+    ],
+    improvements: [
+      'Tactical movement speed optimization',
+      'Equipment securing for rough terrain',
+      'Communication protocols in noisy environments',
+      'Team tactical positioning'
+    ],
+    lessonsLearned: [
+      'Military terrain requires different movement strategies',
+      'Team coordination is critical in tactical scenarios',
+      'Heavy loads on rough terrain demand proper form',
+      'Military community brings unique brotherhood'
+    ],
+    heroImage: {
+      src: '/images/aar/bragg-heavy-hero.jpg',
+      alt: 'Team of 30 ruckers on Fort Bragg training grounds, tactical obstacle course in background'
+    },
+    location: 'Fort Bragg, North Carolina, USA',
+    approved: true
+  },
+  {
+    id: 'aar-chicago-hive-2016-08',
+    title: 'Chicago Hive Module - After Action Report',
+    date: '2016-08-15',
+    author: 'Red Rucker',
+    duration: 360,
+    distance: 8.0,
+    load: 25,
+    participants: 20,
+    conditions: 'Clear, 26°C, urban environment, austere medicine training scenarios',
+    planned: [
+      'Learn austere medicine and grid-down medical scenarios',
+      'Practice trauma response in urban setting',
+      'Evaluate equipment for emergency medical situations',
+      'Connect with informal SWAT and Spec Ops networks'
+    ],
+    actual: [
+      'Completed austere medicine training module',
+      'Grid-down scenarios tested medical knowledge',
+      'Experienced stun-gun training multiple times',
+      'Connected with informal SWAT and US Spec Ops personnel',
+      'Learned trauma response in non-permissive environments'
+    ],
+    whatWentWell: [
+      'Austere medicine skill acquisition',
+      'Grid-down scenario completion',
+      'Equipment selection for medical emergencies',
+      'Network connections with military/LEO personnel'
+    ],
+    improvements: [
+      'More realistic scenario progression',
+      'Medical equipment redundancy planning',
+      'Team medical role assignment',
+      'After-event decompression for intense scenarios'
+    ],
+    lessonsLearned: [
+      'Austere medicine requires different thinking than standard first aid',
+      'Grid-down scenarios reveal equipment gaps',
+      'Training with real professionals exposes knowledge gaps',
+      'Emotional control under pain is learnable skill'
+    ],
+    heroImage: {
+      src: '/images/aar/chicago-hive-hero.jpg',
+      alt: 'Group in urban training environment during Chicago Hive Module, medical equipment visible'
+    },
+    location: 'Chicago, Illinois, USA',
+    approved: true
+  },
+  {
+    id: 'aar-dublin-heavy-2015-06',
+    title: 'Dublin Heavy - After Action Report',
+    date: '2015-06-21',
+    author: 'Red Rucker',
+    duration: 720,
+    distance: 20.0,
+    load: 50,
+    participants: 22,
+    conditions: 'Cold, 10°C, rain, rural terrain with log carries and elevation changes',
+    planned: [
+      'Validate load carriage capacity at increased weight',
+      'Practice log carry team movements',
+      'Develop navigation skills in low-visibility conditions',
+      'Test mental resilience through extended physical challenge'
+    ],
+    actual: [
+      'Team performed log carry exercises in continuous rain',
+      'Injury during event required team support',
+      'Team requested author give up ruck - refused multiple times',
+      'Finally heard "Check your ego" - surrendered ruck while injured',
+      'Realized team could function without author carrying everything',
+      'Got ruck back - "Carry your own" principle resumed'
+    ],
+    whatWentWell: [
+      'Team cohesion remained strong despite individual weakness',
+      'Log carry techniques executed effectively',
+      'Navigation accuracy maintained in poor conditions',
+      'Author finished as "weak link" but completed the event',
+      'Hardest-won wisdom: letting go of the ruck is not failure'
+    ],
+    improvements: [
+      'Injury prevention during log carries',
+      'Earlier ego surrender - pride cost physical pain',
+      'Better communication when injured and struggling',
+      'Accepting help earlier before reaching crisis point',
+      'Trust in team capability when unable to carry'
+    ],
+    lessonsLearned: [
+      'Check your ego - it is the enemy of both growth and rest',
+      'The team can function without you carrying everything',
+      'Letting go of the ruck is not personal failure',
+      'Being the weak link does not mean being useless',
+      'Pride in carrying yourself can become the thing that breaks you'
+    ],
+    heroImage: {
+      src: '/images/aar/dublin-heavy-hero.jpg',
+      alt: 'Team of 22 ruckers performing log carry in rain, Dublin countryside in background'
+    },
+    location: 'Dublin, Ireland',
+    approved: true
+  },
+  {
+    id: 'aar-fan-dance-2017-10',
+    title: 'Fan Dance - After Action Report',
+    date: '2017-10-21',
+    author: 'Red Rucker',
+    duration: 480,
+    distance: 24.0,
+    load: 35,
+    participants: 45,
+    conditions: 'Clear, 12°C, mountain terrain, steep elevation changes, SAS-style selection course',
+    planned: [
+      'Test SAS-style selection course endurance',
+      'Practice mountain terrain navigation',
+      'Evaluate mental resilience under selection pressure',
+      'Experience Special Forces selection environment'
+    ],
+    actual: [
+      'Attempted Fan Dance selection course',
+      'Mountain terrain with steep elevation tested all participants',
+      'Selection pressure created intense environment',
+      'Event pushed mental and physical limits',
+      'Connected with GRTs from military backgrounds'
+    ],
+    whatWentWell: [
+      'Navigation across mountain terrain',
+      'Team coordination under selection pressure',
+      'Load management over steep terrain',
+      'Mental toughness maintained throughout'
+    ],
+    improvements: [
+      'Mountain terrain specific training',
+      'Steep elevation pacing strategies',
+      'Selection pressure mental preparation',
+      'Altitude adjustment protocols'
+    ],
+    lessonsLearned: [
+      'Selection courses test more than physical capability',
+      'Mental resilience is often the limiting factor',
+      'Mountain terrain requires different approach than flat ground',
+      'Team brotherhood extends beyond GORUCK to military communities'
+    ],
+    heroImage: {
+      src: '/images/aar/fan-dance-hero.jpg',
+      alt: 'Group of ruckers on mountain terrain during Fan Dance selection course, steep trail visible'
+    },
+    location: 'Brecon Beacons, Wales, UK',
+    approved: true
+  },
+  {
+    id: 'aar-jax-heavy-2014-10',
+    title: 'Jacksonville Heavy - After Action Report',
+    date: '2014-10-12',
+    author: 'Red Rucker',
+    duration: 780,
+    distance: 24.0,
+    load: 45,
+    participants: 18,
+    conditions: 'Humid, 28°C, urban terrain with water obstacles, night operations',
+    planned: [
+      'Test physical limits with heavy load over extended distance',
+      'Practice team coordination under fatigue',
+      'Evaluate equipment functionality in harsh conditions',
+      'Build mental resilience through sustained effort',
+      'Challenge the "carry your own" principle in controlled environment'
+    ],
+    actual: [
+      'Team completed 24 miles with 45lb loads in humid conditions',
+      'Chafing became critical issue at hour 14+, managed with sandbag distraction technique',
+      'Eventually agreed to let team carry ruck at lowest point - silent tears during brainstorming',
+      'Realized "pain is just pain" mantra for forward motion',
+      'Made decision to skip Challenge to avoid permanent injury'
+    ],
+    whatWentWell: [
+      'Team maintained cohesion despite individual breakdowns',
+      'Equipment held up under extended stress',
+      'Communication remained clear through night operations',
+      'Physical training prepared team for distance demands',
+      'Made smart decision to step back when injury risk became clear'
+    ],
+    improvements: [
+      'Pre-event foot care and chafing prevention protocols',
+      'Load distribution optimization earlier in event',
+      'Better hydration planning for humid conditions',
+      'Earlier intervention when pain becomes injury risk',
+      'Mental state check-ins during extended operations'
+    ],
+    lessonsLearned: [
+      'Pain is just pain - can be used as tool for forward motion',
+      'Letting team carry you feels like personal failure but is tactical necessity',
+      'There is a time for everything - sometimes step back to fight another day',
+      'True character revealed under extreme fatigue and stress',
+      'The ruck is not just weight - it is responsibility and identity'
+    ],
+    heroImage: {
+      src: '/images/aar/jax-heavy-hero.jpg',
+      alt: 'Team of 18 ruckers in Jacksonville urban terrain, completing water obstacle under night conditions'
+    },
+    location: 'Jacksonville, Florida, USA',
+    approved: true
+  },
+  {
+    id: 'aar-normandie-2014-06',
+    title: 'Normandie 2014 - After Action Report',
+    date: '2014-06-08',
+    author: 'Red Rucker',
+    duration: 600,
+    distance: 18.0,
+    load: 35,
+    participants: 30,
+    conditions: 'Clear, 18°C, historical battlefield terrain, significant elevation',
+    planned: [
+      'Experience GORUCK event on historical European battlefield',
+      'Walk the terrain where WWII operations took place',
+      'Practice navigation across European countryside',
+      'Connect with GRTs from multiple nations'
+    ],
+    actual: [
+      'Completed event on Normandy battlefield terrain',
+      'Historical context added profound weight to experience',
+      'Elevation changes tested team endurance',
+      'Connected with GRTs from France and broader Europe',
+      'Discovered deeper meaning in historical context'
+    ],
+    whatWentWell: [
+      'Navigation across unfamiliar terrain',
+      'Team coordination across language barriers',
+      'Historical site integration into event',
+      'European GRT connections made'
+    ],
+    improvements: [
+      'More pre-event historical context study',
+      'French language basics for communication',
+      'Elevation-specific training',
+      'European terrain navigation preparation'
+    ],
+    lessonsLearned: [
+      'Historical terrain adds layers of meaning to the experience',
+      'European countryside presents unique navigation challenges',
+      'International brotherhood extends across continents',
+      'Walking hallowed ground creates connection to larger story'
+    ],
+    heroImage: {
+      src: '/images/aar/normandie-2014-hero.jpg',
+      alt: 'Team of ruckers on Normandy battlefield terrain, WWII historical markers visible'
+    },
+    location: 'Normandy, France',
+    approved: true
+  },
+  {
+    id: 'aar-okinawa-challenge-2015-03',
+    title: 'Okinawa GORUCK Challenge - After Action Report',
+    date: '2015-03-15',
+    author: 'Red Rucker',
+    duration: 840,
+    distance: 16.0,
+    load: 30,
+    participants: 35,
+    conditions: 'Clear, 18°C, beach terrain, historical sites, night operations',
+    planned: [
+      'Complete first GORUCK Challenge event',
+      'Experience team-based endurance in foreign environment',
+      'Practice navigation at historical military locations',
+      'Build international brotherhood connections'
+    ],
+    actual: [
+      'Completed 14-hour event with team of 35',
+      'Visited historical military sites during movement',
+      'Experienced beach terrain challenges',
+      'Connected with GRTs Yuma and Junpei - no English needed to complete event',
+      'Discovered truth is found in pain, endurance, and perseverance'
+    ],
+    whatWentWell: [
+      'Team achieved 100% completion rate',
+      'International team coordination worked smoothly',
+      'Navigation between historical sites was accurate',
+      'Cultural experience at military locations added meaning',
+      'Made lasting connections with GRTs from Japan'
+    ],
+    improvements: [
+      'More hydration planning for beach terrain',
+      'Better foot care for sand and wet conditions',
+      'Language barrier communication strategies',
+      'Cultural sensitivity at historical sites',
+      'Team bonding activities for international groups'
+    ],
+    lessonsLearned: [
+      'You do not need to understand a lick of English to get through a 14-hour endurance event if you have a team around you',
+      'Truth is very often found in pain, in endurance, in perseverance',
+      'Shared suffering creates bonds that transcend language',
+      'Historical context adds depth to the experience',
+      'International brotherhood is built through common challenge'
+    ],
+    heroImage: {
+      src: '/images/aar/okinawa-challenge-hero.jpg',
+      alt: 'Team of 35 ruckers on Okinawa beach at sunset, historical military structure in background'
+    },
+    location: 'Okinawa, Japan',
+    approved: true
+  },
+  {
+    id: 'aar-spartan-2014-09',
+    title: 'Post Spartan 2014 - After Action Report',
+    date: '2014-09-14',
+    author: 'Red Rucker',
+    duration: 300,
+    distance: 12.0,
+    load: 30,
+    participants: 25,
+    conditions: 'Clear, 22°C, mixed terrain with obstacle course',
+    planned: [
+      'Complete Spartan-style endurance event',
+      'Test obstacle course navigation',
+      'Practice team coordination under physical stress',
+      'Build foundation for heavier events'
+    ],
+    actual: [
+      'Completed obstacle course with team',
+      'Mixed terrain challenged all participants',
+      'Team coordination key to completion',
+      'Foundation building for future Heavy events'
+    ],
+    whatWentWell: [
+      'Obstacle completion rate',
+      'Team coordination throughout',
+      'Physical preparation adequate',
+      'Mental focus maintained'
+    ],
+    improvements: [
+      'Obstacle-specific training',
+      'Grip strength for rope elements',
+      'Burpee endurance for penalty variations',
+      'Team communication during obstacles'
+    ],
+    lessonsLearned: [
+      'Obstacle events require different preparation than pure rucking',
+      'Team coordination multiplies individual capability',
+      'Foundation events build context for heavier challenges',
+      'Mental toughness transfers across event types'
+    ],
+    heroImage: {
+      src: '/images/aar/spartan-2014-hero.jpg',
+      alt: 'Team of ruckers completing obstacle course during Spartan event'
+    },
+    location: 'USA',
+    approved: true
+  },
+  {
+    id: 'aar-tokyo-challenge-2015-03',
+    title: 'Tokyo GORUCK Challenge - After Action Report',
+    date: '2015-03-08',
+    author: 'Red Rucker',
+    duration: 840,
+    distance: 15.0,
+    load: 30,
+    participants: 28,
+    conditions: 'Clear, 12°C, urban and park terrain, night operations',
+    planned: [
+      'Complete GORUCK Challenge in Asian metropolis',
+      'Experience Japanese culture through ruck event',
+      'Practice navigation in dense urban environment',
+      'Build international team bonds'
+    ],
+    actual: [
+      'Completed 14-hour event through Tokyo urban terrain',
+      'Navigated parks and city areas throughout night',
+      'Team worked through language barriers successfully',
+      'Japanese hospitality integrated into event experience'
+    ],
+    whatWentWell: [
+      'Navigation through complex urban environment',
+      'Team coordination across language barriers',
+      'Cultural integration enhanced experience',
+      'Urban terrain provided unique challenges'
+    ],
+    improvements: [
+      'Urban navigation timing for dense areas',
+      'Language translation resources',
+      'Urban surface impact on feet',
+      'Crowd awareness during day operations'
+    ],
+    lessonsLearned: [
+      'Urban environments require different navigation approaches',
+      'Cultural context enriches the event experience',
+      'Team bonds transcend language differences',
+      'City operations present unique physical challenges'
+    ],
+    heroImage: {
+      src: '/images/aar/tokyo-challenge-hero.jpg',
+      alt: 'Team of 28 ruckers moving through Tokyo urban area at night, neon lights in background'
+    },
+    location: 'Tokyo, Japan',
+    approved: true
   }
 ];

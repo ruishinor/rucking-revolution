@@ -1,10 +1,12 @@
 ---
 import Layout from '@/components/Layout.astro';
 import ProductCard from '@/components/ProductCard.astro';
+import QuoteDisplay from '@/components/QuoteDisplay.astro';
 import { site } from '@/data/site.ts';
 import { articles } from '@/data/articles.ts';
 import { products } from '@/data/products.ts';
 import { comics } from '@/data/comics.ts';
+import { quotes } from '@/data/quotes.ts';
 
 // Get latest 3 articles sorted by date (newest first)
 const latestArticles = [...articles]
@@ -125,25 +127,30 @@ const communityItems = [
   <section class="hero-section">
     <div class="hero-bg"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
-      <div class="max-w-3xl">
-        <span class="stamp stamp-primary mb-6">FIELD MANUAL</span>
-        <h1 class="hero-title">
-          RUCK WITH<br/>
-          <span class="text-primary">PURPOSE</span>
-        </h1>
-        <p class="hero-deck">
-          Train for life, stay fit into old age, build your community and join crews worldwide.
-        </p>
-        <div class="hero-actions">
-          <a href="/train" class="btn-military btn-military-primary">
-            START TRAINING
-          </a>
-          <a href="/learn" class="btn-military btn-military-secondary">
-            READ THE FIELD GUIDE
-          </a>
-          <a href="/contact" class="btn-military btn-military-secondary btn-get-in-touch">
-            GET IN TOUCH
-          </a>
+      <div class="hero-grid">
+        <div class="hero-left">
+          <span class="stamp stamp-primary mb-6">FIELD MANUAL</span>
+          <h1 class="hero-title">
+            RUCK WITH<br/>
+            <span class="text-primary">PURPOSE</span>
+          </h1>
+          <p class="hero-deck">
+            Train for life, stay fit into old age, build your community and join crews worldwide.
+          </p>
+          <div class="hero-actions">
+            <a href="/train" class="btn-military btn-military-primary">
+              START TRAINING
+            </a>
+            <a href="/learn" class="btn-military btn-military-secondary">
+              READ THE FIELD GUIDE
+            </a>
+            <a href="/contact" class="btn-military btn-military-secondary btn-get-in-touch">
+              GET IN TOUCH
+            </a>
+          </div>
+        </div>
+        <div class="hero-right">
+          <QuoteDisplay quotes={quotes} />
         </div>
       </div>
     </div>
@@ -449,6 +456,13 @@ const communityItems = [
     gap: 1rem;
   }
 
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
   .hero-divider {
     height: 4px;
     background: var(--rr-color-primary);
@@ -488,6 +502,18 @@ const communityItems = [
     .proof-grid {
       grid-template-columns: 1fr;
       gap: 1.5rem;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .hero-right {
+      border-top: 1px solid var(--rr-color-border);
+      padding-top: 2rem;
     }
   }
 

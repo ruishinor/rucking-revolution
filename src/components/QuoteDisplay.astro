@@ -1,0 +1,94 @@
+---
+import type { Quote } from '@/data/quotes';
+
+interface Props {
+  quotes: Quote[];
+}
+
+const { quotes } = Astro.props;
+const defaultQuote = quotes[0];
+---
+
+<div class="quote-display" aria-label="Inspirational quote">
+  <div class="quote-border-accent"></div>
+  <blockquote class="quote-content">
+    <p class="quote-text" id="quote-text" aria-live="polite">{defaultQuote.text}</p>
+    <footer class="quote-source" id="quote-source">— {defaultQuote.source}</footer>
+  </blockquote>
+  <noscript>
+    <p class="quote-text">{defaultQuote.text}</p>
+    <p class="quote-source">— {defaultQuote.source}</p>
+  </noscript>
+</div>
+
+<script define:vars={{ quotes }}>
+  const quoteText = document.getElementById('quote-text');
+  const quoteSource = document.getElementById('quote-source');
+  
+  if (quoteText && quoteSource && quotes.length > 0) {
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    const quote = quotes[randomIndex];
+    quoteText.textContent = quote.text;
+    quoteSource.textContent = '— ' + quote.source;
+  }
+</script>
+
+<style>
+  .quote-display {
+    position: relative;
+    padding: 2rem 0 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 180px;
+  }
+
+  .quote-border-accent {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--rr-color-primary);
+  }
+
+  .quote-content {
+    max-width: 420px;
+  }
+
+  .quote-text {
+    font-family: var(--rr-font-serif);
+    font-size: 1.15rem;
+    line-height: 1.65;
+    color: var(--rr-color-secondary);
+    margin: 0 0 1rem 0;
+    font-style: italic;
+  }
+
+  .quote-source {
+    font-family: var(--rr-font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--rr-color-muted);
+  }
+
+  @media (max-width: 767px) {
+    .quote-display {
+      padding: 2rem 0 0 0;
+      border-top: 1px solid var(--rr-color-border);
+      margin-top: 2rem;
+      min-height: auto;
+    }
+
+    .quote-border-accent {
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: auto;
+      width: auto;
+      height: 4px;
+    }
+  }
+</style>
