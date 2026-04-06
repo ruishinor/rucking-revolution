@@ -6,7 +6,8 @@ interface Props {
 }
 
 const { quotes } = Astro.props;
-const defaultQuote = quotes[0];
+const randomIndex = Math.floor(Math.random() * quotes.length);
+const defaultQuote = quotes[randomIndex];
 ---
 
 <div class="quote-display" aria-label="Inspirational quote">
@@ -15,23 +16,7 @@ const defaultQuote = quotes[0];
     <p class="quote-text" id="quote-text" aria-live="polite">{defaultQuote.text}</p>
     <footer class="quote-source" id="quote-source">— {defaultQuote.source}</footer>
   </blockquote>
-  <noscript>
-    <p class="quote-text">{defaultQuote.text}</p>
-    <p class="quote-source">— {defaultQuote.source}</p>
-  </noscript>
 </div>
-
-<script define:vars={{ quotes }}>
-  const quoteText = document.getElementById('quote-text');
-  const quoteSource = document.getElementById('quote-source');
-  
-  if (quoteText && quoteSource && quotes.length > 0) {
-    const randomIndex = Math.floor(Math.random() * quotes.length);
-    const quote = quotes[randomIndex];
-    quoteText.textContent = quote.text;
-    quoteSource.textContent = '— ' + quote.source;
-  }
-</script>
 
 <style>
   .quote-display {
