@@ -42,7 +42,7 @@ export function sanitizeArticleHtml(html: string): string {
       a: sanitizeHtml.simpleTransform('a', {
         rel: 'noopener noreferrer',
       }),
-      img: (tagName, attribs) => ({
+      img: (tagName: string, attribs: Record<string, string>) => ({
         tagName,
         attribs: {
           ...attribs,

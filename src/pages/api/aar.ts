@@ -173,7 +173,7 @@ export const POST: APIRoute = async ({ request }) => {
 
   const validation = validateAarSubmission(formData);
   if (!validation.success) {
-    logApiEvent('/api/aar', 'warn', 'Validation failed', { errors: validation.errors }, requestId);
+    logApiEvent('/api/aar', 'warn', 'Validation failed', { error: validation.error }, requestId);
     return jsonResponse(400, validation, rateLimitHeaders);
   }
 

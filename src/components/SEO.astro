@@ -15,21 +15,19 @@ export interface Props {
    * @see https://ogp.me/
    */
   openGraph?: {
-    type?: string; // e.g., 'website', 'article'
-    image?: string; // URL to image
-    url?: string; // Canonical URL
-    [key: string]: any; // Other OG properties
-  };
+    type?: string;
+    image?: string;
+    url?: string;
+  } & Record<string, string>;
   /**
    * Twitter card properties.
    * @see https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/abouts-cards
    */
   twitter?: {
-    card?: string; // e.g., 'summary', 'summary_large_image'
-    site?: string; // Twitter handle
-    creator?: string; // Twitter handle of creator
-    [key: string]: any; // Other Twitter properties
-  };
+    card?: string;
+    site?: string;
+    creator?: string;
+  } & Record<string, string>;
   /**
    * Structured data (JSON-LD) for the page.
    * @see https://schema.org/

@@ -10,32 +10,70 @@ export interface RateLimitConfig {
   storeKey: string;
 }
 
-function getStore<T>(key: string): Map<string, T> {
-  const store = (globalThis as Record<string, unknown>)[key];
-  if (!store) {
-    const newStore = new Map<string, T>();
-    (globalThis as Record<string, unknown>)[key] = newStore;
-    return newStore;
-  }
-  return store as Map<string, T>;
+interface RateLimitStore {
+  data: Map<string, number[]>;
+  lastCleanup: number;
 }
 
-function cleanupStore(store: Map<string, number[]>, windowMs: number): void {
+const CLEANUP_INTERVAL_MS = 5 * 60 * 1000;
+
+function getStore(key: string): RateLimitStore {
+  const globalObj = globalThis as Record<string, unknown>;
+  if (!globalObj[key]) {
+    globalObj[key] = { data: new Map<string, number[]>(), lastCleanup: Date.now() };
+  }
+  return globalObj[key] as RateLimitStore;
+}
+
+function cleanupStore(store: RateLimitStore, windowMs: number): void {
   const now = Date.now();
+  if (now - store.lastCleanup < CLEANUP_INTERVAL_MS) {
+    return;
+  }
   const cutoff = now - windowMs * 2;
-  for (const [key, timestamps] of store.entries()) {
+  for (const [key, timestamps] of store.data.entries()) {
     const recent = timestamps.filter((ts) => ts >= cutoff);
     if (recent.length === 0) {
-      store.delete(key);
+      store.data.delete(key);
     } else {
-      store.set(key, recent);
+      store.data.set(key, recent);
     }
   }
+  store.lastCleanup = now;
+}
+
+function extractIpFromRequest(request: Request): string {
+  const forwardedFor = request.headers.get('x-forwarded-for');
+  if (forwardedFor) {
+    const firstIp = forwardedFor.split(',')[0]?.trim();
+    if (firstIp && isValidIp(firstIp)) {
+      return firstIp;
+    }
+  }
+  const realIp = request.headers.get('x-real-ip');
+  if (realIp && isValidIp(realIp)) {
+    return realIp;
+  }
+  return 'unknown';
+}
+
+function isValidIp(ip: string): boolean {
+  const ipv4Pattern = /^(\d{1,3}\.){3}\d{1,3}$/;
+  const ipv6Pattern = /^([0-9a-fA-F]{0,4}:){2,7}[0-9a-fA-F]{0,4}$/;
+  if (ipv4Pattern.test(ip)) {
+    const parts = ip.split('.').map(Number);
+    return parts.every((part) => part >= 0 && part <= 255);
+  }
+  if (ipv6Pattern.test(ip)) {
+    return true;
+  }
+  return false;
 }
 
 export function getRequesterKey(request: Request): string {
-  const forwardedFor = request.headers.get('x-forwarded-for');
-  return forwardedFor?.split(',')[0]?.trim() || 'unknown';
+  const ip = extractIpFromRequest(request);
+  const ua = (request.headers.get('user-agent') || '').substring(0, 128);
+  return `${ip}:${ua}`;
 }
 
 export function isSameOriginRequest(request: Request): boolean {
@@ -48,7 +86,8 @@ export function isSameOriginRequest(request: Request): boolean {
 
   try {
     const requestOrigin = origin || new URL(referer!).origin;
-    return requestOrigin === new URL(request.url).origin;
+    const urlOrigin = new URL(request.url).origin;
+    return requestOrigin === urlOrigin;
   } catch {
     return false;
   }
@@ -60,8 +99,8 @@ export function jsonResponse(
   extraHeaders?: Record<string, string>,
 ): Response {
   const headers: Record<string, string> = {
-    'Content-Type': 'application/json',
-    'Cache-Control': 'no-store',
+    'Content-Type': 'application/json; charset=utf-8',
+    'Cache-Control': 'no-store, no-cache, must-revalidate',
     'X-Content-Type-Options': 'nosniff',
     ...extraHeaders,
   };
@@ -96,10 +135,10 @@ export function checkRateLimit(
   requesterKey: string,
   config: RateLimitConfig,
 ): RateLimitResult {
-  const store = getStore<number[]>(config.storeKey);
+  const store = getStore(config.storeKey);
   const now = Date.now();
   const windowStart = now - config.windowMs;
-  const attempts = (store.get(requesterKey) ?? []).filter(
+  const attempts = (store.data.get(requesterKey) ?? []).filter(
     (timestamp) => timestamp >= windowStart,
   );
 
@@ -109,13 +148,13 @@ export function checkRateLimit(
       : now + config.windowMs;
 
   if (attempts.length >= config.maxRequests) {
-    store.set(requesterKey, attempts);
+    store.data.set(requesterKey, attempts);
     cleanupStore(store, config.windowMs);
     return { allowed: false, remaining: 0, resetAt };
   }
 
   attempts.push(now);
-  store.set(requesterKey, attempts);
+  store.data.set(requesterKey, attempts);
   cleanupStore(store, config.windowMs);
   return { allowed: true, remaining: config.maxRequests - attempts.length, resetAt };
 }
@@ -165,7 +204,14 @@ export const emailPattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-
 export function validateWebhookUrl(url: string): boolean {
   try {
     const parsed = new URL(url);
-    return parsed.protocol === 'https:';
+    if (parsed.protocol !== 'https:') {
+      return false;
+    }
+    const hostname = parsed.hostname.toLowerCase();
+    if (hostname === 'localhost' || hostname === '127.0.0.1' || hostname.startsWith('192.168.') || hostname.startsWith('10.') || hostname.startsWith('172.')) {
+      return false;
+    }
+    return true;
   } catch {
     return false;
   }

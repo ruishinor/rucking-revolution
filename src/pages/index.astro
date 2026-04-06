@@ -392,13 +392,19 @@ const communityItems = [
       <p class="text-muted-200 text-lg font-serif mb-8">
         Training tips, community updates, and exclusive content for those who ruck with purpose.
       </p>
-      <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto mb-4" onsubmit="event.preventDefault()">
+      <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto mb-4" id="homepage-newsletter-form" onsubmit="event.preventDefault()">
+        <div style="position:absolute;left:-9999px;" aria-hidden="true">
+          <label for="homepage-newsletter-honeypot">Website</label>
+          <input id="homepage-newsletter-honeypot" type="text" name="website" tabindex="-1" autocomplete="off" />
+        </div>
         <label for="homepage-newsletter-email" class="sr-only">Email address</label>
         <input 
           id="homepage-newsletter-email"
           type="email" 
+          name="email"
           placeholder="ENTER EMAIL" 
           aria-label="Email address for newsletter"
+          required
           class="flex-1 px-4 py-3 bg-surface border border-muted-300 text-foreground placeholder:text-muted focus:border-primary focus:outline-none"
         />
         <button type="submit" class="btn-military btn-military-primary whitespace-nowrap">
@@ -410,6 +416,8 @@ const communityItems = [
   </section>
 
 </Layout>
+
+<script type="module" src="/scripts/homepage-newsletter.js" is:inline></script>
 
 <style>
   /* Hero */
