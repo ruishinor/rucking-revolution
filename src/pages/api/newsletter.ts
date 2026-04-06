@@ -48,7 +48,19 @@ async function verifyTurnstileToken(token: string, ip?: string): Promise<boolean
   }
 
   const verification = await response.json().catch(() => null);
-  return verification?.success === true;
+  
+  // Verify success AND that token was issued for our hostname
+  if (verification?.success !== true) {
+    return false;
+  }
+  
+  // Validate token was issued for our exact hostname
+  const expectedHostname = process.env.SITE_DOMAIN || 'ruckingrevolution.com';
+  if (verification.hostname !== expectedHostname) {
+    return false;
+  }
+  
+  return true;
 }
 
 export const GET: APIRoute = () =>
@@ -74,9 +86,15 @@ export const POST: APIRoute = async ({ request }) => {
 
   if (!rateLimit.allowed) {
     logApiEvent('/api/newsletter', 'warn', 'Rate limit exceeded', { requesterKey }, requestId);
+    const retryAfter = Math.ceil((rateLimit.resetAt - Date.now()) / 1000);
     return jsonResponse(429, {
       success: false,
       error: 'Too many requests. Please try again later.',
+    }, {
+      'Retry-After': retryAfter.toString(),
+      'X-RateLimit-Limit': rateLimit.maxRequests.toString(),
+      'X-RateLimit-Remaining': '0',
+      'X-RateLimit-Reset': rateLimit.resetAt.toString(),
     });
   }
 
@@ -100,6 +118,17 @@ export const POST: APIRoute = async ({ request }) => {
 
   if (!payload || typeof payload !== 'object' || Array.isArray(payload)) {
     return jsonResponse(400, { success: false, error: 'Invalid request body.' });
+  }
+
+  // Honeypot check - reject if hidden field is filled
+  const honeypot = typeof payload.website === 'string' ? payload.website.trim() : '';
+  if (honeypot.length > 0) {
+    logApiEvent('/api/newsletter', 'warn', 'Honeypot triggered - bot detected', undefined, requestId);
+    // Return fake success to avoid bot detection
+    return jsonResponse(200, {
+      success: true,
+      message: 'Thank you for subscribing!',
+    });
   }
 
   const turnstileToken = typeof payload['cf-turnstile-response'] === 'string' ? payload['cf-turnstile-response'].trim() : '';
@@ -133,6 +162,11 @@ export const POST: APIRoute = async ({ request }) => {
   if (name.length > MAX_NAME_LENGTH) {
     return jsonResponse(400, { success: false, error: 'Name is too long.' });
   }
+  // Sanitize name - remove all HTML tags and strip control characters
+  const sanitizedName = name
+    .replace(/<[^>]*>/g, '')
+    .replace(/[\x00-\x1F\x7F-\x9F]/g, '')
+    .trim();
 
   const interests = payload.interests;
   if (interests !== undefined) {
@@ -172,7 +206,7 @@ export const POST: APIRoute = async ({ request }) => {
       },
       body: JSON.stringify({
         email,
-        name: name || undefined,
+        name: sanitizedName || undefined,
         interests: interests || ['training', 'community'],
         subscribedAt: new Date().toISOString(),
         source: 'website',

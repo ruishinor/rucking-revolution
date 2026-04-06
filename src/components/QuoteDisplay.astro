@@ -6,16 +6,55 @@ interface Props {
 }
 
 const { quotes } = Astro.props;
-const defaultQuote = quotes[0];
+const defaultQuote = quotes[Math.floor(Math.random() * quotes.length)];
 ---
 
-<div class="quote-display" aria-label="Inspirational quote">
+<div class="quote-display" aria-label="Inspirational quote" data-quotes={JSON.stringify(quotes)}>
   <div class="quote-border-accent"></div>
   <blockquote class="quote-content">
     <p class="quote-text" id="quote-text">{defaultQuote.text}</p>
     <footer class="quote-source" id="quote-source">— {defaultQuote.source}</footer>
   </blockquote>
 </div>
+
+<script>
+  function setRandomQuote() {
+    const quoteDisplay = document.querySelector('.quote-display');
+    if (!quoteDisplay) return;
+    
+    try {
+      const quotes = JSON.parse(quoteDisplay.dataset.quotes || '[]');
+      if (quotes.length === 0) return;
+      
+      // Get random index, ensure it's different from current if possible
+      const currentText = document.getElementById('quote-text')?.textContent;
+      let randomIndex;
+      let attempts = 0;
+      
+      do {
+        randomIndex = Math.floor(Math.random() * quotes.length);
+        attempts++;
+      } while (quotes[randomIndex].text === currentText && attempts < 10 && quotes.length > 1);
+      
+      const selectedQuote = quotes[randomIndex];
+      
+      const quoteText = document.getElementById('quote-text');
+      const quoteSource = document.getElementById('quote-source');
+      
+      if (quoteText) quoteText.textContent = selectedQuote.text;
+      if (quoteSource) quoteSource.textContent = `— ${selectedQuote.source}`;
+    } catch (e) {
+      // Fail silently - default quote will remain visible
+      console.debug('Quote randomization failed:', e);
+    }
+  }
+
+  // Run on initial page load
+  document.addEventListener('DOMContentLoaded', setRandomQuote);
+  
+  // Run on Astro view transitions (client-side navigation)
+  document.addEventListener('astro:page-load', setRandomQuote);
+</script>
 
 <style>
   .quote-display {

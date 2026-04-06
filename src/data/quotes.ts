@@ -33,7 +33,7 @@ export const quotes: Quote[] = [
   },
   {
     text: "Teams perform best when members have deep trust and confidence in each other's abilities, built through consistent shared experience.",
-    source: " - Unknown, signed by Red Rucker",
+    source: "`Holf, Alexander (2024) The Hidden Training Ground for High‑Performance Teams`",
   },
   {
     text: "Diverse perspectives within teams lead to better decision-making and more creative solutions.",
@@ -85,7 +85,7 @@ export const quotes: Quote[] = [
   },
   {
     text: "Creating inclusive environments where everyone belongs is essential for unlocking the full potential of teams and communities.",
-    source: " - Unknown, signed by Red Rucker",
+    source: " - RuckLeader",
   },
   {
     text: "Overcoming internal resistance and consistently showing up is what separates high performers from the rest, in both individuals and teams.",
@@ -109,10 +109,6 @@ export const quotes: Quote[] = [
   },
   {
     text: "Psychological safety is the foundation of high-performing teams because it enables candid dialogue and learning from mistakes.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "The most important characteristic of teams is discipline, not bonding, togetherness, or empowerment.",
     source: " - Unknown, signed by Red Rucker",
   },
   {
@@ -148,7 +144,7 @@ export const quotes: Quote[] = [
     source: " - Unknown, signed by Red Rucker",
   },
   {
-    text: "Military veterans bring unique leadership qualities including decisiveness, adaptability, and an unwavering commitment to mission and people.",
+    text: "Veterans tend to bring unique leadership qualities including decisiveness, adaptability, and an unwavering commitment to mission and people.",
     source: " - Unknown, signed by Red Rucker",
   },
   {
@@ -156,7 +152,7 @@ export const quotes: Quote[] = [
     source: " - Unknown, signed by Red Rucker",
   },
   {
-    text: "Leaders must ensure their product or service actually delivers value before investing resources in promotion. Authenticity matters.",
+    text: "Authenticity matters.",
     source: " - Unknown, signed by Red Rucker",
   },
   {
@@ -192,12 +188,12 @@ export const quotes: Quote[] = [
     source: " - Unknown, signed by Red Rucker",
   },
   {
-    text: "Military leadership requires both physical and moral courage—the willingness to act decisively under pressure while maintaining ethical standards.",
+    text: "Leadership requires both physical and moral courage—the willingness to act decisively under pressure while maintaining ethical standards.",
     source: " - Unknown, signed by Red Rucker",
   },
   {
     text: "Psychological safety is present when colleagues trust and respect each other and feel able—even obligated—to be candid.",
-    source: " - Unknown, signed by Red Rucker",
+    source: "`Holf, Alexander (2024) The Hidden Training Ground for High‑Performance Teams`",
   },
   {
     text: "People err so far on the side of caution at work that they routinely hold back great ideas—not just bad news.",
@@ -281,7 +277,7 @@ export const quotes: Quote[] = [
   },
   {
     text: "Intentionally embracing discomfort builds resilience and reveals capacities we never knew we had.",
-    source: " - Unknown, signed by Red Rucker",
+    source: " - RuckLeader",
   },
   {
     text: "Modern convenience has created a comfort crisis that leaves us physically and mentally weaker than previous generations.",
@@ -324,12 +320,12 @@ export const quotes: Quote[] = [
     source: " - Unknown, signed by Red Rucker",
   },
   {
-    text: "\"You risk so much by hesitating to fling yourself into the abyss.\"",
+    text: "\"You risk so much by hesitating to throw yourself into the abyss of the unknown.\"",
     source: " - Unknown, signed by Red Rucker",
   },
   {
     text: "The soldier mindset, which defends existing beliefs at all costs, prevents us from seeing reality clearly.",
-    source: " - Unknown, signed by Red Rucker",
+    source: " - The Scout Mindset: Why Some People See Things Clearly and Others Don't (Galef, 2021)",
   },
   {
     text: "The pleasure-pain balance in our brains means that excessive pleasure-seeking inevitably leads to increased suffering.",
@@ -396,16 +392,12 @@ export const quotes: Quote[] = [
     source: " - Unknown, signed by Red Rucker",
   },
   {
-    text: "When we ship, we declare our stuff ready for prime time. We pack it and send it out into the world.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
     text: "Teams that face challenges together develop a \"tend-and-befriend\" response. This natural mechanism strengthens bonds, increases supportive behavior, and builds cohesion through shared struggle.",
-    source: " - Unknown, signed by Red Rucker",
+    source: "`Holf, Alexander (2024) The Hidden Training Ground for High‑Performance Teams`",
   },
   {
     text: "Shared adversity creates collective confidence—the \"we can do anything\" attitude that comes from knowing the team has already overcome difficult challenges together.",
-    source: " - Unknown, signed by Red Rucker",
+    source: "`Holf, Alexander (2024) The Hidden Training Ground for High‑Performance Teams`",
   },
   {
     text: "Leaders who model vulnerability by saying \"I don't know\" create the conditions where team members feel safe to explore their own ideas instead of just following orders. This unlocks collective intelligence.",
@@ -413,7 +405,7 @@ export const quotes: Quote[] = [
   },
   {
     text: "Facing adversity together triggers a natural \"tend-and-befriend\" response that makes team members more attuned to each other's needs, more cooperative, and more creative. It turns shared struggle into shared strength.",
-    source: " - Unknown, signed by Red Rucker",
+    source: "`Holf, Alexander (2024) The Hidden Training Ground for High‑Performance Teams`",
   },
   {
     text: "Leadership isn't a moment—it's a pattern. The daily habits and systems you build determine whether you lead by intention or by accident.",
