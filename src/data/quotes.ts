@@ -108,35 +108,11 @@ export const quotes: Quote[] = [
     source: " - Unknown, signed by Red Rucker",
   },
   {
-    text: "Groups are more than collections of individuals—they develop their own identity, norms, and patterns of behavior that shape what members can and cannot do.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "Communities that prioritize learning over being right create space for everyone to grow. The willingness to change our minds in the face of new evidence is not weakness—it's the foundation of collective wisdom.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "Stories are how communities make sense of themselves. The narratives we share about who we are, where we've been, and where we're going shape the reality we inhabit together.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "Conflict is not the enemy of community—it's the raw material from which deeper understanding is forged. Communities that avoid conflict don't achieve peace; they achieve silence.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "Solidarity is not sympathy—it's the active commitment to stand with others in their struggle, even when it costs us something. Communities built on solidarity are infinitely more resilient than those built on charity.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
     text: "Psychological safety is the foundation of high-performing teams because it enables candid dialogue and learning from mistakes.",
     source: " - Unknown, signed by Red Rucker",
   },
   {
     text: "The most important characteristic of teams is discipline, not bonding, togetherness, or empowerment.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "Groups using the team discipline thrive on clearing a bar that others would not attempt. They are seldom satisfied with the standards or benchmarks used elsewhere in the organization.",
     source: " - Unknown, signed by Red Rucker",
   },
   {
@@ -220,18 +196,6 @@ export const quotes: Quote[] = [
     source: " - Unknown, signed by Red Rucker",
   },
   {
-    text: "Good leadership in the Norwegian defense tradition is built on trust and psychological safety, where leaders earn authority through competence and character rather than relying on rank alone.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "Leaders in the Norwegian armed forces are expected to take responsibility not just for mission success but for the wellbeing and development of every person under their command.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "The Norwegian defense philosophy of leadership emphasizes trust-based command, where leaders at all levels are empowered to make decisions within their area of responsibility.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
     text: "Psychological safety is present when colleagues trust and respect each other and feel able—even obligated—to be candid.",
     source: " - Unknown, signed by Red Rucker",
   },
@@ -248,51 +212,7 @@ export const quotes: Quote[] = [
     source: " - Unknown, signed by Red Rucker",
   },
   {
-    text: "Without the freedom to fail people will seek instead to repeat something safe that has been good enough in the past. Their work will be derivative, not innovative.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
     text: "Finding out that you are wrong is even more valuable than being right, because you are learning.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "The best leaders do not just manage tasks—they master when to lead directly and when to step back and let the team lead itself. Knowing which approach to use, and when, is what separates high-performing groups from mediocre ones.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "A team is not defined by how well its members get along, but by whether they produce collective results that no individual could achieve alone. Bonding without shared performance goals is just socializing.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "The most devastating organizational failures are not caused by a single bad decision but by cultures where people knew something was wrong but felt unable to speak up.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "The seeds of catastrophic failure take root months or years before the crisis becomes visible. Senior management often remains unaware because the culture does not encourage people to report early warning signs.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "The most effective crisis leadership is not about issuing decisive orders—it is about honest communication, vulnerability, and information sharing that gives people the psychological safety they need to act.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "The paradox of team performance is that focusing on relationships rather than performance actually weakens relationships. Groups that obsess on bonding without a clear performance purpose end up with weaker relationships than groups that rally around a compelling shared challenge.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "The fundamental leadership challenge of the modern era is not choosing between being authoritative or being collaborative—it is developing the judgment to know when each approach serves the work.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "The greatest waste in organizations is not wasted money or time—it is wasted voice. Every day, employees hold back ideas, concerns, and observations that could prevent failures, spark innovations, and improve performance.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "Fear-based leadership worked in the era of assembly lines because the work was observable, repetitive, and individually executed. In the knowledge economy, fear becomes not just ineffective but actively destructive.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "The deepest lesson from both books is the same: performance and safety are not competing values—they are mutually reinforcing. The teams that achieve the highest results are those where members feel safe enough to challenge each other, admit mistakes, and take interpersonal risks.",
     source: " - Unknown, signed by Red Rucker",
   },
   {
@@ -444,14 +364,6 @@ export const quotes: Quote[] = [
     source: " - Unknown, signed by Red Rucker",
   },
   {
-    text: "At what moments do you feel your reach exceeds your grasp? I always feel that at the start. That's why I study beginnings, so I can deal with those fears.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "When optimism turns to pessimism during the creative process, you are in a serious, dangerous rut. So serious that it can become the mother rut—depression.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
     text: "True inclusion goes beyond tolerance—it requires actively creating conditions where everyone can participate and belong.",
     source: " - Unknown, signed by Red Rucker",
   },
@@ -488,63 +400,7 @@ export const quotes: Quote[] = [
     source: " - Unknown, signed by Red Rucker",
   },
   {
-    text: "Teams that work well together don't need to hide mistakes from each other. They surface them openly because the team's collective success matters more than any individual's reputation.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "A psychologically safe team is one where people are more afraid of letting the team down by staying silent than they are of looking foolish by speaking up.",
-    source: "The Fearless Organization, p. xv — Amy C. Edmondson",
-  },
-  {
-    text: "The best teams don't make more mistakes—they report more of them, creating a culture of openness where errors are discussed and prevented rather than hidden.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "In effective teams, members can predict each other's behavior and needs without explicit communication, because they share mental models of the task and the team.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "Shared mental models can become a liability when they lead to groupthink. Too much overlap in how team members think can reduce creativity and cause teams to reinforce incorrect decisions.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
     text: "Teams that face challenges together develop a \"tend-and-befriend\" response. This natural mechanism strengthens bonds, increases supportive behavior, and builds cohesion through shared struggle.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "Going through tough situations together can be just as important for team building as sharing positive rewards. Perhaps more so, because adversity creates deeper bonds and stronger collective identity.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "The difference between a working group and a real team comes down to shared accountability, collective work products, shared leadership, and a commitment to a common purpose that goes beyond individual goals.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "Team resilience is not just the sum of individual resilience. It is a collective capacity that emerges from how the team manages pressure together, and it can strengthen the team's ability to handle future challenges.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "When a team leader communicates plans clearly, assigns roles proactively, and encourages input, they directly shape the team's shared understanding and ability to perform together.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "The failure of an employee to speak up in a crucial moment cannot be seen. Because not offering an idea is an invisible act, psychologically safe workplaces have a powerful advantage.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "In teams with high psychological safety, conflict leads to better performance because members can express relevant ideas and engage in critical discussion without embarrassment or excessive personal conflict.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "Expertise-diverse teams perform well when psychological safety is high and badly otherwise. Psychological safety is the factor that makes or breaks a diverse team's ability to put its different perspectives to good use.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "Teams that successfully navigate shared adversity develop trust, respect, and a shared sense of purpose. All of these are central building blocks in psychological safety.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "The transition from individual skills to team-level capacities like resilience and cohesion is made possible—and often accelerated—by facing and overcoming challenges together.",
     source: " - Unknown, signed by Red Rucker",
   },
   {
@@ -556,75 +412,11 @@ export const quotes: Quote[] = [
     source: " - Unknown, signed by Red Rucker",
   },
   {
-    text: "The most effective teams hold themselves mutually accountable to a greater degree than they are held accountable by either their leader or any sponsoring authority. Peer accountability is the hallmark of real teams.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "The single-leader discipline is faster for individual work products, but the team discipline produces extra performance through collective work products that no individual could achieve alone. Choosing the right discipline for the right challenge is the mark of effective leadership.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "Psychological safety helps teams overcome the challenges of geographic dispersion, put conflict to good use, and leverage diversity. It is the missing ingredient that makes or breaks diverse and distributed teams.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
     text: "Facing adversity together triggers a natural \"tend-and-befriend\" response that makes team members more attuned to each other's needs, more cooperative, and more creative. It turns shared struggle into shared strength.",
     source: " - Unknown, signed by Red Rucker",
   },
   {
-    text: "The transition from individual capacity to team capacity happens through shared behavioral processes. It is not the individuals' skills alone that determine team performance under pressure, but how the team interacts.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "Leaders who welcome only good news create fear that blocks them from hearing the truth. Many managers confuse setting high standards with good management, not realizing that high standards without psychological safety create an anxiety zone where performance suffers.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "Team resilience is more dynamic and open to change than individual resilience. If a key leader leaves, the team's resilience may be impacted. It focuses on collective functioning and shared goals rather than personal coping.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "The asymmetry of voice and silence explains why teams fail: speaking up is effortful with uncertain and delayed benefits, while silence is instinctive, immediately safe, and certain. Leaders must actively reverse this calculus.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "People don't do their best work when they're afraid. Teams that create environments where members feel safe to speak up, disagree, and take risks unlock performance that control never could.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "A team isn't a group of people who happen to work together. It's a group of people who hold each other accountable to a shared purpose—and that requires leaders willing to have hard conversations.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
     text: "Leadership isn't a moment—it's a pattern. The daily habits and systems you build determine whether you lead by intention or by accident.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "Good decisions aren't made in isolation. The best leaders create processes where diverse perspectives challenge their thinking before committing to a course of action.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "Real change starts with identity, not behavior. Leaders who shift how they see themselves don't just change what they do—they change what they're capable of becoming.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "Courage in leadership isn't the absence of fear—it's the decision that the mission matters more than the fear. Every meaningful change requires leaders to act despite being afraid.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "Comfort is the enemy of growth. Leaders who avoid discomfort themselves will never lead others through the difficult changes that real progress requires.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "Inclusion isn't a policy—it's a daily practice. Leaders who notice who's being left out and actively bring them in build teams that are stronger than the sum of their parts.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "Sharing your work before it's perfect takes courage, but it's the only way to get the feedback that makes it great. Leaders who hide behind perfectionism rob their teams of the chance to contribute.",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
-    text: "The best leaders are scouts, not soldiers. They care more about seeing reality clearly than defending their existing beliefs, even when the truth is uncomfortable.",
     source: " - Unknown, signed by Red Rucker",
   },
 ];
