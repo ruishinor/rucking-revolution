@@ -131,8 +131,8 @@ import { workouts } from '@/data/workouts.ts';
         Browse our collection of {workouts.length} pre-designed workouts for different goals and experience levels.
       </p>
       
-      <div class="grid gap-6">
-        {workouts.slice(0, 3).map((workout) => (
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {workouts.slice(0, 6).map((workout) => (
           <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
             <div class="p-6">
               <h3 class="text-xl font-bold mb-2">{workout.title}</h3>
@@ -156,7 +156,7 @@ import { workouts } from '@/data/workouts.ts';
       
       <div class="mt-6 text-center">
         <a 
-          href="/train/workouts"
+          href="/train/workouts/all"
           class="text-red-800 hover:text-red-900 font-medium"
         >
           View All Workouts →

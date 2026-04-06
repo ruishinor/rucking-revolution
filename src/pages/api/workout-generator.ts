@@ -22,11 +22,16 @@ export const POST: APIRoute = async ({ request }) => {
   const requestId = createRequestId();
 
   if (!isSameOriginRequest(request)) {
-    logApiEvent('/api/workout-generator', 'warn', 'Cross-origin request blocked', undefined, requestId);
-    return jsonResponse(403, {
-      success: false,
-      error: 'Cross-origin requests are not allowed.',
-    });
+    // Allow requests without referer/origin for direct form submissions (SSR)
+    const origin = request.headers.get('origin');
+    const referer = request.headers.get('referer');
+    if (origin || referer) {
+      logApiEvent('/api/workout-generator', 'warn', 'Cross-origin request blocked', undefined, requestId);
+      return jsonResponse(403, {
+        success: false,
+        error: 'Cross-origin requests are not allowed.',
+      });
+    }
   }
 
   const requesterKey = getRequesterKey(request);

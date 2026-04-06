@@ -405,9 +405,10 @@ const communityItems = [
           placeholder="ENTER EMAIL" 
           aria-label="Email address for newsletter"
           required
+          style="pointer-events: auto; position: relative;"
           class="flex-1 px-4 py-3 bg-surface border border-muted-300 text-foreground placeholder:text-muted focus:border-primary focus:outline-none"
         />
-        <button type="submit" class="btn-military btn-military-primary whitespace-nowrap">
+        <button type="submit" style="pointer-events: auto; position: relative;" class="btn-military btn-military-primary whitespace-nowrap">
           SUBSCRIBE
         </button>
       </form>
@@ -563,11 +564,13 @@ const communityItems = [
     position: relative;
     background: var(--rr-color-secondary);
     overflow: hidden;
+    z-index: 1;
   }
 
   .recruit-bg {
     position: absolute;
     inset: 0;
+    z-index: 0;
     background-image: 
       repeating-linear-gradient(
         45deg,

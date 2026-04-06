@@ -26,7 +26,7 @@ export const articles: Article[] = [
       alt: 'Group of diverse individuals rucking together through challenging terrain, demonstrating teamwork and shared adversity',
     },
     author: 'Red Rucker',
-    date: '2024-01-15',
+    date: '2025-01-15',
     readingTime: 8,
     tags: ['leadership', 'team-building', 'psychology'],
     body: `# Why Shared Adversity Builds Teams
@@ -59,7 +59,7 @@ In rucking, we don't just build endurance—we build the kind of teams that can 
       alt: 'Close-up of a rucker demonstrating proper posture: head up, shoulders back, core engaged, with weight distributed evenly',
     },
     author: 'Red Rucker',
-    date: '2024-02-01',
+    date: '2025-02-01',
     readingTime: 12,
     tags: ['technique', 'injury-prevention', 'beginners'],
     body: `# Fundamentals of Proper Rucking Form
@@ -98,7 +98,7 @@ Your ruck should sit high on your back, with the weight distributed between shou
       alt: 'Spread of nutrient-dense foods suitable for rucking: lean proteins, complex carbohydrates, electrolytes, and hydration options',
     },
     author: 'Red Rucker',
-    date: '2024-02-15',
+    date: '2025-02-15',
     readingTime: 10,
     tags: ['nutrition', 'endurance', 'fueling'],
     body: `# Nutrition Strategies for Endurance Rucking
@@ -139,7 +139,7 @@ Within 30 minutes post-ruck, prioritize:
       alt: 'Solo rucker focusing on distant goalpost, displaying determined expression despite visible fatigue and challenging weather conditions',
     },
     author: 'Red Rucker',
-    date: '2024-03-01',
+    date: '2025-03-01',
     readingTime: 9,
     tags: ['mental-health', 'resilience', 'psychology'],
     body: `# Mental Resilience Techniques for Ruckers
@@ -175,7 +175,7 @@ Mid-ruck, mentally list three things you're grateful for in that moment. This sh
       alt: 'Community rucking group conducting progressive rucking training: starting with lighter loads and shorter distances, building to heavier loads over varied terrain',
     },
     author: 'Red Rucker',
-    date: '2024-03-15',
+    date: '2025-03-15',
     readingTime: 14,
     tags: ['community', 'training-programs', 'leadership'],
     body: `# Building Rucking Programs for Community Teams
@@ -218,7 +218,7 @@ Effective rucking programs don't happen by accident—they require systematic pl
       alt: 'Person assisting another individual with a sprained ankle during a community rucking event, demonstrating practical carrying techniques',
     },
     author: 'Red Rucker',
-    date: '2024-04-01',
+    date: '2025-04-01',
     readingTime: 11,
     tags: ['community', 'practical-skills', 'helping-others'],
     body: `# Rucking for Community Response
@@ -259,7 +259,7 @@ Rucking provides specific adaptations that transfer directly to these scenarios:
       alt: 'Elite rucker demonstrating efficient form at pace: minimal vertical oscillation, powerful arm drive, and smooth weight transfer',
     },
     author: 'Red Rucker',
-    date: '2024-04-15',
+    date: '2025-04-15',
     readingTime: 13,
     tags: ['advanced', 'performance', 'competition'],
     body: `# Advanced Rucking Techniques for Competitive Athletes
@@ -317,7 +317,7 @@ As loads increase beyond 30% of body weight, technique becomes even more critica
       alt: 'Person rucking alone through forest trail at sunrise, eyes closed slightly, demonstrating mindful presence and connection with nature',
     },
     author: 'Red Rucker',
-    date: '2024-05-01',
+    date: '2025-05-01',
     readingTime: 10,
     tags: ['mindfulness', 'mental-health', 'spirituality'],
     body: `# Rucking as Meditation in Motion
@@ -362,7 +362,7 @@ Imagine each step releasing a worry or stressor, physically leaving it behind on
       alt: 'Multi-generational family group (parents, two children, grandparent) rucking together on woodland trail, laughing and interacting',
     },
     author: 'Red Rucker',
-    date: '2024-05-15',
+    date: '2025-05-15',
     readingTime: 9,
     tags: ['family', 'beginners', 'community'],
     body: `# Family Rucking: Building Resilience Together
@@ -416,7 +416,7 @@ The side-by-side nature of walking (rather than face-to-face) with weight often 
       alt: 'Layout of essential rucking gear: quality backpack, proper footwear, moisture-wicking clothing, hydration system, and basic first aid kit',
     },
     author: 'Red Rucker',
-    date: '2024-06-01',
+    date: '2025-06-01',
     readingTime: 12,
     tags: ['gear', 'equipment', 'beginners'],
     body: `# Rucking Gear Guide: Essentials
