@@ -84,7 +84,7 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   const requesterKey = getRequesterKey(request);
-  const rateLimit = checkRateLimit(requesterKey, {
+  const rateLimit = await checkRateLimit(requesterKey, {
     windowMs: 60 * 60 * 1000,
     maxRequests: 3,
     storeKey: '__newsletterRateLimitStore',
@@ -98,9 +98,9 @@ export const POST: APIRoute = async ({ request }) => {
       error: 'Too many requests. Please try again later.',
     }, {
       'Retry-After': retryAfter.toString(),
-      'X-RateLimit-Limit': rateLimit.maxRequests.toString(),
+      'X-RateLimit-Limit': String(3),
       'X-RateLimit-Remaining': '0',
-      'X-RateLimit-Reset': rateLimit.resetAt.toString(),
+      'X-RateLimit-Reset': String(Math.ceil(rateLimit.resetAt / 1000)),
     });
   }
 

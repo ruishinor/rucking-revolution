@@ -63,3 +63,17 @@ If you want, I can:
 - Attempt safe dependency updates for the dev-only packages in a separate branch.
 
 End of initial security pass.
+
+Recent Changes Applied (summary)
+- **Dev-tooling**: moved `@astrojs/check` to `devDependencies` and added an `overrides` entry forcing `yaml` >= 2.8.3 to eliminate the audit advisory in the language-server chain.
+- **Rate-limiter**: implemented an async `checkRateLimit()` with optional Upstash/Redis backing (environment variables `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN`) and a safe in-memory fallback for local dev.
+- **Endpoints updated**: `src/pages/api/newsletter.ts` and `src/pages/api/aar.ts` now `await` the async rate limiter and set appropriate rate-limit headers.
+- **CSP reporting**: removed `unsafe-inline` from `style-src` in `vercel.json` and added a `Report-To`/reporting endpoint at `/api/csp-report` (`src/pages/api/csp-report.ts`) that accepts and logs CSP violation reports (responds 204).
+- **Adversarial tests**: added `test/adversarial.test.ts` covering oversized payloads, origin checks, and webhook URL validation; all tests pass locally (12/12).
+
+Next recommended steps
+- Push the `security/update-dev-tooling` branch and open a PR; create a separate PR for hardening changes if desired.
+- Add a CI workflow that runs `npm ci`, `npm audit --json` and fails if vulnerabilities exist, then runs `npx vitest run` (including adversarial tests).
+- Provision Upstash credentials in staging to validate Redis-backed rate-limiting in a serverless environment.
+
+End of update.

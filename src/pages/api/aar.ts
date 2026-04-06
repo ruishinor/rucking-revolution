@@ -114,7 +114,7 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   const requesterKey = `${getRequesterKey(request)}:${(request.headers.get('user-agent') || '').substring(0, 64)}`;
-  const rateLimit = checkRateLimit(requesterKey, RATE_LIMIT_CONFIG);
+  const rateLimit = await checkRateLimit(requesterKey, RATE_LIMIT_CONFIG);
 
   const rateLimitHeaders = {
     'X-RateLimit-Limit': String(RATE_LIMIT_MAX_REQUESTS),

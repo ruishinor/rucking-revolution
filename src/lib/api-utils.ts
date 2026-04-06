@@ -131,21 +131,46 @@ export async function readWithSizeLimit(request: Request, maxBytes: number): Pro
   return result;
 }
 
-export function checkRateLimit(
+export async function checkRateLimit(
   requesterKey: string,
   config: RateLimitConfig,
-): RateLimitResult {
-  const store = getStore(config.storeKey);
+): Promise<RateLimitResult> {
   const now = Date.now();
-  const windowStart = now - config.windowMs;
-  const attempts = (store.data.get(requesterKey) ?? []).filter(
-    (timestamp) => timestamp >= windowStart,
-  );
+  const windowSeconds = Math.ceil(config.windowMs / 1000);
 
-  const resetAt =
-    attempts.length > 0
-      ? attempts[0] + config.windowMs
-      : now + config.windowMs;
+  // If Upstash variables are present, prefer Redis-backed rate limiting
+  try {
+    const upstashUrl = process.env.UPSTASH_REDIS_REST_URL;
+    const upstashToken = process.env.UPSTASH_REDIS_REST_TOKEN;
+    if (upstashUrl && upstashToken) {
+      const globalObj = globalThis as any;
+      if (!globalObj.__upstashRedis) {
+        const { Redis } = await import('@upstash/redis');
+        globalObj.__upstashRedis = new Redis({ url: upstashUrl, token: upstashToken });
+      }
+      const redis = globalObj.__upstashRedis as any;
+      const key = `${config.storeKey}:${requesterKey}`;
+      const current = Number(await redis.incr(key));
+      if (current === 1) {
+        // set expiry only on first increment
+        await redis.expire(key, windowSeconds);
+      }
+      const ttl = Number(await redis.ttl(key));
+      const resetAt = Date.now() + (ttl > 0 ? ttl * 1000 : config.windowMs);
+      const allowed = current <= config.maxRequests;
+      const remaining = Math.max(0, config.maxRequests - current);
+      return { allowed, remaining, resetAt };
+    }
+  } catch {
+    // If any error occurs with Redis, fall back to in-memory store below
+  }
+
+  // In-memory fallback (suitable for single-instance or dev)
+  const store = getStore(config.storeKey);
+  const windowStart = now - config.windowMs;
+  const attempts = (store.data.get(requesterKey) ?? []).filter((timestamp) => timestamp >= windowStart);
+
+  const resetAt = attempts.length > 0 ? attempts[0] + config.windowMs : now + config.windowMs;
 
   if (attempts.length >= config.maxRequests) {
     store.data.set(requesterKey, attempts);
