@@ -16,7 +16,10 @@ if (!backstageEnabled) {
 }
 
 const adminSecret = process.env.BACKSTAGE_SECRET;
-const providedSecret = Astro.url.searchParams.get('access_key');
+// Prefer header-based secrets to avoid leaking secrets in query strings or logs.
+// Accepts `Authorization: Bearer <secret>` or `x-vercel-protection-key` header.
+const headerAuth = (Astro.request?.headers?.get('authorization') || Astro.request?.headers?.get('x-vercel-protection-key') || '')?.toString();
+const providedSecret = (headerAuth.replace(/^Bearer\s+/i, '') || Astro.url.searchParams.get('access_key')) ?? '';
 
 function secretsMatch(expected: string, provided: string): boolean {
   if (expected.length !== provided.length) {

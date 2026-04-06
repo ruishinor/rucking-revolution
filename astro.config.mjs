@@ -8,7 +8,7 @@ const hiddenRoutes = new Set([
   '/backstage',
   '/style-guide',
   '/branding-mockup',
-  '/lead/after-action-reviews/submit',
+  '/learn/after-action-reviews/submit',
 ]);
 
 const config = {

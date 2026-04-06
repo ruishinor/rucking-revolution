@@ -208,8 +208,17 @@ export function validateWebhookUrl(url: string): boolean {
       return false;
     }
     const hostname = parsed.hostname.toLowerCase();
-    if (hostname === 'localhost' || hostname === '127.0.0.1' || hostname.startsWith('192.168.') || hostname.startsWith('10.') || hostname.startsWith('172.')) {
+    // Block common private address spaces: localhost, 127.0.0.1, 10.*, 192.168.*, and 172.16.0.0/12
+    if (hostname === 'localhost' || hostname === '127.0.0.1' || hostname.startsWith('192.168.') || hostname.startsWith('10.')) {
       return false;
+    }
+
+    if (hostname.startsWith('172.')) {
+      const parts = hostname.split('.');
+      const second = Number(parts[1]);
+      if (!Number.isNaN(second) && second >= 16 && second <= 31) {
+        return false;
+      }
     }
     return true;
   } catch {
