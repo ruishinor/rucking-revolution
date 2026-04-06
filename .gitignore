@@ -56,7 +56,8 @@ Thumbs.db
 # Scripts and utilities used during development (optional)
 fix-*.js
 contrast.js
-scripts/
+/scripts/
+!public/scripts/
 
 # Test coverage
 coverage/
