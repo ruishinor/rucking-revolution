@@ -6,8 +6,8 @@ interface Props {
 }
 
 const { quotes } = Astro.props;
-const randomIndex = Math.floor(Math.random() * quotes.length);
-const defaultQuote = quotes[randomIndex];
+const defaultQuote = quotes[0];
+const quotesJson = JSON.stringify(quotes);
 ---
 
 <div class="quote-display" aria-label="Inspirational quote">
@@ -16,7 +16,47 @@ const defaultQuote = quotes[randomIndex];
     <p class="quote-text" id="quote-text" aria-live="polite">{defaultQuote.text}</p>
     <footer class="quote-source" id="quote-source">— {defaultQuote.source}</footer>
   </blockquote>
+  <button class="quote-refresh" id="quote-refresh" aria-label="Get new quote">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="23 4 23 10 17 10"></polyline>
+      <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+    </svg>
+  </button>
 </div>
+
+<script define:vars={{ quotes: quotesJson }}>
+  const parsedQuotes = JSON.parse(quotesJson);
+  const quoteText = document.getElementById('quote-text');
+  const quoteSource = document.getElementById('quote-source');
+  const refreshBtn = document.getElementById('quote-refresh');
+  let lastIndex = -1;
+
+  function getRandomQuote() {
+    if (parsedQuotes.length === 0) return null;
+    let randomIndex;
+    do {
+      randomIndex = Math.floor(Math.random() * parsedQuotes.length);
+    } while (randomIndex === lastIndex && parsedQuotes.length > 1);
+    lastIndex = randomIndex;
+    return parsedQuotes[randomIndex];
+  }
+
+  function updateQuote() {
+    const quote = getRandomQuote();
+    if (!quote) return;
+    quoteText.textContent = quote.text;
+    quoteSource.textContent = '— ' + quote.source;
+  }
+
+  if (quoteText && quoteSource && parsedQuotes.length > 0) {
+    updateQuote();
+    setInterval(updateQuote, 30000);
+  }
+
+  if (refreshBtn) {
+    refreshBtn.addEventListener('click', updateQuote);
+  }
+</script>
 
 <style>
   .quote-display {
@@ -57,6 +97,44 @@ const defaultQuote = quotes[randomIndex];
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--rr-color-muted);
+  }
+
+  .quote-refresh {
+    margin-top: 0.75rem;
+    background: transparent;
+    border: 1px solid var(--rr-color-border);
+    border-radius: 4px;
+    padding: 0.35rem 0.5rem;
+    cursor: pointer;
+    color: var(--rr-color-muted);
+    transition: color 0.2s, border-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .quote-refresh:hover {
+    color: var(--rr-color-primary);
+    border-color: var(--rr-color-primary);
+  }
+
+  .quote-refresh {
+    margin-top: 0.75rem;
+    background: transparent;
+    border: 1px solid var(--rr-color-border);
+    border-radius: 4px;
+    padding: 0.35rem 0.5rem;
+    cursor: pointer;
+    color: var(--rr-color-muted);
+    transition: color 0.2s, border-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .quote-refresh:hover {
+    color: var(--rr-color-primary);
+    border-color: var(--rr-color-primary);
   }
 
   @media (max-width: 767px) {
