@@ -1,18 +1,22 @@
 ---
-// Button Props
-// variant: 'primary' | 'secondary' | 'utility'
-// size: 'sm' | 'md' | 'lg'
-const { variant = 'primary', size = 'md', class: className = '' } = Astro.props;
+interface Props {
+  variant?: 'primary' | 'secondary' | 'utility';
+  size?: 'sm' | 'md' | 'lg';
+  class?: string;
+}
 
-// Variant classes
-const variantClasses = {
+const props = Astro.props as Props;
+const variant = props.variant ?? 'primary';
+const size = props.size ?? 'md';
+const className = props.class ?? '';
+
+const variantClasses: Record<string, string> = {
   primary: 'btn btn-primary',
   secondary: 'btn btn-secondary',
   utility: 'btn btn-utility'
 };
 
-// Size classes
-const sizeClasses = {
+const sizeClasses: Record<string, string> = {
   sm: 'btn-sm',
   md: 'btn-md',
   lg: 'btn-lg'

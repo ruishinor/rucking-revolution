@@ -25,11 +25,11 @@ let { category = 'all' } = Astro.props;
       class="rounded-border border border-muted-200 bg-white px-3 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-accent"
       aria-label="Filter by category"
     >
-      <option value="all" {category === 'all' && 'selected'}>All Categories</option>
-      <option value="Leadership" {category === 'Leadership' && 'selected'}>Leadership</option>
-      <option value="Communication" {category === 'Communication' && 'selected'}>Communication</option>
-      <option value="Decision Making" {category === 'Decision Making' && 'selected'}>Decision Making</option>
-      <option value="Adaptability" {category === 'Adaptability' && 'selected'}>Adaptability</option>
+      <option value="all" selected={category === 'all'}>All Categories</option>
+      <option value="Leadership" selected={category === 'Leadership'}>Leadership</option>
+      <option value="Communication" selected={category === 'Communication'}>Communication</option>
+      <option value="Decision Making" selected={category === 'Decision Making'}>Decision Making</option>
+      <option value="Adaptability" selected={category === 'Adaptability'}>Adaptability</option>
     </select>
     <button 
       id="shuffleBtn"

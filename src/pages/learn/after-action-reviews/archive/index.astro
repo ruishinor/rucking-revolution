@@ -1,7 +1,41 @@
 ---
-export const prerender = false;
+import Layout from '@/components/Layout.astro';
+import { aarEntries } from '@/data/aar';
 
-return Astro.redirect('/learn/after-action-reviews/archive', 301);
+const approvedAARs = aarEntries.filter(aar => aar.approved);
+
+approvedAARs.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+const groupedByYear = approvedAARs.reduce((acc, aar) => {
+  const year = new Date(aar.date).getFullYear();
+  if (!acc[year]) {
+    acc[year] = [];
+  }
+  acc[year].push(aar);
+  return acc;
+}, {} as Record<string, typeof approvedAARs>);
+
+const years = Object.keys(groupedByYear).sort((a, b) => parseInt(b) - parseInt(a));
+
+function formatWeight(weight?: number, unit?: 'kg' | 'lbs', legacyLoad?: number): string {
+  const w = weight ?? legacyLoad;
+  if (w === undefined) return 'N/A';
+  return `${w} ${unit || 'kg'}`;
+}
+
+function getParticipantsCount(aar: typeof approvedAARs[0]): string {
+  const started = aar.participantsStarted;
+  const completed = aar.participantsCompleted;
+  const legacy = aar.participants;
+  
+  if (started !== undefined && completed !== undefined) {
+    return `${completed}/${started}`;
+  }
+  if (completed !== undefined) return String(completed);
+  if (started !== undefined) return String(started);
+  if (legacy !== undefined) return String(legacy);
+  return 'N/A';
+}
 ---
 <Layout 
   title="AAR Archive | Rucking Revolution"
@@ -12,7 +46,7 @@ return Astro.redirect('/learn/after-action-reviews/archive', 301);
       <!-- Header -->
       <header class="mb-12">
         <a 
-          href="/lead/after-action-reviews" 
+          href="/learn/after-action-reviews" 
           class="inline-flex items-center text-primary hover:text-primary-dark font-medium mb-4"
         >
           <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -54,27 +88,35 @@ return Astro.redirect('/learn/after-action-reviews/archive', 301);
                         {aar.conditions}
                       </p>
                       
-                      <!-- Stats -->
-                      <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="inline-flex items-center bg-panel text-muted-foreground text-xs px-2 py-1 rounded">
-                          <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 7m0 13V7" />
-                          </svg>
-                          {aar.distance} km
-                        </span>
-                        <span class="inline-flex items-center bg-panel text-muted-foreground text-xs px-2 py-1 rounded">
-                          <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1" />
-                          </svg>
-                          {aar.load} kg
-                        </span>
-                        <span class="inline-flex items-center bg-panel text-muted-foreground text-xs px-2 py-1 rounded">
-                          <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
-                          </svg>
-                          {aar.participants}
-                        </span>
-                      </div>
+                      <!-- Stats - Only show if available -->
+                      {(aar.distance !== undefined || aar.individualWeight !== undefined || aar.load !== undefined || aar.participantsStarted !== undefined || aar.participantsCompleted !== undefined || aar.participants !== undefined) && (
+                        <div class="flex flex-wrap gap-2 mb-4">
+                          {aar.distance !== undefined && (
+                            <span class="inline-flex items-center bg-panel text-muted-foreground text-xs px-2 py-1 rounded">
+                              <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 7m0 13V7" />
+                              </svg>
+                              {aar.distance} km
+                            </span>
+                          )}
+                          {(aar.individualWeight !== undefined || aar.load !== undefined) && (
+                            <span class="inline-flex items-center bg-panel text-muted-foreground text-xs px-2 py-1 rounded">
+                              <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1" />
+                              </svg>
+                              {formatWeight(aar.individualWeight, aar.individualWeightUnit, aar.load)}
+                            </span>
+                          )}
+                          {(aar.participantsStarted !== undefined || aar.participantsCompleted !== undefined || aar.participants !== undefined) && (
+                            <span class="inline-flex items-center bg-panel text-muted-foreground text-xs px-2 py-1 rounded">
+                              <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+                              </svg>
+                              {getParticipantsCount(aar)}
+                            </span>
+                          )}
+                        </div>
+                      )}
                       
                       <!-- Author -->
                       <p class="text-muted text-xs mb-4">
@@ -83,7 +125,7 @@ return Astro.redirect('/learn/after-action-reviews/archive', 301);
                       
                       <!-- View Button -->
                       <a 
-                        href={`/lead/after-action-reviews/${aar.id}`}
+                        href={`/learn/after-action-reviews/${aar.id}`}
                         class="block w-full text-center bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition-colors text-sm font-medium"
                       >
                         View Full AAR
@@ -105,7 +147,7 @@ return Astro.redirect('/learn/after-action-reviews/archive', 301);
             The archive is empty. Be the first to submit an After Action Review!
           </p>
           <a 
-            href="/lead/after-action-reviews/submit" 
+            href="/learn/after-action-reviews/submit" 
             class="inline-block bg-primary text-white px-6 py-2 rounded hover:bg-primary-dark transition-colors font-medium"
           >
             Submit an AAR
@@ -117,24 +159,24 @@ return Astro.redirect('/learn/after-action-reviews/archive', 301);
       <nav class="mt-12 pt-8 border-t border-border">
         <div class="flex flex-wrap justify-center gap-4">
           <a 
-            href="/lead/after-action-reviews" 
+            href="/learn/after-action-reviews" 
             class="text-primary hover:text-primary-dark font-medium"
           >
             &larr; AAR Overview
           </a>
           <span class="text-border">|</span>
           <a 
-            href="/lead/after-action-reviews/submit" 
+            href="/learn/after-action-reviews/submit" 
             class="text-primary hover:text-primary-dark font-medium"
           >
             Submit an AAR
           </a>
           <span class="text-border">|</span>
           <a 
-            href="/lead" 
+            href="/learn" 
             class="text-primary hover:text-primary-dark font-medium"
           >
-            Back to Leadership
+            Back to Learn
           </a>
         </div>
       </nav>

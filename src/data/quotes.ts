@@ -33,7 +33,7 @@ export const quotes: Quote[] = [
   },
   {
     text: "Teams perform best when members have deep trust and confidence in each other's abilities, built through consistent shared experience.",
-    source: "`Holf, Alexander (2024) The Hidden Training Ground for High‑Performance Teams`",
+    source: "Holf (2024) 'The Hidden Training Ground for High‑Performance Teams`",
   },
   {
     text: "Diverse perspectives within teams lead to better decision-making and more creative solutions.",
@@ -193,7 +193,7 @@ export const quotes: Quote[] = [
   },
   {
     text: "Psychological safety is present when colleagues trust and respect each other and feel able—even obligated—to be candid.",
-    source: "`Holf, Alexander (2024) The Hidden Training Ground for High‑Performance Teams`",
+    source: "Holf (2024) 'The Hidden Training Ground for High‑Performance Teams`",
   },
   {
     text: "People err so far on the side of caution at work that they routinely hold back great ideas—not just bad news.",
@@ -204,11 +204,11 @@ export const quotes: Quote[] = [
     source: " - Unknown, signed by Red Rucker",
   },
   {
-    text: "Cheating and covering up are natural by-products of a top-down culture that does not accept \"no\" or \"it cannot be done\" for an answer.",
+    text: "Covering up is a natural by-product of a top-down culture that does not accept \"no\" or \"it cannot be done\" for an answer.",
     source: " - Unknown, signed by Red Rucker",
   },
   {
-    text: "Finding out that you are wrong is even more valuable than being right, because you are learning.",
+    text: "Finding out that you are wrong is even more valuable than being right, because you get the opportunity to learn.",
     source: " - Unknown, signed by Red Rucker",
   },
   {
@@ -376,10 +376,6 @@ export const quotes: Quote[] = [
     source: " - Unknown, signed by Red Rucker",
   },
   {
-    text: "If the quiet temple of passing fades from memory, we may forget \"reality as it is.\"",
-    source: " - Unknown, signed by Red Rucker",
-  },
-  {
     text: "Why does it have to only be \"one path\" for life? Why can't life be a tapestry of many paths?",
     source: " - Unknown, signed by Red Rucker",
   },
@@ -393,11 +389,11 @@ export const quotes: Quote[] = [
   },
   {
     text: "Teams that face challenges together develop a \"tend-and-befriend\" response. This natural mechanism strengthens bonds, increases supportive behavior, and builds cohesion through shared struggle.",
-    source: "`Holf, Alexander (2024) The Hidden Training Ground for High‑Performance Teams`",
+    source: "Holf (2024) 'The Hidden Training Ground for High‑Performance Teams`",
   },
   {
     text: "Shared adversity creates collective confidence—the \"we can do anything\" attitude that comes from knowing the team has already overcome difficult challenges together.",
-    source: "`Holf, Alexander (2024) The Hidden Training Ground for High‑Performance Teams`",
+    source: "Holf (2024) 'The Hidden Training Ground for High‑Performance Teams`",
   },
   {
     text: "Leaders who model vulnerability by saying \"I don't know\" create the conditions where team members feel safe to explore their own ideas instead of just following orders. This unlocks collective intelligence.",
@@ -405,7 +401,7 @@ export const quotes: Quote[] = [
   },
   {
     text: "Facing adversity together triggers a natural \"tend-and-befriend\" response that makes team members more attuned to each other's needs, more cooperative, and more creative. It turns shared struggle into shared strength.",
-    source: "`Holf, Alexander (2024) The Hidden Training Ground for High‑Performance Teams`",
+    source: "Holf (2024) 'The Hidden Training Ground for High‑Performance Teams`",
   },
   {
     text: "Leadership isn't a moment—it's a pattern. The daily habits and systems you build determine whether you lead by intention or by accident.",

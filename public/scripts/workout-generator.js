@@ -85,9 +85,22 @@ function initWorkoutGenerator() {
   const form = document.getElementById('workout-form');
   const errorDiv = document.getElementById('workout-generator-error');
   const workoutDiv = document.getElementById('generated-workout');
+  const modeSelect = document.getElementById('mode');
+  const timeContainer = document.getElementById('timePreferenceContainer');
 
   if (!(form instanceof HTMLFormElement) || !(errorDiv instanceof HTMLElement) || !(workoutDiv instanceof HTMLElement)) {
     return;
+  }
+
+  if (modeSelect && timeContainer) {
+    modeSelect.addEventListener('change', (e) => {
+      const mode = e.target.value;
+      if (mode === 'predefined') {
+        timeContainer.classList.add('hidden');
+      } else {
+        timeContainer.classList.remove('hidden');
+      }
+    });
   }
 
   form.addEventListener('submit', async (event) => {
@@ -95,6 +108,7 @@ function initWorkoutGenerator() {
 
     try {
       const formData = new FormData(form);
+      const mode = formData.get('mode') || 'generated';
       const difficulty = formData.get('difficulty') || 'beginner';
       const timePreferenceRaw = formData.get('timePreference');
       const timePreference =
@@ -109,6 +123,7 @@ function initWorkoutGenerator() {
           Accept: 'application/json',
         },
         body: JSON.stringify({
+          mode,
           difficulty,
           ...(typeof timePreference === 'number' ? { timePreference } : {}),
         }),

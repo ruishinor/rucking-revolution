@@ -57,8 +57,8 @@ const difficultyColors: Record<string, string> = {
       </div>
 
       <section class="mb-8">
-        <h2 class="text-2xl font-heading text-secondary mb-4">TERRAIN</h2>
-        <div class="flex flex-wrap gap-2">
+        <h2 class="text-2xl font-heading text-secondary mb-4 bg-[#8a1e1e] text-white px-3 py-2 rounded">TERRAIN</h2>
+        <div class="flex flex-wrap gap-2 mt-2">
           {workout.terrain.map((t) => (
             <span class="stamp stamp-primary">{t}</span>
           ))}
@@ -66,8 +66,8 @@ const difficultyColors: Record<string, string> = {
       </section>
 
       <section class="mb-8">
-        <h2 class="text-2xl font-heading text-secondary mb-4">OBJECTIVES</h2>
-        <ul class="list-disc list-inside space-y-2 text-muted-foreground">
+        <h2 class="text-2xl font-heading text-secondary mb-4 bg-[#8a1e1e] text-white px-3 py-2 rounded">OBJECTIVES</h2>
+        <ul class="list-disc list-inside space-y-2 text-muted-foreground mt-2">
           {workout.objectives.map((objective) => (
             <li>{objective}</li>
           ))}
@@ -75,8 +75,8 @@ const difficultyColors: Record<string, string> = {
       </section>
 
       <section class="mb-8">
-        <h2 class="text-2xl font-heading text-secondary mb-4">EQUIPMENT</h2>
-        <ul class="list-disc list-inside space-y-2 text-muted-foreground">
+        <h2 class="text-2xl font-heading text-secondary mb-4 bg-[#8a1e1e] text-white px-3 py-2 rounded">EQUIPMENT</h2>
+        <ul class="list-disc list-inside space-y-2 text-muted-foreground mt-2">
           {workout.equipment.map((item) => (
             <li>{item}</li>
           ))}
@@ -85,8 +85,8 @@ const difficultyColors: Record<string, string> = {
 
       {workout.notes && (
         <section class="mb-8 bg-panel p-6 rounded-lg">
-          <h2 class="text-2xl font-heading text-secondary mb-4">NOTES</h2>
-          <p class="text-muted-foreground">{workout.notes}</p>
+          <h2 class="text-2xl font-heading text-secondary mb-4 bg-[#8a1e1e] text-white px-3 py-2 rounded">NOTES</h2>
+          <p class="text-muted-foreground mt-2">{workout.notes}</p>
         </section>
       )}
 

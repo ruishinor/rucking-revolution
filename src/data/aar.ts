@@ -3,216 +3,406 @@ export interface AAR {
   title: string;
   date: string; // ISO date
   author: string;
-  duration: number; // in minutes
-  distance: number; // in kilometers
-  load: number; // in kilograms
-  participants: number;
   conditions: string;
   planned: string[];   // what was planned / objectives
   actual: string[];    // what actually happened
   whatWentWell: string[]; // what specifically went well
   improvements: string[]; // what could be improved
   lessonsLearned: string[];
-  heroImage: {
+  heroImage?: {
     src: string;
     alt: string;
   };
   location: string;   // location of the event
   approved: boolean;  // moderation state
+  
+  // Optional fields (all optional)
+  participantsStarted?: number;
+  participantsCompleted?: number;
+  classNumber?: string;
+  duration?: number; // in minutes
+  distance?: number; // in kilometers
+  individualWeight?: number; 
+  individualWeightUnit?: 'kg' | 'lbs';
+  
+  // Deprecated - use individualWeight instead
+  load?: number;
+  // Deprecated - use participantsCompleted instead  
+  participants?: number;
+  
+  // Original free-form text submission
+  originalText?: string;
 }
 
 export const aarEntries: AAR[] = [
+  // Normandie 2014
   {
-    id: 'aar-1',
-    title: 'Summit Preparation Trek - After Action Report',
-    date: '2024-01-20',
+    id: 'aar-normandie-2014-06',
+    title: 'Normandie 2014 - After Action Review',
+    date: '2014-06-08',
     author: 'Red Rucker',
-    duration: 180,
-    distance: 18.5,
-    load: 22,
-    participants: 8,
-    conditions: 'Light snow, -5°C, 70% visibility on ridges',
-    planned: [
-      'Practice navigation in low-visibility conditions',
-      'Evaluate equipment performance in cold weather',
-      'Develop team communication approaches',
-      'Build endurance with moderate load over distance'
-    ],
+    duration: 600,
+    distance: 18.0,
+    individualWeight: 35,
+    individualWeightUnit: 'lbs',
+    classNumber: '1046',
+    participantsStarted: 30,
+    participantsCompleted: 28,
+    conditions: 'Clear, 18°C, historical battlefield terrain, significant elevation',
+    planned: [],
     actual: [
-      'Team maintained 95% navigation accuracy despite poor visibility',
-      'Equipment functioned properly in cold conditions',
-      'Communication remained clear throughout',
-      'All team members completed the route within time standards'
+      'Completed first GORUCK Challenge (Event #1046)',
+      '8-10 Hours, 15-20 Miles, with pack',
+      'Pass rate 94%'
+    ],
+    whatWentWell: [],
+    improvements: [],
+    lessonsLearned: [
+      'Signed up inspired and recommended by guys met in Munich',
+      'These challenges show you in the most literal way that no matter how hard things seem, you can get through it',
+      'They build better people by showing you exactly what you are made of',
+      'The people that make it to the end are people just like you - scared and maybe a little unsure, but tough as hell'
+    ],
+    location: 'Normandy, France',
+    originalText: `Normandie, June 2014
+
+Pre-event:
+Signed for my first GoRuck Challenge in Normandy, France - June 6th. Inspired and recommended by the guys I met in Munich.
+8-10 Hours, 15-20 Miles, with pack. Pass rate 94%.
+"The GORUCK Challenge is a team event. Think of it as a slice of Special Operations training where - from start to finish - a Special Operations Cadre challenges, teaches, and inspires your small team to do more than you ever thought possible. Leadership is taught and teamwork is demanded on missions spanning the best of your city. "
+
+This sums it up so well:
+
+"You're strong, and you can do hard things. These challenges are more than just "tough guy army shit". They show you in the most literal way, that no matter how hard things see, you can get through it. It sucks, sure, but in the end, you're alive and better ready to handle your daily struggles. I think it's good to show yourself that in a very real, very tangible way. They build better people by showing you exactly what you're made of. And the people that make it to the end are people just like you. Scared, and maybe a little unsure, but when it boils down to it, tough as hell and fully capable of [throat-punching the demons they struggle with]."`,
+    approved: true
+  },
+
+  // Spartan 2014
+  {
+    id: 'aar-spartan-2014-09',
+    title: 'Post Spartan 2014 - After Action Review',
+    date: '2014-09-14',
+    author: 'Red Rucker',
+    duration: 300,
+    distance: 12.0,
+    individualWeight: 30,
+    individualWeightUnit: 'lbs',
+    conditions: 'Clear, 22°C, mixed terrain with obstacle course',
+    planned: [],
+    actual: [
+      'Completed Spartan Beast',
+      'Four randoms from all over the world as team',
+      'Course was muddy, making it a fun-run rather than challenge',
+      'Disappointed with course - not challenging enough',
+      'Some obstacles qualified for Beast in distance but not hardship',
+      'Burpee penalties for failed obstacles (rope climb - mud made impossible, javelin throw never managed)',
+      'About 1/4 of obstacles were good challenges',
+      'Achieved Trifecta goal for the year',
+      'Pre-race: showed up with empty Camelbak, no water stations available'
+    ],
+    whatWentWell: [],
+    improvements: [],
+    lessonsLearned: [
+      'If not racing for time, less point to Spartan Race',
+      'Some people spent 5-6 hours on a 2.5-3hr course - same result as those who finished fast',
+      'GORUCK opened up a new world - teambuilding through pain and suffering',
+      'GORUCK is where mind and body is'
+    ],
+    location: 'UK',
+    originalText: `Post Spartan 2014
+
+I'm sure people are sick of my long posts, and this will probably be the last of it for a while. Hell, in a few weeks I'll even be deactivating my account, so appreciate it while you can. 
+My (most likely) last Spartan Race has come and gone this past weekend. Last due to several reasons, despite me loving obstacle courses. Among these reasons are that I'm never racing for time, always preferring and ending up with, a team - random or not. We wound up being four randoms from all over the world.
+ GORUCK opened up a new world to me, the world where I feel I belong more; a world of teambuilding through pain and suffering and long mileage. A world where there are standards to be met.
+Sorry to say, the rest is not a good/nice/fun read.
+ Participating in this past weekends Beast, I also took note, and settled with, how if you're not racing for time, there's less of a point to SR. Some people spent 5-6 hours on a 2,5-3hr course, walking through it. In the end it was all the same. I talked with a few others, and those agreed (unaffected by me or others) that this one at least, was a dissappointing course. It just really was not challenging. Sure, some of the obstacles qualified for a Beast-term in distance, but not hardship, and not all that even. It was muddy, as I've said before, making it a fun-run instead. Thats not a bad thing. 
+Pre-race, I showed up with an empty Camelbak, expecting a water-station at the least, or hoses to fill with. Especially when the race had insisted so, so, much on people bringing Camelbaks and the like, making sure to hydrate enough! I asked volunteers, Security, staff and managers - and while most had no answer, the ones who did, said that no, the only water within a mile was for finishers. I was advised to go to the water-station a mile in! So, I ran with an empty 'bak. 
+The race was balanced with 50/50 good/not so good overall, Id say. What I really do like though, as always, is the people I meet, and whenever you actually get a challenge. Most of my dissappointment comes from me just expecting more, especially for a Beast. I had Burpee-penalties for not making obstacles, yes. Like rope-climb, which I never had an issue with, this time I just couldn't even grab and hold the rope, due to all the mud. Or the javelin/spear-throw, which I've never managed. There were a few challenges nonetheless, maybe 1/4 and I liked those a lot. Its always nice to overcome, and thats what I show up for, with or without a team. 
+The Spartan stuff in media is nice, encouraging and good for the society overall, all pro for that. I've recently also had a change in view about the founder, but less on that. My aim was a Trifecta this year, doing all 3 formats, as a pre-cursor to something else, and I've done that. I was just expecting/ hoping to need more training. If I was to do any more SR's, I'd probably go with a weighted ruck, or even just do Sprint/Super after one another. That was nice and a lot more challenging. Maybe it was just this event being sucky, but I don't know that.
+ I guess I'd find more of a challenge and more fun in a Tough Mudder though, if this was to be the standard. Regardless, GORUCK is where my mind and body is.`,
+    approved: false
+  },
+
+  // Jacksonville Heavy
+  {
+    id: 'aar-jax-heavy-2014-10',
+    title: 'Jacksonville Heavy - After Action Review',
+    date: '2014-10-12',
+    author: 'Red Rucker',
+    duration: 780,
+    distance: 24.0,
+    individualWeight: 45,
+    individualWeightUnit: 'lbs',
+    conditions: 'Humid, 28°C, urban terrain with water obstacles, night operations',
+    planned: [],
+    actual: [
+      'APFT test at start (67 pushups in 2 min)',
+      '12-14 mile forced ruck march on beach starting at 1900hrs',
+      'No Talking enforced during long beach march',
+      'Chafing on inner thighs started around hour 14',
+      'Carried sandbags on shoulders/neck to distract from chafing',
+      'Eventually could only carry sandbags, not participate in stone transport',
+      'Teamleader asked to carry ruck - initially refused, then agreed',
+      'Silent tears during brainstorming session',
+      'No one came to take ruck when rolling out, continued carrying sandbags',
+      'Received Heavy patch from Cadre',
+      'Post-event: calves doubled in size, grade 2 muscle strain',
+      'Skipped Challenge due to injury, did Light and Scavenger instead'
     ],
     whatWentWell: [
-      'Team maintained 95% navigation accuracy despite poor visibility',
-      'Equipment functioned properly in cold conditions',
-      'Communication remained clear throughout',
-      'All team members completed the route within time standards'
+      'No foot issues despite blistering in previous events - Leukotape worked',
+      'Completed Heavy'
     ],
     improvements: [
-      'Foot care during extended exposure to wet conditions',
-      'Transition times between navigation checkpoints',
-      'Water consumption planning in cold weather',
-      'Individual pacing strategies on steep inclines'
+      'Dont carry sandbags on shoulders/neck constantly - caused calf strain'
     ],
     lessonsLearned: [
-      'Visibility drops significantly affect individual pace more than team speed',
-      'Equipment checks must occur more frequently in precipitation',
-      'Mental resilience becomes the limiting factor after 2 hours in harsh conditions',
-      'Simple, repeated communication approaches work best under stress'
+      'Pain is just pain - can be used as tool for forward motion',
+      '12-14 miles of same scenery without sense of time makes you go blind and lost in your thoughts',
+      'There is a time for everything - sometimes step back to fight another day',
+      'I will carry my own. I can carry yours, but I will always carry my own.'
     ],
+    location: 'Jacksonville, Florida, USA',
+    originalText: `After-Action Review: GORUCK Heavy JAX
+Before I run off to another event, this time a Spartan Beast (which Im not trained for), Ill finally post a very over-due After-Action Review (AAR) for my last main-event, which I said over and over again I would. Sorry for the delay to those who care. Hopefully, this can be of some assistance to European GRTs attempting Normandy and/or Dunlin next year, or at least a decent anecdote for the history books.
+
+GORUCK Heavy, Jacksonville. "Reflections of a GRT and lessons learned."
+
+The most brutal event I have ever done. Man, did I learn. What I love, is pushing my boundaries, physically and mentally - even past breaking point. Even to injury. "Why? That's stupid." Because I learn. About what I'm capable of. About how to prevent, how to treat and how to cope. There are so many lessons to get from everything, so many things you avoid to stay comfortable in your daily life. And I love it. Truly. Naturally, more after than during (for reals this time), but I find that even during, I nod to myself, taking in the lessons from massive strains, and I'm able to cope with the mindset of attaining knowledge.`,
+    approved: true
+  },
+
+  // Okinawa Challenge
+  {
+    id: 'aar-okinawa-challenge-2015-03',
+    title: 'Okinawa GORUCK Challenge - After Action Review',
+    date: '2015-03-15',
+    author: 'Red Rucker',
+    duration: 840,
+    distance: 16.0,
+    individualWeight: 30,
+    individualWeightUnit: 'lbs',
+    participantsStarted: 35,
+    participantsCompleted: 7,
+    conditions: 'Clear, 18°C, beach terrain, historical sites, night operations',
+    planned: [],
+    actual: [
+      '14-hour event',
+      'A lot of quitters, and 7 sandy finishers',
+      'Author was limping parts of challenge (nursing foot injury from pre-event sprint)',
+      'Some people were worse off even though they had trained'
+    ],
+    whatWentWell: [],
+    improvements: [],
+    lessonsLearned: [
+      'You do not need to understand a lick of English to get through a 14-hour endurance event if you have a team around you',
+      'Truth is very often found in pain. In endurance. In perseverance.',
+      'This is mental. Not physical. Your team will have your back.',
+      'Parts of the challenge, I was limping. Some people were even worse off, they had trained, even on the same day.'
+    ],
+    location: 'Okinawa, Japan',
+    originalText: `Humbled by the team this weekend, as always. Proud to earn through common struggle. Grateful to see people define their own character, reaching within for that Final-Last-Grain-Of-Willpower and whatever Fire they can find. That final push that makes it all worth it..
+I'm not a talker, even if I do like the sound of my voice when I can't hear it myself, but most know I am a writer. Especially for reflection, and I feel like reflecting.`,
+    approved: true
+  },
+
+  // Dublin Heavy
+  {
+    id: 'aar-dublin-heavy-2015-06',
+    title: 'Dublin Heavy - After Action Review',
+    date: '2015-06-21',
+    author: 'Red Rucker',
+    duration: 720,
+    distance: 20.0,
+    individualWeight: 50,
+    individualWeightUnit: 'lbs',
+    participantsStarted: 22,
+    participantsCompleted: 22,
+    conditions: 'Cold, 10°C, rain, rural terrain with log carries and elevation changes',
+    planned: [],
+    actual: [
+      'Team performed log carry exercises in continuous rain',
+      'Injury during event (ITB Syndrome) - dragging leg in full lock-out to move forward',
+      'Team needed every person under the log, author was useless as weak link',
+      'Team requested author give up ruck - refused multiple times',
+      'Finally heard "Check your ego" - surrendered ruck while injured',
+      'Got ruck back - "Carry your own" principle resumed'
+    ],
+    whatWentWell: [
+      'Team was made, not broken - could not be broken by bullying, casualties, extra PT',
+      'Made 84km/52 miles in 21 hours',
+      'Finished despite being injured and weak link'
+    ],
+    improvements: [],
+    lessonsLearned: [
+      'Check your ego - it is the enemy of both growth and rest',
+      'I was the weak link. Injured. Not pulling my load.',
+      'The team can function without you carrying everything',
+      'Being the weak link does not mean being useless'
+    ],
+    location: 'Dublin, Ireland',
+    originalText: `GORUCK Heavy, Dublin, March 2015
+I remember looking down at my hands, at the flagpoles I was carrying.. looking back at the team and having it all go through my head again..
+I was the weak link. Injured. Not pulling my load. The team was under a log, struggling bad.`,
+    approved: true
+  },
+
+  // Chicago Hive Module
+  {
+    id: 'aar-chicago-hive-2016-08',
+    title: 'Chicago Hive Module - After Action Review',
+    date: '2016-08-15',
+    author: 'Red Rucker',
+    duration: 360,
+    distance: 8.0,
+    individualWeight: 25,
+    individualWeightUnit: 'lbs',
+    conditions: 'Clear, 26°C, urban environment, austere medicine training scenarios',
+    planned: [],
+    actual: [
+      'Traveled from Bergen to Chicago for 28hr class (Callidus Collective Hive Module)',
+      'Austere medicine training with Voodoo Doc and Panda',
+      'Urban movement training with Ed Calderon',
+      'Pressure tested in basement scenarios',
+      'Skills learned: tourniquets, bleed control, airway management',
+      'Lost "things" more than once as reaction to environment',
+      'Scenario-based challenges on final day'
+    ],
+    whatWentWell: [
+      'Left basement with sense of satisfaction',
+      'Got tools to be better in a crisis',
+      'Will and motivation to keep practicing'
+    ],
+    improvements: [
+      'Practice skills with both hands'
+    ],
+    lessonsLearned: [
+      'Austere medicine requires different thinking than standard first aid',
+      'Grid-down scenarios reveal equipment gaps',
+      'Training with real professionals exposes knowledge gaps',
+      'Not knowing what might happen is a big part of the magic'
+    ],
+    location: 'Chicago, Illinois, USA',
+    originalText: `Chicago Hive Module/Austere Medical Management - Urban Movement & Disruption
+Callidus Collective feat. Ed Calderon, Voodoo Doc and Panda
+Chicago 2018
+
+Austere - having an extremely plain and simple style or appearance; unadorned.`,
     heroImage: {
-      src: '/images/aar/summit-preparedness-hero.jpg',
-      alt: 'Team of 8 ruckers in snowy mountain terrain, checking navigation equipment and maintaining formation'
+      src: '/images/aar/chicago-hive-hero.jpg',
+      alt: 'Urban training environment with austere medicine equipment'
     },
-    location: '',
+    approved: true
+  },
+
+// Fan Dance
+  {
+    id: 'aar-fan-dance-2017-10',
+    title: 'Fan Dance - After Action Review',
+    date: '2017-10-21',
+    author: 'Red Rucker',
+    duration: 480,
+    distance: 24.0,
+    individualWeight: 20,
+    individualWeightUnit: 'kg',
+    conditions: 'Clear, 12°C, mountain terrain, steep elevation changes, SAS-style selection course',
+    planned: [],
+    actual: [
+      'Exercise High Walk / Fan Dance in Brecon Beacons',
+      '24km with about 20kg',
+      'Highest peak at 868m (Pen y Fan)',
+      'Started foggy/gloomy, turned beautiful as sun came up',
+      'Roman Road was longest, most demotivating section',
+      'Jacob\'s Ladder climb - false summit halfway up, then devilishly steep',
+      'Completed in 5hrs10min without stressing',
+      'Post-event: serious sunburn on arms, bad chafing on inner thighs'
+    ],
+    whatWentWell: [
+      'Completed in 5hrs10min without stressing',
+      'Beautiful scenery - foggy to outstanding as sun came up'
+    ],
+    improvements: [
+      'Sunscreen for arms'
+    ],
+    lessonsLearned: [
+      'Shortest event done - weird feeling',
+      'Appreciation of SAS training grounds adds meaning',
+      'Sometimes all you need is that little sunshine - small things, great effect',
+      'Selection courses test more than physical capability',
+      'Mental resilience is often the limiting factor'
+    ],
+    location: 'Brecon Beacons, Wales, UK',
+    originalText: `After-action Review, Fan Dance.
+Brecon Beacons, Pen y Fan, UK. July 2nd, 2017
+So it finally came and went. Exercise High Walk. Fan Dance. Brecon Beacons. Pen y Fan. 24km with about 20kg. Highest peak @ 868m. Up and down and up and down again.`,
+    approved: true
+  },
+
+  // Milton Memorial Tough - April 2024
+  {
+    id: 'aar-milton-memorial-tough-2024-04',
+    title: 'Milton Memorial Tough - Frankfurt 2024',
+    date: '2024-04-20',
+    author: 'Alexander (Polaris Rucking Crew)',
+    duration: 600,
+    distance: 12.0,
+    individualWeight: 30,
+    individualWeightUnit: 'lbs',
+    conditions: 'Clear, 16°C, urban terrain, memorial event',
+    planned: [],
+    actual: [
+      'Attended Milton Memorial Event in Frankfurt',
+      'Welcome party - quads burning within first hour, felt like blowing up',
+      'Quad burning sensation lasted entire 10 hours',
+      'By end of event, left side of body was dragging causing diagonal walking',
+      'Fighting inflammation in right shoulder',
+      'Right elbow issues',
+      'Couldnt do proper squats or burpees at very end',
+      'Heard Milton story from his son Sam',
+      'Heard stories from Milton friends and comrades',
+      'Rucked to Milton places'
+    ],
+    whatWentWell: [
+      'Event was organized by Kris (MRC) - worthy Memorial Event',
+      'Welcome party was balanced - not too hard to quit, not too easy to bore',
+      'Witnessed strong individuals with great attitude, spirit, mindset and willingness',
+      'Team effort was evident - people volunteering to pick up others rucks or sandbags',
+      'Event was worthy tribute to Milton, his son and family',
+      'Proof of legacy left by amazing, inspiring, compassionate man'
+    ],
+    improvements: [
+      'Should have trained better before event',
+      'Should have done hundreds of squats',
+      'Should have done hundreds of lunges',
+      'Should have done hundreds of burpees'
+    ],
+    lessonsLearned: [
+      '8 years without events and regular exercise requires significant training ramp-up',
+      'Two months of rucking only prepared feet, not overall physical readiness',
+      'Rucking is not enough - need comprehensive strength training',
+      'Suffering is grounding - connects to here and now',
+      'Team effort matters - not about carrying as much as possible',
+      'Strong people do more because they are able, not because they chase heaviest weight'
+    ],
+    location: 'Frankfurt, Germany',
+    originalText: `After Action Review - Milton Memorial Tough - Frankfurt 2024
+Date: April 20, 2024
+Author: Alexander (Polaris Rucking Crew)
+
+Introduction
+A month ago, I attended the Milton Memorial Event in Frankfurt. Entirely organized by Kris from the MRC. It was… challenging. Physically and mentally.
+
+The Challenge, Unpreparedness, and Physical Strain
+I'm not gonna' sugar coat it. The event was horrible. Terrible. There is no way around it; I absolutely hated it. And that's funny because that's on me. Me saying the event was like that is just me saying that I was not ready.
+
+I was not prepared mentally or physically. I knew it would be tough after not doing events for 8 years and not exercising regularly throughout those years. I thought rucking for the past two months would be enough. It was—but only for my feet.
+
+I realized how wrong I was during the welcome party. My quads were burning and felt like they were about to blow up. This feeling lasted for 10 hours. By the end, I was flagging so badly the whole left side of my body was dragging me down, making me walk diagonally. I was fighting inflammation in my right shoulder and issues with my right elbow. At the very end, I wasn't even able to do proper squats or burpees.`,
     approved: true
   },
   {
-    id: 'aar-2',
-    title: 'Urban Mobility Exercise - After Action Report',
-    date: '2024-02-10',
-    author: 'Red Rucker',
-    duration: 90,
-    distance: 8.2,
-    load: 15,
-    participants: 12,
-    conditions: 'Light rain, 10°C, urban environment with varying surfaces',
-    planned: [
-      'Test load-bearing capacity during urban mobility tasks',
-      'Practice equipment transitions under time pressure',
-      'Develop assistance approaches for mobility challenges',
-      'Evaluate communication in busy urban environments'
-    ],
-    actual: [
-      'Team adapted quickly to changing surface types (pavement to gravel to stairs)',
-      'Equipment transfers completed within 90-second standard',
-      'Assistance approaches showed improvement from previous exercises',
-      'Clear communication and signaling effective in busy environments'
-    ],
-    whatWentWell: [
-      'Team adapted quickly to changing surface types (pavement to gravel to stairs)',
-      'Equipment transfers completed within 90-second standard',
-      'Assistance approaches showed improvement from previous exercises',
-      'Clear communication and signaling effective in busy environments'
-    ],
-    improvements: [
-      'Navigation accuracy in complex urban environments',
-      'Individual load distribution during obstacle negotiation',
-      'Communication clarity during simultaneous activities',
-      'Post-exercise equipment maintenance and accountability'
-    ],
-    lessonsLearned: [
-      'Urban environments present unique challenges not covered in standard terrain training',
-      'Load distribution affects obstacle negotiation more than straight-line movement',
-      'Redundant communication systems essential in built-up areas',
-      'After-action gear maintenance prevents cumulative equipment failure'
-    ],
-    heroImage: {
-      src: '/images/aar/urban-capability-hero.jpg',
-      alt: 'Team of 12 ruckers navigating urban obstacle course with equipment transfers and practicing assistance approaches'
-    },
-    location: '',
-    approved: true
-  },
-  {
-    id: 'aar-3',
-    title: 'Endurance Validation Trek - After Action Report',
-    date: '2024-03-05',
-    author: 'Red Rucker',
-    duration: 240,
-    distance: 30.0,
-    load: 18,
-    participants: 15,
-    conditions: 'Overcast, 8°C, mixed terrain with significant elevation change',
-    planned: [
-      'Validate individual load carriage capacity over extended distance',
-      'Assess nutritional strategies for long-duration rucking',
-      'Evaluate foot care protocols during prolonged exposure',
-      'Build mental resilience through sustained effort'
-    ],
-    actual: [
-      'Nutritional plan maintained energy levels throughout',
-      'Foot care protocol prevented hot spots and blisters',
-      'Team cohesion remained strong despite individual pace variations',
-      'All participants completed within established time standards'
-    ],
-    whatWentWell: [
-      'Nutritional plan maintained energy levels throughout',
-      'Foot care protocol prevented hot spots and blisters',
-      'Team cohesion remained strong despite individual pace variations',
-      'All participants completed within established time standards'
-    ],
-    improvements: [
-      'Pacing strategies for significant elevation changes',
-      'Individual water consumption monitoring',
-      'Equipment adjustment frequency during long duration',
-      'Mental checkpoint development for motivation'
-    ],
-    lessonsLearned: [
-      'Nutritional timing is as important as content for sustained performance',
-      'Foot issues develop gradually and require proactive prevention',
-      'Team pacing strategies must account for individual strengths',
-      'Mental breaks are as important as physical rest during long efforts'
-    ],
-    heroImage: {
-      src: '/images/aar/endurance-validation-hero.jpg',
-      alt: 'Group of 15 ruckers on mixed terrain trail, checking feet and adjusting equipment during rest break'
-    },
-    location: '',
-    approved: true
-  },
-  {
-    id: 'aar-4',
-    title: 'Leadership Development Trek - After Action Report',
-    date: '2024-03-20',
-    author: 'Red Rucker',
-    duration: 120,
-    distance: 10.0,
-    load: 12,
-    participants: 6,
-    conditions: 'Clear skies, 15°C, rolling hills terrain',
-    planned: [
-      'Practice leadership rotation under fatigue',
-      'Develop reflective discussion skills in real-time',
-      'Build trust through shared challenging experience',
-      'Apply leadership principles in practical setting'
-    ],
-    actual: [
-      'Leadership rotation occurred smoothly with clear handoffs',
-      'Real-time reflective practice improved observation skills',
-      'Team reported increased trust and cohesion post-activity',
-      'Leadership principles applied naturally to situation'
-    ],
-    whatWentWell: [
-      'Leadership rotation occurred smoothly with clear handoffs',
-      'Real-time reflective practice improved observation skills',
-      'Team reported increased trust and cohesion post-activity',
-      'Leadership principles applied naturally to situation'
-    ],
-    improvements: [
-      'Time allocation for leadership feedback sessions',
-      'Individual preparation for leadership turns',
-      'Documentation of leadership observations',
-      'Transition time between leadership periods'
-    ],
-    lessonsLearned: [
-      'Leadership effectiveness decreases measurably after 90 minutes of sustained effort',
-      'Preparation for leadership role significantly impacts performance',
-      'Simple, structured feedback is more effective than open-ended discussion',
-      'Physical and mental fatigue affect leadership abilities differently'
-    ],
-    heroImage: {
-      src: '/images/aar/leadership-dev-hero.jpg',
-      alt: 'Small group of 6 ruckers in discussion formation on hilltop, practicing leadership rotation and feedback'
-    },
-    location: '',
-    approved: true
-  },
-  {
-    id: 'aar-5',
-    title: 'Cold Weather Immersion Trek - After Action Report',
+    id: 'aar-cold-weather-2024-01',
+    title: 'Cold Weather Immersion Trek - After Action Review',
     date: '2024-01-15',
     author: 'Red Rucker',
     duration: 60,
@@ -255,11 +445,11 @@ export const aarEntries: AAR[] = [
       alt: 'Team of 10 ruckers in freezing rain, checking gear and maintaining formation despite harsh conditions'
     },
     location: '',
-    approved: true
+    approved: false
   },
   {
     id: 'aar-6',
-    title: 'Camino Preparation Trek - After Action Report',
+    title: 'Camino Preparation Trek - After Action Review',
     date: '2024-04-05',
     author: 'Red Rucker',
     duration: 240,
@@ -302,11 +492,11 @@ export const aarEntries: AAR[] = [
       alt: 'Team of 8 ruckers on mixed trail with lightweight packs and walking poles, practising Camino de Santiago preparation'
     },
     location: '',
-    approved: true
+    approved: false
   },
   {
     id: 'aar-7',
-    title: 'Night Navigation Trek - After Action Report',
+    title: 'Night Navigation Trek - After Action Review',
     date: '2024-02-25',
     author: 'Red Rucker',
     duration: 100,
@@ -349,11 +539,11 @@ export const aarEntries: AAR[] = [
       alt: 'Team of 7 ruckers in dark forest terrain, using red lights and maintaining formation during night navigation exercise'
     },
     location: '',
-    approved: true
+    approved: false
   },
   {
     id: 'aar-8',
-    title: 'Nijmegen Marches Preparation - After Action Report',
+    title: 'Nijmegen Marches Preparation - After Action Review',
     date: '2024-03-15',
     author: 'Red Rucker',
     duration: 300,
@@ -396,11 +586,11 @@ export const aarEntries: AAR[] = [
       alt: 'Team of 12 ruckers in formation on paved road, completing Nijmegen-style distance march preparation'
     },
     location: '',
-    approved: true
+    approved: false
   },
   {
     id: 'aar-9',
-    title: 'Team Load Distribution Trek - After Action Report',
+    title: 'Team Load Distribution Trek - After Action Review',
     date: '2024-04-20',
     author: 'Red Rucker',
     duration: 90,
@@ -443,11 +633,11 @@ export const aarEntries: AAR[] = [
       alt: 'Team of 10 ruckers demonstrating equipment transfer and load sharing during movement on mixed terrain'
     },
     location: '',
-    approved: true
+    approved: false
   },
   {
     id: 'aar-10',
-    title: 'Civilian Endurance Challenge - After Action Report',
+    title: 'Civilian Endurance Challenge - After Action Review',
     date: '2024-05-01',
     author: 'Red Rucker',
     duration: 200,
@@ -490,59 +680,11 @@ export const aarEntries: AAR[] = [
       alt: 'Large group of 20 civilian ruckers on trail during endurance event, supporting each other and checking equipment'
     },
     location: '',
-    approved: true
-  },
-  {
-    id: 'aar-bastogne-2014-10',
-    title: 'Bastogne 2014 - After Action Report',
-    date: '2014-10-26',
-    author: 'Red Rucker',
-    duration: 540,
-    distance: 16.0,
-    load: 35,
-    participants: 28,
-    conditions: 'Cold, 8°C, forest terrain, significant mud, historical battlefield',
-    planned: [
-      'Experience GORUCK event on Battle of the Bulge location',
-      'Walk the terrain of the famous siege',
-      'Practice navigation in forest and mud',
-      'Connect with European GRT community'
-    ],
-    actual: [
-      'Completed event on Bastogne battlefield terrain',
-      'Forest and mud conditions added challenge',
-      'Historical context of the siege created emotional weight',
-      'Connected with GRTs from Belgium and neighboring countries',
-      'Battled through conditions that mirrored historical hardships'
-    ],
-    whatWentWell: [
-      'Forest navigation under canopy',
-      'Mud condition management',
-      'Team cohesion in adverse weather',
-      'Historical connection to the Bulge'
-    ],
-    improvements: [
-      'Better wet weather foot care',
-      'Forest terrain specific training',
-      'Mud drainage strategies',
-      'Cold weather layer management'
-    ],
-    lessonsLearned: [
-      'Forest terrain requires different navigation than open ground',
-      'Mud and cold compound to create real hardship',
-      'Walking where heroes walked creates profound connection',
-      'European events create deep bonds with local GRTs'
-    ],
-    heroImage: {
-      src: '/images/aar/bastogne-2014-hero.jpg',
-      alt: 'Team of ruckers in forest near Bastogne, autumn colors and mud visible'
-    },
-    location: 'Bastogne, Belgium',
-    approved: true
+    approved: false
   },
   {
     id: 'aar-bragg-heavy-2015-05',
-    title: 'Fort Bragg Heavy - After Action Report',
+    title: 'Fort Bragg Heavy - After Action Review',
     date: '2015-05-17',
     author: 'Red Rucker',
     duration: 660,
@@ -585,11 +727,11 @@ export const aarEntries: AAR[] = [
       alt: 'Team of 30 ruckers on Fort Bragg training grounds, tactical obstacle course in background'
     },
     location: 'Fort Bragg, North Carolina, USA',
-    approved: true
+    approved: false
   },
   {
     id: 'aar-chicago-hive-2016-08',
-    title: 'Chicago Hive Module - After Action Report',
+    title: 'Chicago Hive Module - After Action Review',
     date: '2016-08-15',
     author: 'Red Rucker',
     duration: 360,
@@ -633,11 +775,11 @@ export const aarEntries: AAR[] = [
       alt: 'Group in urban training environment during Chicago Hive Module, medical equipment visible'
     },
     location: 'Chicago, Illinois, USA',
-    approved: true
+    approved: false
   },
   {
     id: 'aar-dublin-heavy-2015-06',
-    title: 'Dublin Heavy - After Action Report',
+    title: 'Dublin Heavy - After Action Review',
     date: '2015-06-21',
     author: 'Red Rucker',
     duration: 720,
@@ -689,7 +831,7 @@ export const aarEntries: AAR[] = [
   },
   {
     id: 'aar-fan-dance-2017-10',
-    title: 'Fan Dance - After Action Report',
+    title: 'Fan Dance - After Action Review',
     date: '2017-10-21',
     author: 'Red Rucker',
     duration: 480,
@@ -737,7 +879,7 @@ export const aarEntries: AAR[] = [
   },
   {
     id: 'aar-jax-heavy-2014-10',
-    title: 'Jacksonville Heavy - After Action Report',
+    title: 'Jacksonville Heavy - After Action Review',
     date: '2014-10-12',
     author: 'Red Rucker',
     duration: 780,
@@ -789,7 +931,7 @@ export const aarEntries: AAR[] = [
   },
   {
     id: 'aar-normandie-2014-06',
-    title: 'Normandie 2014 - After Action Report',
+    title: 'Normandie 2014 - After Action Review',
     date: '2014-06-08',
     author: 'Red Rucker',
     duration: 600,
@@ -837,7 +979,7 @@ export const aarEntries: AAR[] = [
   },
   {
     id: 'aar-okinawa-challenge-2015-03',
-    title: 'Okinawa GORUCK Challenge - After Action Report',
+    title: 'Okinawa GORUCK Challenge - After Action Review',
     date: '2015-03-15',
     author: 'Red Rucker',
     duration: 840,
@@ -888,7 +1030,7 @@ export const aarEntries: AAR[] = [
   },
   {
     id: 'aar-spartan-2014-09',
-    title: 'Post Spartan 2014 - After Action Report',
+    title: 'Post Spartan 2014 - After Action Review',
     date: '2014-09-14',
     author: 'Red Rucker',
     duration: 300,
@@ -931,53 +1073,6 @@ export const aarEntries: AAR[] = [
       alt: 'Team of ruckers completing obstacle course during Spartan event'
     },
     location: 'USA',
-    approved: true
+    approved: false
   },
-  {
-    id: 'aar-tokyo-challenge-2015-03',
-    title: 'Tokyo GORUCK Challenge - After Action Report',
-    date: '2015-03-08',
-    author: 'Red Rucker',
-    duration: 840,
-    distance: 15.0,
-    load: 30,
-    participants: 28,
-    conditions: 'Clear, 12°C, urban and park terrain, night operations',
-    planned: [
-      'Complete GORUCK Challenge in Asian metropolis',
-      'Experience Japanese culture through ruck event',
-      'Practice navigation in dense urban environment',
-      'Build international team bonds'
-    ],
-    actual: [
-      'Completed 14-hour event through Tokyo urban terrain',
-      'Navigated parks and city areas throughout night',
-      'Team worked through language barriers successfully',
-      'Japanese hospitality integrated into event experience'
-    ],
-    whatWentWell: [
-      'Navigation through complex urban environment',
-      'Team coordination across language barriers',
-      'Cultural integration enhanced experience',
-      'Urban terrain provided unique challenges'
-    ],
-    improvements: [
-      'Urban navigation timing for dense areas',
-      'Language translation resources',
-      'Urban surface impact on feet',
-      'Crowd awareness during day operations'
-    ],
-    lessonsLearned: [
-      'Urban environments require different navigation approaches',
-      'Cultural context enriches the event experience',
-      'Team bonds transcend language differences',
-      'City operations present unique physical challenges'
-    ],
-    heroImage: {
-      src: '/images/aar/tokyo-challenge-hero.jpg',
-      alt: 'Team of 28 ruckers moving through Tokyo urban area at night, neon lights in background'
-    },
-    location: 'Tokyo, Japan',
-    approved: true
-  }
 ];

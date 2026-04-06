@@ -11,9 +11,6 @@ function sanitizeText(text: string): string {
 export interface AarSubmissionPayload {
   eventName: string;
   location: string;
-  distance: number;
-  load: number;
-  crewSize: number;
   conditions: string;
   planned: string[];
   actual: string[];
@@ -23,6 +20,16 @@ export interface AarSubmissionPayload {
   author: string;
   email?: string;
   submittedAt: string;
+  
+  // Optional fields
+  classNumber?: string;
+  participantsStarted?: number;
+  participantsCompleted?: number;
+  duration?: number;
+  distance?: number;
+  individualWeight?: number;
+  individualWeightUnit?: 'kg' | 'lbs';
+  originalText?: string;
 }
 
 export interface AarConfiguration {
@@ -133,6 +140,27 @@ function readRequiredNumber(
   return { ok: true, value };
 }
 
+function readOptionalNumber(
+  formData: FormData,
+  key: string,
+  min: number,
+  max: number,
+): { ok: true; value?: number } | { ok: false; error: string } {
+  const raw = normalizeText(formData.get(key));
+  
+  if (!raw) {
+    return { ok: true };
+  }
+  
+  const value = Number(raw);
+
+  if (!Number.isFinite(value) || value < min || value > max) {
+    return { ok: true };
+  }
+
+  return { ok: true, value };
+}
+
 function readRequiredList(
   formData: FormData,
   key: string,
@@ -171,15 +199,6 @@ export function validateAarSubmission(
   const location = readRequiredText(formData, 'location', singleLineConstraints.location);
   if (!location.ok) return { success: false, error: location.error };
 
-  const distance = readRequiredNumber(formData, 'distance', 'Distance', 0.1, 500);
-  if (!distance.ok) return { success: false, error: distance.error };
-
-  const load = readRequiredNumber(formData, 'load', 'Load', 0, 100);
-  if (!load.ok) return { success: false, error: load.error };
-
-  const crewSize = readRequiredNumber(formData, 'crewSize', 'Crew size', 1, 100);
-  if (!crewSize.ok) return { success: false, error: crewSize.error };
-
   const conditions = readRequiredText(formData, 'conditions', singleLineConstraints.conditions);
   if (!conditions.ok) return { success: false, error: conditions.error };
 
@@ -209,23 +228,60 @@ export function validateAarSubmission(
     };
   }
 
+  // Optional fields
+  const classNumber = normalizeText(formData.get('classNumber'));
+  const participantsStarted = readOptionalNumber(formData, 'participantsStarted', 0, 1000);
+  const participantsCompleted = readOptionalNumber(formData, 'participantsCompleted', 0, 1000);
+  const duration = readOptionalNumber(formData, 'duration', 0, 10000);
+  const distance = readOptionalNumber(formData, 'distance', 0, 1000);
+  const individualWeight = readOptionalNumber(formData, 'individualWeight', 0, 500);
+  const individualWeightUnit = normalizeText(formData.get('individualWeightUnit')) as 'kg' | 'lbs' | '';
+
+  const payload: AarSubmissionPayload = {
+    eventName: sanitizeText(eventName.value),
+    location: sanitizeText(location.value),
+    conditions: sanitizeText(conditions.value),
+    planned: planned.value.map(sanitizeText),
+    actual: actual.value.map(sanitizeText),
+    whatWentWell: whatWentWell.value.map(sanitizeText),
+    improvements: improvements.value.map(sanitizeText),
+    lessonsLearned: lessonsLearned.value.map(sanitizeText),
+    author: sanitizeText(author.value),
+    submittedAt: new Date().toISOString(),
+  };
+
+  if (email) {
+    payload.email = sanitizeText(email);
+  }
+  if (classNumber) {
+    payload.classNumber = classNumber;
+  }
+  if (participantsStarted.ok && participantsStarted.value !== undefined) {
+    payload.participantsStarted = participantsStarted.value;
+  }
+  if (participantsCompleted.ok && participantsCompleted.value !== undefined) {
+    payload.participantsCompleted = participantsCompleted.value;
+  }
+  if (duration.ok && duration.value !== undefined) {
+    payload.duration = duration.value;
+  }
+  if (distance.ok && distance.value !== undefined) {
+    payload.distance = distance.value;
+  }
+  if (individualWeight.ok && individualWeight.value !== undefined) {
+    payload.individualWeight = individualWeight.value;
+  }
+  if (individualWeightUnit === 'kg' || individualWeightUnit === 'lbs') {
+    payload.individualWeightUnit = individualWeightUnit;
+  }
+
+  const originalText = normalizeText(formData.get('originalText'));
+  if (originalText && originalText.length > 0 && originalText.length <= 10000) {
+    payload.originalText = sanitizeText(originalText);
+  }
+
   return {
     success: true,
-    data: {
-      eventName: sanitizeText(eventName.value),
-      location: sanitizeText(location.value),
-      distance: distance.value,
-      load: load.value,
-      crewSize: crewSize.value,
-      conditions: sanitizeText(conditions.value),
-      planned: planned.value.map(sanitizeText),
-      actual: actual.value.map(sanitizeText),
-      whatWentWell: whatWentWell.value.map(sanitizeText),
-      improvements: improvements.value.map(sanitizeText),
-      lessonsLearned: lessonsLearned.value.map(sanitizeText),
-      author: sanitizeText(author.value),
-      ...(email ? { email: sanitizeText(email) } : {}),
-      submittedAt: new Date().toISOString(),
-    },
+    data: payload,
   };
 }

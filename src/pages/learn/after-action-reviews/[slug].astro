@@ -1,8 +1,53 @@
 ---
-export const prerender = false;
+import Layout from '@/components/Layout.astro';
+import { aarEntries } from '@/data/aar';
 
 const { slug } = Astro.params;
-return Astro.redirect(`/learn/after-action-reviews/${slug}`, 301);
+
+const aar = aarEntries.find((entry) => entry.id === slug);
+
+if (!aar) {
+  return Astro.redirect('/learn/after-action-reviews/archive');
+}
+
+export async function getStaticPaths() {
+  return aarEntries.map(aar => ({
+    params: { slug: aar.id },
+    props: { aar }
+  }));
+}
+
+function formatDuration(minutes?: number): string {
+  if (minutes === undefined) return 'N/A';
+  const hours = Math.floor(minutes / 60);
+  const mins = minutes % 60;
+  return hours > 0 ? `${hours}h ${mins}m` : `${mins}m`;
+}
+
+function formatWeight(weight?: number, unit?: 'kg' | 'lbs'): string {
+  if (weight === undefined) return 'N/A';
+  return `${weight} ${unit || 'kg'}`;
+}
+
+function getParticipantsCount(): string {
+  const started = aar.participantsStarted;
+  const completed = aar.participantsCompleted;
+  const legacy = aar.participants;
+  
+  if (started !== undefined && completed !== undefined) {
+    return `${completed}/${started}`;
+  }
+  if (completed !== undefined) {
+    return String(completed);
+  }
+  if (started !== undefined) {
+    return String(started);
+  }
+  if (legacy !== undefined) {
+    return String(legacy);
+  }
+  return 'N/A';
+}
 ---
 <Layout 
   title={`${aar.title} | After Action Review`}
@@ -12,7 +57,7 @@ return Astro.redirect(`/learn/after-action-reviews/${slug}`, 301);
     <!-- Back Navigation -->
     <nav class="mb-8">
       <a 
-        href="/lead/after-action-reviews/archive" 
+        href="/learn/after-action-reviews/archive" 
         class="inline-flex items-center text-red-800 hover:text-red-900 font-medium"
       >
         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -28,11 +73,6 @@ return Astro.redirect(`/learn/after-action-reviews/${slug}`, 301);
         <span class="bg-red-800 text-white text-sm font-medium px-3 py-1 rounded">
           {new Date(aar.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
         </span>
-        {aar.approved && (
-          <span class="bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded">
-            Published
-          </span>
-        )}
       </div>
       <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{aar.title}</h1>
       <p class="text-lg text-gray-600">
@@ -40,34 +80,56 @@ return Astro.redirect(`/learn/after-action-reviews/${slug}`, 301);
       </p>
     </header>
 
-    <!-- Quick Stats -->
-    <div class="bg-gray-50 rounded-lg p-6 mb-8">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div class="text-center">
-          <p class="text-sm text-gray-500 mb-1">Distance</p>
-          <p class="text-2xl font-bold text-red-800">{aar.distance}<span class="text-base font-normal text-gray-600"> km</span></p>
+    <!-- Quick Stats - Optional Fields Grid -->
+    {(aar.distance !== undefined || aar.duration !== undefined || aar.individualWeight !== undefined || aar.load !== undefined || aar.participantsStarted !== undefined || aar.participantsCompleted !== undefined || aar.participants !== undefined || aar.classNumber !== undefined || aar.originalText !== undefined) && (
+      <div class="bg-gray-50 rounded-lg p-6 mb-8">
+        {aar.originalText && (
+          <div class="mb-4 pb-4 border-b border-gray-200">
+            <p class="text-sm text-gray-500 mb-1">Original Notes</p>
+            <p class="text-gray-700 whitespace-pre-wrap">{aar.originalText}</p>
+          </div>
+        )}
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          {aar.classNumber && (
+            <div class="text-center">
+              <p class="text-sm text-gray-500 mb-1">Class</p>
+              <p class="text-lg font-bold text-red-800">{aar.classNumber}</p>
+            </div>
+          )}
+          {aar.participantsStarted !== undefined || aar.participantsCompleted !== undefined || aar.participants !== undefined ? (
+            <div class="text-center">
+              <p class="text-sm text-gray-500 mb-1">Participants</p>
+              <p class="text-2xl font-bold text-red-800">{getParticipantsCount()}</p>
+            </div>
+          ) : null}
+          {aar.distance !== undefined && (
+            <div class="text-center">
+              <p class="text-sm text-gray-500 mb-1">Distance</p>
+              <p class="text-2xl font-bold text-red-800">{aar.distance}<span class="text-base font-normal text-gray-600"> km</span></p>
+            </div>
+          )}
+          {(aar.individualWeight !== undefined || aar.load !== undefined) && (
+            <div class="text-center">
+              <p class="text-sm text-gray-500 mb-1">Weight</p>
+              <p class="text-2xl font-bold text-red-800">{formatWeight(aar.individualWeight || aar.load, aar.individualWeightUnit)}</p>
+            </div>
+          )}
+          {aar.duration !== undefined && (
+            <div class="text-center">
+              <p class="text-sm text-gray-500 mb-1">Duration</p>
+              <p class="text-2xl font-bold text-red-800">{formatDuration(aar.duration)}</p>
+            </div>
+          )}
         </div>
-        <div class="text-center">
-          <p class="text-sm text-gray-500 mb-1">Load</p>
-          <p class="text-2xl font-bold text-red-800">{aar.load}<span class="text-base font-normal text-gray-600"> kg</span></p>
-        </div>
-        <div class="text-center">
-          <p class="text-sm text-gray-500 mb-1">Participants</p>
-          <p class="text-2xl font-bold text-red-800">{aar.participants}</p>
-        </div>
-        <div class="text-center">
-          <p class="text-sm text-gray-500 mb-1">Duration</p>
-          <p class="text-2xl font-bold text-red-800">{Math.floor(aar.duration / 60)}h {aar.duration % 60}<span class="text-base font-normal text-gray-600">m</span></p>
+        <div class="mt-4 pt-4 border-t border-gray-200">
+          <p class="text-gray-700">
+            <span class="font-medium">Conditions:</span> {aar.conditions}
+          </p>
         </div>
       </div>
-      <div class="mt-4 pt-4 border-t border-gray-200">
-        <p class="text-gray-700">
-          <span class="font-medium">Conditions:</span> {aar.conditions}
-        </p>
-      </div>
-    </div>
+    )}
 
-    <!-- AAR Framework Sections -->
+    <!-- AAR Framework Sections - Updated Grid Layout -->
     <article class="space-y-8">
       <!-- What Was Planned -->
       <section>
@@ -170,7 +232,7 @@ return Astro.redirect(`/learn/after-action-reviews/${slug}`, 301);
     <nav class="mt-12 pt-8 border-t border-gray-200">
       <div class="flex flex-wrap justify-center gap-4">
         <a 
-          href="/lead/after-action-reviews/archive" 
+          href="/learn/after-action-reviews/archive" 
           class="inline-flex items-center text-red-800 hover:text-red-900 font-medium"
         >
           <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -180,14 +242,14 @@ return Astro.redirect(`/learn/after-action-reviews/${slug}`, 301);
         </a>
         <span class="text-gray-300">|</span>
         <a 
-          href="/lead/after-action-reviews/submit" 
+          href="/learn/after-action-reviews/submit" 
           class="text-red-800 hover:text-red-900 font-medium"
         >
           Submit Your AAR
         </a>
         <span class="text-gray-300">|</span>
         <a 
-          href="/lead/after-action-reviews" 
+          href="/learn/after-action-reviews" 
           class="text-red-800 hover:text-red-900 font-medium"
         >
           AAR Overview

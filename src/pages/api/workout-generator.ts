@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { generateWorkout } from '@/components/WorkoutGenerator';
+import { workouts } from '@/data/workouts.ts';
 import {
   checkRateLimit,
   createRequestId,
@@ -65,6 +66,7 @@ export const POST: APIRoute = async ({ request }) => {
     return jsonResponse(400, { success: false, error: 'Invalid request body.' });
   }
 
+  const mode = payload.mode === 'predefined' ? 'predefined' : 'generated';
   const difficulty =
     payload.difficulty === 'advanced' || payload.difficulty === 'intermediate'
       ? payload.difficulty
@@ -80,8 +82,32 @@ export const POST: APIRoute = async ({ request }) => {
       : undefined;
 
   try {
-    const workout = generateWorkout(difficulty, undefined, timePreference);
-    logApiEvent('/api/workout-generator', 'info', 'Workout generated', { difficulty }, requestId);
+    let workout;
+
+    if (mode === 'predefined') {
+      const filteredWorkouts = workouts.filter(w => w.difficulty === difficulty);
+      const selectedWorkouts = filteredWorkouts.length > 0 ? filteredWorkouts : workouts;
+      const randomIndex = Math.floor(Math.random() * selectedWorkouts.length);
+      const selected = selectedWorkouts[randomIndex];
+      workout = {
+        id: selected.id,
+        title: selected.title,
+        description: selected.description,
+        duration: selected.duration,
+        distance: selected.distance,
+        load: selected.load,
+        difficulty: selected.difficulty,
+        terrain: selected.terrain,
+        objectives: selected.objectives,
+        equipment: selected.equipment,
+        sections: [],
+        notes: selected.notes
+      };
+    } else {
+      workout = generateWorkout(difficulty, undefined, timePreference);
+    }
+
+    logApiEvent('/api/workout-generator', 'info', 'Workout generated', { difficulty, mode }, requestId);
     return jsonResponse(200, { success: true, workout });
   } catch (err) {
     logApiEvent('/api/workout-generator', 'error', 'Workout generation failed', { error: String(err) }, requestId);

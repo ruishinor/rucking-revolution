@@ -14,14 +14,14 @@ const exercise = exercises.find(ex => ex.slug === 'plank');
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
         <div>
-          <h2 class="text-2xl font-heading text-secondary mb-4">PURPOSE</h2>
+          <h2 class="text-2xl font-heading text-secondary mb-4 bg-[#8a1e1e] text-white px-3 py-2 rounded">PURPOSE</h2>
           <p class="text-muted-foreground mb-4">The plank is a fundamental core exercise that builds isometric strength in the abdominals, lower back, and shoulders while improving overall stability and posture.</p>
           <p class="text-muted">Primary muscles: {exercise?.targetMuscles?.join(', ')}</p>
           <p class="text-muted">Equipment: {exercise?.equipment?.join(', ')}</p>
           <p class="text-muted">Difficulty: {exercise?.difficulty}</p>
         </div>
         <div>
-          <h2 class="text-2xl font-heading text-secondary mb-4">PROGRESSIONS</h2>
+          <h2 class="text-2xl font-heading text-secondary mb-4 bg-[#8a1e1e] text-white px-3 py-2 rounded">PROGRESSIONS</h2>
           <ol class="list-decimal list-inside space-y-2 text-muted-foreground">
             {exercise?.progressions?.map((p) => (<li>{p}</li>))}
           </ol>
@@ -29,21 +29,21 @@ const exercise = exercises.find(ex => ex.slug === 'plank');
       </div>
 
       <div class="mb-12">
-        <h2 class="text-2xl font-heading text-secondary mb-4">STEP-BY-STEP TECHNIQUE</h2>
+        <h2 class="text-2xl font-heading text-secondary mb-4 bg-[#8a1e1e] text-white px-3 py-2 rounded">STEP-BY-STEP TECHNIQUE</h2>
         <ol class="list-decimal list-inside space-y-3 text-muted-foreground">
           {exercise?.steps?.map((step) => (<li>{step}</li>))}
         </ol>
       </div>
 
       <div class="mb-12">
-        <h2 class="text-2xl font-heading text-secondary mb-4">COMMON MISTAKES</h2>
+        <h2 class="text-2xl font-heading text-secondary mb-4 bg-[#8a1e1e] text-white px-3 py-2 rounded">COMMON MISTAKES</h2>
         <ul class="list-disc list-inside space-y-2 text-muted-foreground">
           {exercise?.mistakes?.map((m) => (<li>{m}</li>))}
         </ul>
       </div>
 
       <div class="mb-12">
-        <h2 class="text-2xl font-heading text-secondary mb-4">EXERCISE DEMONSTRATION</h2>
+        <h2 class="text-2xl font-heading text-secondary mb-4 bg-[#8a1e1e] text-white px-3 py-2 rounded">EXERCISE DEMONSTRATION</h2>
         {exercise?.media?.map((media) => (
           <div class="mb-6">
             {media.type === 'image' ? (
