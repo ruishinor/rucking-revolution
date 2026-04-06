@@ -77,3 +77,16 @@ Next recommended steps
 - Provision Upstash credentials in staging to validate Redis-backed rate-limiting in a serverless environment.
 
 End of update.
+
+Latest actions (commit + push)
+- Added `docs/UPSTASH_PROVISIONING.md` explaining how to provision Upstash and wire secrets into Vercel/GitHub Actions.
+- Added a lightweight contrast checker `scripts/check-contrast.js` and a CI workflow `.github/workflows/ci.yml` that runs `npm audit`, the contrast check, and `vitest` on PRs.
+- Added programmatic SEO starter documentation `docs/SEO_PROGRAMMATIC_ARCHITECTURE.md` and a sample generator `scripts/generate-seo-pages.js` which writes example pages to `src/content/seo/` (committed to `security/update-dev-tooling`).
+
+What I still cannot do from here
+- I cannot provision Upstash accounts or set environment variables in your hosting provider (Vercel/GitHub). Follow `docs/UPSTASH_PROVISIONING.md` to provision and set `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` in staging.
+
+Next verification steps for you (or I can run them if you grant deployment access)
+- Add Upstash secrets to staging and redeploy; monitor rate-limiter logs for Redis success messages.
+- Run the GH Actions CI by opening a PR (links to create PRs shown when branches were pushed).
+

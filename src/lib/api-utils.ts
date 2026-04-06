@@ -161,8 +161,14 @@ export async function checkRateLimit(
       const remaining = Math.max(0, config.maxRequests - current);
       return { allowed, remaining, resetAt };
     }
-  } catch {
+  } catch (err) {
     // If any error occurs with Redis, fall back to in-memory store below
+    try {
+      logApiEvent('/rate-limit', 'warn', 'Upstash Redis error, falling back to in-memory store', { error: String(err) });
+    } catch {
+      // best-effort logging
+      console.warn('Upstash Redis error, falling back to in-memory store', err);
+    }
   }
 
   // In-memory fallback (suitable for single-instance or dev)
