@@ -5,7 +5,7 @@ import { comics } from '@/data/comics.ts';
 const episode = Number(Astro.params.episode);
 const SHOW_COMICS = import.meta.env.PUBLIC_SHOW_COMICS === 'true';
 if (!SHOW_COMICS) {
-  return Astro.redirect('/');
+  return Astro.redirect('/red-rucker');
 }
 const comic = comics.find((c) => c.episode === episode);
 
