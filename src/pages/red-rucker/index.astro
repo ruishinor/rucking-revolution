@@ -3,6 +3,11 @@ import Layout from '@/components/Layout.astro';
 import { comics } from '@/data/comics.ts';
 
 // Get first comic for preview
+const SHOW_COMICS = import.meta.env.PUBLIC_SHOW_COMICS === 'true';
+if (!SHOW_COMICS) {
+  return Astro.redirect('/');
+}
+
 const featuredComic = comics[0];
 ---
 

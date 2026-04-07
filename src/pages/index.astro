@@ -8,6 +8,9 @@ import { products } from '@/data/products.ts';
 import { comics } from '@/data/comics.ts';
 import { quotes } from '@/data/quotes.ts';
 
+// Feature toggle (PUBLIC_ prefixed env var is exposed to client in Astro)
+const SHOW_COMICS = import.meta.env.PUBLIC_SHOW_COMICS === 'true';
+
 // Get latest 3 articles sorted by date (newest first)
 const latestArticles = [...articles]
   .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
@@ -16,8 +19,8 @@ const latestArticles = [...articles]
 // Get first article as featured
 const featuredArticle = articles[0];
 
-// Get first comic for preview
-const featuredComic = comics[0];
+// Get first comic for preview (respect feature toggle)
+const featuredComic = SHOW_COMICS ? comics[0] : null;
 
 // Get lead book product for Product Teaser
 const leadBook = products.find(p => p.id === 'your-first-ruck');
@@ -318,6 +321,7 @@ const communityItems = [
   </section>
 
   <!-- ==================== RED RUCKER ==================== -->
+  {SHOW_COMICS && (
   <section class="py-16 md:py-20 bg-panel">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="section-header mb-10">
@@ -346,6 +350,7 @@ const communityItems = [
       </div>
     </div>
   </section>
+  )}
 
   <!-- ==================== RECENT ARTICLES ==================== -->
   <section class="py-16 md:py-20">
