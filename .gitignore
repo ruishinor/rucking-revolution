@@ -67,5 +67,8 @@ coverage/
 tmp/
 temp/
 drafts-not-to-be-distributed/
-src/content/
-src\data
+secrets.json
+.upstash/
+README.md
+SECURITY_CHECKLIST.md
+
