@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Crew Tactics PWA POC</title>
+  <link rel="manifest" href="/manifest.json">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main role="main">
+    <h1>Crew Tactics — PWA POC</h1>
+    <div id="status" aria-live="polite">Ready.</div>
+
+    <section id="activation" aria-labelledby="activation">
+      <h2>Activate</h2>
+      <p>Request a device-wrapped CEK from the activation endpoint (demo).</p>
+      <button id="activateBtn" aria-label="Activate and download deck">Activate (receive encrypted deck)</button>
+      <button id="registerBtn" style="margin-left:8px" aria-label="Register device for WebAuthn">Register Device (WebAuthn)</button>
+    </section>
+
+    <section id="unlock" style="display:none">
+      <h2>Unlock Offline</h2>
+      <label for="passphrase">Passphrase: </label>
+      <input id="passphrase" type="password" aria-label="Passphrase to encrypt CEK">
+      <button id="savePassBtn">Save wrapped key</button>
+      <button id="unlockBtn">Unlock</button>
+      <button id="revalidateBtn" style="margin-left:8px" aria-label="Revalidate device with WebAuthn">Revalidate (WebAuthn)</button>
+    </section>
+
+    <section id="cards" style="display:none">
+      <h2>Cards</h2>
+      <div id="cardsContainer"></div>
+    </section>
+
+    <p class="notes">Notes: This POC demonstrates an activation flow using ECDH to wrap a CEK, client-side encrypted storage in IndexedDB, and a watermark rendering step. It is not production hardened — see README.</p>
+  </main>
+
+  <script src="/main.js"></script>
+</body>
+</html>
