@@ -403,45 +403,34 @@ I loved you, Milton. Kris, I love you more for providing this experience. This w
     title: 'Dublin Heavy - After Action Review',
     date: '2015-06-21',
     author: 'Red Rucker',
-    duration: 100,
-    distance: 7.5,
-    load: 14,
-    participants: 7,
-    conditions: 'Moonless night, overcast, 5°C, light wind',
-    planned: [
-      'Develop proficiency in night navigation techniques',
-      'Practice light discipline and team coordination',
-      'Build confidence operating in darkness',
-      'Evaluate equipment performance in low-light conditions'
-    ],
+    duration: 720,
+    distance: 20.0,
+    individualWeight: 50,
+    individualWeightUnit: 'lbs',
+    participantsStarted: 22,
+    participantsCompleted: 22,
+    conditions: 'Cold, 10┬░C, rain, rural terrain with log carries and elevation changes',
+    planned: [],
     actual: [
-      'Team maintained navigation within acceptable error margins',
-      'Light discipline maintained throughout exercise',
-      'All team members reported increased confidence post-exercise',
-      'Equipment functioned properly in low-light conditions'
+      'Team performed log carry exercises in continuous rain',
+      'Injury during event (ITB Syndrome) - dragging leg in full lock-out to move forward',
+      'Team needed every person under the log, author was useless as weak link',
+      'Team requested author give up ruck - refused multiple times',
+      'Finally heard "Check your ego" - surrendered ruck while injured',
+      'Got ruck back - "Carry your own" principle resumed'
     ],
     whatWentWell: [
-      'Team maintained navigation within acceptable error margins',
-      'Light discipline maintained throughout exercise',
-      'All team members reported increased confidence post-exercise',
-      'Equipment functioned properly in low-light conditions'
+      'Team was made, not broken - could not be broken by bullying, casualties, extra PT',
+      'Made 84km/52 miles in 21 hours',
+      'Finished despite being injured and weak link'
     ],
-    improvements: [
-      'Individual pacing consistency during night movement',
-      'Communication efficiency in darkness',
-      'Equipment check frequency during low-light operations',
-      'Transition techniques between navigation methods'
-    ],
+    improvements: [],
     lessonsLearned: [
-      'Night navigation relies more on team cohesion than individual skill',
-      'Simple, repeated procedures work best in low-light conditions',
-      'Confidence builds exponentially with successful night navigation experience',
-      'Equipment familiarity reduces cognitive load during night operations'
+      'Check your ego - it is the enemy of both growth and rest',
+      'I was the weak link. Injured. Not pulling my load.',
+      'The team can function without you carrying everything',
+      'Being the weak link does not mean being useless'
     ],
-    heroImage: {
-      src: '/images/aar/night-nav-hero.jpg',
-      alt: 'Team of 7 ruckers in dark forest terrain, using red lights and maintaining formation during night navigation exercise'
-    },
     location: 'Dublin, Ireland',
     originalText: `After Action Review - Dublin Heavy - March 2015
 Date: March 2015
@@ -808,6 +797,6 @@ Hearing the stories from the Challenge, about the hallucinations caused by sleep
 I want to finish with
 GORUCK is .. 
 but I can't decide on one word. Be there, or you will never truly know."`,
-    approved: true
+    approved: false
   },
 ];
