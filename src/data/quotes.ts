@@ -116,15 +116,15 @@ export const quotes: Quote[] = [
     source: " - Unknown, signed by Red Rucker",
   },
   {
-    text: "The mark of a leader is pushing through internal resistance and doing the work despite fear, doubt, or discomfort.",
+    text: "One of the more significant traits of a leader is pushing through internal resistance and doing the work despite fear, doubt, or discomfort. Another one is the ability to inspire others to do the same by being the example in praxis, not just in theory.",
     source: " - Unknown, signed by Red Rucker",
   },
   {
-    text: "The discipline and purpose-driven mindset developed through service creates leaders who excel at building and sustaining high-performing teams.",
+    text: "A purpose-driven mindset developed through service have the potential to develop leaders who excel at building and sustaining high-performing teams.",
     source: " - Unknown, signed by Red Rucker",
   },
   {
-    text: "Voluntary physical challenges like rucking build the mental fortitude and perseverance that define effective leaders.",
+    text: "Voluntary physical challenges, such as rucking, can build the mental fortitude and perseverance that define effective leaders.",
     source: " - Unknown, signed by Red Rucker",
   },
   {
@@ -132,7 +132,7 @@ export const quotes: Quote[] = [
     source: " - Unknown, signed by Red Rucker",
   },
   {
-    text: "In crisis situations, calm and decisive leadership prevents panic and saves lives. Preparation is the leader's duty.",
+    text: "In crisis situations, calm and decisive leadership prevents panic and saves lives. The ability to lead under pressure is developed through deliberate practice and exposure to challenging situations. Nobody is born a leader; it is something that is developed through experience and intentional growth.",
     source: " - Unknown, signed by Red Rucker",
   },
   {
@@ -144,8 +144,8 @@ export const quotes: Quote[] = [
     source: " - Unknown, signed by Red Rucker",
   },
   {
-    text: "Veterans tend to bring unique leadership qualities including decisiveness, adaptability, and an unwavering commitment to mission and people.",
-    source: " - Unknown, signed by Red Rucker",
+    text: "Veterans can bring drive, adaptability, and strong mission focus to civillian society. They have often undergone some of the best training in team development that society has to offer.  \n\nNevertheless, the cultural divide between military and civilian life makes it difficult to transfer these skills. This, combined with a loss of belonging, leads many to become isolated and without purpose in life. It is a tragic waste of human potential.\n\nCreating pathways forward for former service personnel after they leave the military can restore a sense of purpose, strengthen local communities and save lives that would otherwise be lost to depression.",
+    source: " - Reflections on Society, Red Rucker",
   },
   {
     text: "Leaders must recognize and address the psychological toll of sustained stress on their people before it degrades performance.",
