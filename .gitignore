@@ -10,6 +10,7 @@ _bmad-output/
 .p/
 .cache/
 .tmp/
+.kilo/
 
 # BMAD development framework (not needed for production)
 _bmad/

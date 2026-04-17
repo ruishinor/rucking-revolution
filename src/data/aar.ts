@@ -123,55 +123,6 @@ The Spartan stuff in media is nice, encouraging and good for the society overall
     approved: false
   },
 
-  // Jacksonville Heavy
-  {
-    id: 'aar-jax-heavy-2014-10',
-    title: 'Jacksonville Heavy - After Action Review',
-    date: '2014-10-12',
-    author: 'Red Rucker',
-    duration: 780,
-    distance: 24.0,
-    individualWeight: 45,
-    individualWeightUnit: 'lbs',
-    conditions: 'Humid, 28°C, urban terrain with water obstacles, night operations',
-    planned: [],
-    actual: [
-      'APFT test at start (67 pushups in 2 min)',
-      '12-14 mile forced ruck march on beach starting at 1900hrs',
-      'No Talking enforced during long beach march',
-      'Chafing on inner thighs started around hour 14',
-      'Carried sandbags on shoulders/neck to distract from chafing',
-      'Eventually could only carry sandbags, not participate in stone transport',
-      'Teamleader asked to carry ruck - initially refused, then agreed',
-      'Silent tears during brainstorming session',
-      'No one came to take ruck when rolling out, continued carrying sandbags',
-      'Received Heavy patch from Cadre',
-      'Post-event: calves doubled in size, grade 2 muscle strain',
-      'Skipped Challenge due to injury, did Light and Scavenger instead'
-    ],
-    whatWentWell: [
-      'No foot issues despite blistering in previous events - Leukotape worked',
-      'Completed Heavy'
-    ],
-    improvements: [
-      'Dont carry sandbags on shoulders/neck constantly - caused calf strain'
-    ],
-    lessonsLearned: [
-      'Pain is just pain - can be used as tool for forward motion',
-      '12-14 miles of same scenery without sense of time makes you go blind and lost in your thoughts',
-      'There is a time for everything - sometimes step back to fight another day',
-      'I will carry my own. I can carry yours, but I will always carry my own.'
-    ],
-    location: 'Jacksonville, Florida, USA',
-    originalText: `After-Action Review: GORUCK Heavy JAX
-Before I run off to another event, this time a Spartan Beast (which Im not trained for), Ill finally post a very over-due After-Action Review (AAR) for my last main-event, which I said over and over again I would. Sorry for the delay to those who care. Hopefully, this can be of some assistance to European GRTs attempting Normandy and/or Dunlin next year, or at least a decent anecdote for the history books.
-
-GORUCK Heavy, Jacksonville. "Reflections of a GRT and lessons learned."
-
-The most brutal event I have ever done. Man, did I learn. What I love, is pushing my boundaries, physically and mentally - even past breaking point. Even to injury. "Why? That's stupid." Because I learn. About what I'm capable of. About how to prevent, how to treat and how to cope. There are so many lessons to get from everything, so many things you avoid to stay comfortable in your daily life. And I love it. Truly. Naturally, more after than during (for reals this time), but I find that even during, I nod to myself, taking in the lessons from massive strains, and I'm able to cope with the mindset of attaining knowledge.`,
-    approved: true
-  },
-
   // Okinawa Challenge
   {
     id: 'aar-okinawa-challenge-2015-03',
@@ -299,7 +250,7 @@ Austere - having an extremely plain and simple style or appearance; unadorned.`,
   {
     id: 'aar-fan-dance-2017-10',
     title: 'Fan Dance - After Action Review',
-    date: '2017-10-21',
+    date: '2017-07-02',
     author: 'Red Rucker',
     duration: 480,
     distance: 24.0,
@@ -331,10 +282,25 @@ Austere - having an extremely plain and simple style or appearance; unadorned.`,
       'Selection courses test more than physical capability',
       'Mental resilience is often the limiting factor'
     ],
-    location: 'Brecon Beacons, Wales, UK',
-    originalText: `After-action Review, Fan Dance.
-Brecon Beacons, Pen y Fan, UK. July 2nd, 2017
-So it finally came and went. Exercise High Walk. Fan Dance. Brecon Beacons. Pen y Fan. 24km with about 20kg. Highest peak @ 868m. Up and down and up and down again.`,
+    location: 'Brecon Beacons, Pen y Fan, UK. SAS training grounds.',
+    originalText: `So it finally came and went. 
+    Exercise High Walk. Fan Dance. Brecon Beacons. Pen y Fan. 24km with about 20kg. Highest peak @ 868m. Up and down and up and down again.
+
+Curious in the start, I soon found myself in an enjoyable place. The scene turned from foggy and gloomy to beautiful and absolutely outstanding as the sun came up and the fog whisked away. Oh, wow. No wonder this was - is - a national park I thought to myself. Absolutely beautiful.
+
+Before the event, I read up on the origin and the formation of the SAS (Special Air Service, British Special Forces) to better understand, respect and appreciate the Brecon Beacons and their fit and place as a training grounds for the SAS as they spend weeks doing aptitude-testing in just this place.
+
+The way back.. The Roman Road was the longest walk, it was demotivational how the scenery suddenly went monotonous, never changing and the road never seemed to end. A SAR-helicopter spent at least 5 minutes going in for landing on a nearby grassfield and it just reinforced the feeling of slow motion. It sucked as everything can suck in the moment. I easily found myself thinking back to the book I had read, and ofcourse this couldnt hold a candle to the light that was the SAS roaming, crossing and living in the Egyptian desert, working with the Long Range Desert Patrol. The stories were inspirational and captivating.
+
+It's far from the longest walk Ive had,  very far. The extra element of appreciation was nice. Back up Jacob's Ladder.. a false summit took me by surprise and that was halfway up. The climb got devilish steep real fast, or rather, real slow, as people were barely trudging on. I offered up 'sunshine and rainbows' aka skittles and/or m&ms to anyone I found sitting down. Sometimes all you need is that little ---sunshine. Small things, great effect.
+
+All in all, I clocked in at 5hrs10min without stressing. I walked away from the event with some serious sunburns on the arms (surpriiiise...) and a real bad case of chafing on the inner thighs that started about 2hrs in (as red as my baselayer, larger than the size of my hand). Other than that, Im all good. Bit stiff in the lower back the day after but thats to be expected. 
+
+Its the shortest event Ive done and its a weird feeling at that, that keeps coming up. Naturally, it gets harder as one push for time. Our pacer (62yr old 2nd generation SAS "Jamie") this time were dropping people who spent more than three hours one way, and quite a few got dropped. Jamie was an absolute joy to speak to after the event about the SAS, training and indoctrination and the like, and we finished off getting a photo taken with him.
+
+Now, Im sitting on the train back to London, and I realized I quite like trains.
+
+Here's to great people and the best of experiences.`,
     approved: true
   },
 
@@ -351,24 +317,15 @@ So it finally came and went. Exercise High Walk. Fan Dance. Brecon Beacons. Pen 
     conditions: 'Clear, 16°C, urban terrain, memorial event',
     planned: [],
     actual: [
-      'Attended Milton Memorial Event in Frankfurt',
-      'Welcome party - quads burning within first hour, felt like blowing up',
-      'Quad burning sensation lasted entire 10 hours',
-      'By end of event, left side of body was dragging causing diagonal walking',
-      'Fighting inflammation in right shoulder',
-      'Right elbow issues',
-      'Couldnt do proper squats or burpees at very end',
-      'Heard Milton story from his son Sam',
-      'Heard stories from Milton friends and comrades',
-      'Rucked to Milton places'
+      'Heard Milton`s story from his son Sam',
+      'Heard stories from friends of Milton',
+      'Rucked to Milton`s favorite places and did workouts there too',
     ],
     whatWentWell: [
       'Event was organized by Kris (MRC) - worthy Memorial Event',
       'Welcome party was balanced - not too hard to quit, not too easy to bore',
-      'Witnessed strong individuals with great attitude, spirit, mindset and willingness',
       'Team effort was evident - people volunteering to pick up others rucks or sandbags',
-      'Event was worthy tribute to Milton, his son and family',
-      'Proof of legacy left by amazing, inspiring, compassionate man'
+      'Event was worthy tribute to Milton, his son and family. It was an honor to have been there for it, and to hear the stories and share memories of such an amazing, inspiring and compassionate man',
     ],
     improvements: [
       'Should have trained better before event',
@@ -377,12 +334,11 @@ So it finally came and went. Exercise High Walk. Fan Dance. Brecon Beacons. Pen 
       'Should have done hundreds of burpees'
     ],
     lessonsLearned: [
-      '8 years without events and regular exercise requires significant training ramp-up',
+      '8 years without events and regular exercise requires significant training ramp-up and probably more than you think',
       'Two months of rucking only prepared feet, not overall physical readiness',
       'Rucking is not enough - need comprehensive strength training',
-      'Suffering is grounding - connects to here and now',
-      'Team effort matters - not about carrying as much as possible',
-      'Strong people do more because they are able, not because they chase heaviest weight'
+      'Suffering is grounding (literally) - as it always was to me - connects to here and now',
+      'Team effort matters - it`s never about carrying as much as possible for as long as possible',
     ],
     location: 'Frankfurt, Germany',
     originalText: `After Action Review - Milton Memorial Tough - Frankfurt 2024
@@ -397,7 +353,45 @@ I'm not gonna' sugar coat it. The event was horrible. Terrible. There is no way 
 
 I was not prepared mentally or physically. I knew it would be tough after not doing events for 8 years and not exercising regularly throughout those years. I thought rucking for the past two months would be enough. It was—but only for my feet.
 
-I realized how wrong I was during the welcome party. My quads were burning and felt like they were about to blow up. This feeling lasted for 10 hours. By the end, I was flagging so badly the whole left side of my body was dragging me down, making me walk diagonally. I was fighting inflammation in my right shoulder and issues with my right elbow. At the very end, I wasn't even able to do proper squats or burpees.`,
+I realized how wrong I was during the welcome party. My quads were burning and felt like they were about to blow up. This feeling lasted for 10 hours. By the end, I was flagging so badly the whole left side of my body was dragging me down, making me walk diagonally. I was fighting inflammation in my right shoulder and issues with my right elbow. At the very end, I wasn't even able to do proper squats or burpees.
+
+Training Regrets and Lessons Learned
+Obviously, I should have trained better.
+
+I should have done hundreds of squats.
+
+I should have done hundreds of lunges.
+
+I should have done hundreds of burpees.
+
+But I hadn't, so I suffered. I have always said I love suffering because it is grounding—it connects me to the here and now. But oh-my-God, I hated this (and I say that with a grin).
+
+Event Organisation and Physical Demands
+The event was great. Kris, the leader of Munich Rucking Crew (MRC) and the backbone of GORUCK Europe, organized it. It was a worthy Memorial Event.
+
+Physically, the welcome party managed to live on a balanced scale. It wasn't so hard that people quit, but it wasn't so easy that people got bored. It lived right on the threshold of being too physically demanding without crossing over.
+
+Observations of Individual Strength and Team Effort
+I saw Strong People. Not just physical strength, but Attitude, Spirit, Mindset, and Willingness. They flow. They smile. They volunteer to pick up another person's ruck or sandbag. They don't chase the lightest weight; they do more because they are able. It isn't about carrying as much as possible for as long as possible; it is about team effort and letting others do their share.
+
+If there were no volunteers, these strong individuals would get back on a heavier sandbag just 30 seconds after dropping one. This is how they inspire and push the rest of us to be better.
+
+I also saw future "Selection" attendees—people with the mindset and mettle to finish one of the hardest endurance challenges in existence.
+
+A Worthy Tribute to Honor An Amazing Person
+The event was Worthy. Milton would have loved it. We were there for him, his son, and his family. We were proof of the legacy left behind by an amazing, inspiring, and compassionate man.
+
+Kris, you did hella' good. A thank-you will never be enough.
+
+Final Thoughts and Acknowledgements
+We rucked to Milton's places. We heard his story told by his son, Sam, and by his friends and comrades. We learned about the places where life steered him toward the man he became.
+
+He was important to me, and he was important to many others.
+
+May you sit at Harambe's table and may you laugh your butt off at life for ever and ever on.
+
+I loved you, Milton. Kris, I love you more for providing this experience. This was part of my own "Book of Life."
+`,
     approved: true
   },
   {
@@ -495,9 +489,9 @@ I realized how wrong I was during the welcome party. My quads were burning and f
     approved: false
   },
   {
-    id: 'aar-7',
-    title: 'Night Navigation Trek - After Action Review',
-    date: '2024-02-25',
+    id: 'aar-dublin-heavy-2015-06',
+    title: 'Dublin Heavy - After Action Review',
+    date: '2015-06-21',
     author: 'Red Rucker',
     duration: 100,
     distance: 7.5,
@@ -538,8 +532,36 @@ I realized how wrong I was during the welcome party. My quads were burning and f
       src: '/images/aar/night-nav-hero.jpg',
       alt: 'Team of 7 ruckers in dark forest terrain, using red lights and maintaining formation during night navigation exercise'
     },
-    location: '',
-    approved: false
+    location: 'Dublin, Ireland',
+    originalText: `After Action Review - Dublin Heavy - March 2015
+Date: March 2015
+Author: Red Rucker
+
+I remember looking down at my hands, at the flagpoles I was carrying.. looking back at the team and having it all go through my head again..
+
+I was the weak link. Injured. Not pulling my load. The team was under a log, struggling bad. They needed every man and woman that could've been mustered. I was of no use. Just minutes ago, maybe 10, I was coming to peace with perhaps having to let go, due to the immense pain going through my leg/IT Band and the risk of a greater injury. I was dragging my leg in full lock-out to be able to move forward.
+
+I looked at the flags again.. and I realized -- someone had to carry them. If not me, then it would be one less under the log. Even without that realization, if this was an actual mission, an actual scenario - I wouldn't have the opportunity to tap out. If we had to reach Endex/Exfil, do or die - I wouldn't give up. 
+
+... After that, I was given the teamweight, and I never thought of quitting again.
+
+From that point on, I was put in the front with a flag and another - I was the slow one, and it was the only thing that made sense. Team wanted me to give up my ruck, and I said no quite a few times, until a certain line was spoken to me - "Check your ego" - and I held my tongue, and gave it up. It hit me hard, that one. It was a reminder for sure.. 
+
+Cadre tried bullying us, and putting some on the spot. One mistake from one, leading to punishment for all. We saw it for what it was, a test. Testing our team, and there was no way we would break now. It didn't even faze us.
+
+At one point, I got my ruck back again. "Carry your own." My buddy in the front, my GRT-brother, would eventually link arms with me to keep me up as every change of groundlevel and street-crossings would have my leg collapse in pain - and we pushed on. Most of the time, I was clenching my teeth hard, thinking of a patch on one of the rucks - "Suffer in Silence". On the absolute last stretch, I was called out as a 'casualty'. Team would have to carry me. 3-man buddy carry (one under my legs in front, and one on each side of my shoulders). I couldn't hold in my tears - they were streaming down, but at least I tried not making any apparent sounds. I don't know what hurt the most, the actual pain, which was insane or the personal failure, despite it being from an injury. I still felt I had more to give. I just couldn't on my leg, and everything took its toll on that damn leg..)
+
+Having someone injured in a team, a group of people - having a casualty, will ultimately do one out of two things. Either, it will break the team - or it will make the team. This team was made, if it had not already been. This team was solid - and this team could not be broken apart by bullying, casualties, extra PT or being put on the spot. No matter how long it took, no matter what we had to do - this team was there to stay. 
+We made 84km/52miles in 21 hours. I don't think I've ever rucked that fast for that long.
+I proceeded to skip Challenge for recovery, and continue on for Light (with Cadre shaking his head at me!) & Scavenger after that.
+
+For the rest of it; it was awesome. 
+It was fun. 
+So much Guinness. I was labelled the Leprechaun! Getting to know all of you - Id take that over anything, any day. Even if, somehow, 10 kgs in weightplates never showed up again! Haha, I still don't know who borrowed those..
+
+In regards to the injury; I now know what ITB Syndrome is, how to treat and prevent to some extent - and that's valuable to me. Knowing myself, and being able to help others in the future. Still would do it all over again. "
+`,
+    approved: True
   },
   {
     id: 'aar-8',
@@ -838,37 +860,26 @@ I realized how wrong I was during the welcome party. My quads were burning and f
     distance: 24.0,
     load: 35,
     participants: 45,
-    conditions: 'Clear, 12°C, mountain terrain, steep elevation changes, SAS-style selection course',
+    conditions: 'mountain terrain, steep elevation changes, variable weather with fog and sun, 12°C',
     planned: [
-      'Test SAS-style selection course endurance',
-      'Practice mountain terrain navigation',
-      'Evaluate mental resilience under selection pressure',
-      'Experience Special Forces selection environment'
+      'Attempted Fan Dance selection course',
     ],
     actual: [
-      'Attempted Fan Dance selection course',
       'Mountain terrain with steep elevation tested all participants',
-      'Selection pressure created intense environment',
-      'Event pushed mental and physical limits',
-      'Connected with GRTs from military backgrounds'
+      'Event pushed mental and physical limits. Boredom and fatigue were significant factors',
+      'Really got to ponder the logistics of toilet breaks out in nowhere surrounded by people.',
     ],
     whatWentWell: [
-      'Navigation across mountain terrain',
-      'Team coordination under selection pressure',
-      'Load management over steep terrain',
-      'Mental toughness maintained throughout'
+      'Completed the course',
+      'My staple "Rainbows & Sunshine" (Skittles and gummy bears) technique worked wonders for morale and made people grin and laugh when meeting me halfway up Jacob`s Ladder',
     ],
     improvements: [
-      'Mountain terrain specific training',
-      'Steep elevation pacing strategies',
-      'Selection pressure mental preparation',
-      'Altitude adjustment protocols'
+      'The Long Road - the Roman Road - was demotivational. Boredom proves again to be a significant factor to me personally. The scenery was monotonous and the road never seemed to end.',
     ],
     lessonsLearned: [
-      'Selection courses test more than physical capability',
-      'Mental resilience is often the limiting factor',
-      'Mountain terrain requires different approach than flat ground',
-      'Team brotherhood extends beyond GORUCK to military communities'
+      'The Long Road is a mental challenge as much as a physical one. Boredom can be as tough as fatigue.',
+      'Small morale boosts can have outsized effects on performance and mindset',
+      'New adventures are good adventures.',
     ],
     heroImage: {
       src: '/images/aar/fan-dance-hero.jpg',
@@ -877,6 +888,7 @@ I realized how wrong I was during the welcome party. My quads were burning and f
     location: 'Brecon Beacons, Wales, UK',
     approved: true
   },
+  // Jacksonville Heavy
   {
     id: 'aar-jax-heavy-2014-10',
     title: 'Jacksonville Heavy - After Action Review',
@@ -886,47 +898,95 @@ I realized how wrong I was during the welcome party. My quads were burning and f
     distance: 24.0,
     load: 45,
     participants: 18,
-    conditions: 'Humid, 28°C, urban terrain with water obstacles, night operations',
+    conditions: 'Hot enough for concrete to be smoking. Urban terrain and city neighborhoods, beach, ocean.',
     planned: [
-      'Test physical limits with heavy load over extended distance',
-      'Practice team coordination under fatigue',
-      'Evaluate equipment functionality in harsh conditions',
-      'Build mental resilience through sustained effort',
-      'Challenge the "carry your own" principle in controlled environment'
+      'Attend milestone event(s) at GORUCK HQ in Jacksonville',
+      'Attend Heavy, Challenge, Light and Scavenger events consecutively to earn the HCLS patch',
+      'Test ground in preparation for Aubagne',
     ],
     actual: [
-      'Team completed 24 miles with 45lb loads in humid conditions',
       'Chafing became critical issue at hour 14+, managed with sandbag distraction technique',
       'Eventually agreed to let team carry ruck at lowest point - silent tears during brainstorming',
-      'Realized "pain is just pain" mantra for forward motion',
-      'Made decision to skip Challenge to avoid permanent injury'
+      'Had to develop a mantra of "pain is just pain" to keep moving forward after chafing became unbearable over and over again with repeated saltwater ocean dips',
+      'Had to make the decision to skip Challenge because of injury and attempt sufficient recovery to attend Light and Scavenger - which I did, and completed both successfully',
     ],
     whatWentWell: [
       'Team maintained cohesion despite individual breakdowns',
-      'Equipment held up under extended stress',
-      'Communication remained clear through night operations',
       'Physical training prepared team for distance demands',
-      'Made smart decision to step back when injury risk became clear'
+      'Made smart decision to step back when injury risk became clear',
+      'Improvised compression method for calves worked well to manage swelling and pain (in combination with no movement for a longer recovery period)',
+      'No foot issues despite blistering in previous events - Leukotape worked. Huge success.',
     ],
     improvements: [
-      'Pre-event foot care and chafing prevention protocols',
-      'Load distribution optimization earlier in event',
       'Better hydration planning for humid conditions',
       'Earlier intervention when pain becomes injury risk',
-      'Mental state check-ins during extended operations'
+      'Did not factor in enough my sensitivity to heat and that this location would be a significant heat challenge for me personally. Visualization of the event with the heat factor could have helped me prepare better.',
     ],
     lessonsLearned: [
-      'Pain is just pain - can be used as tool for forward motion',
-      'Letting team carry you feels like personal failure but is tactical necessity',
+      'When pain becomes unbearable, and repeatedly so.. there is a treshold one can choose to cross. A ..normalization, of pain as being a forever-state. The mind is a powerful thing, I would not have expected a mantra of "Pain is just pain" to actually work to the extent that it did. It was a way to detach from the suffering and keep moving forward.',
       'There is a time for everything - sometimes step back to fight another day',
-      'True character revealed under extreme fatigue and stress',
-      'The ruck is not just weight - it is responsibility and identity'
+      'The ruck proves to be not just weight - but important for identity. Risk factor. Letting go of it is a significant mental hurdle, even when it is the smart choice for the team and for personal safety.',
     ],
     heroImage: {
       src: '/images/aar/jax-heavy-hero.jpg',
       alt: 'Team of 18 ruckers in Jacksonville urban terrain, completing water obstacle under night conditions'
     },
     location: 'Jacksonville, Florida, USA',
+    originalText: `GORUCK H(C)LS, Jacksonville. "Reflections of a GRT and lessons learned."
+The most brutal event I have ever done. Man, did I learn. What I love, is pushing my boundaries, physically and mentally - even past breaking point. Even to injury. "Why? That's stupid." Because I learn. About what I'm capable of. About how to prevent, how to treat and how to cope. There are so many lessons to get from everything, so many things you avoid to stay comfortable in your daily life. And I love it. Truly. Naturally, more after than during (for reals this time), but I find that even during, I nod to myself, taking in the lessons from massive strains, and I'm able to cope with the mindset of attaining knowledge.
+
+Our event started with the APFT-test (Army Physical Fitness Test). 2 min max push ups. I felt really good about this part, scoring 67, lacking overall training the last few weeks due to injury (doh). 2 min max sit ups, and then a "12" mile forced ruck march. "12" because GORUCK always under-promise and over-deliver. It's always more, that's just the standard minimum. The long walk was made on the beach, starting at about 1900hrs, everything going darker and darker, with the scenery never-changing. Walking in the sand, the Cadre issued "No Talking". Surf on our left side, sand underneath, weight on top, and dunes and grassline to the right of us. The beach would never end. 12-14 miles of the same scenery without a sense of time makes you go blind, and gets you lost in your own thoughts. An hour feels like two. A mile feels like four. Why am I really here. Why am I doing this. I can just quit. I could never quit now, what the hell. This is just the start, not even that. Why. Getting caught with the demons in your head happens faster when you're alone, when you can't talk to anyone. This was a heavy part for me. The longest part. But on we went, and eventually this initial march would come to pass as all things always do.
+
+Pre-event, I researched and thought a lot about nutrition and footcare, which both are essential to survival. You can never(?) do too much research, and I had only one Challenge under my belt from before. Fail to plan, and you plan to fail. Just the Heavy-part would be my longest event to date, and here I was (initially) gunning for HCLS, to make the US-trip cost-effective. I brought and popped every now and then (restricted use to avoid too much and tiring myself off it) Endurolytes, Advils and caffeine-pills during the first half after the APFT (just to be sure), until I was careless with the containers and every pill got wet and ruined. 
+
+Continuing on, I realized that it really didn't make much of a difference. Some salt-tablets was nice to have (which I had not brought myself) and some caffeine would be helpful at times, as you eventually walked in a coma towards the end of part 3/4 - but all you really, really need is water. All the 'take out'/'put back in' with the stuff I brought was just not worth the stress in the long run. Less, is more.
+
+Food is nice as well, of course. If you're hungry, your head won't be in the game. You can survive on water, but food/protein bars and m&ms are worth it. Just don't fill your ruck with it. 
+
+Foot-care. The best experience and a quite shocking one, was that I had NO foot issues(!). With said 'only a Challenge' (1046, holla) under my belt, where I was blistering bad in Normandy, I was expecting this to be a real concern in Jacksonville. I was lacking in training, even. I am still ecstatic to this day about this part. I credit most of this to my recent discovery of Leukotape, which I now swear to. Prepping' and setup for my feet went like this; 1) Tincture of Bonzine (chemical adhesive, works like glue) on the hotspots for the taped parts 2) I put some lines of tape across known hotspots from Normandy; heel-bone, toe-mounds (which is between the arch and the actual toes) as well as taping around my big toes. 3) Trail Toes all over my feet, thin layer. 4) Injinji Toe-socks. 5) Merino wool socks. 6) Oakley LSA Boots w/new soles. 1, 2, 3 was all first time usage. 
+
+When you get to a refill-station, which are the only breaks had, you're naturally supposed to have 'check your feet' as priority #1. One foot at a time, in case you gotta start moving again. After the first "12" miler, we got to a refill station, and I couldn't believe it. I felt no issues. I wriggled my toes in all directions inside my boots, and nothing there was worth taking them off for. I figured that if I did, I would probably accidentally mess up the tape or something. On refill-stations later, I would take my boots and possibly my Merino wool socks off, wash out the sand and put it all on again. Id never take off the toe socks as there never was a need for it, and this way I'd not risk the integrity of the tape. Not until what later revealed maybe two long hours left of the event, did I replace my socks, and change from boots to Salomons Speedcross CS3, for comfort. So good, and in the deepest hell, that was well worth the wait. It was a small piece of heaven. Like chocolate milk or coca-cola on a a day you're hungover. Just for your feet.
+
+The absolute worst pain, which was constant, and constantly renewing itself, was the chafing I had on both of my inner thighs. It really was bad, and I think it started in hour 14 or so. Chafing comes from friction, and it burns. Everytime you take a step, you feel it rubbing against whatever, and it gets gradually worse. What made it all even worse, over and over again, was getting back out in the saltwater. After putting cream on it while walking, five times, and getting ordered out into the saltwater 2-5 minutes (at most) after every time - I gave up on the cream and whatever else I had at my disposal. I gave up on trying to treat it, trying to prevent more chafing - I resigned, and I sincerely realized, that pain is just pain. And I put one foot in front of the other with that knowledge. 'Pain is just pain' became the mantra I whispered to myself for every step I took until I didn't care anymore.
+
+To also distract me from that specific pain, I crushed my shoulders with constantly carrying sandbags straight on my shoulders/neck (not really on my ruck, since I carry thin plates which offers no base to put the sandbags on). Pain is just pain, use one to distract from another was my train of thought. Constantly, and more than I should have, it took it's toll and after a while, I struggled with raising my arms high enough to put the sandbags on myself, and required others to do it. But I kept on.
+
+(Later, post-event, I would realize the toll of constantly having done this, would be a massive muscle strain on my calves, making me unable to walk..)
+
+Eventually, I was in such a bad shape, everyone could see it, and I wouldn't hide it as I remembered I'm always telling others not to hide it. Towards the end, I was not able to contribute with more than carrying sandbags, and in between that had my lowest point when the teamleader recognized this during a brainstorming session on an assignment we got. He would ask me how I was dealing, could I keep going, I would tell him "bad", and "I have to". It was unacceptable for me to quit. I had my reasons, and being alone with my thoughts for the Long Walk had assured me of that. This was a gut-check for me, and a few selected people know why. I just could not quit, regardless of repercussions, and I thought about stories heard about people getting long-term injured. I. Would. Not. Quit. Teamleader suggested he would ask someone else carry my ruck. I told him no, as I've always been of the mindset 'I will carry my own. I can carry yours, but I will always carry my own." He said it again, I hesitated, and he wasn't asking this time, as I realized I could barely speak and I had to clench my jaw as I agreed to it. This was my lowest point. I had agreed. 
+
+He walked away. I clenched my teeth, pulled down my cap and positioned myself so that I stood just close enough to the rest, and just far enough away, so that neither Cadre nor GRTs would feel the need to approach me for a chat. And I was in silent tears for the entire brainstorming session on and off. Not from the physical pain, it was bigger than that, it was from letting myself down. 
+
+"Fortune" would have it, that when we were rolling out, nobody came to offer to take my ruck. And I didn't ask anyone to. I was still in bad shape, but I was not going to ask anyone to pick up extra weight. My weight. 
+
+I was, however, from the first minute, asked if I could carry a sandbag on top of it. 30lbs, 60 lbs, I took it - as long as someone would put it on me. I was embarassed not being able to take part in the transport of the huge stones, barely able to walk, but I didn't say No more than once, towards the end, to an extra sandbag, sometimes carrying two. (I was shocked when someone offered me a 20lbs sandbag, which I, for the last 26-28? hours never realized existed!!)
+
+Never putting anything into what people thought would be the end, or time left - I was the one saying; don't do that, don't guess when we're finished. Just continue. Guessing things like that never leads to anything good. Always remember that the biggest part is what goes on in your head.
+
+Back to the beach, and more evolutions (exercises). At this point, I had now, personally, thought that we would've finished three times. More people from the GORUCK-community was present now. Jason, Monster, other Cadres, GRTs - watching all of us.
+
+On we went, two people drag a fallen comrade, I was one on one; missing a second, exhausted - frustration. Into the saltwater again and again, I had stopped caring for the chafing a long time ago by this point. I cherished every time I was in that beautiful warm water, as I had from the first time we went in. (Water like this always reminds me of Omaha Beach, which was freezing cold. Jacksonville Beach really is amazing.) 
+
+Evolution: Tunnel of love, where we form a tunnel in the surf, and one by one crawl through it from one end to another, my face was literally on the heels of the guy in front of me. People shouting motivation. Coming out from underneath, Cadre standing in front of me, staring at me sternly. Not the first time, I was sure he was 'just' having one of his mean staredowns at me. Not a sound. 
+
+Until he says "Aren't you gonna' shake my hand??" I look down, his hand is stretched out, and theres a.Heavy-patch in it. My world shatters, and I keep blinking my eyes as I utter a "thank you", and look around. The people shouting are GRTs with their patches. For a moment, it's all finished, I made it, before going back to shouting at the others to just get through this evolution.
+
+After the Heavy and getting back to the hotel, I walked ..awkwardly. After an hour or so at the hotel, my calves was not just hurting, they had doubled in size. And thats not an exaggeration. Muscle strain grade 2, was my bet. Grade 3 lands you in the hospital. I came to the conclusion that if I was to show up to the Challenge in just a few hours, I would not make it. Not that, or the events after. I could get seriously injured. I put my aim on recovering to the Light and do that and the Scavenger. Quoting another GRT; "I do stupid, I don't do dumb."
+
+As the swelling or the effect of it, had not gone down, I awoke with an idea. I would use my clothed knee "pads" (not really -pads-) and have them on my calves instead - and use leukotape to tighten around. Too tight would mean greater risk of nerve-damage than there already was, and too slack would mean close to no effect (meaning not walking). On one leg (the worst), I found the middle ground after cutting a bit from being too tight, which towards the end of the Light had me well recuperated! On the other (the lesser injured), it just was not tight enough, and it got a lot worse, and I limped through the Light. Lesson learned, and knowledge received. 
+
+Hearing stories from the Challenge-portion I am 100% sure I made the right decision to not show up, as it was a complete beatdown of those who had continued from the Heavy. I was, and still am, completely sure that the consequences would be as predicted if I had. If I had showed up, and gotten more injured, I would never have learned of the leukotape-compression solution, and just that is immensely valuable to me and the understanding of my body, as well as being able to apply the solution to others in the future if needed.
+
+These events remind me what a Cadre once said, about how our daily 'problems' and 'challenges' really are not that. They're just small inconviences. Small bothers in a comfortable life. It's good to be uncomfortable. Overcoming a suckfest is good for the soul, truly.
+
+While I did take a risk considering potential nerve damage, I would do it again. I would do all of it again. In regards to continuing from the Heavy to the Challenge and onwards, Cadre told us, (commending thosr who did just that,) it's about being able to get back into the fight, even just after you finished one, and how that is what separates regular and special forces. 
+There is a time for everything. And sometimes it's time to step back to fight another day.
+
+Hearing the stories from the Challenge, about the hallucinations caused by sleep deprivation, the jungle and the huge spiders, I was happy for them; it sounded epic. I firmly believe they bonded more truly than in the Heavy. This time it just wasn't in the cards for me, but I am immensely richer than I was in experience and knowledge. I met some amazing people I would consider more friends or potential of friends than people I grew up with, or people currently in my life for one reason or another. Shared pain brings people together. To seek it out, is uncommon - and I am proud every time I am with these uncommon people carrying some of the same mindset. It was really nice to see familiar faces from Normandy, and even more - lined up for starting the APFT, Cadre Tyler was present, and he came over to shake my hand for recognition. Small things, big value. I wasn't even in his specific group in Normandy, and there was 99 other souls there, so that moment stuck with me. Could Cadre Tyler be my spirit animal? Bud Light will always be GORUCK to me, and Jason is nice when he's not pushing a keg on you. (Don't try to excuse yourself for not drinking to a Cadre like Garet either. )
+
+I want to finish with
+GORUCK is .. 
+but I can't decide on one word. Be there, or you will never truly know."`,
     approved: true
   },
   {
