@@ -41,27 +41,24 @@ export const aarEntries: AAR[] = [
     title: 'Normandie 2014 - After Action Review',
     date: '2014-06-08',
     author: 'Red Rucker',
-    duration: 600,
-    distance: 18.0,
-    individualWeight: 35,
+    duration: 0,
+    distance: 0,
+    individualWeight: 0,
     individualWeightUnit: 'lbs',
     classNumber: '1046',
-    participantsStarted: 30,
-    participantsCompleted: 28,
-    conditions: 'Clear, 18°C, historical battlefield terrain, significant elevation',
+    participantsStarted: 100,
+    participantsCompleted: 0,
+    conditions: 'Cold',
     planned: [],
     actual: [
-      'Completed first GORUCK Challenge (Event #1046)',
-      '8-10 Hours, 15-20 Miles, with pack',
-      'Pass rate 94%'
+      'Completed first GORUCK Challenge (Class #1046)',
     ],
     whatWentWell: [],
     improvements: [],
     lessonsLearned: [
-      'Signed up inspired and recommended by guys met in Munich',
       'These challenges show you in the most literal way that no matter how hard things seem, you can get through it',
-      'They build better people by showing you exactly what you are made of',
-      'The people that make it to the end are people just like you - scared and maybe a little unsure, but tough as hell'
+      'Shared adversity build better people by showing you exactly what you are made of and holding you accountable to your team',
+      'The people that make it to the end are people just like you.',
     ],
     location: 'Normandy, France',
     originalText: `Normandie, June 2014
@@ -74,7 +71,7 @@ Signed for my first GoRuck Challenge in Normandy, France - June 6th. Inspired an
 This sums it up so well:
 
 "You're strong, and you can do hard things. These challenges are more than just "tough guy army shit". They show you in the most literal way, that no matter how hard things see, you can get through it. It sucks, sure, but in the end, you're alive and better ready to handle your daily struggles. I think it's good to show yourself that in a very real, very tangible way. They build better people by showing you exactly what you're made of. And the people that make it to the end are people just like you. Scared, and maybe a little unsure, but when it boils down to it, tough as hell and fully capable of [throat-punching the demons they struggle with]."`,
-    approved: true
+    approved: false
   },
 
   // Spartan 2014
@@ -154,135 +151,45 @@ The Spartan stuff in media is nice, encouraging and good for the society overall
     location: 'Okinawa, Japan',
     originalText: `Humbled by the team this weekend, as always. Proud to earn through common struggle. Grateful to see people define their own character, reaching within for that Final-Last-Grain-Of-Willpower and whatever Fire they can find. That final push that makes it all worth it..
 I'm not a talker, even if I do like the sound of my voice when I can't hear it myself, but most know I am a writer. Especially for reflection, and I feel like reflecting.`,
-    approved: true
+    approved: false
   },
-
-  // Dublin Heavy
-  {
-    id: 'aar-dublin-heavy-2015-06',
-    title: 'Dublin Heavy - After Action Review',
-    date: '2015-06-21',
-    author: 'Red Rucker',
-    duration: 720,
-    distance: 20.0,
-    individualWeight: 50,
-    individualWeightUnit: 'lbs',
-    participantsStarted: 22,
-    participantsCompleted: 22,
-    conditions: 'Cold, 10°C, rain, rural terrain with log carries and elevation changes',
-    planned: [],
-    actual: [
-      'Team performed log carry exercises in continuous rain',
-      'Injury during event (ITB Syndrome) - dragging leg in full lock-out to move forward',
-      'Team needed every person under the log, author was useless as weak link',
-      'Team requested author give up ruck - refused multiple times',
-      'Finally heard "Check your ego" - surrendered ruck while injured',
-      'Got ruck back - "Carry your own" principle resumed'
-    ],
-    whatWentWell: [
-      'Team was made, not broken - could not be broken by bullying, casualties, extra PT',
-      'Made 84km/52 miles in 21 hours',
-      'Finished despite being injured and weak link'
-    ],
-    improvements: [],
-    lessonsLearned: [
-      'Check your ego - it is the enemy of both growth and rest',
-      'I was the weak link. Injured. Not pulling my load.',
-      'The team can function without you carrying everything',
-      'Being the weak link does not mean being useless'
-    ],
-    location: 'Dublin, Ireland',
-    originalText: `GORUCK Heavy, Dublin, March 2015
-I remember looking down at my hands, at the flagpoles I was carrying.. looking back at the team and having it all go through my head again..
-I was the weak link. Injured. Not pulling my load. The team was under a log, struggling bad.`,
-    approved: true
-  },
-
   // Chicago Hive Module
-  {
-    id: 'aar-chicago-hive-2016-08',
-    title: 'Chicago Hive Module - After Action Review',
-    date: '2016-08-15',
-    author: 'Red Rucker',
-    duration: 360,
-    distance: 8.0,
-    individualWeight: 25,
-    individualWeightUnit: 'lbs',
-    conditions: 'Clear, 26°C, urban environment, austere medicine training scenarios',
-    planned: [],
-    actual: [
-      'Traveled from Bergen to Chicago for 28hr class (Callidus Collective Hive Module)',
-      'Austere medicine training with Voodoo Doc and Panda',
-      'Urban movement training with Ed Calderon',
-      'Pressure tested in basement scenarios',
-      'Skills learned: tourniquets, bleed control, airway management',
-      'Lost "things" more than once as reaction to environment',
-      'Scenario-based challenges on final day'
-    ],
-    whatWentWell: [
-      'Left basement with sense of satisfaction',
-      'Got tools to be better in a crisis',
-      'Will and motivation to keep practicing'
-    ],
-    improvements: [
-      'Practice skills with both hands'
-    ],
-    lessonsLearned: [
-      'Austere medicine requires different thinking than standard first aid',
-      'Grid-down scenarios reveal equipment gaps',
-      'Training with real professionals exposes knowledge gaps',
-      'Not knowing what might happen is a big part of the magic'
-    ],
-    location: 'Chicago, Illinois, USA',
-    originalText: `Chicago Hive Module/Austere Medical Management - Urban Movement & Disruption
-Callidus Collective feat. Ed Calderon, Voodoo Doc and Panda
-Chicago 2018
-
-Austere - having an extremely plain and simple style or appearance; unadorned.`,
-    heroImage: {
-      src: '/images/aar/chicago-hive-hero.jpg',
-      alt: 'Urban training environment with austere medicine equipment'
-    },
-    approved: true
-  },
-
 // Fan Dance
   {
     id: 'aar-fan-dance-2017-10',
     title: 'Fan Dance - After Action Review',
-    date: '2017-07-02',
+    date: '2017-10-21',
     author: 'Red Rucker',
-    duration: 480,
-    distance: 24.0,
-    individualWeight: 20,
-    individualWeightUnit: 'kg',
-    conditions: 'Clear, 12°C, mountain terrain, steep elevation changes, SAS-style selection course',
-    planned: [],
+    duration: 0,
+    distance: 0,
+    load: 0,
+    participants: 0,
+    conditions: 'mountain terrain, steep elevation changes, variable weather with fog and sun, 12┬░C',
+    planned: [
+      'Completing Avalance Endurance Course - Fan Dance',
+    ],
     actual: [
-      'Exercise High Walk / Fan Dance in Brecon Beacons',
-      '24km with about 20kg',
-      'Highest peak at 868m (Pen y Fan)',
-      'Started foggy/gloomy, turned beautiful as sun came up',
-      'Roman Road was longest, most demotivating section',
-      'Jacob\'s Ladder climb - false summit halfway up, then devilishly steep',
-      'Completed in 5hrs10min without stressing',
-      'Post-event: serious sunburn on arms, bad chafing on inner thighs'
+      'Mountain terrain with steep elevation tested all participants',
+      'Event pushed mental and physical limits. Boredom and fatigue were significant factors',
+      'Really got to ponder the logistics of toilet breaks out in nowhere surrounded by people.',
     ],
     whatWentWell: [
-      'Completed in 5hrs10min without stressing',
-      'Beautiful scenery - foggy to outstanding as sun came up'
+      'Completed the course',
+      'My go-to tactic for mood changes, the "Rainbows & Sunshine" (Skittles and gummy bears) technique worked wonders for morale and made people grin and laugh when meeting me halfway up Jacob`s Ladder',
     ],
     improvements: [
-      'Sunscreen for arms'
+      'The Long Road - the Roman Road - was demotivational. Boredom proves again to be a significant factor to me personally. The scenery was monotonous and the road never seemed to end.',
     ],
     lessonsLearned: [
-      'Shortest event done - weird feeling',
-      'Appreciation of SAS training grounds adds meaning',
-      'Sometimes all you need is that little sunshine - small things, great effect',
-      'Selection courses test more than physical capability',
-      'Mental resilience is often the limiting factor'
+      'The Long Road is a mental challenge as much as a physical one. Boredom can be as tough as fatigue.',
+      'Small morale boosts can have outsized effects on performance and mindset',
+      'New adventures are good adventures.',
     ],
-    location: 'Brecon Beacons, Pen y Fan, UK. SAS training grounds.',
+    heroImage: {
+      src: '/images/aar/fan-dance-hero.jpg',
+      alt: 'Group of ruckers on mountain terrain during Fan Dance selection course, steep trail visible'
+    },
+    location: 'Brecon Beacons, Pen y Fan, Wales, UK',
     originalText: `So it finally came and went. 
     Exercise High Walk. Fan Dance. Brecon Beacons. Pen y Fan. 24km with about 20kg. Highest peak @ 868m. Up and down and up and down again.
 
@@ -315,11 +222,14 @@ Here's to great people and the best of experiences.`,
     individualWeight: 30,
     individualWeightUnit: 'lbs',
     conditions: 'Clear, 16°C, urban terrain, memorial event',
-    planned: [],
+    planned: [
+      'Honor Milton and his legacy',
+      'Ruck to Milton`s favorite places in Frankfurt',
+      'Share stories and memories of Milton with his son Sam and friends',
+    ],
     actual: [
-      'Heard Milton`s story from his son Sam',
-      'Heard stories from friends of Milton',
-      'Rucked to Milton`s favorite places and did workouts there too',
+      'All of the above'
+,
     ],
     whatWentWell: [
       'Event was organized by Kris (MRC) - worthy Memorial Event',
@@ -561,7 +471,7 @@ So much Guinness. I was labelled the Leprechaun! Getting to know all of you - Id
 
 In regards to the injury; I now know what ITB Syndrome is, how to treat and prevent to some extent - and that's valuable to me. Knowing myself, and being able to help others in the future. Still would do it all over again. "
 `,
-    approved: True
+    approved: true
   },
   {
     id: 'aar-8',
@@ -799,95 +709,6 @@ In regards to the injury; I now know what ITB Syndrome is, how to treat and prev
     location: 'Chicago, Illinois, USA',
     approved: false
   },
-  {
-    id: 'aar-dublin-heavy-2015-06',
-    title: 'Dublin Heavy - After Action Review',
-    date: '2015-06-21',
-    author: 'Red Rucker',
-    duration: 720,
-    distance: 20.0,
-    load: 50,
-    participants: 22,
-    conditions: 'Cold, 10°C, rain, rural terrain with log carries and elevation changes',
-    planned: [
-      'Validate load carriage capacity at increased weight',
-      'Practice log carry team movements',
-      'Develop navigation skills in low-visibility conditions',
-      'Test mental resilience through extended physical challenge'
-    ],
-    actual: [
-      'Team performed log carry exercises in continuous rain',
-      'Injury during event required team support',
-      'Team requested author give up ruck - refused multiple times',
-      'Finally heard "Check your ego" - surrendered ruck while injured',
-      'Realized team could function without author carrying everything',
-      'Got ruck back - "Carry your own" principle resumed'
-    ],
-    whatWentWell: [
-      'Team cohesion remained strong despite individual weakness',
-      'Log carry techniques executed effectively',
-      'Navigation accuracy maintained in poor conditions',
-      'Author finished as "weak link" but completed the event',
-      'Hardest-won wisdom: letting go of the ruck is not failure'
-    ],
-    improvements: [
-      'Injury prevention during log carries',
-      'Earlier ego surrender - pride cost physical pain',
-      'Better communication when injured and struggling',
-      'Accepting help earlier before reaching crisis point',
-      'Trust in team capability when unable to carry'
-    ],
-    lessonsLearned: [
-      'Check your ego - it is the enemy of both growth and rest',
-      'The team can function without you carrying everything',
-      'Letting go of the ruck is not personal failure',
-      'Being the weak link does not mean being useless',
-      'Pride in carrying yourself can become the thing that breaks you'
-    ],
-    heroImage: {
-      src: '/images/aar/dublin-heavy-hero.jpg',
-      alt: 'Team of 22 ruckers performing log carry in rain, Dublin countryside in background'
-    },
-    location: 'Dublin, Ireland',
-    approved: true
-  },
-  {
-    id: 'aar-fan-dance-2017-10',
-    title: 'Fan Dance - After Action Review',
-    date: '2017-10-21',
-    author: 'Red Rucker',
-    duration: 480,
-    distance: 24.0,
-    load: 35,
-    participants: 45,
-    conditions: 'mountain terrain, steep elevation changes, variable weather with fog and sun, 12°C',
-    planned: [
-      'Attempted Fan Dance selection course',
-    ],
-    actual: [
-      'Mountain terrain with steep elevation tested all participants',
-      'Event pushed mental and physical limits. Boredom and fatigue were significant factors',
-      'Really got to ponder the logistics of toilet breaks out in nowhere surrounded by people.',
-    ],
-    whatWentWell: [
-      'Completed the course',
-      'My staple "Rainbows & Sunshine" (Skittles and gummy bears) technique worked wonders for morale and made people grin and laugh when meeting me halfway up Jacob`s Ladder',
-    ],
-    improvements: [
-      'The Long Road - the Roman Road - was demotivational. Boredom proves again to be a significant factor to me personally. The scenery was monotonous and the road never seemed to end.',
-    ],
-    lessonsLearned: [
-      'The Long Road is a mental challenge as much as a physical one. Boredom can be as tough as fatigue.',
-      'Small morale boosts can have outsized effects on performance and mindset',
-      'New adventures are good adventures.',
-    ],
-    heroImage: {
-      src: '/images/aar/fan-dance-hero.jpg',
-      alt: 'Group of ruckers on mountain terrain during Fan Dance selection course, steep trail visible'
-    },
-    location: 'Brecon Beacons, Wales, UK',
-    approved: true
-  },
   // Jacksonville Heavy
   {
     id: 'aar-jax-heavy-2014-10',
@@ -990,54 +811,6 @@ but I can't decide on one word. Be there, or you will never truly know."`,
     approved: true
   },
   {
-    id: 'aar-normandie-2014-06',
-    title: 'Normandie 2014 - After Action Review',
-    date: '2014-06-08',
-    author: 'Red Rucker',
-    duration: 600,
-    distance: 18.0,
-    load: 35,
-    participants: 30,
-    conditions: 'Clear, 18°C, historical battlefield terrain, significant elevation',
-    planned: [
-      'Experience GORUCK event on historical European battlefield',
-      'Walk the terrain where WWII operations took place',
-      'Practice navigation across European countryside',
-      'Connect with GRTs from multiple nations'
-    ],
-    actual: [
-      'Completed event on Normandy battlefield terrain',
-      'Historical context added profound weight to experience',
-      'Elevation changes tested team endurance',
-      'Connected with GRTs from France and broader Europe',
-      'Discovered deeper meaning in historical context'
-    ],
-    whatWentWell: [
-      'Navigation across unfamiliar terrain',
-      'Team coordination across language barriers',
-      'Historical site integration into event',
-      'European GRT connections made'
-    ],
-    improvements: [
-      'More pre-event historical context study',
-      'French language basics for communication',
-      'Elevation-specific training',
-      'European terrain navigation preparation'
-    ],
-    lessonsLearned: [
-      'Historical terrain adds layers of meaning to the experience',
-      'European countryside presents unique navigation challenges',
-      'International brotherhood extends across continents',
-      'Walking hallowed ground creates connection to larger story'
-    ],
-    heroImage: {
-      src: '/images/aar/normandie-2014-hero.jpg',
-      alt: 'Team of ruckers on Normandy battlefield terrain, WWII historical markers visible'
-    },
-    location: 'Normandy, France',
-    approved: true
-  },
-  {
     id: 'aar-okinawa-challenge-2015-03',
     title: 'Okinawa GORUCK Challenge - After Action Review',
     date: '2015-03-15',
@@ -1086,7 +859,7 @@ but I can't decide on one word. Be there, or you will never truly know."`,
       alt: 'Team of 35 ruckers on Okinawa beach at sunset, historical military structure in background'
     },
     location: 'Okinawa, Japan',
-    approved: true
+    approved: false
   },
   {
     id: 'aar-spartan-2014-09',

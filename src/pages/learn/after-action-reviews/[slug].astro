@@ -86,7 +86,7 @@ function getParticipantsCount(): string {
         {aar.originalText && (
           <div class="mb-4 pb-4 border-b border-gray-200">
             <p class="text-sm text-gray-500 mb-1">Original Notes</p>
-            <p class="text-gray-700 whitespace-pre-wrap">{aar.originalText}</p>
+            <p class="text-gray-700 whitespace-pre-wrap" set:html={aar.originalText}></p>
           </div>
         )}
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
