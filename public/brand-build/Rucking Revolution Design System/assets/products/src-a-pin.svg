@@ -1,0 +1,81 @@
+<svg width="560" height="800" viewBox="0 0 560 800" xmlns="http://www.w3.org/2000/svg">
+  
+  <rect width="560" height="800" fill="#eef2f4"></rect>
+  <rect x="0" y="0" width="560" height="54" fill="#11161a"></rect>
+  <text x="32" y="36" font-family="IBM Plex Mono, monospace" font-size="13" letter-spacing="5" fill="#eef2f4">RUCKING REVOLUTION · FIELD GUIDE 06</text>
+  <rect x="0" y="54" width="560" height="5" fill="#8a1e1e"></rect>
+
+  
+  <g transform="translate(40 100)" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="4" fill="#8a1e1e">
+    <text>SATURDAY · 09:00 · CORNER OF YOUR STREET</text>
+  </g>
+
+  
+  <g transform="translate(40 160)">
+    
+    <rect x="0" y="0" width="480" height="360" fill="#fff" stroke="#11161a" stroke-width="2"></rect>
+
+    
+    <g stroke="#c9d3da" stroke-width="1">
+      <line x1="0" y1="60" x2="480" y2="60"></line>
+      <line x1="0" y1="120" x2="480" y2="120"></line>
+      <line x1="0" y1="180" x2="480" y2="180"></line>
+      <line x1="0" y1="240" x2="480" y2="240"></line>
+      <line x1="0" y1="300" x2="480" y2="300"></line>
+      <line x1="80" y1="0" x2="80" y2="360"></line>
+      <line x1="160" y1="0" x2="160" y2="360"></line>
+      <line x1="240" y1="0" x2="240" y2="360"></line>
+      <line x1="320" y1="0" x2="320" y2="360"></line>
+      <line x1="400" y1="0" x2="400" y2="360"></line>
+    </g>
+    
+    <rect x="320" y="60" width="120" height="120" fill="#eef2f4" stroke="#11161a" stroke-width="1"></rect>
+    <text x="380" y="124" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="3" fill="#667684">PARK</text>
+
+    
+    <path d="M 40 320 L 40 220 L 160 220 L 160 140 L 240 140" fill="none" stroke="#11161a" stroke-width="2.5" stroke-dasharray="4 5"></path>
+
+    
+    <g transform="translate(240 140)">
+      <path d="M 0 -60 C -28 -60 -44 -40 -44 -20 C -44 4 -22 24 0 48 C 22 24 44 4 44 -20 C 44 -40 28 -60 0 -60 Z" fill="#8a1e1e" stroke="#11161a" stroke-width="2"></path>
+      <circle r="12" cx="0" cy="-22" fill="#eef2f4" stroke="#11161a" stroke-width="2"></circle>
+      
+      <line x1="-6" y1="-28" x2="6" y2="-16" stroke="#11161a" stroke-width="2"></line>
+      <line x1="6" y1="-28" x2="-6" y2="-16" stroke="#11161a" stroke-width="2"></line>
+    </g>
+
+    
+    <g transform="translate(40 320)">
+      <circle r="8" fill="#11161a"></circle>
+      <text x="14" y="4" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="3" fill="#11161a">YOU</text>
+    </g>
+
+    
+    <g transform="translate(20 340)" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="2" fill="#4f5a63">
+      <line x1="0" y1="0" x2="60" y2="0" stroke="#11161a" stroke-width="1"></line>
+      <line x1="0" y1="-3" x2="0" y2="3" stroke="#11161a"></line>
+      <line x1="60" y1="-3" x2="60" y2="3" stroke="#11161a"></line>
+      <text y="12">500 M</text>
+    </g>
+  </g>
+
+  
+  <g transform="translate(40 578)" font-family="Archivo, sans-serif" font-weight="700" letter-spacing="-3" fill="#11161a">
+    <text y="0" font-size="72">START A</text>
+    <text y="76" font-size="72">RUCK </text>
+    <text x="186" y="76" font-size="72" fill="#8a1e1e">CLUB.</text>
+  </g>
+
+  
+  <g transform="translate(40 692)" font-family="Source Serif 4, serif" font-style="italic" fill="#4f5a63">
+    <text font-size="16" y="0">How to build a walking community</text>
+    <text font-size="16" y="22">in your neighbourhood.</text>
+  </g>
+
+  
+  <g transform="translate(40 754)">
+    <line x1="0" y1="0" x2="480" y2="0" stroke="#11161a" stroke-width="1"></line>
+    <text y="22" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="3" fill="#4f5a63">ALEXANDER</text>
+    <text x="480" y="22" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="3" fill="#4f5a63">RUCKING REVOLUTION</text>
+  </g>
+</svg>

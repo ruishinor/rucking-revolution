@@ -1,0 +1,85 @@
+<svg width="560" height="800" viewBox="0 0 560 800" xmlns="http://www.w3.org/2000/svg">
+  
+  <rect width="560" height="800" fill="#eef2f4"></rect>
+  <rect x="0" y="0" width="560" height="54" fill="#11161a"></rect>
+  <text x="32" y="36" font-family="IBM Plex Mono, monospace" font-size="13" letter-spacing="5" fill="#eef2f4">RUCKING REVOLUTION · FIELD GUIDE 02</text>
+  <rect x="0" y="54" width="560" height="5" fill="#8a1e1e"></rect>
+
+  
+  <g transform="translate(40 100)" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="4" fill="#8a1e1e">
+    <text>ON LONELINESS · ON WALKING · ON SHOWING UP</text>
+  </g>
+
+  
+  <g transform="translate(40 150)" font-family="Archivo, sans-serif" font-weight="700" letter-spacing="-3">
+    <text y="70" font-size="72" fill="#11161a">RUCK YOUR</text>
+    <text y="146" font-size="72" fill="#11161a">WAY </text>
+    <text x="180" y="146" font-size="72" fill="#8a1e1e">OUT.</text>
+  </g>
+
+  
+  <g transform="translate(40 330)" font-family="Source Serif 4, serif" font-style="italic" fill="#4f5a63">
+    <text font-size="19" y="0">How walking with weight can lift loneliness,</text>
+    <text font-size="19" y="26">build resilience, and connect you to people</text>
+    <text font-size="19" y="52">who actually show up.</text>
+  </g>
+
+  
+  <g transform="translate(80 520)">
+    
+    <line x1="-30" y1="120" x2="460" y2="120" stroke="#11161a" stroke-width="2"></line>
+
+    
+    <g fill="#11161a">
+      
+      <rect x="0" y="40" width="36" height="44" rx="3"></rect>
+      
+      <rect x="30" y="46" width="3" height="38" fill="#8a1e1e"></rect>
+      
+      <rect x="32" y="44" width="22" height="52" rx="2"></rect>
+      
+      <circle cx="43" cy="32" r="12"></circle>
+      
+      <rect x="34" y="94" width="8" height="26" transform="rotate(-12 38 94)"></rect>
+      <rect x="46" y="94" width="8" height="26" transform="rotate(14 50 94)"></rect>
+    </g>
+
+    
+    <g fill="#11161a" transform="translate(92 6)">
+      <rect x="0" y="40" width="34" height="42" rx="3"></rect>
+      <rect x="28" y="46" width="3" height="36" fill="#8a1e1e"></rect>
+      <rect x="30" y="44" width="22" height="50" rx="2"></rect>
+      <circle cx="41" cy="32" r="12"></circle>
+      <rect x="32" y="92" width="8" height="26" transform="rotate(10 36 92)"></rect>
+      <rect x="44" y="92" width="8" height="26" transform="rotate(-8 48 92)"></rect>
+    </g>
+
+    
+    <g fill="#667684" transform="translate(210 12) scale(0.86)">
+      <rect x="0" y="40" width="34" height="42" rx="3"></rect>
+      <rect x="30" y="44" width="20" height="48" rx="2"></rect>
+      <circle cx="40" cy="32" r="11"></circle>
+      <rect x="32" y="90" width="7" height="24" transform="rotate(-10 36 90)"></rect>
+      <rect x="43" y="90" width="7" height="24" transform="rotate(12 46 90)"></rect>
+    </g>
+    <g fill="#667684" transform="translate(296 18) scale(0.74)">
+      <rect x="0" y="40" width="34" height="42" rx="3"></rect>
+      <rect x="30" y="44" width="20" height="48" rx="2"></rect>
+      <circle cx="40" cy="32" r="11"></circle>
+      <rect x="32" y="90" width="7" height="24" transform="rotate(8 36 90)"></rect>
+      <rect x="43" y="90" width="7" height="24" transform="rotate(-6 46 90)"></rect>
+    </g>
+
+    
+    <g transform="translate(400 120)" fill="#8a1e1e">
+      <polygon points="0,-6 16,0 0,6"></polygon>
+    </g>
+  </g>
+
+  
+  <g transform="translate(40 754)">
+    <line x1="0" y1="0" x2="480" y2="0" stroke="#11161a" stroke-width="1"></line>
+    <text y="22" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="3" fill="#4f5a63">ALEXANDER</text>
+    <text x="480" y="22" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="3" fill="#4f5a63">RUCKING REVOLUTION</text>
+  </g>
+</svg>

@@ -1,0 +1,66 @@
+<svg width="560" height="800" viewBox="0 0 560 800" xmlns="http://www.w3.org/2000/svg">
+  
+  <rect width="560" height="800" fill="#11161a"></rect>
+
+  
+  <g opacity="0.15" stroke="#a8b5c2" stroke-width="1">
+    <line x1="40" y1="200" x2="520" y2="200"></line>
+    <line x1="40" y1="400" x2="520" y2="400"></line>
+    <line x1="40" y1="600" x2="520" y2="600"></line>
+  </g>
+
+  
+  <g transform="translate(40 56)">
+    <rect x="-2" y="-2" width="44" height="44" fill="#8a1e1e"></rect>
+    <text x="20" y="28" text-anchor="middle" font-family="Archivo, sans-serif" font-weight="700" font-size="22" fill="#eef2f4">R</text>
+    <text x="60" y="28" font-family="IBM Plex Mono, monospace" font-size="13" letter-spacing="4" fill="#a8b5c2">RUCKING REVOLUTION</text>
+  </g>
+
+  
+  <g transform="translate(40 620)">
+    <g fill="#8a1e1e">
+      
+      <rect x="0" y="-40" width="14" height="40"></rect>
+      <rect x="18" y="-40" width="14" height="40"></rect>
+      <rect x="36" y="-40" width="14" height="40"></rect>
+      <rect x="54" y="-60" width="14" height="60"></rect>
+      <rect x="72" y="-60" width="14" height="60"></rect>
+      <rect x="90" y="-60" width="14" height="60"></rect>
+      <rect x="108" y="-90" width="14" height="90"></rect>
+      <rect x="126" y="-90" width="14" height="90"></rect>
+      <rect x="144" y="-90" width="14" height="90"></rect>
+      <rect x="162" y="-120" width="14" height="120"></rect>
+      <rect x="180" y="-120" width="14" height="120"></rect>
+      <rect x="198" y="-120" width="14" height="120"></rect>
+      <rect x="216" y="-150" width="14" height="150"></rect>
+      <rect x="234" y="-150" width="14" height="150"></rect>
+      <rect x="252" y="-150" width="14" height="150"></rect>
+      <rect x="270" y="-180" width="14" height="180"></rect>
+      <rect x="288" y="-180" width="14" height="180"></rect>
+      <rect x="306" y="-180" width="14" height="180"></rect>
+      <rect x="324" y="-210" width="14" height="210"></rect>
+      <rect x="342" y="-210" width="14" height="210"></rect>
+      <rect x="360" y="-210" width="14" height="210"></rect>
+      <rect x="378" y="-240" width="14" height="240"></rect>
+      <rect x="396" y="-240" width="14" height="240"></rect>
+      <rect x="414" y="-240" width="14" height="240"></rect>
+      <rect x="432" y="-270" width="14" height="270"></rect>
+      <rect x="450" y="-270" width="14" height="270"></rect>
+      <rect x="468" y="-270" width="14" height="270"></rect>
+      <rect x="0" y="0" width="482" height="4"></rect>
+    </g>
+    <text x="0" y="22" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="3" fill="#a8b5c2">DAY 01 —————————————————— DAY 30</text>
+  </g>
+
+  
+  <g transform="translate(40 180)" font-family="Archivo, sans-serif" font-weight="700" letter-spacing="-3">
+    <text font-size="108" fill="#eef2f4">YOUR</text>
+    <text y="110" font-size="108" fill="#eef2f4">FIRST</text>
+    <text y="220" font-size="108" fill="#c44c28">RUCK</text>
+  </g>
+
+  
+  <g transform="translate(40 740)" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="4" fill="#a8b5c2">
+    <text>30 DAYS · FROM NOTHING TO 20 LB</text>
+  </g>
+</svg>

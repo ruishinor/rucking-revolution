@@ -1,0 +1,35 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  
+  <rect width="1600" height="900" fill="#eef2f4"></rect>
+
+  <g transform="translate(120 180)">
+    <text font-family="IBM Plex Mono, monospace" font-size="22" letter-spacing="5" fill="#8a1e1e">MINDSET · 004</text>
+
+    <g font-family="Archivo, sans-serif" font-weight="700" letter-spacing="-4">
+      <text y="160" font-size="128" fill="#11161a">THE</text>
+      <text y="296" font-size="128" fill="#11161a">“I’LL LOOK</text>
+
+      
+      <g>
+        <text y="432" font-size="128" fill="#11161a">STUPID”</text>
+        <rect x="-6" y="382" width="620" height="20" fill="#8a1e1e"></rect>
+      </g>
+
+      <text y="568" font-size="128" fill="#8a1e1e">MYTH.</text>
+    </g>
+
+    
+    <g transform="translate(970 90) rotate(-12)">
+      <rect x="-6" y="-6" width="392" height="172" fill="none" stroke="#8a1e1e" stroke-width="8"></rect>
+      <rect x="10" y="10" width="360" height="140" fill="none" stroke="#8a1e1e" stroke-width="3" stroke-dasharray="4 6"></rect>
+      <text x="190" y="110" text-anchor="middle" font-family="Archivo, sans-serif" font-weight="700" font-size="112" fill="#8a1e1e" letter-spacing="-3">VOID</text>
+      <text x="190" y="148" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" letter-spacing="5" fill="#8a1e1e">UNSUBSTANTIATED</text>
+    </g>
+
+    <g transform="translate(0 650)">
+      <line x1="0" y1="0" x2="260" y2="0" stroke="#11161a" stroke-width="3"></line>
+      <text y="44" font-family="Source Serif 4, Georgia, serif" font-size="28" fill="#4f5a63">Nobody is watching. Nobody cares. The only person</text>
+      <text y="82" font-family="Source Serif 4, Georgia, serif" font-size="28" fill="#4f5a63">you will ever have to face on a trail is the one carrying the pack.</text>
+    </g>
+  </g>
+</svg>

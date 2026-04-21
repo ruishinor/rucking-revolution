@@ -2,192 +2,628 @@
 import { workouts } from '@/data/workouts.ts';
 ---
 
-<div class="max-w-4xl mx-auto px-4 py-8">
-  <div class="bg-white rounded-lg shadow-md p-6">
-    <h1 class="text-2xl font-bold text-center mb-6 text-red-800">Workout Generator</h1>
-    
-    <div id="workout-generator-error" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6" role="alert"></div>
-    
-    <form id="workout-form" class="space-y-6">
-      <div>
-        <label for="mode" class="block text-sm font-medium text-gray-700 mb-2">
-          Workout Type
-        </label>
-        <select 
-          id="mode"
-          name="mode"
-          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
-        >
-          <option value="generated">Generate New Workout</option>
-          <option value="predefined">Choose from Database</option>
-        </select>
-      </div>
-      
-      <div>
-        <label for="difficulty" class="block text-sm font-medium text-gray-700 mb-2">
-          Difficulty Level
-        </label>
-        <select 
-          id="difficulty"
-          name="difficulty"
-          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
-        >
-          <option value="beginner">Beginner</option>
-          <option value="intermediate">Intermediate</option>
-          <option value="advanced">Advanced</option>
-        </select>
-      </div>
-      
-      <div id="timePreferenceContainer">
-        <label for="timePreference" class="block text-sm font-medium text-gray-700 mb-2">
-          Preferred Total Time (minutes) - Optional
-        </label>
-        <input
-          id="timePreference"
-          name="timePreference"
-          type="number"
-          min="30"
-          max="180"
-          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
-          placeholder="Leave blank for random duration"
-        />
-        <p class="mt-1 text-xs text-gray-500">
-          Specify your preferred workout duration (30-180 minutes). The generator will adjust section times accordingly.
-        </p>
-      </div>
-      
-      <div class="flex justify-end">
-        <button 
-          type="submit"
-          class="bg-red-800 text-white px-6 py-2 rounded-md hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-red-800 focus:ring-offset-2 transition-colors"
-        >
-          Generate Workout
-        </button>
-      </div>
-    </form>
-    
-    <div id="generated-workout" class="hidden">
-      <h2 id="workout-title" class="text-xl font-bold mb-4"></h2>
-      <p id="workout-description" class="text-gray-600 mb-4"></p>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-        <div class="bg-gray-50 p-3 rounded">
-          <h3 class="text-sm font-medium text-gray-700">Duration</h3>
-          <p id="workout-duration" class="text-gray-900"></p>
-        </div>
-        <div class="bg-gray-50 p-3 rounded">
-          <h3 class="text-sm font-medium text-gray-700">Distance</h3>
-          <p id="workout-distance" class="text-gray-900"></p>
-        </div>
-        <div class="bg-gray-50 p-3 rounded">
-          <h3 class="text-sm font-medium text-gray-700">Load</h3>
-          <p id="workout-load" class="text-gray-900"></p>
-        </div>
-        <div class="bg-gray-50 p-3 rounded">
-          <h3 class="text-sm font-medium text-gray-700">Difficulty</h3>
-          <p id="workout-difficulty" class="text-gray-900 capitalize"></p>
-        </div>
-        <div class="bg-gray-50 p-3 rounded">
-          <h3 class="text-sm font-medium text-gray-700">Terrain</h3>
-          <p id="workout-terrain" class="text-gray-900"></p>
-        </div>
-      </div>
-      
-      <div class="mb-6">
-        <h3 class="text-lg font-medium mb-2 bg-[#8a1e1e] text-white px-3 py-2 rounded">Objectives</h3>
-        <ul id="workout-objectives" class="list-disc list-inside space-y-1 text-gray-700 mt-2"></ul>
-      </div>
-      
-      <div class="mb-6">
-        <h3 class="text-lg font-medium mb-2 bg-[#8a1e1e] text-white px-3 py-2 rounded">Equipment</h3>
-        <p id="workout-equipment" class="text-gray-700 mt-2"></p>
-      </div>
-      
-      <div class="mb-6">
-        <h3 class="text-lg font-medium mb-2 bg-[#8a1e1e] text-white px-3 py-2 rounded">Workout Sections</h3>
-        <div id="workout-sections" class="mt-2"></div>
-      </div>
-      
-      <div id="workout-notes" class="hidden bg-blue-50 p-4 rounded mb-6">
-        <h3 class="text-lg font-medium mb-2 bg-[#8a1e1e] text-white px-3 py-2 rounded">Notes</h3>
-        <p id="workout-notes-text" class="text-gray-800 mt-2"></p>
-      </div>
-      
-      <div class="flex justify-end">
-        <button 
-          type="button"
-          data-print-trigger="true"
-          class="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-colors"
-        >
-          Print Workout
-        </button>
-      </div>
-    </div>
-    
-    {/* Sample Workouts Section */}
-    <div class="mt-12 pt-8 border-t">
-      <h2 class="text-2xl font-bold text-center mb-6 text-red-800">Sample Workouts</h2>
-      <p class="text-center text-gray-600 mb-8">
-        Browse our collection of {workouts.length} pre-designed workouts for different goals and experience levels.
-      </p>
-      
-      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {workouts.slice(0, 6).map((workout) => (
-          <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
-            <div class="p-6">
-              <h3 class="text-xl font-bold mb-2">{workout.title}</h3>
-              <p class="text-gray-600 mb-4">{workout.description}</p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded">{workout.difficulty}</span>
-                <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">{workout.duration} min</span>
-                <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">{workout.load}kg</span>
-                <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">{workout.distance}km</span>
-              </div>
-              <a 
-                href={`/train/workouts/${workout.slug}`}
-                class="block w-full text-center bg-red-800 text-white px-4 py-2 rounded-md hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-red-800 focus:ring-offset-2 transition-colors"
-              >
-                View Details
-              </a>
-            </div>
+<div class="max-w-7xl mx-auto px-4 py-8">
+  <div class="wow-generator-v9">
+    <div class="app-shell">
+      <header class="app-header">
+        <p class="kicker">RUCKING REVOLUTION</p>
+        <h2>WOW-Generator</h2>
+        <p class="subtitle">Workout of the Week</p>
+      </header>
+
+      <section class="controls-panel">
+        <div class="controls-grid">
+          <div class="control">
+            <label for="select-type">Workout Type</label>
+            <select id="select-type">
+              <option value="all">Type: All</option>
+              <option value="standard">Standard Workouts</option>
+              <option value="hero">HERO Only</option>
+            </select>
           </div>
-        ))}
-      </div>
-      
-      <div class="mt-6 text-center">
-        <a 
-          href="/train/workouts/all"
-          class="text-red-800 hover:text-red-900 font-medium"
-        >
-          View All Workouts →
-        </a>
-      </div>
+
+          <div class="control">
+            <label for="select-gear">Equipment Focus</label>
+            <select id="select-gear">
+              <option value="all">Gear: Any</option>
+              <option value="ruck_only">Ruck Only (No Sandbags)</option>
+              <option value="with_coupon">With Added Coupons</option>
+              <option value="with_sandbag">With Sandbag</option>
+            </select>
+          </div>
+
+          <div class="control">
+            <label for="select-difficulty">Difficulty</label>
+            <select id="select-difficulty">
+              <option value="all">Difficulty: All</option>
+              <option value="easy">Easy</option>
+              <option value="moderate">Moderate</option>
+              <option value="hard">Hard</option>
+              <option value="elite">Elite</option>
+              <option value="hero">HERO</option>
+            </select>
+          </div>
+
+          <div class="control">
+            <label for="select-format">Card Format</label>
+            <select id="select-format">
+              <option value="long">Format: Full Card</option>
+              <option value="short">Format: Condensed Card</option>
+            </select>
+          </div>
+
+          <div class="control">
+            <label for="select-count">Card Previews (1 to 4)</label>
+            <input type="number" id="select-count" value="1" min="1" max="4" />
+          </div>
+        </div>
+
+        <div class="action-row">
+          <button id="btn-weekly" class="primary" type="button">THIS WEEK'S WORKOUT</button>
+          <button id="btn-reroll" class="reroll" type="button">REROLL / RANDOM</button>
+          <button id="btn-print" class="print" type="button">PRINT CARD(S)</button>
+        </div>
+      </section>
+
+      <section class="preview-section">
+        <div class="preview-head">
+          <h3>Preview</h3>
+          <p id="seed-info">Mode: Weekly deterministic | Showing 1 card</p>
+        </div>
+
+        <div id="display-area" aria-live="polite" aria-atomic="true">
+          <div class="empty-state">Select options and click "This Week's Workout" to begin.</div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="mt-12 rounded-lg bg-white p-6 shadow-md">
+    <h2 class="mb-6 text-center text-2xl font-bold text-red-800">Sample Workouts</h2>
+    <p class="mb-8 text-center text-gray-600">
+      Browse our collection of {workouts.length} pre-designed workouts for different goals and experience levels.
+    </p>
+
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {workouts.slice(0, 6).map((workout) => (
+        <div class="rounded-lg bg-white shadow-md transition-shadow hover:shadow-lg">
+          <div class="p-6">
+            <h3 class="mb-2 text-xl font-bold">{workout.title}</h3>
+            <p class="mb-4 text-gray-600">{workout.description}</p>
+            <div class="mb-4 flex flex-wrap gap-2">
+              <span class="rounded bg-red-100 px-2 py-1 text-xs text-red-800">{workout.difficulty}</span>
+              <span class="rounded bg-gray-100 px-2 py-1 text-xs text-gray-800">{workout.duration} min</span>
+              <span class="rounded bg-gray-100 px-2 py-1 text-xs text-gray-800">{workout.load}kg</span>
+              <span class="rounded bg-gray-100 px-2 py-1 text-xs text-gray-800">{workout.distance}km</span>
+            </div>
+            <a
+              href={`/train/workouts/${workout.slug}`}
+              class="block w-full rounded-md bg-red-800 px-4 py-2 text-center text-white transition-colors hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-red-800 focus:ring-offset-2"
+            >
+              View Details
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-6 text-center">
+      <a href="/train/workouts/all" class="font-medium text-red-800 hover:text-red-900">
+        View All Workouts ->
+      </a>
     </div>
   </div>
 </div>
 
-<script type="module" src="/scripts/workout-generator.js" is:inline></script>
+<script type="module" src="/scripts/wow-generator-v9.js" is:inline></script>
 
 <style>
-  /* Print styles */
+  .wow-generator-v9 {
+    --bg-top: #061328;
+    --bg-bottom: #0b1c39;
+    --panel: #0f2447;
+    --panel-border: #34507f;
+    --panel-soft: rgba(224, 236, 255, 0.09);
+    --text: #e8f0ff;
+    --muted: #adc1e2;
+    --accent: #c53030;
+    --accent-hover: #dc4a4a;
+    --chip: #17325c;
+    --chip-border: #476ba5;
+    --select-bg: #f4f8ff;
+    --select-text: #04142d;
+    --select-border: #6f8dbb;
+    color: var(--text);
+  }
+
+  .wow-generator-v9 * {
+    box-sizing: border-box;
+  }
+
+  .wow-generator-v9 .app-shell {
+    width: min(1160px, 100%);
+    margin: 0 auto;
+    background:
+      radial-gradient(circle at 0% 0%, rgba(77, 112, 176, 0.33), transparent 44%),
+      radial-gradient(circle at 100% 0%, rgba(197, 48, 48, 0.18), transparent 40%),
+      linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
+    border: 1px solid rgba(133, 165, 219, 0.28);
+    border-radius: 16px;
+    padding: 22px;
+    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.35);
+  }
+
+  .wow-generator-v9 .app-header {
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--panel-soft);
+    padding-bottom: 14px;
+  }
+
+  .wow-generator-v9 .kicker {
+    margin: 0;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--muted);
+    font-size: 0.75rem;
+  }
+
+  .wow-generator-v9 h2 {
+    margin: 6px 0 0;
+    font-family: "Rajdhani", "Arial Narrow", sans-serif;
+    font-size: clamp(2rem, 6vw, 3rem);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    color: var(--text);
+  }
+
+  .wow-generator-v9 .subtitle {
+    margin: 4px 0 0;
+    color: var(--muted);
+    font-size: 1.02rem;
+  }
+
+  .wow-generator-v9 .controls-panel {
+    background: linear-gradient(170deg, rgba(20, 44, 87, 0.92), rgba(12, 30, 60, 0.86));
+    border: 1px solid var(--panel-border);
+    border-radius: 14px;
+    padding: 14px;
+    margin-bottom: 16px;
+  }
+
+  .wow-generator-v9 .controls-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .wow-generator-v9 .control {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .wow-generator-v9 .control label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #d6e5ff;
+    text-transform: uppercase;
+  }
+
+  .wow-generator-v9 select,
+  .wow-generator-v9 input[type="number"] {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--select-border);
+    background-color: var(--select-bg);
+    color: var(--select-text);
+    font-size: 0.97rem;
+    font-weight: 600;
+  }
+
+  .wow-generator-v9 select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2220%22%20height%3D%2220%22%20fill%3D%22%2304142d%22%3E%3Cpath%20d%3D%22M5.25%207.75l4.75%204.75%204.75-4.75%201.5%201.5-6.25%206.25-6.25-6.25z%22/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.65rem center;
+    padding-right: 2.2rem;
+  }
+
+  .wow-generator-v9 select option {
+    color: var(--select-text);
+    background-color: var(--select-bg);
+  }
+
+  .wow-generator-v9 select:focus,
+  .wow-generator-v9 input[type="number"]:focus {
+    outline: 2px solid #9fbef0;
+    outline-offset: 1px;
+  }
+
+  .wow-generator-v9 .action-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .wow-generator-v9 button {
+    border: 1px solid transparent;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: transform 0.14s ease, filter 0.14s ease, background-color 0.14s ease;
+    letter-spacing: 0.04em;
+  }
+
+  .wow-generator-v9 button:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.04);
+  }
+
+  .wow-generator-v9 button.primary {
+    background: var(--accent);
+    color: #fff;
+    border-color: #b32f2f;
+  }
+
+  .wow-generator-v9 button.primary:hover {
+    background: var(--accent-hover);
+  }
+
+  .wow-generator-v9 button.reroll {
+    background: transparent;
+    color: #ffd4d4;
+    border-color: #e97d7d;
+  }
+
+  .wow-generator-v9 button.print {
+    background: #f5f9ff;
+    color: #04142d;
+    border-color: #7f9cc8;
+  }
+
+  .wow-generator-v9 .preview-section {
+    background: linear-gradient(170deg, rgba(16, 33, 62, 0.95), rgba(9, 22, 44, 0.9));
+    border: 1px solid var(--panel-border);
+    border-radius: 14px;
+    padding: 14px;
+  }
+
+  .wow-generator-v9 .preview-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+
+  .wow-generator-v9 .preview-head h3 {
+    margin: 0;
+    font-family: "Rajdhani", "Arial Narrow", sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+
+  .wow-generator-v9 #seed-info {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.84rem;
+    letter-spacing: 0.03em;
+  }
+
+  .wow-generator-v9 #display-area {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    align-items: start;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .wow-generator-v9 #display-area.single-card {
+    grid-template-columns: minmax(320px, 560px);
+  }
+
+  .wow-generator-v9 #display-area.multi-card {
+    grid-template-columns: 1fr;
+  }
+
+  .wow-generator-v9 .empty-state {
+    border: 1px dashed rgba(148, 178, 229, 0.55);
+    border-radius: 12px;
+    padding: 34px 20px;
+    text-align: center;
+    color: #c2d3ee;
+    background: rgba(20, 44, 87, 0.4);
+    grid-column: 1 / -1;
+  }
+
+  .wow-generator-v9 .wow-card {
+    background: linear-gradient(165deg, #102347, #0f1e3a 70%);
+    border: 1px solid #355181;
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 560px;
+  }
+
+  .wow-generator-v9 .overflow-marker {
+    list-style: none;
+    color: var(--muted);
+    font-weight: 700;
+  }
+
+  .wow-generator-v9 .card-header {
+    border-bottom: 1px solid rgba(182, 207, 245, 0.35);
+    padding-bottom: 9px;
+  }
+
+  .wow-generator-v9 .brand-title {
+    margin: 0;
+    font-size: 1.02rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    font-family: "Rajdhani", "Arial Narrow", sans-serif;
+    color: var(--text);
+  }
+
+  .wow-generator-v9 .meta-tag {
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: 0.77rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .wow-generator-v9 .card-title {
+    margin: 0;
+    font-size: 1.32rem;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-family: "Rajdhani", "Arial Narrow", sans-serif;
+    color: var(--text);
+  }
+
+  .wow-generator-v9 .chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: -2px;
+  }
+
+  .wow-generator-v9 .chip {
+    border: 1px solid var(--chip-border);
+    background: var(--chip);
+    color: #d8e7ff;
+    font-size: 0.69rem;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+    padding: 3px 9px;
+  }
+
+  .wow-generator-v9 .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+    font-size: 0.82rem;
+    color: #d0e0fa;
+    background: rgba(13, 31, 61, 0.58);
+    border: 1px solid rgba(106, 141, 198, 0.38);
+    border-radius: 10px;
+    padding: 9px;
+  }
+
+  .wow-generator-v9 .stats-bar .stat-gear {
+    grid-column: 1 / -1;
+  }
+
+  .wow-generator-v9 .section-title {
+    margin: 0;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #bfd2ef;
+  }
+
+  .wow-generator-v9 .format-line {
+    margin: 4px 0 0;
+    font-size: 0.84rem;
+    font-weight: 700;
+    color: #d8e6ff;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .wow-generator-v9 .instruction-list {
+    margin: 6px 0 0;
+    padding-left: 16px;
+    display: grid;
+    gap: 5px;
+  }
+
+  .wow-generator-v9 .instruction-list li {
+    line-height: 1.35;
+    font-size: 0.92rem;
+    color: #edf4ff;
+  }
+
+  .wow-generator-v9 .notes-block {
+    background: rgba(18, 37, 71, 0.56);
+    border: 1px solid rgba(120, 156, 214, 0.35);
+    border-radius: 10px;
+    padding: 8px;
+    display: grid;
+    gap: 6px;
+  }
+
+  .wow-generator-v9 .note-list {
+    margin: 0;
+    padding-left: 16px;
+    display: grid;
+    gap: 4px;
+  }
+
+  .wow-generator-v9 .note-list li {
+    font-size: 0.82rem;
+    color: #dce9ff;
+    line-height: 1.33;
+  }
+
+  .wow-generator-v9 .footer-section {
+    border-top: 1px solid rgba(182, 207, 245, 0.3);
+    padding-top: 8px;
+    display: grid;
+    gap: 7px;
+    font-size: 0.82rem;
+    color: #d8e6ff;
+  }
+
+  .wow-generator-v9 .footer-label {
+    color: #a5c0e7;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-right: 6px;
+  }
+
+  .wow-generator-v9 .disclaimer {
+    margin: 0;
+    font-size: 0.7rem;
+    color: #99afd2;
+    border-top: 1px dashed rgba(145, 172, 214, 0.45);
+    padding-top: 7px;
+    font-style: italic;
+  }
+
+  @media (max-width: 760px) {
+    .wow-generator-v9 .app-shell {
+      padding: 12px;
+    }
+
+    .wow-generator-v9 h2 {
+      letter-spacing: 0.04em;
+    }
+
+    .wow-generator-v9 .action-row button {
+      flex: 1 1 100%;
+    }
+
+    .wow-generator-v9 #display-area {
+      grid-template-columns: 1fr;
+    }
+
+    .wow-generator-v9 .wow-card {
+      max-width: none;
+    }
+  }
+
+  @media (min-width: 761px) {
+    .wow-generator-v9 #display-area.multi-card {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 940px) {
+    .wow-generator-v9 #display-area.multi-card {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1060px) {
+    .wow-generator-v9 #display-area.multi-card {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
   @media print {
-    .no-print {
+    .wow-generator-v9 .app-header,
+    .wow-generator-v9 .controls-panel,
+    .wow-generator-v9 .preview-head {
       display: none !important;
     }
-    
-    body * {
-      visibility: hidden;
+
+    .wow-generator-v9 #display-area {
+      grid-template-columns: 1fr;
+      gap: 8mm;
+      justify-content: stretch;
     }
-    
-    .print-section, .print-section * {
-      visibility: visible;
+
+    .wow-generator-v9 #display-area.multi-card {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-auto-rows: 118mm;
     }
-    
-    .print-section {
-      position: absolute;
-      left: 0;
-      top: 0;
+
+    .wow-generator-v9 .wow-card {
+      color: #000;
+      background: #fff;
+      border: 1px solid #000;
+      box-shadow: none;
+      break-inside: avoid;
+      page-break-inside: avoid;
       width: 100%;
+      max-width: none;
+      padding: 10px;
+    }
+
+    .wow-generator-v9 #display-area.multi-card .wow-card {
+      height: 118mm;
+      min-height: 118mm;
+      max-height: 118mm;
+      overflow: hidden;
+    }
+
+    .wow-generator-v9 #display-area.multi-card .card-title {
+      font-size: 1.05rem;
+    }
+
+    .wow-generator-v9 #display-area.multi-card .instruction-list li {
+      font-size: 0.78rem;
+      line-height: 1.2;
+    }
+
+    .wow-generator-v9 #display-area.multi-card .note-list li {
+      font-size: 0.72rem;
+      line-height: 1.2;
+    }
+
+    .wow-generator-v9 #display-area.multi-card .disclaimer {
+      font-size: 0.62rem;
+    }
+
+    .wow-generator-v9 .wow-card,
+    .wow-generator-v9 .wow-card * {
+      color: #000 !important;
+    }
+
+    .wow-generator-v9 .stats-bar,
+    .wow-generator-v9 .notes-block,
+    .wow-generator-v9 .chip {
+      background: #fff !important;
+      border-color: #000 !important;
+    }
+
+    .wow-generator-v9 .card-header,
+    .wow-generator-v9 .footer-section,
+    .wow-generator-v9 .disclaimer {
+      border-color: #000 !important;
     }
   }
 </style>

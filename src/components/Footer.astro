@@ -5,7 +5,7 @@ const { class: className = '' } = Astro.props;
 const year = new Date().getFullYear();
 ---
 <footer class={`bg-gray-800 py-8 text-gray-200 ${className}`}>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 gap-8 sm:grid-cols-4">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 gap-8 sm:grid-cols-3">
     <!-- About Section -->
     <section>
       <h3 class="text-white font-semibold mb-4">About</h3>
@@ -42,15 +42,6 @@ const year = new Date().getFullYear();
         <a href="https://youtube.com/@ruckingrevolution" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors duration-200">YouTube</a>
         </li>
       </ul>
-    </section>
-
-    <!-- Newsletter -->
-    <section>
-      <h3 class="text-white font-semibold mb-4">Newsletter</h3>
-      <p class="text-sm mb-4">Get updates on new articles, workouts, and community events.</p>
-      <a href="/newsletter" class="inline-block w-full text-center rounded-md bg-accent px-4 py-2 font-medium text-secondary transition-colors duration-200 hover:bg-accent/90">
-        Subscribe
-      </a>
     </section>
 
     <!-- Legal -->

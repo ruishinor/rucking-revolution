@@ -6,15 +6,17 @@ const { slug } = Astro.params;
 
 const aar = aarEntries.find((entry) => entry.id === slug);
 
-if (!aar) {
+if (!aar || !aar.approved) {
   return Astro.redirect('/learn/after-action-reviews/archive');
 }
 
 export async function getStaticPaths() {
-  return aarEntries.map(aar => ({
-    params: { slug: aar.id },
-    props: { aar }
-  }));
+  return aarEntries
+    .filter(aar => aar.approved)
+    .map(aar => ({
+      params: { slug: aar.id },
+      props: { aar }
+    }));
 }
 
 function formatDuration(minutes?: number): string {

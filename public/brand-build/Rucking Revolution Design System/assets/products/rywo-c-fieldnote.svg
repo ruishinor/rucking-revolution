@@ -1,0 +1,59 @@
+<svg width="560" height="800" viewBox="0 0 560 800" xmlns="http://www.w3.org/2000/svg">
+  
+  <rect width="560" height="800" fill="#eef2f4"></rect>
+  <rect x="0" y="0" width="560" height="54" fill="#11161a"></rect>
+  <text x="32" y="36" font-family="IBM Plex Mono, monospace" font-size="13" letter-spacing="5" fill="#eef2f4">RUCKING REVOLUTION · FIELD GUIDE 02</text>
+  <rect x="0" y="54" width="560" height="5" fill="#8a1e1e"></rect>
+
+  
+  <g transform="translate(40 110)" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="4" fill="#4f5a63">
+    <text>ENTRY · 02 · SATURDAY · 09:14</text>
+  </g>
+
+  
+  <g stroke="#c9d3da" stroke-width="1">
+    <line x1="40" y1="180" x2="520" y2="180"></line>
+    <line x1="40" y1="212" x2="520" y2="212"></line>
+    <line x1="40" y1="244" x2="520" y2="244"></line>
+    <line x1="40" y1="276" x2="520" y2="276"></line>
+    <line x1="40" y1="308" x2="520" y2="308"></line>
+    <line x1="40" y1="340" x2="520" y2="340"></line>
+    <line x1="40" y1="372" x2="520" y2="372"></line>
+    <line x1="40" y1="404" x2="520" y2="404"></line>
+    <line x1="40" y1="436" x2="520" y2="436"></line>
+    <line x1="40" y1="468" x2="520" y2="468"></line>
+  </g>
+  
+  <line x1="74" y1="160" x2="74" y2="486" stroke="#8a1e1e" stroke-width="1"></line>
+
+  
+  <g transform="translate(90 206)" font-family="Source Serif 4, serif" font-style="italic" fill="#11161a">
+    <text font-size="26" y="0">Put something heavy</text>
+    <text font-size="26" y="32">in a bag. Open the door.</text>
+    <text font-size="26" y="64">Walk until the weight</text>
+    <text font-size="26" y="96">outside is heavier</text>
+    <text font-size="26" y="128">than the weight in.</text>
+    <text font-size="26" y="160">This book is about</text>
+    <text font-size="26" y="192">what happens next.</text>
+  </g>
+
+  
+  <g transform="translate(40 558)" font-family="Archivo, sans-serif" font-weight="700" letter-spacing="-2.5" fill="#11161a">
+    <text y="0" font-size="56">Ruck Your</text>
+    <text y="58" font-size="56">Way </text>
+    <text x="148" y="58" font-size="56" fill="#8a1e1e">Out.</text>
+  </g>
+
+  
+  <g transform="translate(40 668)" font-family="Source Serif 4, serif" fill="#4f5a63">
+    <text font-size="15" y="0">How walking with weight can lift loneliness,</text>
+    <text font-size="15" y="22">build resilience, and connect you to people.</text>
+  </g>
+
+  
+  <g transform="translate(40 754)">
+    <line x1="0" y1="0" x2="480" y2="0" stroke="#11161a" stroke-width="1"></line>
+    <text y="22" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="3" fill="#4f5a63">ALEXANDER</text>
+    <text x="480" y="22" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="3" fill="#4f5a63">RUCKING REVOLUTION</text>
+  </g>
+</svg>

@@ -1,0 +1,17 @@
+<svg width="640" height="240" viewBox="0 0 640 240" xmlns="http://www.w3.org/2000/svg">
+  
+  <rect width="640" height="240" fill="#eef2f4"></rect>
+  <rect x="40" y="40" width="560" height="160" fill="#11161a"></rect>
+  <rect x="40" y="40" width="560" height="6" fill="#8a1e1e"></rect>
+  <g font-family="Archivo, sans-serif" font-weight="700" letter-spacing="-2.5" fill="#eef2f4">
+    <text x="64" y="108" font-size="48">RUCKING</text>
+    <text x="64" y="160" font-size="48">REVOLUTION</text>
+  </g>
+  <g font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="4">
+    <text x="64" y="188" fill="#8a1e1e">EST. 2021 · WALKING AS PRACTICE</text>
+  </g>
+  <g font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="3" fill="#667684">
+    <text x="576" y="108" text-anchor="end">R</text>
+    <text x="576" y="124" text-anchor="end">R</text>
+  </g>
+</svg>

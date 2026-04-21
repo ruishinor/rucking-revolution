@@ -1,0 +1,71 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  
+  <rect width="1600" height="900" fill="#eef2f4"></rect>
+
+  
+  <g opacity="0.45">
+    <path d="M0 150 H1600 M0 300 H1600 M0 450 H1600 M0 600 H1600 M0 750 H1600" stroke="#c9d3da" stroke-width="1"></path>
+    <path d="M200 0 V900 M400 0 V900 M600 0 V900 M800 0 V900 M1000 0 V900 M1200 0 V900 M1400 0 V900" stroke="#c9d3da" stroke-width="1"></path>
+  </g>
+
+  
+  <rect x="0" y="120" width="280" height="6" fill="#8a1e1e"></rect>
+
+  
+  <g transform="translate(1020 180)">
+    
+    <path d="M80 0 L80 90" stroke="#11161a" stroke-width="14" stroke-linecap="square"></path>
+    <path d="M360 0 L360 90" stroke="#11161a" stroke-width="14" stroke-linecap="square"></path>
+    
+    <rect x="40" y="80" width="360" height="460" fill="#11161a"></rect>
+    
+    <rect x="40" y="80" width="360" height="80" fill="#8a1e1e"></rect>
+    
+    <rect x="190" y="140" width="60" height="18" fill="#eef2f4"></rect>
+    
+    <rect x="110" y="300" width="220" height="160" fill="#667684"></rect>
+    <line x1="110" y1="380" x2="330" y2="380" stroke="#11161a" stroke-width="4"></line>
+    
+    <g transform="translate(150 340)">
+      <rect width="140" height="60" fill="none" stroke="#eef2f4" stroke-width="2"></rect>
+      <text x="70" y="38" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-weight="700" font-size="22" fill="#eef2f4" letter-spacing="4">10 MIN</text>
+    </g>
+  </g>
+
+  
+  <g transform="translate(1020 700)">
+    <g font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="2" fill="#4f5a63">
+      <text x="0" y="-10">00:00 ──────────────────── 10:00</text>
+    </g>
+    <g fill="#11161a">
+      <circle cx="0" cy="10" r="6"></circle>
+      <circle cx="40" cy="10" r="6"></circle>
+      <circle cx="80" cy="10" r="6"></circle>
+      <circle cx="120" cy="10" r="6"></circle>
+      <circle cx="160" cy="10" r="6"></circle>
+      <circle cx="200" cy="10" r="5" opacity="0.55"></circle>
+      <circle cx="240" cy="10" r="5" opacity="0.4"></circle>
+      <circle cx="280" cy="10" r="5" opacity="0.3"></circle>
+      <circle cx="320" cy="10" r="5" opacity="0.2"></circle>
+      <circle cx="360" cy="10" r="5" opacity="0.12"></circle>
+    </g>
+  </g>
+
+  
+  <g transform="translate(160 180)">
+    <text font-family="IBM Plex Mono, monospace" font-size="24" letter-spacing="5" fill="#8a1e1e">QUICK START · 001</text>
+    <g font-family="Archivo, sans-serif" font-weight="700" letter-spacing="-4">
+      <text y="170" font-size="150" fill="#11161a">THE FIRST</text>
+      <text y="320" font-size="150" fill="#11161a">10 MINUTES</text>
+    </g>
+    <g transform="translate(0 400)">
+      <line x1="0" y1="0" x2="520" y2="0" stroke="#11161a" stroke-width="2"></line>
+      <text y="58" font-family="Source Serif 4, Georgia, serif" font-size="30" fill="#4f5a63">One short walk is enough to</text>
+      <text y="96" font-family="Source Serif 4, Georgia, serif" font-size="30" fill="#4f5a63">start the habit. You already</text>
+      <text y="134" font-family="Source Serif 4, Georgia, serif" font-size="30" fill="#4f5a63">have everything you need.</text>
+    </g>
+    <g transform="translate(0 580)" font-family="IBM Plex Mono, monospace" font-size="14" letter-spacing="3" fill="#11161a">
+      <text>NO KIT. NO PROGRAM. NO EXCUSE. JUST STEPS.</text>
+    </g>
+  </g>
+</svg>

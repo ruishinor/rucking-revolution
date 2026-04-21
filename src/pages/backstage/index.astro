@@ -22,13 +22,19 @@ const headerAuth = (Astro.request?.headers?.get('authorization') || Astro.reques
 const providedSecret = (headerAuth.replace(/^Bearer\s+/i, '') || Astro.url.searchParams.get('access_key')) ?? '';
 
 function secretsMatch(expected: string, provided: string): boolean {
-  if (expected.length !== provided.length) {
-    const dummyBuf = Buffer.alloc(expected.length, 0);
-    const providedBuf = Buffer.from(provided.padEnd(expected.length, '\0').substring(0, expected.length));
-    timingSafeEqual(dummyBuf, providedBuf);
-    return false;
-  }
-  return timingSafeEqual(Buffer.from(expected), Buffer.from(provided));
+  const expectedBuf = Buffer.from(expected);
+  const providedBuf = Buffer.from(provided);
+  
+  // Always perform timing-safe comparison regardless of length
+  const maxLen = Math.max(expectedBuf.length, providedBuf.length);
+  const normalizedExpected = Buffer.alloc(maxLen);
+  const normalizedProvided = Buffer.alloc(maxLen);
+  
+  expectedBuf.copy(normalizedExpected);
+  providedBuf.copy(normalizedProvided);
+  
+  const match = timingSafeEqual(normalizedExpected, normalizedProvided);
+  return match && expectedBuf.length === providedBuf.length;
 }
 
 if (adminSecret) {

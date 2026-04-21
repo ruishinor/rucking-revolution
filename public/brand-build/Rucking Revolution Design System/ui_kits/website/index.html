@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rucking Revolution — Website UI Kit</title>
+<link rel="stylesheet" href="../../colors_and_type.css">
+<style>
+  body{margin:0;background:#eef2f4;color:#11161a;font-family:"IBM Plex Sans",sans-serif}
+  main{max-width:1200px;margin:0 auto;padding:0 24px}
+  .hero-bg{background:
+    repeating-linear-gradient(0deg,transparent,transparent 99px,rgba(138,30,30,.03) 99px,rgba(138,30,30,.03) 100px),
+    repeating-linear-gradient(90deg,transparent,transparent 99px,rgba(138,30,30,.03) 99px,rgba(138,30,30,.03) 100px),
+    #eef2f4}
+  /* Top bar */
+  .topbar{border-bottom:1px solid #c9d3da;background:#f7f9fa;position:sticky;top:0;z-index:10;backdrop-filter:blur(6px)}
+  .nav{max-width:1200px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:32px}
+  .brand{display:flex;align-items:center;gap:10px;font-family:"Archivo",sans-serif;font-weight:700;letter-spacing:-.03em;font-size:1.05rem;text-transform:uppercase;color:#11161a;text-decoration:none}
+  .brand .mark{width:34px;height:34px;background:#8a1e1e;display:flex;align-items:center;justify-content:center;clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px));color:#fff;font-family:"Archivo",sans-serif;font-weight:700;font-size:.95rem;letter-spacing:-.02em}
+  .navlinks{display:flex;gap:22px;flex:1}
+  .navlinks a{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:#11161a;text-decoration:none}
+  .navlinks a.active{color:#8a1e1e}
+  .nav-cta{display:flex;gap:10px;align-items:center}
+
+  /* Hero */
+  .hero{padding:70px 0 60px}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .eyebrow-row{display:flex;gap:12px;align-items:center;margin-bottom:18px}
+  .h-title{font-family:"Archivo",sans-serif;font-weight:700;font-size:clamp(2.5rem,6vw,4.5rem);letter-spacing:-0.04em;line-height:0.95;text-transform:uppercase;color:#11161a;margin:0 0 22px}
+  .h-title b{color:#8a1e1e;font-weight:700}
+  .h-deck{font-family:"Source Serif 4",serif;font-size:1.22rem;line-height:1.6;color:#4f5a63;max-width:54ch;margin:0 0 28px}
+  .h-ctas{display:flex;gap:14px;flex-wrap:wrap}
+  .quotepanel{background:#f7f9fa;border:1px solid #c9d3da;padding:34px 34px 30px;border-radius:1.25rem;position:relative;box-shadow:0 20px 50px rgba(18,26,30,.08)}
+  .quotepanel::before{content:"";position:absolute;left:34px;top:-1px;width:64px;height:4px;background:#8a1e1e}
+  .qp-eye{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.2em;color:#8a1e1e;text-transform:uppercase;margin-bottom:14px;padding-top:8px}
+  .qp-quote{font-family:"Source Serif 4",serif;font-style:italic;font-size:1.35rem;line-height:1.55;color:#11161a;margin:0 0 22px}
+  .qp-attr{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#4f5a63;border-top:1px solid #c9d3da;padding-top:16px}
+  .qp-attr b{color:#11161a}
+
+  /* Proof strip */
+  .proof{background:#11161a;padding:30px 40px;border-bottom:4px solid #8a1e1e;margin:0 -24px}
+  .proof-inner{max-width:1152px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:36px;text-align:center}
+  .proof .v{font-family:"Archivo",sans-serif;font-weight:700;font-size:1.3rem;color:#fff;display:block;text-transform:uppercase;letter-spacing:.02em;margin-bottom:4px}
+  .proof .l{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.14em;color:#a8b5c2;text-transform:uppercase}
+
+  /* Section */
+  section{padding:72px 0}
+  .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:32px}
+  .sec-marker{font-family:"IBM Plex Mono",monospace;font-size:.95rem;color:#8a1e1e;letter-spacing:.1em}
+  .sec-eye{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.2em;color:#8a1e1e;text-transform:uppercase}
+  .sec-title{font-family:"Archivo",sans-serif;font-weight:700;font-size:2.4rem;text-transform:uppercase;letter-spacing:-.04em;margin:0 0 8px;line-height:1.02}
+  .sec-desc{font-family:"Source Serif 4",serif;font-size:1.05rem;line-height:1.55;color:#4f5a63;max-width:60ch;margin:0}
+
+  /* Pillars */
+  .pillars{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
+  .pillar{padding:32px 28px 28px;background:#f7f9fa;border:1px solid #c9d3da;clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,14px 100%,0 calc(100% - 14px));display:flex;flex-direction:column;gap:14px;min-height:280px;transition:border-color .2s,transform .2s;text-decoration:none;color:inherit}
+  .pillar:hover{border-color:#8a1e1e;transform:translateY(-2px)}
+  .p-num{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.18em;color:#8a1e1e;text-transform:uppercase}
+  .p-ttl{font-family:"Archivo",sans-serif;font-weight:700;font-size:2.6rem;letter-spacing:-.04em;text-transform:uppercase;color:#11161a;line-height:.95;margin:4px 0 4px}
+  .p-desc{font-family:"Source Serif 4",serif;font-size:1rem;line-height:1.55;color:#4f5a63;margin:0}
+  .p-foot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:16px;border-top:1px solid #c9d3da}
+  .p-foot .go{font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:#8a1e1e}
+  .p-foot svg{color:#8a1e1e}
+
+  /* Dispatch (articles) */
+  .dispatch{background:#f7f9fa;margin:0 -24px;padding:72px 24px;border-top:1px solid #c9d3da;border-bottom:1px solid #c9d3da}
+  .d-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:1152px;margin:0 auto}
+  .d-card{background:#fff;border:1px solid #c9d3da;border-radius:.5rem;padding:22px;display:flex;flex-direction:column;gap:12px;text-decoration:none;color:inherit;transition:.2s;min-height:260px}
+  .d-card:hover{border-color:#8a1e1e;transform:translateY(-2px)}
+  .d-meta{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.14em;color:#4f5a63;text-transform:uppercase;display:flex;gap:10px;flex-wrap:wrap}
+  .d-meta b{color:#8a1e1e}
+  .d-title{font-family:"Archivo",sans-serif;font-weight:700;font-size:1.25rem;letter-spacing:-.02em;text-transform:uppercase;line-height:1.1;color:#11161a;margin:0}
+  .d-ex{font-family:"Source Serif 4",serif;font-size:.95rem;line-height:1.55;color:#4f5a63;margin:0;flex:1}
+  .d-tags{display:flex;gap:6px;flex-wrap:wrap}
+  .d-tag{font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:.14em;color:#8a1e1e;border:1px solid #8a1e1e;padding:.2rem .5rem;border-radius:2px;text-transform:uppercase}
+
+  /* Library */
+  .library{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+  .lib-book{display:grid;grid-template-columns:220px 1fr;gap:28px;align-items:center;padding:28px;background:#f7f9fa;border:1px solid #c9d3da;border-radius:1.25rem;box-shadow:0 8px 24px rgba(17,22,26,.08)}
+  .lib-book img{width:100%;border-radius:6px;box-shadow:0 12px 30px rgba(17,22,26,.18);display:block}
+  .lib-title{font-family:"Archivo",sans-serif;font-weight:700;font-size:1.7rem;letter-spacing:-.03em;text-transform:uppercase;margin:10px 0 6px;line-height:1}
+  .lib-desc{font-family:"Source Serif 4",serif;font-size:1rem;line-height:1.55;color:#4f5a63;margin:0 0 16px}
+  .lib-price{font-family:"IBM Plex Mono",monospace;font-size:.85rem;font-weight:700;color:#11161a;letter-spacing:.06em;margin-bottom:16px}
+
+  /* Resource tiles */
+  .resources{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:32px}
+  .res{padding:28px 24px;color:#fff;height:180px;display:flex;flex-direction:column;gap:12px;text-decoration:none;transition:.25s}
+  .res:hover{transform:translate(-4px,-6px);box-shadow:6px 6px 0 rgba(139,0,0,.15)}
+  .res.forest{background:#32443c}
+  .res.steel{background:#667684}
+  .res-title{font-family:"Archivo",sans-serif;font-weight:700;font-size:1.2rem;letter-spacing:.08em;text-transform:uppercase;margin:auto 0 0}
+  .res-desc{font-family:"IBM Plex Sans",sans-serif;font-size:.82rem;opacity:.9;margin:0;line-height:1.4}
+
+  /* Recruit */
+  .recruit{background:#11161a;color:#fff;margin:72px -24px 0;padding:86px 24px;position:relative;overflow:hidden}
+  .recruit::before{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(139,0,0,.08) 40px,rgba(139,0,0,.08) 41px);pointer-events:none}
+  .rec-inner{max-width:1152px;margin:0 auto;position:relative;display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center}
+  .rec-title{font-family:"Archivo",sans-serif;font-weight:700;font-size:clamp(2rem,4vw,3.2rem);letter-spacing:-.04em;line-height:1;text-transform:uppercase;margin:14px 0 14px}
+  .rec-desc{font-family:"Source Serif 4",serif;font-size:1.1rem;line-height:1.6;color:#a8b5c2;max-width:52ch;margin:0}
+  .rec-form{background:rgba(247,249,250,.04);border:1px solid rgba(201,211,218,.12);padding:28px;border-radius:1rem}
+  .rec-form .stamp{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.2em;color:#8a1e1e;border:1px solid #8a1e1e;padding:.3rem .7rem;margin-bottom:14px;text-transform:uppercase;border-radius:2px}
+  .rec-label{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.15em;color:#a8b5c2;text-transform:uppercase;display:block;margin-bottom:8px}
+  .rec-form input{width:100%;box-sizing:border-box;padding:.9rem 1rem;font-family:"IBM Plex Mono",monospace;font-size:.85rem;letter-spacing:.05em;background:#f7f9fa;border:2px solid #a8b5c2;color:#11161a;outline:none;margin-bottom:12px}
+  .rec-form input::placeholder{color:#4f5a63}
+  .rec-form button{width:100%;padding:1rem 1.4rem;font-family:"Archivo",sans-serif;font-size:.95rem;letter-spacing:.1em;background:#8a1e1e;color:#fff;border:none;cursor:pointer;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));text-transform:uppercase;font-weight:700}
+  .rec-note{font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:#667684;margin:10px 0 0;text-transform:uppercase;letter-spacing:.08em}
+
+  /* Footer */
+  footer{background:#0a0d10;color:#a8b5c2;padding:56px 24px 36px;margin:0 -24px}
+  .f-inner{max-width:1152px;margin:0 auto;display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:32px}
+  .f-brand{font-family:"Archivo",sans-serif;font-weight:700;font-size:1.1rem;text-transform:uppercase;letter-spacing:-.02em;color:#fff;margin-bottom:10px;display:flex;align-items:center;gap:10px}
+  .f-copy{font-family:"Source Serif 4",serif;font-size:.95rem;line-height:1.6;color:#667684;max-width:36ch}
+  .f-col h5{font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.18em;color:#fff;text-transform:uppercase;margin:0 0 12px}
+  .f-col a{display:block;font-family:"IBM Plex Sans",sans-serif;font-size:.9rem;color:#a8b5c2;text-decoration:none;margin-bottom:8px}
+  .f-col a:hover{color:#fff}
+  .f-bottom{max-width:1152px;margin:32px auto 0;padding-top:20px;border-top:1px solid #2a323a;display:flex;justify-content:space-between;font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.14em;color:#667684;text-transform:uppercase}
+</style>
+</head>
+<body class="hero-bg">
+
+<!-- Topbar -->
+<header class="topbar">
+  <nav class="nav">
+    <a class="brand" href="#"><span class="mark">RR</span>Rucking Revolution</a>
+    <div class="navlinks">
+      <a href="#" class="active">LEARN</a>
+      <a href="#">TRAIN</a>
+      <a href="#">LEAD</a>
+      <a href="#">LIBRARY</a>
+      <a href="#">DISPATCH</a>
+    </div>
+    <div class="nav-cta">
+      <a class="rr-btn rr-btn--secondary" style="padding:.6rem 1rem;font-size:.8rem">SIGN IN</a>
+      <a class="rr-btn-military rr-btn-military--primary" style="padding:.7rem 1.1rem;font-size:.82rem">ENLIST</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow-row">
+        <span class="rr-section-marker">///</span>
+        <span class="rr-eyebrow">FIELD MANUAL · EST 2021</span>
+      </div>
+      <h1 class="h-title">Ruck with<br><b>purpose.</b></h1>
+      <p class="h-deck">Train for life, stay fit into old age, build your community, and join crews worldwide. Rucking is simple, scalable, and surprisingly easy to fit into ordinary life once the first barrier is removed.</p>
+      <div class="h-ctas">
+        <a class="rr-btn-military rr-btn-military--primary">START TRAINING</a>
+        <a class="rr-btn rr-btn--secondary">READ THE FIELD GUIDE</a>
+      </div>
+    </div>
+    <aside class="quotepanel">
+      <div class="qp-eye">— FIELD QUOTE · 04</div>
+      <p class="qp-quote">"You do not need a dramatic reset. You need a useful practice you can repeat often enough for it to become part of who you are."</p>
+      <div class="qp-attr"><b>Alexander</b> · Editor, Rucking Revolution</div>
+    </aside>
+  </div>
+</section>
+
+<!-- Proof strip -->
+<div class="proof"><div class="proof-inner">
+  <div><span class="v">Field-Tested</span><span class="l">Methods proven in real life</span></div>
+  <div><span class="v">Crew-Built</span><span class="l">Written by active ruck leaders</span></div>
+  <div><span class="v">Individual → Community</span><span class="l">A proven pathway</span></div>
+</div></div>
+
+<!-- Pillars -->
+<section>
+  <div class="sec-head">
+    <span class="sec-marker">///</span>
+    <div>
+      <div class="sec-eye">SELECT YOUR PATH</div>
+      <h2 class="sec-title">THREE PILLARS</h2>
+      <p class="sec-desc">A single discipline taught three ways — depending on where you are and where you're headed.</p>
+    </div>
+  </div>
+  <div class="pillars">
+    <a class="pillar" href="#">
+      <span class="p-num">PILLAR 01 / KNOWLEDGE</span>
+      <div class="p-ttl">LEARN</div>
+      <p class="p-desc">The field manual, a growing article library, and clear answers to the questions every beginner asks.</p>
+      <div class="p-foot"><span class="go">ENTER →</span></div>
+    </a>
+    <a class="pillar" href="#">
+      <span class="p-num">PILLAR 02 / PRACTICE</span>
+      <div class="p-ttl">TRAIN</div>
+      <p class="p-desc">Programming, workouts, verified routes, and the performance kit we actually use in the field.</p>
+      <div class="p-foot"><span class="go">ENTER →</span></div>
+    </a>
+    <a class="pillar" href="#">
+      <span class="p-num">PILLAR 03 / COMMUNITY</span>
+      <div class="p-ttl">LEAD</div>
+      <p class="p-desc">Crew tactics, ruck-club playbooks, leadership principles. Turn individual practice into collective strength.</p>
+      <div class="p-foot"><span class="go">ENTER →</span></div>
+    </a>
+  </div>
+</section>
+
+<!-- Dispatch -->
+<section class="dispatch">
+  <div style="max-width:1152px;margin:0 auto">
+    <div class="sec-head" style="justify-content:space-between;margin-bottom:28px">
+      <div style="display:flex;align-items:center;gap:14px">
+        <span class="sec-marker">///</span>
+        <div>
+          <div class="sec-eye">LATEST</div>
+          <h2 class="sec-title">FIELD NOTES</h2>
+        </div>
+      </div>
+      <a class="rr-btn rr-btn--utility" style="padding:.75rem 1.1rem;font-size:.82rem">READ ALL →</a>
+    </div>
+    <div class="d-grid">
+      <a class="d-card" href="#">
+        <div class="d-meta"><span>2024.03.15</span><b>LEAD</b><span>5 MIN</span></div>
+        <h3 class="d-title">The art of the after action review</h3>
+        <p class="d-ex">Every ruck can be a data point. Every crew is a learning space. Here's how to extract the lessons that matter and build a culture of continuous improvement.</p>
+        <div class="d-tags"><span class="d-tag">LEADERSHIP</span><span class="d-tag">CREW</span></div>
+      </a>
+      <a class="d-card" href="#">
+        <div class="d-meta"><span>2024.03.08</span><b>TRAIN</b><span>7 MIN</span></div>
+        <h3 class="d-title">How much weight should you carry</h3>
+        <p class="d-ex">Starting load is not where most beginners get stuck. Here is the plan that works — and the plan that does not.</p>
+        <div class="d-tags"><span class="d-tag">TRAINING</span><span class="d-tag">BEGINNER</span></div>
+      </a>
+      <a class="d-card" href="#">
+        <div class="d-meta"><span>2024.03.01</span><b>LEARN</b><span>4 MIN</span></div>
+        <h3 class="d-title">The first 10 minutes</h3>
+        <p class="d-ex">Take your first ruck today with the bag, weight, and route you already have. One short walk is enough to start the habit.</p>
+        <div class="d-tags"><span class="d-tag">QUICK START</span><span class="d-tag">HABIT</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Library -->
+<section>
+  <div class="sec-head">
+    <span class="sec-marker">///</span>
+    <div>
+      <div class="sec-eye">DIGITAL LIBRARY</div>
+      <h2 class="sec-title">FIELD GUIDES &amp; EBOOKS</h2>
+      <p class="sec-desc">Paper-simple, carry-forward knowledge you can read in a weekend and apply on Monday.</p>
+    </div>
+  </div>
+  <div class="lib-book">
+    <img src="../../assets/products/your-first-ruck-kdp-cover.jpg" alt="Your First Ruck book cover">
+    <div>
+      <span class="rr-stamp rr-stamp--primary">FIELD GUIDE · 01</span>
+      <h3 class="lib-title">Your First Ruck</h3>
+      <p class="lib-desc">A 30-day beginner plan for strength, stamina, and consistency. Start simple. Build strength. Stay consistent.</p>
+      <div class="lib-price">$12 · EUR 9.99 · 142 PAGES · PDF + EPUB</div>
+      <div style="display:flex;gap:12px">
+        <a class="rr-btn rr-btn--primary">GET THE BOOK</a>
+        <a class="rr-btn rr-btn--utility">SAMPLE CHAPTER</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="resources">
+    <a class="res forest" href="#">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      <div class="res-title">ROUTES</div>
+      <p class="res-desc">Verified paths</p>
+    </a>
+    <a class="res steel" href="#">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      <div class="res-title">EVENTS</div>
+      <p class="res-desc">Scheduled meet-ups</p>
+    </a>
+    <a class="res forest" href="#">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      <div class="res-title">FIELD NOTES</div>
+      <p class="res-desc">Reports from crews</p>
+    </a>
+    <a class="res steel" href="#">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <div class="res-title">CREWS</div>
+      <p class="res-desc">Find a local unit</p>
+    </a>
+  </div>
+</section>
+
+<!-- Recruit -->
+<div class="recruit">
+  <div class="rec-inner">
+    <div>
+      <span class="rr-stamp" style="color:#8a1e1e;border-color:#8a1e1e">DISPATCH</span>
+      <h2 class="rec-title">Join the movement.</h2>
+      <p class="rec-desc">Stay ahead of the curve with exclusive notifications on our latest articles, tools, strategies and inspiration from the rucking community. Written for and by people who ruck with purpose — not for email marketers.</p>
+    </div>
+    <form class="rec-form" onsubmit="event.preventDefault()">
+      <span class="stamp">NEWSLETTER</span>
+      <label class="rec-label">Email address</label>
+      <input type="email" placeholder="NAME@DOMAIN.COM">
+      <button>SUBSCRIBE</button>
+      <p class="rec-note">No spam. Updates at a steady rhythm.</p>
+    </form>
+  </div>
+</div>
+
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="f-inner">
+    <div>
+      <div class="f-brand"><span class="brand"><span class="mark">RR</span></span> Rucking Revolution</div>
+      <p class="f-copy">A field-manual platform for civilians who want to train for life, lead a crew, and build a durable practice.</p>
+    </div>
+    <div class="f-col">
+      <h5>Learn</h5>
+      <a href="#">Field Manual</a><a href="#">Articles</a><a href="#">FAQ</a><a href="#">Glossary</a>
+    </div>
+    <div class="f-col">
+      <h5>Train</h5>
+      <a href="#">Programs</a><a href="#">Workouts</a><a href="#">Routes</a><a href="#">Kit</a>
+    </div>
+    <div class="f-col">
+      <h5>Lead</h5>
+      <a href="#">Crew Playbook</a><a href="#">Clubs Directory</a><a href="#">Events</a><a href="#">Red Rucker</a>
+    </div>
+  </div>
+  <div class="f-bottom">
+    <span>© 2024 RUCKING REVOLUTION</span>
+    <span>FIELD-TESTED · CREW-BUILT</span>
+  </div>
+</footer>
+
+</body>
+</html>

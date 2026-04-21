@@ -1,0 +1,69 @@
+<svg width="560" height="800" viewBox="0 0 560 800" xmlns="http://www.w3.org/2000/svg">
+  
+  <rect width="560" height="800" fill="#eef2f4"></rect>
+  <rect x="0" y="0" width="560" height="54" fill="#11161a"></rect>
+  <text x="32" y="36" font-family="IBM Plex Mono, monospace" font-size="13" letter-spacing="5" fill="#eef2f4">RUCKING REVOLUTION · FIELD GUIDE 06</text>
+  <rect x="0" y="54" width="560" height="5" fill="#8a1e1e"></rect>
+
+  
+  <g transform="translate(54 120)">
+    <rect x="0" y="0" width="452" height="544" fill="#fff" stroke="#11161a" stroke-width="2"></rect>
+
+    
+    <rect x="0" y="0" width="452" height="60" fill="#11161a"></rect>
+    <text x="24" y="38" font-family="IBM Plex Mono, monospace" font-size="13" letter-spacing="5" fill="#eef2f4">— YOU ARE INVITED —</text>
+
+    
+    <g transform="translate(30 100)">
+      <text font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="4" fill="#8a1e1e">A WEEKLY WALKING GROUP</text>
+
+      
+      <g font-family="Archivo, sans-serif" font-weight="700" letter-spacing="-2.5" fill="#11161a">
+        <text y="60" font-size="54">Saturdays.</text>
+        <text y="118" font-size="54">09:00 sharp.</text>
+        <text y="176" font-size="54">Rain </text>
+        <text x="122" y="176" font-size="54" fill="#8a1e1e">or</text>
+        <text x="180" y="176" font-size="54"> shine.</text>
+      </g>
+
+      
+      <line x1="0" y1="208" x2="392" y2="208" stroke="#11161a" stroke-width="1"></line>
+
+      
+      <g font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="4" fill="#11161a">
+        <text y="234">MEET ________________________________________</text>
+        <text y="268">ROUTE _______________________________________</text>
+        <text y="302">BRING _______________________________________</text>
+        <text y="336">BACKPACK · WATER · A FRIEND</text>
+      </g>
+
+      
+      <rect x="0" y="360" width="392" height="64" fill="#11161a"></rect>
+      <g font-family="Archivo, sans-serif" font-weight="700" fill="#eef2f4" letter-spacing="-1">
+        <text x="16" y="388" font-size="18">FREE. ALL FITNESS LEVELS.</text>
+        <text x="16" y="412" font-size="18">NO ONE WALKS ALONE.</text>
+      </g>
+    </g>
+
+    
+    <line x1="0" y1="480" x2="452" y2="480" stroke="#11161a" stroke-width="1" stroke-dasharray="3 4"></line>
+    <g transform="translate(24 510)" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="3" fill="#4f5a63">
+      <text>TEAR ALONG THE LINE · BRING TO THE FIRST WALK</text>
+    </g>
+  </g>
+
+  
+  <g transform="translate(40 708)" font-family="Archivo, sans-serif" font-weight="700" letter-spacing="-2" fill="#11161a">
+    <text y="0" font-size="34">Start a Ruck </text>
+    <text x="198" y="0" font-size="34" fill="#8a1e1e">Club.</text>
+  </g>
+  <g transform="translate(40 734)" font-family="Source Serif 4, serif" font-style="italic" font-size="14" fill="#4f5a63">
+    <text>A field manual for organising a walking community.</text>
+  </g>
+
+  
+  <g transform="translate(40 772)">
+    <text font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="3" fill="#4f5a63">ALEXANDER</text>
+    <text x="480" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="3" fill="#4f5a63">RUCKING REVOLUTION</text>
+  </g>
+</svg>

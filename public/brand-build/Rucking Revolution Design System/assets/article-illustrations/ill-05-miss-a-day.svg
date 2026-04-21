@@ -1,0 +1,71 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  
+  <rect width="1600" height="900" fill="#eef2f4"></rect>
+
+  <g transform="translate(120 180)">
+    <text font-family="IBM Plex Mono, monospace" font-size="22" letter-spacing="5" fill="#8a1e1e">HABIT · 005</text>
+    <g font-family="Archivo, sans-serif" font-weight="700" letter-spacing="-4">
+      <text y="140" font-size="128" fill="#11161a">WHAT IF I</text>
+      <text y="270" font-size="128" fill="#8a1e1e">MISS A DAY?</text>
+    </g>
+    <text y="330" font-family="Source Serif 4, Georgia, serif" font-size="26" fill="#4f5a63">One missed day is a data point. Two is a pattern. Zero is imaginary.</text>
+  </g>
+
+  
+  <g transform="translate(120 500)">
+    <g font-family="IBM Plex Mono, monospace" font-size="13" letter-spacing="2" fill="#4f5a63">
+      <text x="0" y="-20">DAY 01 ──────────────────────── DAY 30</text>
+    </g>
+    
+    <g>
+      
+      <g transform="translate(0 0)">
+        <rect x="0" y="0" width="52" height="52" fill="#11161a"></rect>
+        <rect x="60" y="0" width="52" height="52" fill="#11161a"></rect>
+        <rect x="120" y="0" width="52" height="52" fill="#11161a"></rect>
+        <rect x="180" y="0" width="52" height="52" fill="none" stroke="#c9d3da" stroke-width="2"></rect>
+        <rect x="240" y="0" width="52" height="52" fill="#11161a"></rect>
+        <rect x="300" y="0" width="52" height="52" fill="#11161a"></rect>
+        <rect x="360" y="0" width="52" height="52" fill="#11161a"></rect>
+        <rect x="420" y="0" width="52" height="52" fill="#11161a"></rect>
+        <rect x="480" y="0" width="52" height="52" fill="#11161a"></rect>
+        <rect x="540" y="0" width="52" height="52" fill="#8a1e1e"></rect>
+        <rect x="600" y="0" width="52" height="52" fill="#11161a"></rect>
+        <rect x="660" y="0" width="52" height="52" fill="#11161a"></rect>
+        <rect x="720" y="0" width="52" height="52" fill="none" stroke="#c9d3da" stroke-width="2"></rect>
+        <rect x="780" y="0" width="52" height="52" fill="#11161a"></rect>
+        <rect x="840" y="0" width="52" height="52" fill="#11161a"></rect>
+      </g>
+      
+      <g transform="translate(0 70)">
+        <rect x="0" y="0" width="52" height="52" fill="#11161a"></rect>
+        <rect x="60" y="0" width="52" height="52" fill="#11161a"></rect>
+        <rect x="120" y="0" width="52" height="52" fill="#8a1e1e"></rect>
+        <rect x="180" y="0" width="52" height="52" fill="#11161a"></rect>
+        <rect x="240" y="0" width="52" height="52" fill="#11161a"></rect>
+        <rect x="300" y="0" width="52" height="52" fill="#11161a"></rect>
+        <rect x="360" y="0" width="52" height="52" fill="none" stroke="#c9d3da" stroke-width="2"></rect>
+        <rect x="420" y="0" width="52" height="52" fill="#11161a"></rect>
+        <rect x="480" y="0" width="52" height="52" fill="#11161a"></rect>
+        <rect x="540" y="0" width="52" height="52" fill="#11161a"></rect>
+        <rect x="600" y="0" width="52" height="52" fill="#11161a"></rect>
+        <rect x="660" y="0" width="52" height="52" fill="#11161a"></rect>
+        <rect x="720" y="0" width="52" height="52" fill="#11161a"></rect>
+        <rect x="780" y="0" width="52" height="52" fill="#8a1e1e"></rect>
+        <rect x="840" y="0" width="52" height="52" fill="#11161a"></rect>
+      </g>
+    </g>
+    
+    <g transform="translate(0 200)" font-family="IBM Plex Mono, monospace" font-size="13" letter-spacing="2" fill="#11161a">
+      <rect x="0" y="0" width="18" height="18" fill="#11161a"></rect><text x="30" y="14">DONE (26)</text>
+      <rect x="180" y="0" width="18" height="18" fill="#8a1e1e"></rect><text x="210" y="14">HARD DAY (3)</text>
+      <rect x="400" y="0" width="18" height="18" fill="none" stroke="#c9d3da" stroke-width="2"></rect><text x="430" y="14">MISSED (3) · STILL A STREAK</text>
+    </g>
+  </g>
+
+  
+  <g transform="translate(120 820)">
+    <line x1="0" y1="0" x2="220" y2="0" stroke="#8a1e1e" stroke-width="3"></line>
+    <text y="34" font-family="IBM Plex Mono, monospace" font-size="14" letter-spacing="3" fill="#11161a">MISS A DAY. DO NOT MISS TWO. THE PRACTICE IS REPAIR.</text>
+  </g>
+</svg>

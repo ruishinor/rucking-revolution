@@ -1,3 +1,0 @@
-## Ignore private runtime secrets and generated files
-private/
-logs.txt

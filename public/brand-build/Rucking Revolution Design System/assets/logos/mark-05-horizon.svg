@@ -1,0 +1,36 @@
+<svg width="1288" height="280" viewBox="0 0 1288 280" xmlns="http://www.w3.org/2000/svg">
+  
+  <rect width="1288" height="280" fill="#eef2f4"></rect>
+
+  
+  <line x1="64" y1="210" x2="1224" y2="210" stroke="#11161a" stroke-width="2"></line>
+
+  
+  <path d="M 64 210 L 64 196 L 140 182 L 220 170 L 300 186 L 380 160 L 460 138 L 540 150 L 620 124 L 700 108 L 780 120 L 860 96 L 940 82 L 1020 92 L 1100 70 L 1180 58 L 1224 64 L 1224 210 Z" fill="#11161a" opacity="0.92"></path>
+
+  
+  <g>
+    <line x1="1180" y1="58" x2="1180" y2="30" stroke="#8a1e1e" stroke-width="2"></line>
+    <rect x="1172" y="20" width="16" height="10" fill="#8a1e1e"></rect>
+  </g>
+
+  
+  <g stroke="#11161a" stroke-width="1">
+    <line x1="64" y1="210" x2="64" y2="222"></line>
+    <line x1="354" y1="210" x2="354" y2="218"></line>
+    <line x1="644" y1="210" x2="644" y2="218"></line>
+    <line x1="934" y1="210" x2="934" y2="218"></line>
+    <line x1="1224" y1="210" x2="1224" y2="222"></line>
+  </g>
+  <g font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="3" fill="#4f5a63" text-anchor="middle">
+    <text x="64" y="238">0 KM</text>
+    <text x="644" y="238">HALFWAY</text>
+    <text x="1224" y="238">FINISH</text>
+  </g>
+
+  
+  <g font-family="Archivo, sans-serif" font-weight="700" letter-spacing="-3" text-anchor="middle">
+    <text x="644" y="126" font-size="92" fill="#11161a">RUCKING REVOLUTION</text>
+  </g>
+  <text x="644" y="154" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="5" fill="#8a1e1e">— EVERY WALK HAS A HORIZON —</text>
+</svg>

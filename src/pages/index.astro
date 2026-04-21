@@ -91,26 +91,26 @@ const homepageStructuredData = {
 const proofPoints = [
   { value: 'Field-Tested', label: 'Methods proven in real life' },
   { value: 'Crew-Built', label: 'By active ruck leaders' },
-  { value: 'Individual to Community Asset', label: 'Proven pathway' },
+  { value: 'Individual → Community', label: 'Proven pathway' },
 ];
 
 const pillars = [
   { 
     title: 'LEARN', 
-    label: 'Knowledge Base',
-    description: 'Field manual, guides, and foundational principles for understanding rucking as a practice.',
+    label: 'Pillar 01 / Knowledge Base',
+    description: 'The field manual, a growing article library, and clear answers to the questions every beginner asks.',
     href: '/learn',
   },
   { 
     title: 'TRAIN', 
-    label: 'Training',
-    description: 'Programming, workouts, and performance kit. Build your fitness.',
+    label: 'Pillar 02 / Training',
+    description: 'Programming, workouts, route planning, and the performance kit we actually use in the real world.',
     href: '/train',
   },
   { 
     title: 'LEAD', 
-    label: 'Leadership',
-    description: 'Crew tactics, ruck clubs, and leadership. Learn to lead and organize.',
+    label: 'Pillar 03 / Leadership',
+    description: 'Strategy and tactics, ruck-club playbooks, and leadership foundations. Turn individual practice into community strength. Learn to organize.',
     href: '/lead',
   },
 ];
@@ -391,39 +391,20 @@ const communityItems = [
   <!-- ==================== RECRUITMENT FOOTER ==================== -->
   <section class="recruit-section">
     <div class="recruit-bg"></div>
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 text-center">
       <span class="stamp stamp-primary mb-6">NEWSLETTER</span>
-      <h2 class="text-4xl md:text-5xl font-heading text-white mb-6">JOIN THE MOVEMENT</h2>
-      <p class="text-muted-200 text-lg font-serif mb-8">
-        Training tips, community updates, and exclusive content for those who ruck with purpose.
+      <h2 class="text-3xl md:text-4xl font-heading text-white mb-4">JOIN THE MOVEMENT</h2>
+      <p class="text-base font-serif mb-8 max-w-lg mx-auto" style="color: var(--rr-color-muted-200);">
+        Stay ahead of the curve with exclusive notifications on our latest articles, tools, strategies and inspiration from the rucking community. Written for and by people who ruck with purpose — not for email marketers.
       </p>
-      <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto mb-4" id="homepage-newsletter-form" onsubmit="event.preventDefault()">
-        <div style="position:absolute;left:-9999px;" aria-hidden="true">
-          <label for="homepage-newsletter-honeypot">Website</label>
-          <input id="homepage-newsletter-honeypot" type="text" name="website" tabindex="-1" autocomplete="off" />
-        </div>
-        <label for="homepage-newsletter-email" class="sr-only">Email address</label>
-        <input 
-          id="homepage-newsletter-email"
-          type="email" 
-          name="email"
-          placeholder="ENTER EMAIL" 
-          aria-label="Email address for newsletter"
-          required
-          style="pointer-events: auto; position: relative;"
-          class="flex-1 px-4 py-3 bg-surface border border-muted-300 text-foreground placeholder:text-muted focus:border-primary focus:outline-none"
-        />
-        <button type="submit" style="pointer-events: auto; position: relative;" class="btn-military btn-military-primary whitespace-nowrap">
-          SUBSCRIBE
-        </button>
-      </form>
-      <p class="label-muted text-xs">No spam. Updates at a steady rhythm.</p>
+      <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
+      <iframe src="https://subscribe-forms.beehiiv.com/8bd044bf-35a4-4f3a-8da4-cc7808c49496" class="beehiiv-embed" data-test-id="beehiiv-embed" frameborder="0" scrolling="no" style="width: 400px; height: 166px; margin: 0 auto; border-radius: 0px 0px 0px 0px !important; background-color: transparent; box-shadow: 0 0 #0000; max-width: 100%;"></iframe>
     </div>
   </section>
 
 </Layout>
 
-<script type="module" src="/scripts/homepage-newsletter.js" is:inline></script>
+
 
 <style>
   /* Hero */

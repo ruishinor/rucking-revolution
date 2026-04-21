@@ -1,0 +1,1256 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ruck Your Way Out — Rucking Revolution</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  /* ============================================================
+     Book layout: paginated pages on screen, real pages in print.
+     ============================================================ */
+  :root{
+    --page-w: 6.125in;     /* trade paperback ish */
+    --page-h: 9.25in;
+    --margin: 0.85in;
+    --paper: #fbf8f1;
+    --ink: #11161a;
+    --red: #8a1e1e;
+    --steel: #667684;
+    --rule: #c9d3da;
+    --muted: #4f5a63;
+  }
+
+  html,body{background:#dfe5ea;}
+  body{
+    margin:0; padding:36px 0;
+    font-family: var(--rr-font-serif);
+    color:var(--ink);
+  }
+
+  /* The page */
+  .pg{
+    width:var(--page-w);
+    min-height:var(--page-h);
+    margin:0 auto 28px;
+    background:var(--paper);
+    box-shadow:0 24px 56px rgba(17,22,26,.18);
+    padding:var(--margin);
+    box-sizing:border-box;
+    position:relative;
+    page-break-after:always;
+    break-after:page;
+    display:flex; flex-direction:column;
+  }
+  .pg .body{flex:1; display:flex; flex-direction:column;}
+
+  /* Running heads + folio */
+  .pg::before{
+    content: attr(data-running);
+    position:absolute; top:.45in; left:var(--margin); right:var(--margin);
+    font-family: var(--rr-font-mono); font-size:9.5pt; letter-spacing:.22em;
+    color:var(--steel); text-transform:uppercase;
+    display:flex; justify-content:space-between;
+  }
+  .pg[data-folio]::after{
+    content: attr(data-folio);
+    position:absolute; bottom:.5in; left:0; right:0;
+    text-align:center;
+    font-family: var(--rr-font-mono); font-size:10pt; color:var(--ink);
+    letter-spacing:.18em;
+  }
+  .pg.no-chrome::before, .pg.no-chrome::after{display:none;}
+
+  /* ============================================================
+     COVERS
+     ============================================================ */
+  .cover, .back-cover{
+    background:#eef2f4;
+    padding:0; overflow:hidden;
+  }
+  .cover svg, .back-cover svg{width:100%;height:100%;display:block;}
+
+  /* ============================================================
+     FRONT MATTER pages
+     ============================================================ */
+  .colophon, .dedication, .epigraph, .toc-page, .half-title{
+    justify-content:center;
+  }
+
+  .half-title h1{
+    font-family: var(--rr-font-heading); font-weight:700; letter-spacing:-.03em;
+    text-transform:none; color:var(--ink);
+    font-size:32pt; margin:0 0 .35em; line-height:1.05;
+  }
+  .half-title h1 .red{color:var(--red);}
+  .half-title .pubmark{
+    font-family:var(--rr-font-mono); font-size:9.5pt; letter-spacing:.22em;
+    color:var(--steel); text-transform:uppercase; margin-top:32pt;
+  }
+
+  .title-page{justify-content:space-between;}
+  .title-page .top-mark{
+    font-family:var(--rr-font-mono); font-size:9.5pt; letter-spacing:.22em;
+    color:var(--red); text-transform:uppercase;
+  }
+  .title-page .title-block h1{
+    font-family: var(--rr-font-heading); font-weight:700; letter-spacing:-.03em;
+    color:var(--ink); text-transform:none; line-height:.98;
+    font-size:54pt; margin:0 0 .15em;
+  }
+  .title-page .title-block h1 .red{color:var(--red);}
+  .title-page .title-block .sub{
+    font-family:var(--rr-font-serif); font-style:italic; color:var(--muted);
+    font-size:13pt; line-height:1.5; max-width:4.5in; margin:18pt 0 0;
+  }
+  .title-page .author{
+    font-family:var(--rr-font-mono); letter-spacing:.22em; text-transform:uppercase;
+    font-size:11pt; color:var(--ink);
+    border-top:1px solid var(--ink); padding-top:14pt;
+    display:flex; justify-content:space-between; align-items:baseline;
+  }
+  .title-page .author span:last-child{color:var(--steel); font-size:9pt;}
+
+  .colophon p{font-family:var(--rr-font-body); font-size:9.5pt; line-height:1.55; color:var(--ink); margin:0 0 .85em; max-width:4.2in;}
+  .colophon .meta{font-family:var(--rr-font-mono); font-size:8.5pt; letter-spacing:.18em; color:var(--steel); text-transform:uppercase; margin-bottom:24pt;}
+  .colophon .lozenge{margin-top:30pt; border-top:1px solid var(--ink); padding-top:14pt; font-family:var(--rr-font-mono); font-size:8.5pt; letter-spacing:.18em; color:var(--steel); text-transform:uppercase;}
+
+  .dedication .ded{
+    font-family:var(--rr-font-serif); font-style:italic; color:var(--ink);
+    font-size:14pt; line-height:1.6; max-width:3.6in; margin:0 auto; text-align:center;
+  }
+  .dedication .ded::before, .dedication .ded::after{
+    content:""; display:block; width:32pt; height:1px; background:var(--red); margin:18pt auto;
+  }
+
+  .epigraph{align-items:flex-start;}
+  .epigraph blockquote{
+    border:none; padding:0; margin:0;
+    font-family:var(--rr-font-serif); font-style:italic; color:var(--ink);
+    font-size:13pt; line-height:1.6; max-width:4in;
+  }
+  .epigraph cite{
+    display:block; margin-top:14pt; font-family:var(--rr-font-mono);
+    font-style:normal; font-size:9pt; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--steel);
+  }
+
+  /* TOC */
+  .toc-page h2{
+    font-family:var(--rr-font-heading); font-weight:700; text-transform:uppercase;
+    letter-spacing:-.02em; font-size:22pt; color:var(--ink); margin:0 0 6pt;
+  }
+  .toc-page .lede{font-family:var(--rr-font-mono); font-size:9pt; letter-spacing:.22em; color:var(--red); text-transform:uppercase; margin-bottom:24pt;}
+  .toc{display:flex; flex-direction:column; gap:0;}
+  .toc-row{
+    display:grid; grid-template-columns: 36pt 1fr 30pt;
+    align-items:baseline; gap:8pt;
+    padding:7pt 0; border-bottom:1px solid var(--rule);
+    font-family:var(--rr-font-body); font-size:11pt; color:var(--ink);
+  }
+  .toc-row .num{font-family:var(--rr-font-mono); font-size:9.5pt; color:var(--red); letter-spacing:.18em;}
+  .toc-row .name{font-family:var(--rr-font-serif); font-size:11.5pt;}
+  .toc-row .name em{color:var(--muted); font-style:italic; font-weight:400;}
+  .toc-row .pp{text-align:right; font-family:var(--rr-font-mono); font-size:9.5pt; color:var(--steel); letter-spacing:.12em;}
+  .toc-row.section{
+    border-bottom:none; border-top:1px solid var(--ink);
+    margin-top:16pt; padding-top:12pt;
+  }
+  .toc-row.section .num{color:var(--ink);}
+  .toc-row.section .name{font-family:var(--rr-font-mono); font-size:9pt; letter-spacing:.22em; text-transform:uppercase; color:var(--ink);}
+
+  /* ============================================================
+     CHAPTER OPENERS
+     ============================================================ */
+  .chap-open{justify-content:flex-end;}
+  .chap-open .number-block{
+    font-family:var(--rr-font-mono); font-size:9.5pt; letter-spacing:.28em; color:var(--red);
+    text-transform:uppercase;
+  }
+  .chap-open .chap-num{
+    font-family:var(--rr-font-heading); font-weight:700; letter-spacing:-.02em;
+    font-size:120pt; color:var(--ink); line-height:.85; margin:24pt 0 0;
+  }
+  .chap-open h1{
+    font-family:var(--rr-font-heading); font-weight:700; letter-spacing:-.03em;
+    text-transform:none; color:var(--ink);
+    font-size:34pt; line-height:1.04; margin:18pt 0 0; max-width:4.6in;
+  }
+  .chap-open h1 .red{color:var(--red);}
+  .chap-open .opener-rule{height:1px; background:var(--ink); margin:28pt 0 14pt; width:1.2in;}
+  .chap-open .pull{
+    font-family:var(--rr-font-serif); font-style:italic; font-size:12.5pt;
+    color:var(--muted); max-width:4.2in; line-height:1.55;
+  }
+
+  /* ============================================================
+     BODY TEXT
+     ============================================================ */
+  .body-pg{font-family:var(--rr-font-serif); color:var(--ink);}
+  .body-pg .body{display:block;}
+  .body-pg h2{
+    font-family:var(--rr-font-heading); font-weight:700; text-transform:uppercase;
+    letter-spacing:-.02em; font-size:14.5pt; color:var(--ink);
+    margin:18pt 0 8pt;
+  }
+  .body-pg h2:first-child{margin-top:0;}
+  .body-pg h2 .marker{
+    display:inline-block; font-family:var(--rr-font-mono); font-size:8.5pt;
+    letter-spacing:.22em; color:var(--red); margin-right:8pt;
+    vertical-align: middle; text-transform:uppercase;
+  }
+  .body-pg p{
+    font-size:10.8pt; line-height:1.65; margin:0 0 9pt; text-align:justify;
+    hyphens:auto; -webkit-hyphens:auto;
+  }
+  /* Drop cap on first paragraph after chapter opener */
+  .body-pg .first p:first-child::first-letter{
+    font-family:var(--rr-font-heading); font-weight:700; color:var(--red);
+    float:left; font-size:48pt; line-height:.85; padding:6pt 8pt 0 0;
+  }
+  .body-pg p strong{font-weight:700; color:var(--ink);}
+  .body-pg ul{padding-left:1.1em; margin:0 0 12pt;}
+  .body-pg li{font-size:10.8pt; line-height:1.55; margin-bottom:5pt;}
+  .body-pg em{font-style:italic;}
+
+  .body-pg .breaker{
+    text-align:center; margin:14pt 0;
+    font-family:var(--rr-font-mono); letter-spacing:.5em; color:var(--steel);
+    font-size:11pt;
+  }
+  .body-pg .pullbox{
+    border-top:1px solid var(--ink); border-bottom:1px solid var(--ink);
+    padding:14pt 0; margin:16pt 0;
+    font-family:var(--rr-font-serif); font-style:italic; font-size:13pt;
+    line-height:1.5; color:var(--ink); text-align:left;
+  }
+  .body-pg .keypoint{
+    border-left:3px solid var(--red); padding:4pt 0 4pt 14pt;
+    margin:14pt 0; font-family:var(--rr-font-serif); font-size:11pt; line-height:1.55;
+    color:var(--ink);
+  }
+
+  /* Story vignette */
+  .vignette h3{
+    font-family:var(--rr-font-mono); font-size:9pt; letter-spacing:.22em; color:var(--red);
+    text-transform:uppercase; margin:0 0 6pt;
+  }
+  .vignette .title{
+    font-family:var(--rr-font-serif); font-style:italic; color:var(--ink);
+    font-size:13pt; margin:0 0 14pt;
+  }
+
+  /* References */
+  .refs p{font-family:var(--rr-font-body); font-size:9.5pt; line-height:1.45; margin:0 0 8pt; text-align:left; text-indent:-1.4em; padding-left:1.4em;}
+  .refs em{font-style:italic;}
+
+  /* Appendix programme blocks */
+  .programme{display:grid; grid-template-columns: 64pt 1fr; gap:6pt 18pt; margin:0 0 14pt;}
+  .programme .week{font-family:var(--rr-font-mono); font-size:9.5pt; letter-spacing:.18em; color:var(--red); text-transform:uppercase; padding-top:2pt;}
+  .programme .what{font-family:var(--rr-font-serif); font-size:10.8pt; line-height:1.55;}
+  .programme .what b{font-family:var(--rr-font-heading); font-weight:700; text-transform:uppercase; letter-spacing:.02em; font-size:10.5pt; color:var(--ink); display:block; margin-bottom:2pt;}
+
+  /* Inline data table */
+  .calorie-table{
+    width:100%; border-collapse:collapse; margin:8pt 0 14pt;
+    font-family:var(--rr-font-body); font-size:10pt;
+  }
+  .calorie-table th, .calorie-table td{
+    border-bottom:1px solid var(--rule); padding:6pt 4pt; text-align:left;
+  }
+  .calorie-table th{font-family:var(--rr-font-mono); font-size:8.5pt; letter-spacing:.18em; color:var(--red); text-transform:uppercase;}
+  .calorie-table td.num{font-family:var(--rr-font-mono); text-align:right; color:var(--ink);}
+
+  /* About / colophon back */
+  .about h2{font-family:var(--rr-font-heading); text-transform:uppercase; letter-spacing:-.02em; font-size:20pt; color:var(--ink); margin:0 0 10pt;}
+  .about .url{font-family:var(--rr-font-mono); font-size:11pt; letter-spacing:.16em; color:var(--red); text-transform:uppercase; border-top:1px solid var(--ink); border-bottom:1px solid var(--ink); padding:10pt 0; display:block; margin:18pt 0; text-align:center;}
+
+  /* Print */
+  @page{ size: 6.125in 9.25in; margin: 0; }
+  @media print{
+    html,body{background:#fff;}
+    body{padding:0;}
+    .pg{margin:0; box-shadow:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     1 · FRONT COVER  (Field Note · option C)
+     ============================================================ -->
+<div class="pg cover no-chrome" data-screen-label="01 Front Cover">
+  <svg viewBox="0 0 560 800" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+    <rect width="560" height="800" fill="#eef2f4"/>
+    <rect x="0" y="0" width="560" height="54" fill="#11161a"/>
+    <text x="32" y="36" font-family="IBM Plex Mono, monospace" font-size="13" letter-spacing="5" fill="#eef2f4">RUCKING REVOLUTION · FIELD GUIDE 02</text>
+    <rect x="0" y="54" width="560" height="5" fill="#8a1e1e"/>
+    <g transform="translate(40 110)" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="4" fill="#4f5a63">
+      <text>ENTRY · 02 · SATURDAY · 09:14</text>
+    </g>
+    <g stroke="#c9d3da" stroke-width="1">
+      <line x1="40" y1="180" x2="520" y2="180"/>
+      <line x1="40" y1="212" x2="520" y2="212"/>
+      <line x1="40" y1="244" x2="520" y2="244"/>
+      <line x1="40" y1="276" x2="520" y2="276"/>
+      <line x1="40" y1="308" x2="520" y2="308"/>
+      <line x1="40" y1="340" x2="520" y2="340"/>
+      <line x1="40" y1="372" x2="520" y2="372"/>
+      <line x1="40" y1="404" x2="520" y2="404"/>
+      <line x1="40" y1="436" x2="520" y2="436"/>
+      <line x1="40" y1="468" x2="520" y2="468"/>
+    </g>
+    <line x1="74" y1="160" x2="74" y2="486" stroke="#8a1e1e" stroke-width="1"/>
+    <g transform="translate(90 206)" font-family="Source Serif 4, serif" font-style="italic" fill="#11161a">
+      <text font-size="26" y="0">Put something heavy</text>
+      <text font-size="26" y="32">in a bag. Open the door.</text>
+      <text font-size="26" y="64">Walk until the weight</text>
+      <text font-size="26" y="96">outside is heavier</text>
+      <text font-size="26" y="128">than the weight in.</text>
+      <text font-size="26" y="160">This book is about</text>
+      <text font-size="26" y="192">what happens next.</text>
+    </g>
+    <g transform="translate(40 558)" font-family="Archivo, sans-serif" font-weight="700" letter-spacing="-2.5" fill="#11161a">
+      <text y="0" font-size="56">Ruck Your</text>
+      <text y="58" font-size="56">Way </text>
+      <text x="148" y="58" font-size="56" fill="#8a1e1e">Out.</text>
+    </g>
+    <g transform="translate(40 668)" font-family="Source Serif 4, serif" fill="#4f5a63">
+      <text font-size="15" y="0">How walking with weight can lift loneliness,</text>
+      <text font-size="15" y="22">build resilience, and connect you to people.</text>
+    </g>
+    <g transform="translate(40 754)">
+      <line x1="0" y1="0" x2="480" y2="0" stroke="#11161a" stroke-width="1"/>
+      <text y="22" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="3" fill="#4f5a63">RUCKING REVOLUTION</text>
+      <text x="480" y="22" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="3" fill="#4f5a63">EDITION 01</text>
+    </g>
+  </svg>
+</div>
+
+<!-- 2 · HALF TITLE -->
+<div class="pg half-title no-chrome">
+  <div class="body" style="display:flex;flex-direction:column;justify-content:center;align-items:flex-start;">
+    <div class="pubmark">— Field Guide 02 · Rucking Revolution —</div>
+    <h1>Ruck Your Way <span class="red">Out</span>.</h1>
+  </div>
+</div>
+
+<!-- 3 · BLANK / publisher list  -->
+<div class="pg no-chrome">
+  <div class="body" style="display:flex;flex-direction:column;justify-content:flex-end;color:var(--steel);">
+    <div style="font-family:var(--rr-font-mono); font-size:9pt; letter-spacing:.22em; text-transform:uppercase; color:var(--steel); border-top:1px solid var(--ink); padding-top:10pt;">
+      Also published by Rucking Revolution
+    </div>
+    <ul style="list-style:none; padding:0; margin:14pt 0 0; font-family:var(--rr-font-serif); font-size:11pt; line-height:1.7; color:var(--ink);">
+      <li>Field Guide 01 · <em>Your First Ruck</em> — A 30-day plan for beginners</li>
+      <li>Field Guide 03 · <em>Rucking for Weight Loss</em> — The science of loaded walking</li>
+      <li>Field Guide 04 · <em>Rucking for Women</em> — Programming for body and life stage</li>
+      <li>Field Guide 05 · <em>Rucking After 50</em> — Bones, balance, and a long horizon</li>
+      <li>Field Guide 06 · <em>Start a Ruck Club</em> — How to build a walking community</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 4 · TITLE PAGE -->
+<div class="pg title-page no-chrome">
+  <div class="top-mark">— Rucking Revolution · Field Guide 02 —</div>
+  <div class="title-block">
+    <h1>Ruck Your<br>Way <span class="red">Out</span>.</h1>
+    <p class="sub">How walking with weight can lift loneliness, build resilience, and connect you to people who actually show up.</p>
+  </div>
+  <div class="author">
+    <span>Rucking Revolution</span>
+    <span>RuckingRevolution.org</span>
+  </div>
+</div>
+
+<!-- 5 · COPYRIGHT / COLOPHON -->
+<div class="pg colophon no-chrome">
+  <div class="body" style="display:flex;flex-direction:column;justify-content:flex-end;">
+    <div class="meta">— Colophon —</div>
+    <p><strong>Ruck Your Way Out</strong> · How Walking with Weight Can Lift Loneliness, Build Resilience, and Connect You to People Who Actually Show Up.</p>
+    <p>Published by Rucking Revolution.<br>RuckingRevolution.org</p>
+    <p>First edition, 2026.</p>
+    <p>© Rucking Revolution. All rights reserved. No part of this publication may be reproduced, stored in a retrieval system, or transmitted in any form or by any means — electronic, mechanical, photocopying, recording, or otherwise — without prior written permission from the publisher.</p>
+    <p>The information in this book is for educational purposes and does not replace professional medical or psychological advice. Consult a qualified healthcare provider before beginning any new exercise programme, especially if you have existing health conditions.</p>
+    <p>Set in Archivo, Source Serif 4, and IBM Plex Mono. Printed on FSC-certified paper.</p>
+    <div class="lozenge">— ISBN 978-1-7393-0042-7 · Field Guide 02 —</div>
+  </div>
+</div>
+
+<!-- 6 · DEDICATION -->
+<div class="pg dedication no-chrome">
+  <div class="body" style="display:flex;flex-direction:column;justify-content:center;">
+    <div class="ded">
+      For the people who keep showing up.<br>
+      And for the ones still working out how.
+    </div>
+  </div>
+</div>
+
+<!-- 7 · EPIGRAPH -->
+<div class="pg epigraph no-chrome">
+  <div class="body" style="display:flex;flex-direction:column;justify-content:center;">
+    <blockquote>
+      “Loneliness is not a character flaw. It is a biological alarm system, evolved to tell you that something your species needs is missing.”
+      <cite>— from Chapter 1</cite>
+    </blockquote>
+  </div>
+</div>
+
+<!-- 8 · TOC -->
+<div class="pg toc-page" data-running="— Contents · Ruck Your Way Out —" data-folio="vii">
+  <div class="body">
+    <div class="lede">— Contents —</div>
+    <h2>What is in this book.</h2>
+    <div class="toc">
+      <div class="toc-row section"><span class="num">·</span><span class="name">Front matter</span><span class="pp"></span></div>
+      <div class="toc-row"><span class="num">—</span><span class="name"><em>A note before you start</em></span><span class="pp">01</span></div>
+
+      <div class="toc-row section"><span class="num">·</span><span class="name">Part I — The Problem</span><span class="pp"></span></div>
+      <div class="toc-row"><span class="num">01</span><span class="name">The loneliness nobody talks about</span><span class="pp">05</span></div>
+
+      <div class="toc-row section"><span class="num">·</span><span class="name">Part II — The Practice</span><span class="pp"></span></div>
+      <div class="toc-row"><span class="num">02</span><span class="name">What rucking actually is (and is not)</span><span class="pp">15</span></div>
+      <div class="toc-row"><span class="num">03</span><span class="name">What happens to your body when you ruck</span><span class="pp">25</span></div>
+      <div class="toc-row"><span class="num">04</span><span class="name">What rucking does to your mind</span><span class="pp">35</span></div>
+      <div class="toc-row"><span class="num">05</span><span class="name">The social science of walking together</span><span class="pp">45</span></div>
+
+      <div class="toc-row section"><span class="num">·</span><span class="name">Part III — The First Three Months</span><span class="pp"></span></div>
+      <div class="toc-row"><span class="num">06</span><span class="name">Getting started — your first three months</span><span class="pp">57</span></div>
+      <div class="toc-row"><span class="num">07</span><span class="name">Gear without the nonsense</span><span class="pp">67</span></div>
+      <div class="toc-row"><span class="num">08</span><span class="name">Building a ruck club — connection at scale</span><span class="pp">75</span></div>
+
+      <div class="toc-row section"><span class="num">·</span><span class="name">Part IV — Going Deeper</span><span class="pp"></span></div>
+      <div class="toc-row"><span class="num">09</span><span class="name">Rucking and mental health — going deeper</span><span class="pp">87</span></div>
+      <div class="toc-row"><span class="num">10</span><span class="name">Real people, real weight</span><span class="pp">95</span></div>
+      <div class="toc-row"><span class="num">11</span><span class="name">The bigger picture — why this matters now</span><span class="pp">103</span></div>
+      <div class="toc-row"><span class="num">12</span><span class="name">Your next step</span><span class="pp">111</span></div>
+
+      <div class="toc-row section"><span class="num">·</span><span class="name">Back matter</span><span class="pp"></span></div>
+      <div class="toc-row"><span class="num">A</span><span class="name">12-week starter programme</span><span class="pp">119</span></div>
+      <div class="toc-row"><span class="num">B</span><span class="name">Weight management and safety</span><span class="pp">123</span></div>
+      <div class="toc-row"><span class="num">C</span><span class="name">Finding your community</span><span class="pp">127</span></div>
+      <div class="toc-row"><span class="num">D</span><span class="name">Key research references</span><span class="pp">129</span></div>
+      <div class="toc-row"><span class="num">—</span><span class="name">About Rucking Revolution</span><span class="pp">133</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     A NOTE BEFORE YOU START
+     ============================================================ -->
+<div class="pg chap-open" data-running="— Ruck Your Way Out · A note before you start —" data-folio="01">
+  <div class="body">
+    <div class="number-block">— Foreword · A note before you start —</div>
+    <h1>Before <span class="red">we begin.</span></h1>
+    <div class="opener-rule"></div>
+    <p class="pull">A short note about what this book is — and, just as importantly, what it is not.</p>
+  </div>
+</div>
+
+<div class="pg body-pg" data-running="— A note before you start · Ruck Your Way Out —" data-folio="02">
+  <div class="body first">
+    <p>This book is not about becoming a soldier.</p>
+    <p>It is not about rucking 40 kilometres through the desert with 30 kilos on your back, or proving something to someone who doubted you, or earning a patch by suffering through a night you would rather forget.</p>
+    <p>This book is about something far more ordinary — and far more powerful.</p>
+    <p>It is about putting a little weight in a backpack, walking out your front door, and discovering that the heaviness you have been carrying on the inside gets lighter when you start carrying something real on the outside.</p>
+    <div class="pullbox">When you share a physical load with someone else — when you literally walk with weight together — you become real to each other in a way that hours of texting or scrolling never manages.</div>
+    <p>You do not need special fitness. You do not need military experience. You do not need expensive gear, a gym membership, or a particular body type. You need a backpack, some weight, and the willingness to take a walk.</p>
+    <p>This is for anyone who has felt that particular kind of alone — surrounded by people and still isolated, connected online and still unseen, busy and still somehow empty. It is for people who know they should "get out more" but never quite manage it, who mean to exercise but cannot make it to a gym, who sense that something is missing but cannot name it.</p>
+    <p>That something has a name. And rucking is one of the most effective, accessible, and human ways to find it again.</p>
+    <p style="font-family:var(--rr-font-serif); font-style:italic; color:var(--red); margin-top:18pt;">Let's start walking.</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     PART I · CHAPTER 1
+     ============================================================ -->
+<div class="pg chap-open" data-running="— Part I · The Problem —" data-folio="04">
+  <div class="body">
+    <div class="number-block">— Part I · Chapter 01 —</div>
+    <div class="chap-num">01</div>
+    <h1>The loneliness <span class="red">nobody</span><br>talks about.</h1>
+    <div class="opener-rule"></div>
+    <p class="pull">Why one in six people on the planet are now affected — and why it is not a character flaw.</p>
+  </div>
+</div>
+
+<div class="pg body-pg" data-running="— Ch. 01 · The loneliness nobody talks about —" data-folio="05">
+  <div class="body first">
+    <h2><span class="marker">§ 1.1</span>Something is wrong, and we know it</h2>
+    <p>You probably already know the statistics exist. You may have heard about the "loneliness epidemic" in a podcast, or noticed a headline, or felt a version of it yourself — that low-grade awareness that something in your social life is off, that your connections feel thinner than they used to, that you have more people to text and fewer to call when something important happens.</p>
+    <p>The numbers behind that feeling are striking.</p>
+    <p>In 2025, the World Health Organization's Commission on Social Connection released a global report confirming what many people already suspected: <strong>one in six people worldwide is meaningfully affected by loneliness</strong>, and the health consequences are severe enough to warrant comparison with physical diseases (WHO, 2025). Loneliness is now linked to an estimated 871,000 deaths every year — more than many well-known diseases that receive far more public attention.</p>
+    <p>The United States Surgeon General issued a formal advisory in 2023 declaring loneliness and social isolation a public health crisis, calling for national action on the scale of what followed the discovery of tobacco's dangers. The United Kingdom appointed a Minister for Loneliness in 2018. Japan followed in 2021. South Korea began offering monthly financial support to encourage isolated young people back into social life.</p>
+    <div class="pullbox">When governments start appointing ministers for a feeling, something structural has gone wrong.</div>
+  </div>
+</div>
+
+<div class="pg body-pg" data-running="— Ch. 01 · The loneliness nobody talks about —" data-folio="06">
+  <div class="body">
+    <h2><span class="marker">§ 1.2</span>The people most affected</h2>
+    <p>Loneliness does not only affect the elderly, the housebound, or the obviously isolated. Research from the World Happiness Report 2025 found that young adults — people aged 18 to 35 — are reporting the largest increases in loneliness of any age group. A large-scale analysis covering 437 independent research samples found that loneliness among young adults has been steadily rising for four decades, and the COVID-19 pandemic accelerated the trend rather than causing it.</p>
+    <p>In a survey by the American College Health Association in 2023, half of all university undergraduates reported significant loneliness — a 4.7% increase over 2019 levels, measured on campuses teeming with thousands of other people.</p>
+    <p>The paradox is visible everywhere. We have more ways to connect than any generation in human history. We carry devices in our pockets that give us instant access to billions of people. We belong to group chats, follow communities, scroll through feeds of people we know. And yet the feeling of being genuinely known — of being seen and held and accompanied — keeps slipping further away for more and more people.</p>
+    <p>A 2025 report from the Global Wellness Institute notes that this is not accidental or individual — it is structural. The way modern life is organised tends to remove the conditions that create natural, effortless social connection: shared physical space, common physical endeavour, repeated contact over time, and the experience of being needed by a specific group of people.</p>
+    <p>We have substituted convenience for community, and many of us feel the cost.</p>
+    <div class="breaker">·  ·  ·</div>
+    <h2><span class="marker">§ 1.3</span>Why this matters for your body</h2>
+    <p>If loneliness felt like only an emotional problem, it would still matter. But the research makes clear it is a physical one too.</p>
+  </div>
+</div>
+
+<div class="pg body-pg" data-running="— Ch. 01 · The loneliness nobody talks about —" data-folio="07">
+  <div class="body">
+    <p>Persistent loneliness is associated with a 29% increase in the risk of heart disease, a 32% increase in the risk of stroke, and a significantly higher risk of dementia and cognitive decline (Holt-Lunstad et al., 2015). People who are lonely are twice as likely to develop clinical depression as those who are not.</p>
+    <div class="keypoint">Put simply: social isolation is as dangerous to your physical health as smoking 15 cigarettes a day. It raises inflammatory markers, disrupts sleep architecture, weakens immune function, and accelerates ageing at the cellular level.</div>
+    <p>This is not weakness. It is biology. Human beings evolved in groups. We are the species that survived not by being the biggest or the fastest, but by being the most cooperative, the best at coordinating effort, the most skilled at reading and trusting one another. <strong>Loneliness is not a character flaw — it is a biological alarm system, evolved to tell you that something your species needs is missing.</strong></p>
+    <p>The alarm has been ringing for a long time, for a great many people. The question is how to answer it in a way that actually works.</p>
+    <h2><span class="marker">§ 1.4</span>Why typical advice falls short</h2>
+    <p>"Get out more." "Join a club." "Try a gym class." "Download a dating app." "Be more social."</p>
+    <p>People who are lonely have heard all of it. Most have tried some of it. And most will tell you that it does not quite reach the thing that is missing.</p>
+    <p>The research helps explain why. What people need is not just proximity to others — it is what researchers call <em>social fitness</em>: the experience of shared effort, mutual reliance, and genuine stakes. The kind of connection that forms when people go through something together, not just near each other.</p>
+  </div>
+</div>
+
+<div class="pg body-pg" data-running="— Ch. 01 · The loneliness nobody talks about —" data-folio="08">
+  <div class="body">
+    <p>A gym class puts you in a room with people. Rucking walks alongside them in the literal sense — you move together, carry weight together, face the same weather together, and arrive at the finish together. The shared experience of physical challenge creates a specific kind of bond that passive co-presence does not.</p>
+    <p>This is why military veterans so often describe the bonds formed on deployment as some of the strongest of their lives — not because war is good, but because shared hardship creates irreversible trust. And it is why rucking, which carries some of that same logic in a civilian and accessible form, turns out to be so effective at rebuilding what loneliness takes away.</p>
+    <p>The rest of this book shows you exactly how and why.</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     PART II · CHAPTER 2
+     ============================================================ -->
+<div class="pg chap-open" data-running="— Part II · The Practice —" data-folio="14">
+  <div class="body">
+    <div class="number-block">— Part II · Chapter 02 —</div>
+    <div class="chap-num">02</div>
+    <h1>What rucking <span class="red">actually is</span> (and is not).</h1>
+    <div class="opener-rule"></div>
+    <p class="pull">A short, deliberate definition — and what is genuinely required to start.</p>
+  </div>
+</div>
+
+<div class="pg body-pg" data-running="— Ch. 02 · What rucking actually is —" data-folio="15">
+  <div class="body first">
+    <h2><span class="marker">§ 2.1</span>The simplest definition</h2>
+    <p><strong>Rucking is walking with a weighted backpack.</strong> That is it. That is the whole thing.</p>
+    <p>The word comes from "rucksack" — the backpack that soldiers carry on long marches. For generations, carrying weight over distance was a military training tool: practical, demanding, and effective at building both fitness and mental endurance. Former members of the US Special Forces popularised rucking as civilian fitness in the early 2010s, and the activity has been growing steadily ever since.</p>
+    <p>But the military origin is context, not requirement. You do not need to think of rucking as training for anything. You do not need to move fast, carry heavy weight, or push any limits other than your own. Rucking is fundamentally a form of loaded walking — and the simple act of adding weight to a walk transforms it in ways that are useful, medically well-supported, and surprisingly manageable.</p>
+    <h2><span class="marker">§ 2.2</span>How it differs from hiking and running</h2>
+    <p>Hiking is walking in natural terrain, usually for enjoyment or exploration. Rucking can happen anywhere — urban streets, parks, countryside — and the defining feature is the intentional weight, not the setting.</p>
+    <p>Running is high-impact. Every stride involves a moment where both feet are off the ground, and the landing force on your joints is three to five times your body weight. This is why running injuries are common and why many people who want to exercise find running inaccessible or unsustainable.</p>
+  </div>
+</div>
+
+<div class="pg body-pg" data-running="— Ch. 02 · What rucking actually is —" data-folio="16">
+  <div class="body">
+    <p>Rucking is low-impact. Both feet are always on the ground. The added weight increases calorie burn and cardiovascular demand without the repeated joint stress of running. Research from the <em>Journal of Strength and Conditioning Research</em> found that rucking at a moderate pace with modest weight can burn two to three times more calories than walking without a pack, while keeping impact forces well within what most bodies can sustain (Lyons et al., 2005).</p>
+    <p>This makes rucking genuinely accessible in a way that running is not — for people returning from injury, for older adults, for those who are heavier and find running uncomfortable, and for people who simply enjoy walking but want more from it physically.</p>
+    <h2><span class="marker">§ 2.3</span>What you actually need</h2>
+    <p>One of the most important things about rucking is that the barrier to entry is low.</p>
+    <ul>
+      <li><strong>A backpack.</strong> Any backpack with a structure that sits close to your back and has shoulder straps. A hiking pack, a school bag, or a proper ruck pack all work.</li>
+      <li><strong>Weight.</strong> Books work. A bag of rice works. A litre of water weighs approximately one kilogram. A dedicated steel ruck plate is effective but completely optional. The weight should sit close to your spine, not hang low.</li>
+      <li><strong>Shoes.</strong> Whatever you use for long walks is fine.</li>
+      <li><strong>A direction.</strong> That is genuinely all.</li>
+    </ul>
+    <p>You do not need a route planned, a distance target, or a structured programme on day one. Walk outside for 30 minutes with some weight on your back. That is a ruck.</p>
+  </div>
+</div>
+
+<div class="pg body-pg" data-running="— Ch. 02 · What rucking actually is —" data-folio="17">
+  <div class="body">
+    <h2><span class="marker">§ 2.4</span>How much weight should you carry?</h2>
+    <p>This is the question most beginners ask first, and the answer is: <em>start lighter than you think you should.</em></p>
+    <p>For new ruckers, 4 to 6 kilograms (approximately 9 to 13 pounds) is a sensible starting point. This feels manageable for most adults, adds meaningful resistance, and lets your body adapt to the new load pattern before you increase it.</p>
+    <p>A common progression:</p>
+    <ul>
+      <li><strong>Weeks 1 to 2:</strong> 4 to 6 kg, 3 to 5 km, flat terrain.</li>
+      <li><strong>Weeks 3 to 6:</strong> 6 to 10 kg, 5 to 8 km, varied terrain.</li>
+      <li><strong>Weeks 7 to 12:</strong> 10 to 15 kg, 8 to 12 km, more challenging routes.</li>
+    </ul>
+    <div class="keypoint">If the weight feels comfortable after 10 minutes, it is probably right. If it feels heavy after 10 minutes, reduce it. If it feels like nothing after 10 minutes, increase it slightly.</div>
+    <p>There is no gold standard weight that everyone should reach. <strong>The goal is not maximum load — it is sustainable challenge.</strong></p>
+    <h2><span class="marker">§ 2.5</span>The pace question</h2>
+    <p>Rucking pace is walking pace. Most people ruck at 4 to 5.5 km/h (roughly 2.5 to 3.5 mph). This is a purposeful, engaged walk — not a stroll, not a run.</p>
+    <p>There is a simple test: <em>can you hold a conversation without gasping?</em> If yes, you are rucking at an appropriate pace. The ability to talk while rucking is not a sign that you are not working hard enough — it is a sign that you are in the aerobic zone that produces the most sustainable fitness adaptations.</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     CHAPTER 3
+     ============================================================ -->
+<div class="pg chap-open" data-running="— Part II · The Practice —" data-folio="24">
+  <div class="body">
+    <div class="number-block">— Part II · Chapter 03 —</div>
+    <div class="chap-num">03</div>
+    <h1>What happens to your body <span class="red">when you ruck.</span></h1>
+    <div class="opener-rule"></div>
+    <p class="pull">The mechanics, the calorie maths, and why a weighted pack is one of the most underrated postural tools in modern life.</p>
+  </div>
+</div>
+
+<div class="pg body-pg" data-running="— Ch. 03 · What happens to your body —" data-folio="25">
+  <div class="body first">
+    <h2><span class="marker">§ 3.1</span>The physical mechanics</h2>
+    <p>When you add weight to your back and walk, several things happen simultaneously.</p>
+    <p><strong>Your cardiovascular system works harder.</strong> Your heart rate elevates above what walking alone would produce — typically 10 to 20 beats per minute higher, depending on weight and terrain. This puts you solidly in the aerobic training zone that improves cardiovascular health, reduces blood pressure, lowers resting heart rate over time, and improves metabolic markers including blood sugar regulation.</p>
+    <p><strong>Your muscles recruit more broadly.</strong> Loaded walking activates the posterior chain — the muscles running up the back of your body from calves through hamstrings, glutes, and spinal erectors — in a way that unloaded walking does not. The core is continuously engaged to stabilise the load. The shoulders and upper back work to keep the pack from pulling you out of alignment. You are doing full-body work at a pace that is safe for the majority of people.</p>
+    <p><strong>Your bones respond to the load.</strong> Rucking is a weight-bearing exercise, which means it triggers bone remodelling. Bone is a living tissue that responds to mechanical stress by becoming denser. Weight-bearing exercise is one of the primary tools for preventing and managing osteoporosis — a condition that affects roughly 200 million people worldwide. Walking alone helps; rucking helps more.</p>
+  </div>
+</div>
+
+<div class="pg body-pg" data-running="— Ch. 03 · What happens to your body —" data-folio="26">
+  <div class="body">
+    <h2><span class="marker">§ 3.2</span>Calorie burn</h2>
+    <p>Research has consistently shown that rucking burns significantly more calories than walking. The increase depends on body weight, pace, load, and terrain, but for a 75 kg person rucking at 5 km/h with 10 kg:</p>
+    <table class="calorie-table">
+      <thead><tr><th>Activity</th><th style="text-align:right;">kcal / hour</th></tr></thead>
+      <tbody>
+        <tr><td>Brisk walking (no pack)</td><td class="num">280–350</td></tr>
+        <tr><td><strong>Rucking · 10 kg · 5 km/h</strong></td><td class="num"><strong>500–600</strong></td></tr>
+        <tr><td>Running · 8 km/h</td><td class="num">600–700</td></tr>
+      </tbody>
+    </table>
+    <p>Rucking approaches the calorie burn of running, at walking pace, with a fraction of the impact on your joints. For people who want to manage body composition without the injury risk of high-intensity training, this is meaningful — you can get substantial cardiovascular and metabolic benefit while walking, which is realistic and sustainable for the vast majority of people.</p>
+    <h2><span class="marker">§ 3.3</span>Posture and back health</h2>
+    <p>This is counterintuitive: <strong>carrying weight on your back, done correctly, can improve back health rather than harm it.</strong></p>
+    <p>Weight that sits high in the pack, close to the spine, acts as a counterweight to the forward posture that most people develop from sitting at desks and looking at screens. The muscular engagement required to carry a ruck correctly — upright spine, engaged core, drawn-back shoulders — is essentially a prolonged exercise in postural correction.</p>
+  </div>
+</div>
+
+<div class="pg body-pg" data-running="— Ch. 03 · What happens to your body —" data-folio="27">
+  <div class="body">
+    <p>Physical therapists have noted that rucking, performed with proper load placement and posture, can reduce chronic lower back pain in many patients by strengthening the erector spinae and core muscles that support the lumbar spine (Knapik et al., 2004).</p>
+    <p>This does not mean people with existing serious back conditions should immediately start rucking with heavy loads. It means that rucking, approached progressively and thoughtfully, is far more likely to help your back than to hurt it.</p>
+    <h2><span class="marker">§ 3.4</span>Sleep</h2>
+    <p>Physical exercise in general improves sleep. Rucking adds an outdoor element — exposure to natural light and fresh air — that further improves sleep quality. Outdoor exercise, particularly in the morning or early afternoon, helps regulate circadian rhythm by exposing the eyes to natural light at times that reinforce the body's internal clock.</p>
+    <p>Better sleep improves almost every marker of physical and mental health: cognitive function, emotional regulation, immune response, metabolic health, and cardiovascular risk. For many people who struggle with low mood, anxiety, or low energy, poor sleep is a significant contributing factor — and rucking outdoors is one of the most effective non-pharmaceutical tools for improving it.</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     CHAPTER 4
+     ============================================================ -->
+<div class="pg chap-open" data-running="— Part II · The Practice —" data-folio="34">
+  <div class="body">
+    <div class="number-block">— Part II · Chapter 04 —</div>
+    <div class="chap-num">04</div>
+    <h1>What rucking does <span class="red">to your mind.</span></h1>
+    <div class="opener-rule"></div>
+    <p class="pull">Movement, weather, and the strange therapeutic power of choosing to carry something heavy.</p>
+  </div>
+</div>
+
+<div class="pg body-pg" data-running="— Ch. 04 · What rucking does to your mind —" data-folio="35">
+  <div class="body first">
+    <h2><span class="marker">§ 4.1</span>Movement is medicine</h2>
+    <p>The relationship between physical exercise and mental health is one of the best-established findings in modern medical research. Regular aerobic exercise has been shown to be as effective as antidepressant medication for mild to moderate depression in multiple randomised controlled trials (Blumenthal et al., 2007). It reduces anxiety, improves cognitive function, enhances emotional regulation, and reduces the risk of developing depression in the first place.</p>
+    <p>The mechanisms are multiple: exercise releases endorphins and endocannabinoids that produce acute mood elevation; it raises levels of brain-derived neurotrophic factor (BDNF), a protein that promotes the growth and survival of neurons; it reduces inflammatory markers that are elevated in depression; and it gives the mind a structured, embodied task that interrupts the ruminative thinking cycles that characterise anxiety and low mood.</p>
+    <p>Rucking carries all of these benefits. But it adds several specific elements that make it particularly effective for mental health.</p>
+    <h2><span class="marker">§ 4.2</span>Being outdoors</h2>
+    <p>There is strong and growing evidence that the natural environment has specific restorative effects on the brain that built environments do not replicate.</p>
+  </div>
+</div>
+
+<div class="pg body-pg" data-running="— Ch. 04 · What rucking does to your mind —" data-folio="36">
+  <div class="body">
+    <p>Attention Restoration Theory, developed by Rachel and Stephen Kaplan at the University of Michigan, proposes that natural environments restore the capacity for directed attention — the focused, effortful attention we use for cognitive work — by engaging a different kind of attention (soft fascination) that allows the brain to recover.</p>
+    <p>Research published in <em>PNAS</em> in 2015 found that people who walked in a natural environment for 90 minutes showed significantly reduced activity in the prefrontal cortex region associated with rumination — the repetitive negative self-focused thinking that is a core feature of depression and anxiety — compared to people who walked for the same time in an urban environment (Bratman et al., 2015).</p>
+    <p>A 2019 study in <em>Scientific Reports</em> found that spending at least two hours per week in nature was significantly associated with better health and wellbeing across a large UK sample, with effects that were consistent across age groups, genders, and health status (White et al., 2019).</p>
+    <div class="keypoint">Rucking happens outside. This is not incidental — it is one of the core mechanisms by which rucking improves mental health.</div>
+    <h2><span class="marker">§ 4.3</span>The weight as metaphor — and mechanism</h2>
+    <p>Something interesting happens when you carry physical weight deliberately. When you choose to load your pack, shoulder it, and walk, you are practising a kind of voluntary difficulty. You are demonstrating to yourself, through action, that you can sustain something heavy over a period of time.</p>
+  </div>
+</div>
+
+<div class="pg body-pg" data-running="— Ch. 04 · What rucking does to your mind —" data-folio="37">
+  <div class="body">
+    <p>This is not motivational theatre. It is a real psychological process. Research on self-efficacy — the belief in your own capacity to accomplish tasks — consistently shows that efficacy beliefs are built primarily through <em>mastery experiences</em>: evidence from your own life that you did something hard and got through it (Bandura, 1997). Each completed ruck is a small but genuine mastery experience. Over weeks and months, the accumulation builds a different self-concept: not "someone who should get fitter" but "someone who does hard things."</p>
+    <p>There is also a phenomenon ruckers describe regularly: <strong>problems that felt enormous before a ruck often feel smaller afterwards.</strong> The medial prefrontal cortex — the brain region most associated with self-referential thought and worry — shows reduced activity during sustained physical effort. It is neurologically harder to catastrophise when your body is engaged.</p>
+    <div class="pullbox">Physical load temporarily ejects you from the anxious mind and puts you back in the body. For people who spend most of their day in their heads, this is genuinely therapeutic.</div>
+    <h2><span class="marker">§ 4.4</span>Grit and stress tolerance</h2>
+    <p>Hormesis — the principle that small doses of stress make an organism stronger and more resilient — applies to mental health as much as physical health. Rucking is a form of voluntary stress. You choose to be slightly uncomfortable. You sustain that discomfort. You complete it. Over time, this builds <em>stress tolerance</em>: the capacity to remain functional and clear-headed when things are hard. People who feel socially isolated often also feel less capable of handling life's demands. Rucking addresses both sides — capability and connection — at once.</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     CHAPTER 5
+     ============================================================ -->
+<div class="pg chap-open" data-running="— Part II · The Practice —" data-folio="44">
+  <div class="body">
+    <div class="number-block">— Part II · Chapter 05 —</div>
+    <div class="chap-num">05</div>
+    <h1>The social science of <span class="red">walking together.</span></h1>
+    <div class="opener-rule"></div>
+    <p class="pull">Why people who carry weight side by side become real to each other in a way that conversation never quite manages.</p>
+  </div>
+</div>
+
+<div class="pg body-pg" data-running="— Ch. 05 · Walking together —" data-folio="45">
+  <div class="body first">
+    <h2><span class="marker">§ 5.1</span>Why shared effort creates real connection</h2>
+    <p>There is a well-documented psychological phenomenon called <em>social bonding through synchrony and shared experience</em>. In plain English: people who go through things together feel more connected to each other than people who merely spend time near each other.</p>
+    <p>This is why teammates trust each other more than colleagues who happen to work in the same office. It is why friends made in difficult circumstances often become closer than friends made in easier conditions. And it is why military veterans describe the bonds of service as unlike any other they have formed in civilian life.</p>
+    <p>The research is clear on the mechanisms. Physical synchrony — moving your body in rhythm with another person — activates the release of oxytocin, the neurochemical most associated with trust and bonding (Feldman, 2017). Walking together is already a form of physical synchrony. Adding shared weight, shared destination, and shared physical challenge intensifies this.</p>
+    <p>A study in <em>Psychological Science</em> found that people who performed physically difficult tasks together — even tasks as simple as sitting in physically uncomfortable positions alongside each other — subsequently showed higher levels of trust and cooperation in unrelated tasks compared to control groups (Whitehouse et al., 2017).</p>
+  </div>
+</div>
+
+<div class="pg body-pg" data-running="— Ch. 05 · Walking together —" data-folio="46">
+  <div class="body">
+    <p>Rucking operationalises all of this. You move in the same direction. You face the same conditions. When one person struggles with the weight, others notice and respond. The group reaches the finish together. These are not incidental features — they are precisely the conditions that research identifies as most effective for building genuine social bonds.</p>
+    <h2><span class="marker">§ 5.2</span>The problem with passive socialising</h2>
+    <p>Bars. Dinner parties. Networking events. These are standard answers to "you should get out more." They involve proximity to people you might like, in settings that are designed for conversation. But passive socialising has real limitations as a solution to loneliness.</p>
+    <p>It puts the burden of connection entirely on conversation. If you are not naturally confident or if conversation runs out, you are left standing awkwardly. The setting offers no shared task to fall back on — no common purpose that pulls everyone into the same current.</p>
+    <p>It can also feel like performance. You dress appropriately, say the right things, laugh at the right moments, project the right image. This is socially skillful behaviour, and it is exhausting, especially for people who are already stretched.</p>
+    <p>Rucking removes the performance requirement. Everyone is doing the same thing. The conversation is optional and easy, because you are side by side rather than face to face — a configuration that researchers have found reduces social pressure and actually enables more honest conversation. The shared physical task gives you something to talk about and something to fall back on when you don't feel like talking. The group's focus is forward, not inward.</p>
+  </div>
+</div>
+
+<div class="pg body-pg" data-running="— Ch. 05 · Walking together —" data-folio="47">
+  <div class="body">
+    <div class="keypoint">People who describe themselves as introverted or socially anxious often take to rucking unexpectedly well. The social interaction is built in but not forced. You belong to the group by virtue of being there and walking. Nothing more is required.</div>
+    <h2><span class="marker">§ 5.3</span>The ruck club model</h2>
+    <p>The community structure around rucking — ruck clubs — amplifies everything described above. A ruck club at its best is a group that meets regularly, welcomes anyone regardless of fitness level, shares equipment if needed, and creates a standing commitment: <em>every Saturday at noon, we walk.</em> You know it will happen. You know people will be there. You know you are expected.</p>
+    <p>That expectation matters more than it might seem. Research on social belonging consistently finds that predictability and regularity of contact are among the strongest predictors of friendship formation — more important than shared interests, more important than initial chemistry. The person you see every week on the ruck becomes someone you know in a way that the person you follow online does not.</p>
+    <p>Ruck clubs also create a specific form of belonging that resists the financial and status sorting that affects many social environments. When the only membership fee is showing up, and when everyone is equally sweaty and tired at the end, the usual hierarchies of life — job title, income, neighbourhood — become irrelevant. What matters is whether you showed up, whether you carried your weight, and whether you helped someone else carry theirs.</p>
+    <div class="pullbox">"No one is excluded due to financial barriers or differences in gear. What matters is showing up, stepping forward, and being part of the journey." — Polaris Rucking Crew, Oslo.</div>
+  </div>
+</div>
+
+<!-- ============================================================
+     PART III · CHAPTER 6
+     ============================================================ -->
+<div class="pg chap-open" data-running="— Part III · The First Three Months —" data-folio="56">
+  <div class="body">
+    <div class="number-block">— Part III · Chapter 06 —</div>
+    <div class="chap-num">06</div>
+    <h1>Getting started — <span class="red">your first</span> three months.</h1>
+    <div class="opener-rule"></div>
+    <p class="pull">Week by week, kilo by kilo. A practical pathway from your first 25 minutes to a standing weekly commitment.</p>
+  </div>
+</div>
+
+<div class="pg body-pg" data-running="— Ch. 06 · Your first three months —" data-folio="57">
+  <div class="body first">
+    <h2><span class="marker">§ 6.1</span>Week one — the first ruck</h2>
+    <p>Your goal in week one is simple: <strong>ruck three times, 20 to 30 minutes each, with 4 to 6 kilograms.</strong></p>
+    <p>Do not plan a perfect route. Do not buy new gear. Do not read more about technique first. Load your pack, walk out your door, and come back 25 minutes later. That is all week one needs to be.</p>
+    <p>Some things you may notice on your first ruck:</p>
+    <ul>
+      <li>The weight feels odd at first, then normal after 5 to 10 minutes. This is correct — the initial strangeness is your body adjusting to the load distribution, and it settles.</li>
+      <li>You may walk slightly slower than your normal pace. This is fine. Pace will increase naturally as you get stronger. Do not try to push the pace; <em>let the weight teach you your pace.</em></li>
+      <li>Your upper back and shoulders may feel fatigued. Normal — and it will reduce with regular practice. Sharp pain anywhere means stop and reduce the weight.</li>
+      <li>You may feel better afterwards than you expected. Most new ruckers report this. The combination of outdoor air, physical effort, and the mild achievement of having done something unfamiliar tends to produce a genuine mood lift.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="pg body-pg" data-running="— Ch. 06 · Your first three months —" data-folio="58">
+  <div class="body">
+    <h2><span class="marker">§ 6.2</span>Weeks two to four — building consistency</h2>
+    <p>The most important thing in weeks two to four is not intensity or distance — it is showing up consistently. Three rucks per week is ideal. Two is perfectly acceptable. One is the minimum that maintains momentum.</p>
+    <p>Consistency does more than build fitness. <strong>It builds identity.</strong> Every time you ruck, you are casting a vote for the kind of person you are. You are making "someone who rucks" a more established part of how you see yourself. This matters because identity-based behaviour is far more sustainable than goal-based behaviour. The goal "I want to get fitter" fades when motivation drops. The identity "I am someone who rucks" pulls you out of the door even when the initial enthusiasm has quietened.</p>
+    <p>During weeks two to four, consider:</p>
+    <ul>
+      <li><strong>Slightly increasing your distance.</strong> If week one was 3 km, aim for 4 to 5 km by the end of week four.</li>
+      <li><strong>Exploring your terrain.</strong> Urban streets, parks, hills, waterways — variety keeps rucking interesting and gives your body different stimulus.</li>
+      <li><strong>Noting how you feel.</strong> A single sentence after each ruck about your mood and energy. After four weeks, reading back is often striking.</li>
+    </ul>
+    <h2><span class="marker">§ 6.3</span>Month two — adding challenge and seeking company</h2>
+    <p>By the end of month one, rucking should be starting to feel normal. Month two is a good time to increase the weight slightly, try a longer ruck (8 to 10 km on a Saturday), and — most importantly — find other ruckers.</p>
+  </div>
+</div>
+
+<div class="pg body-pg" data-running="— Ch. 06 · Your first three months —" data-folio="59">
+  <div class="body">
+    <p>This is the step that transforms rucking from an effective individual exercise into something that also addresses the social dimension that is this book's core concern. Look for a ruck club in your city. GORUCK maintains a directory. Local outdoor and running communities are another source. Facebook groups, Meetup.com, and Reddit's r/Rucking often have local sub-groups.</p>
+    <p>If you cannot find a club, consider starting one (Chapter 8). If you are not ready to ruck with a group, you can begin more simply: invite one person you already know to join you for a ruck. <em>"I've been going for a walk with a weighted pack on weekends, want to come?"</em> is a complete and sufficient invitation.</p>
+    <h2><span class="marker">§ 6.4</span>Month three — the rhythm of it</h2>
+    <p>By month three, most consistent ruckers describe hitting a rhythm — a point at which rucking has become part of their regular life rather than something they are trying to build. The body has adapted to the load. The routes are familiar. The effort feels comfortable rather than punishing.</p>
+    <p>This is also when the compounding social effects begin to show up most clearly. If you have been rucking with others — even occasionally — you will likely notice that those people have become more real to you than they were. You have shared discomfort with them. You have moved through space together. You know things about them that do not come from their social media profiles.</p>
+    <div class="keypoint">Month three is a good time to try an event. Many ruck clubs organise group events — longer rucks, challenge routes, destination rucks. These tend to produce the most intense bonding experiences rucking offers.</div>
+  </div>
+</div>
+
+<!-- ============================================================
+     CHAPTER 7
+     ============================================================ -->
+<div class="pg chap-open" data-running="— Part III · The First Three Months —" data-folio="66">
+  <div class="body">
+    <div class="number-block">— Part III · Chapter 07 —</div>
+    <div class="chap-num">07</div>
+    <h1>Gear without <span class="red">the nonsense.</span></h1>
+    <div class="opener-rule"></div>
+    <p class="pull">An honest list of what you need, what you do not, and the principle that should sit above all of it.</p>
+  </div>
+</div>
+
+<div class="pg body-pg" data-running="— Ch. 07 · Gear without the nonsense —" data-folio="67">
+  <div class="body first">
+    <h2><span class="marker">§ 7.1</span>What you actually need</h2>
+    <p>The rucking gear market has expanded significantly as the activity has grown. You can now spend considerable amounts of money on specialised packs, precision-machined steel weight plates, moisture-wicking base layers engineered for long marches, and various pieces of equipment sold as essential.</p>
+    <p>Almost none of it is necessary for a beginner, and most of it is not necessary for experienced ruckers either. Here is the honest gear list:</p>
+    <ul>
+      <li><strong>A pack that fits.</strong> The single most important piece of equipment. It needs to sit close to your back, have shoulder straps that sit on your shoulders without digging, and have enough internal space to pack weight near the top and against the back.</li>
+      <li><strong>Weight.</strong> Books, bricks, bagged sand, a bag of rice, a water container, or a commercial weight plate. The weight simply needs to sit high and close to your back, not rattle around or hang low.</li>
+      <li><strong>Comfortable footwear.</strong> Trail trainers, walking boots, or whatever you would wear for a long walk. Minimalist shoes are not recommended with heavy loads; a little cushioning and lateral support helps.</li>
+      <li><strong>Hydration.</strong> 500 ml to 750 ml for rucks under an hour in mild weather; 1 to 1.5 litres for longer or hotter rucks.</li>
+    </ul>
+    <p>That is genuinely the complete list for starting.</p>
+  </div>
+</div>
+
+<div class="pg body-pg" data-running="— Ch. 07 · Gear without the nonsense —" data-folio="68">
+  <div class="body">
+    <h2><span class="marker">§ 7.2</span>When to upgrade</h2>
+    <p>As you ruck more regularly, certain gear upgrades make a genuine difference:</p>
+    <ul>
+      <li><strong>A purpose-built ruck pack</strong> (GORUCK GR1, Mystery Ranch Patrol, or similar) provides better load transfer to the hips, more durable construction, and better weight positioning. Worth it after three to six months of regular rucking.</li>
+      <li><strong>Steel weight plates</strong> designed for rucking sit flatter and closer to the back than improvised weights. Convenient, not necessary.</li>
+      <li><strong>Trekking poles</strong> for longer rucks over uneven terrain — meaningfully reduce knee stress on descents.</li>
+      <li><strong>Merino wool or technical base layers</strong> for cold, wet, or very hot weather.</li>
+    </ul>
+    <h2><span class="marker">§ 7.3</span>The "no gear required" principle</h2>
+    <p>One of the most important values in the rucking community — exemplified by groups like Polaris Rucking Crew — is that <strong>gear should never be a barrier to participation.</strong></p>
+    <p>If you are joining a group ruck and do not have a pack, say so. Any established ruck group should have loaner gear available. If they do not, a plastic shopping bag reinforced with duct tape and loaded with water bottles will get you through your first community ruck.</p>
+    <div class="pullbox">The brands on your pack do not make you a rucker. Showing up and walking does.</div>
+  </div>
+</div>
+
+<!-- ============================================================
+     CHAPTER 8
+     ============================================================ -->
+<div class="pg chap-open" data-running="— Part III · The First Three Months —" data-folio="74">
+  <div class="body">
+    <div class="number-block">— Part III · Chapter 08 —</div>
+    <div class="chap-num">08</div>
+    <h1>Building a ruck club — <span class="red">connection</span> at scale.</h1>
+    <div class="opener-rule"></div>
+    <p class="pull">How a standing weekly walk with two people becomes a community of fifty, and the principles that decide whether it lasts.</p>
+  </div>
+</div>
+
+<div class="pg body-pg" data-running="— Ch. 08 · Building a ruck club —" data-folio="75">
+  <div class="body first">
+    <h2><span class="marker">§ 8.1</span>Why clubs multiply the effect</h2>
+    <p>Everything this book has described about rucking's effect on loneliness and social connection is amplified when it happens within a structured community.</p>
+    <p>Individual rucking gives you the physical and mental benefits. A ruck club gives you all of that plus repeated contact with specific people, a standing social appointment that requires no additional planning, a community that knows your name and notices when you are absent, and the particular bond that comes from shared hardship witnessed by a group.</p>
+    <h2><span class="marker">§ 8.2</span>Starting small and simple</h2>
+    <p>A ruck club can begin with two people and a standing date. Seriously.</p>
+    <p><em>"I'm going to ruck every Saturday at 10 am from the train station car park. Want to join me?"</em> sent to five people who might be interested, and followed up consistently for three weeks, can be the beginning of a club that grows to fifty regular members within a year. This has happened in cities around the world.</p>
+    <p>The critical elements of a successful ruck club are not marketing or infrastructure — they are <strong>consistency and welcome.</strong></p>
+    <p><strong>Consistency</strong> means the club shows up at the same time and place every week, regardless of weather, regardless of how many people come. In the early weeks, there may be two or three people. Go anyway. The club that only meets when it is convenient never becomes a club.</p>
+  </div>
+</div>
+
+<div class="pg body-pg" data-running="— Ch. 08 · Building a ruck club —" data-folio="76">
+  <div class="body">
+    <p><strong>Welcome</strong> means that anyone who shows up is immediately made to feel part of the group, regardless of fitness level or what they are carrying. The person who shows up for the first time is the most important person at that ruck. If they leave feeling seen and included, they will return.</p>
+    <h2><span class="marker">§ 8.3</span>The introduction that sets the tone</h2>
+    <p>The way a ruck club introduces itself to new members shapes what kind of community it becomes. An introduction that works covers these points:</p>
+    <ul>
+      <li><strong>Team over individual.</strong> We move together. No one gets left behind. The pace is the group's pace.</li>
+      <li><strong>No financial barriers.</strong> Everything provided by the club is free. Gear is available to borrow.</li>
+      <li><strong>No minimum fitness.</strong> You are welcome whether this is your first physical activity in years or whether you train every day.</li>
+      <li><strong>Permission to need help.</strong> If you need someone to take your weight, you only have to say so. No explanation required. Someone will step up.</li>
+      <li><strong>Effort, not outcome.</strong> What matters is that you showed up and gave honest effort — not how far, how heavy, how fast.</li>
+    </ul>
+    <div class="keypoint">This introduction is not soft. It sets a standard of team behaviour and integrity of effort. But it offers something precious in return: <em>unconditional belonging.</em></div>
+  </div>
+</div>
+
+<div class="pg body-pg" data-running="— Ch. 08 · Building a ruck club —" data-folio="77">
+  <div class="body">
+    <h2><span class="marker">§ 8.4</span>Practical operations</h2>
+    <p><strong>Meeting point.</strong> Choose somewhere easy to find, accessible by public transport, and with a brief safe area to gather. A central landmark, train station, or park entrance works well.</p>
+    <p><strong>Routes.</strong> Plan two or three routes of different lengths (30 min easy, 60 min moderate, 90 min extended) and use them interchangeably. Familiar routes reduce cognitive load — the group knows where they are going and can focus on being together.</p>
+    <p><strong>Communication.</strong> A simple group chat (WhatsApp, Signal, Telegram) is sufficient. Share the week's plan on Thursday or Friday. Confirm the meeting point on Saturday morning. Keep it practical.</p>
+    <p><strong>Loaner gear.</strong> Acquire two or three extra packs and a set of plates or improvised weights. Free for anyone who needs them. Over time, members who upgrade their own gear often donate their old equipment to the club pool.</p>
+    <p><strong>Events.</strong> Once a club is established, organising a special event — a longer route, a destination ruck, a timed challenge — creates a milestone that deepens bonds and attracts new members. Keep events participation-focused rather than competitive.</p>
+    <p><strong>Money.</strong> Keep it simple and free at the base level. If the club grows enough to want larger events or more loaner gear, small voluntary contributions or a simple membership model work. <em>Never make the weekly ruck conditional on payment.</em></p>
+  </div>
+</div>
+
+<!-- ============================================================
+     PART IV · CHAPTER 9
+     ============================================================ -->
+<div class="pg chap-open" data-running="— Part IV · Going Deeper —" data-folio="86">
+  <div class="body">
+    <div class="number-block">— Part IV · Chapter 09 —</div>
+    <div class="chap-num">09</div>
+    <h1>Rucking and <span class="red">mental health</span> — going deeper.</h1>
+    <div class="opener-rule"></div>
+    <p class="pull">A careful chapter for people carrying something heavier than general low mood — and the specific ways rucking can sit alongside professional care.</p>
+  </div>
+</div>
+
+<div class="pg body-pg" data-running="— Ch. 09 · Mental health — going deeper —" data-folio="87">
+  <div class="body first">
+    <h2><span class="marker">§ 9.1</span>When exercise is not enough</h2>
+    <p>This chapter is for people who are managing something heavier than general low mood or social disconnect — for people dealing with anxiety disorders, depression, grief, trauma, or other significant mental health challenges.</p>
+    <div class="keypoint"><strong>First and most important:</strong> rucking is not a substitute for professional mental health care. If you are dealing with clinical depression, anxiety disorders, PTSD, or anything affecting your ability to function, please seek qualified professional support alongside anything else you do. Your GP, a licensed therapist, or a mental health crisis service in emergencies are the right starting points.</div>
+    <p>What rucking can be, in the context of a broader mental health strategy, is a powerful complement to treatment. Research on exercise as adjunct therapy for depression has found that combining exercise with psychotherapy or medication produces significantly better outcomes than either alone (Stubbs et al., 2018). Exercise targets different biological pathways than medication, and different psychological pathways than therapy, which is why the combination is more effective than any single intervention.</p>
+    <p>Rucking specifically offers elements that other forms of exercise may not: the grounding effect of physical load, the mental break of outdoor movement, the social scaffolding of group rucking, and the progressive sense of physical capability.</p>
+  </div>
+</div>
+
+<div class="pg body-pg" data-running="— Ch. 09 · Mental health — going deeper —" data-folio="88">
+  <div class="body">
+    <h2><span class="marker">§ 9.2</span>Rucking through grief</h2>
+    <p>Grief — the loss of a person, a relationship, a version of yourself, a future you expected — is one of the most common forms of the heaviness that brings people to rucking.</p>
+    <p>Several things about rucking are particularly suited to grief. The weight on your back gives the internal heaviness a physical form and location that can help make it feel more manageable. The movement forward — literally putting one foot in front of another — has a powerful psychological parallel. The outdoor environment provides the soft fascination that quietens ruminative loops.</p>
+    <p>And in a group, grief can be held without being stated. <strong>You do not have to explain why you came, what you are carrying internally, or why some days are harder than others.</strong> The pack is the only weight you have to account for.</p>
+    <p>Many ruckers describe the experience of beginning to ruck during a difficult period in their lives — a divorce, the death of a parent, a job loss, an illness — and finding that the weekly ruck became an anchor: the one fixed point in a world that felt destabilised.</p>
+    <h2><span class="marker">§ 9.3</span>Rucking for anxiety</h2>
+    <p>Anxiety tends to make the body feel like the enemy — a source of alarming sensations (racing heart, tight chest, shallow breath) that feel threatening even when no real danger is present. Regular cardiovascular exercise reduces baseline anxiety by lowering cortisol levels, improving heart rate variability, and reducing the brain's threat-detection reactivity over time.</p>
+  </div>
+</div>
+
+<div class="pg body-pg" data-running="— Ch. 09 · Mental health — going deeper —" data-folio="89">
+  <div class="body">
+    <p>But rucking also teaches the body something specific: that an elevated heart rate and physical demand are compatible with safety and even enjoyment. For people whose anxiety includes health anxiety or a fear of physical symptoms, this can be quietly transformative.</p>
+    <p>The outdoor element matters here too. Time in nature reduces amygdala activity — the brain's threat-detection centre — in ways that urban environments do not (Bratman et al., 2015). <em>Rucking outside is not just good exercise; it is a regular neurological reset.</em></p>
+  </div>
+</div>
+
+<!-- ============================================================
+     CHAPTER 10 — STORIES
+     ============================================================ -->
+<div class="pg chap-open" data-running="— Part IV · Going Deeper —" data-folio="94">
+  <div class="body">
+    <div class="number-block">— Part IV · Chapter 10 —</div>
+    <div class="chap-num">10</div>
+    <h1>Real people, <span class="red">real weight.</span></h1>
+    <div class="opener-rule"></div>
+    <p class="pull">Three composite stories drawn from patterns repeated across the rucking community worldwide.</p>
+  </div>
+</div>
+
+<div class="pg body-pg" data-running="— Ch. 10 · Real people, real weight —" data-folio="95">
+  <div class="body first vignette">
+    <h3>— Story 01 —</h3>
+    <p class="title">The woman who rucked through burnout.</p>
+    <p>She had spent fourteen years in a demanding career and reached a point where she could not summon motivation for much of anything. A friend mentioned a local ruck club, mostly as an excuse for getting out of the house on Saturday mornings.</p>
+    <p>She came the first time with a borrowed pack, 4 kilograms of books, and no expectation of returning. Three hours later she was eating breakfast with people who had just learned her name and who seemed genuinely pleased she had come.</p>
+    <p>She returned the following Saturday. And the one after that. By month two, she was waking up on Saturdays looking forward to something for the first time in over a year.</p>
+    <p>What she describes is not that rucking fixed the burnout — it did not, immediately. <strong>It gave her a container for it:</strong> a time and place where she was not a professional, not a role, not a performance. Just a person walking with a pack, among people doing the same thing.</p>
+    <div class="pullbox">The burnout was still there on Monday morning. But Saturday changed what it meant to be alive that week.</div>
+  </div>
+</div>
+
+<div class="pg body-pg" data-running="— Ch. 10 · Real people, real weight —" data-folio="96">
+  <div class="body vignette">
+    <h3>— Story 02 —</h3>
+    <p class="title">The man who moved to a new city.</p>
+    <p>He was thirty-one when his company relocated him to a city where he knew nobody. He had lived in his home city for twenty-six years and had never really had to make friends as an adult. He did not know how. Online dating apps felt strange for friendship. He was not interested in bars. His flat was fine. He was profoundly, quietly lonely.</p>
+    <p>He found a ruck club through an online search and went the first time in a state of low-grade dread — certain it would be awkward, certain he would not fit in, planning to leave after 30 minutes if it was awful.</p>
+    <p>He stayed for two and a half hours. On the way back, someone invited him for coffee. He went. By the end of month two, he had two people in this new city he would describe as friends — not acquaintances, not friendly colleagues, but <strong>people he had carried weight with in rain and cold</strong>, who knew his actual name and would notice his absence.</p>
+    <p>He still does not know how to make friends at dinner parties. He does not need to.</p>
+    <div class="breaker">·  ·  ·</div>
+    <h3>— Story 03 —</h3>
+    <p class="title">The older woman returning to activity.</p>
+    <p>She was sixty-three, had been largely sedentary for several years following a health scare, and had been told by her physiotherapist to "do more walking." She found rucking when her physiotherapist mentioned it might suit her better than gym work.</p>
+  </div>
+</div>
+
+<div class="pg body-pg" data-running="— Ch. 10 · Real people, real weight —" data-folio="97">
+  <div class="body vignette">
+    <p>She started with 3 kilograms. Her first ruck was 1.5 kilometres. She went alone, early in the morning, and felt slightly ridiculous.</p>
+    <p>Three months later she was rucking 6 km with 7 kilograms, twice a week, and occasionally joining a local group. She describes the physical changes — better sleep, less lower back pain, more energy — as significant. But what she did not expect was the shift in how she thought about her body: <em>from something that had let her down, to something that was capable of more than she had assumed.</em></p>
+    <div class="pullbox">"I stopped apologising for being slow. I was doing it. That was enough."</div>
+  </div>
+</div>
+
+<!-- ============================================================
+     CHAPTER 11
+     ============================================================ -->
+<div class="pg chap-open" data-running="— Part IV · Going Deeper —" data-folio="102">
+  <div class="body">
+    <div class="number-block">— Part IV · Chapter 11 —</div>
+    <div class="chap-num">11</div>
+    <h1>The bigger picture — <span class="red">why this matters</span> now.</h1>
+    <div class="opener-rule"></div>
+    <p class="pull">Rucking as a small, quiet act of resistance against a structurally lonely modern life.</p>
+  </div>
+</div>
+
+<div class="pg body-pg" data-running="— Ch. 11 · The bigger picture —" data-folio="103">
+  <div class="body first">
+    <h2><span class="marker">§ 11.1</span>Rucking as a social act</h2>
+    <p>By now, the case for rucking as a physical practice, a mental health tool, and a route to social connection should be clear. But there is something larger here worth naming.</p>
+    <p>The loneliness epidemic is not going to be solved by technology. It is not going to be solved by apps, social media platforms, online communities, or digital tools, however well-designed. These tools have genuine value, but they do not replicate the specific bonding that happens in physical space, with physical effort, in the presence of real human bodies that can hand you a water bottle when you need one.</p>
+    <p>Governments around the world are recognising this. The UK appointed a Minister of Loneliness in 2018. Japan followed in 2021. The European Union has produced multiple reports on the loneliness crisis. The US Surgeon General issued a formal framework for a national strategy on "our epidemic of loneliness and isolation" in 2023. These are not small acknowledgements — they are admissions that something structural in how modern societies are organised has broken something essential.</p>
+    <p>Ruck clubs, and the broader culture of shared physical endeavour they represent, are part of a genuine answer to that structural problem. They are bottom-up, self-organising, low-cost, and highly effective at producing the conditions that build real social bonds: regular shared experience, physical effort, mutual reliance, and a standing place where you are expected and welcomed.</p>
+    <div class="keypoint">Every ruck club that forms is a small act of resistance against isolation. Every member who shows up and stays is choosing, in the most practical and embodied way, to be connected.</div>
+  </div>
+</div>
+
+<div class="pg body-pg" data-running="— Ch. 11 · The bigger picture —" data-folio="104">
+  <div class="body">
+    <h2><span class="marker">§ 11.2</span>Rucking as character practice</h2>
+    <p>There is a phrase used in some rucking communities that captures something the broader culture has largely lost: <em>"The shittier the training, the easier it is to face the same conditions in real life."</em></p>
+    <p>This is blunter than most self-help books prefer. But it points at something true.</p>
+    <p>The willingness to do hard things voluntarily — to carry weight you did not have to carry, to walk into uncomfortable weather, to show up when staying home would be easy — is a form of practice. It builds the capacity to do hard things when life requires them, not as heroism, but as the quiet application of a capability you have been developing.</p>
+    <p>Rucking is not therapy and does not pretend to be. But it practises, week after week, several things that therapy often aims to teach: <strong>being present in your body, tolerating discomfort without catastrophising, trusting other people, accepting help without shame, and discovering that you are more capable than your anxiety has told you.</strong></p>
+    <p>These are not small things. For many people, they are the things that matter most.</p>
+    <h2><span class="marker">§ 11.3</span>The vision of a capable community</h2>
+    <p>The best ruck clubs articulate a vision that goes beyond fitness. Polaris Rucking Crew describes their long-term vision this way: <em>members who are awake, steady, and available — people who can carry weight when others cannot, who know how to act when something goes wrong, and who do not need permission to help.</em></p>
+  </div>
+</div>
+
+<div class="pg body-pg" data-running="— Ch. 11 · The bigger picture —" data-folio="105">
+  <div class="body">
+    <p>This is civilian capability, built through consistent practice of shared effort. The ability to help a stranger up a hill. To support a friend over a difficult distance. To show up on a hard day and be present. To carry more than your share when someone else needs you to.</p>
+    <p>These capabilities are not exotic. They are the ordinary competences of a resilient community — competences that atrophy when people spend their lives in front of screens and their social bonds become thin.</p>
+    <div class="pullbox">Rucking builds them back. Not through military training or dramatic transformation. Through showing up, loading the pack, and walking.</div>
+  </div>
+</div>
+
+<!-- ============================================================
+     CHAPTER 12
+     ============================================================ -->
+<div class="pg chap-open" data-running="— Part IV · Going Deeper —" data-folio="110">
+  <div class="body">
+    <div class="number-block">— Part IV · Chapter 12 —</div>
+    <div class="chap-num">12</div>
+    <h1>Your <span class="red">next step.</span></h1>
+    <div class="opener-rule"></div>
+    <p class="pull">Five concrete actions for this week. The whole offer of this book, condensed.</p>
+  </div>
+</div>
+
+<div class="pg body-pg" data-running="— Ch. 12 · Your next step —" data-folio="111">
+  <div class="body first">
+    <h2><span class="marker">§ 12.1</span>The five things to do this week</h2>
+    <p>This book has given you the context, the science, and the structure. Now it comes down to what you actually do. Here are five concrete steps, ordered by priority.</p>
+    <div class="programme">
+      <div class="week">01 · Today</div><div class="what"><b>Load a pack and walk for 25 minutes today.</b> Not tomorrow. Not after you've bought better gear. With whatever you have, today. This is the whole thing. Everything else is elaboration.</div>
+      <div class="week">02 · +2 days</div><div class="what"><b>Do it again two days from now.</b> And two days after that. Three rucks in your first week is enough to build momentum and enough to test what it feels like in your body.</div>
+      <div class="week">03 · This week</div><div class="what"><b>Tell one person you are doing it.</b> Not to recruit them — though that is fine if they want to come — but because naming a commitment to another person is one of the most reliable ways to keep it (Gollwitzer et al., 2009).</div>
+      <div class="week">04 · This week</div><div class="what"><b>Search for a ruck club near you.</b> If one exists within reasonable distance, make a plan to attend. If not, consider starting something small: a standing walk with weight, open to anyone who wants to come.</div>
+      <div class="week">05 · 12 weeks</div><div class="what"><b>Give it twelve weeks before you evaluate.</b> One ruck will not change anything. Twelve weeks of consistent rucking will produce measurable changes in your fitness, sleep, mood, and social connection.</div>
+    </div>
+  </div>
+</div>
+
+<div class="pg body-pg" data-running="— Ch. 12 · Your next step —" data-folio="112">
+  <div class="body">
+    <h2><span class="marker">§ 12.2</span>What this will and will not do</h2>
+    <p>Rucking will not eliminate loneliness overnight. It will not solve depression, fix relationships, or remove the real structural difficulties of modern life that make connection harder than it should be.</p>
+    <p>What it will do — consistently, for most people who stick with it — is give you a reliable practice that addresses all three dimensions of what makes connection difficult: <strong>the physical toll of sedentary and isolated living, the psychological weight of uninterrupted anxiety and rumination, and the social vacuum created when shared effort disappears from daily life.</strong></p>
+    <p>It will give you a body that is slowly becoming more capable. A mind that gets regular breaks from itself. And, if you seek community, a context in which real bonds can form in the way bonds have always formed — through showing up, doing something together, and carrying the weight.</p>
+    <div class="pullbox">That is the whole offer. It is a simple one. But simple, in this case, is exactly what is needed.</div>
+    <p style="font-family:var(--rr-font-mono); font-size:9pt; letter-spacing:.22em; color:var(--red); text-transform:uppercase; text-align:center; margin-top:24pt;">— End of main text —</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     APPENDIX A — 12-week programme
+     ============================================================ -->
+<div class="pg chap-open" data-running="— Back matter —" data-folio="118">
+  <div class="body">
+    <div class="number-block">— Appendix A —</div>
+    <h1>The <span class="red">12-week</span> starter programme.</h1>
+    <div class="opener-rule"></div>
+    <p class="pull">A deliberately conservative path. The goal is sustainable progress, not impressive numbers.</p>
+  </div>
+</div>
+
+<div class="pg body-pg" data-running="— App. A · 12-week starter programme —" data-folio="119">
+  <div class="body first">
+    <h2><span class="marker">A.0</span>How to use this programme</h2>
+    <p>Designed for people who are new to rucking or returning after a long break. <strong>Start weight: 4 to 5 kg.</strong> Do not increase weight during weeks 1 to 4. Do not push pace. The first month is about adaptation.</p>
+    <div class="programme">
+      <div class="week">Wk 01–02</div><div class="what"><b>Foundation</b>3 rucks/week · 20–30 min · 4–5 kg · flat, familiar terrain. Goal: complete each ruck; note how you feel.</div>
+      <div class="week">Wk 03–04</div><div class="what"><b>Extension</b>3 rucks/week · 30–40 min · 5–6 kg · introduce moderate inclines if available. Goal: maintain consistency; invite one other person to join at least once.</div>
+      <div class="week">Wk 05–06</div><div class="what"><b>Building</b>3 rucks/week (one longer) · shorter: 35–40 min, 6 kg · longer: 60–75 min, 6–8 kg. Goal: experience the longer ruck; explore a new route.</div>
+      <div class="week">Wk 07–08</div><div class="what"><b>Community</b>2–3 rucks/week · join or initiate one group ruck this fortnight · 7–9 kg on standard rucks. Goal: ruck with at least one other person.</div>
+      <div class="week">Wk 09–10</div><div class="what"><b>Consolidation</b>2–3 rucks/week · one ruck per week 8+ km · 8–10 kg · varied terrain. Goal: establish a standing weekly commitment.</div>
+      <div class="week">Wk 11–12</div><div class="what"><b>Milestone</b>Plan one event ruck — a distance or route that represents a genuine personal achievement (10–15 km, or whatever stretches you). Ruck it with others if possible. Celebrate completing it.</div>
+    </div>
+  </div>
+</div>
+
+<!-- APPENDIX B -->
+<div class="pg chap-open" data-running="— Back matter —" data-folio="122">
+  <div class="body">
+    <div class="number-block">— Appendix B —</div>
+    <h1>Weight management <span class="red">and safety.</span></h1>
+    <div class="opener-rule"></div>
+    <p class="pull">There is no merit in pushing through pain in rucking. It leads to injury, not progress.</p>
+  </div>
+</div>
+
+<div class="pg body-pg" data-running="— App. B · Weight management and safety —" data-folio="123">
+  <div class="body first">
+    <h2><span class="marker">B.1</span>Signs you are carrying too much, too soon</h2>
+    <ul>
+      <li>Pain (not discomfort) in the lower back, knees, hips, or shoulders.</li>
+      <li>Numbness or tingling in the arms or hands.</li>
+      <li>Significant soreness lasting more than 48 hours after a ruck.</li>
+      <li>Changes in gait — limping, leaning to one side, or compensating in visible ways.</li>
+    </ul>
+    <p>If you experience any of these, reduce the weight, shorten the distance, or both.</p>
+    <h2><span class="marker">B.2</span>Correct load placement</h2>
+    <p><strong>Weight should be:</strong> packed as high in the bag as possible · pressed against your back (not hanging away) · centred (not shifted to one side).</p>
+    <p><strong>Weight should not be:</strong> hanging low in a bottom-heavy pack · positioned away from your back · unevenly distributed.</p>
+    <p>Correct placement distributes weight through shoulders and hips and maintains natural spinal alignment. Incorrect placement pulls the torso backwards, compresses the lumbar spine, and significantly increases injury risk.</p>
+    <h2><span class="marker">B.3</span>Hydration guidelines</h2>
+    <table class="calorie-table">
+      <thead><tr><th>Duration / conditions</th><th style="text-align:right;">Water</th></tr></thead>
+      <tbody>
+        <tr><td>&lt; 60 min, temperate</td><td class="num">500–750 ml</td></tr>
+        <tr><td>60–90 min</td><td class="num">750 ml–1 L</td></tr>
+        <tr><td>90 min – 2 h</td><td class="num">1–1.5 L</td></tr>
+        <tr><td>2 h+ or hot conditions</td><td class="num">≥ 500 ml/hr · + electrolytes</td></tr>
+      </tbody>
+    </table>
+    <p>Thirst is a reliable but delayed indicator of dehydration. Drink before you feel thirsty on longer rucks.</p>
+  </div>
+</div>
+
+<!-- APPENDIX C -->
+<div class="pg chap-open" data-running="— Back matter —" data-folio="126">
+  <div class="body">
+    <div class="number-block">— Appendix C —</div>
+    <h1>Finding <span class="red">your community.</span></h1>
+    <div class="opener-rule"></div>
+    <p class="pull">A short directory. If nothing exists near you, the last entry is the most important.</p>
+  </div>
+</div>
+
+<div class="pg body-pg" data-running="— App. C · Finding your community —" data-folio="127">
+  <div class="body first">
+    <div class="programme">
+      <div class="week">GORUCK</div><div class="what"><b>goruck.com/ruck-clubs</b>The official directory — clubs globally, with contact information and meeting schedules.</div>
+      <div class="week">Meetup</div><div class="what"><b>meetup.com</b>Search "rucking" plus your city. Groups exist in hundreds of cities worldwide.</div>
+      <div class="week">Strava</div><div class="what"><b>strava.com</b>The running and outdoor fitness app has a growing rucking community; many clubs use it to post group activities.</div>
+      <div class="week">Facebook</div><div class="what"><b>Local groups</b>Search "rucking + [your city]" or "[your country] rucking community."</div>
+      <div class="week">Reddit</div><div class="what"><b>r/Rucking</b>A community of over 100,000 members and a weekly thread for finding local ruckers.</div>
+      <div class="week">Start one</div><div class="what"><b>The most important entry</b>If nothing exists near you, a simple post in a local community group — <em>"I'm starting a weekly rucking walk, Saturday mornings, anyone welcome"</em> — is often all it takes. You will be surprised.</div>
+    </div>
+  </div>
+</div>
+
+<!-- APPENDIX D · References -->
+<div class="pg chap-open" data-running="— Back matter —" data-folio="128">
+  <div class="body">
+    <div class="number-block">— Appendix D —</div>
+    <h1>Key research <span class="red">references.</span></h1>
+    <div class="opener-rule"></div>
+    <p class="pull">The studies, books, and reports the arguments in this book rest on.</p>
+  </div>
+</div>
+
+<div class="pg body-pg refs" data-running="— App. D · Key research references —" data-folio="129">
+  <div class="body first">
+    <p>Bandura, A. (1997). <em>Self-Efficacy: The Exercise of Control.</em> W. H. Freeman.</p>
+    <p>Baumeister, R. F., &amp; Leary, M. R. (1995). The need to belong: Desire for interpersonal attachments as a fundamental human motivation. <em>Psychological Bulletin, 117</em>(3), 497–529.</p>
+    <p>Bernstein, E. E., &amp; McNally, R. J. (2017). Acute aerobic exercise hastens emotional recovery from a subsequent stressor. <em>Behaviour Research and Therapy, 89</em>, 71–79.</p>
+    <p>Blumenthal, J. A., et al. (2007). Exercise and pharmacotherapy in the treatment of major depressive disorder. <em>Psychosomatic Medicine, 69</em>(7), 587–596.</p>
+    <p>Bratman, G. N., et al. (2015). Nature experience reduces rumination and subgenual prefrontal cortex activation. <em>Proceedings of the National Academy of Sciences, 112</em>(28), 8567–8572.</p>
+    <p>Feldman, R. (2017). The neurobiology of human attachments. <em>Trends in Cognitive Sciences, 21</em>(2), 80–99.</p>
+    <p>Global Wellness Institute. (2025). <em>Mental Wellness Initiative Trends for 2025.</em> GWI.</p>
+    <p>Gollwitzer, P. M., et al. (2009). When intentions go public: Does social reality widen the intention–behavior gap? <em>Psychological Science, 20</em>(5), 612–618.</p>
+    <p>Holt-Lunstad, J., Smith, T. B., &amp; Layton, J. B. (2015). Loneliness and social isolation as risk factors for mortality. <em>Perspectives on Psychological Science, 10</em>(2), 227–237.</p>
+    <p>Kaplan, R., &amp; Kaplan, S. (1989). <em>The Experience of Nature: A Psychological Perspective.</em> Cambridge University Press.</p>
+    <p>Knapik, J. J., et al. (2004). Soldier load carriage: Historical, physiological, biomechanical, and medical aspects. <em>Military Medicine, 169</em>(1), 45–56.</p>
+    <p>Lyons, J., et al. (2005). Metabolic cost of load carriage with different fighting loads. <em>Journal of Strength and Conditioning Research, 19</em>(3), 505–510.</p>
+  </div>
+</div>
+
+<div class="pg body-pg refs" data-running="— App. D · Key research references —" data-folio="130">
+  <div class="body">
+    <p>McGonigal, K. (2015). <em>The Upside of Stress.</em> Avery.</p>
+    <p>Murthy, V. H. (2023). <em>Our Epidemic of Loneliness and Isolation: The US Surgeon General's Advisory.</em> US Department of Health and Human Services.</p>
+    <p>Ratey, J. J., &amp; Hagerman, E. (2008). <em>Spark: The Revolutionary New Science of Exercise and the Brain.</em> Little, Brown and Company.</p>
+    <p>Stubbs, B., et al. (2018). An examination of the anxiolytic effects of exercise for people with anxiety and stress-related disorders. <em>Psychiatry Research, 249</em>, 102–108.</p>
+    <p>US Surgeon General. (2023). <em>Our Epidemic of Loneliness and Isolation.</em> Department of Health and Human Services.</p>
+    <p>White, M. P., et al. (2019). Spending at least 120 minutes a week in nature is associated with good health and wellbeing. <em>Scientific Reports, 9</em>, 7730.</p>
+    <p>Whitehouse, H., et al. (2017). The evolution of extreme cooperation via shared dysphoric experiences. <em>Scientific Reports, 7</em>, 44292.</p>
+    <p>World Health Organization. (2025). <em>Social Connection and the Prevention of Loneliness: Report of the WHO Commission on Social Connection.</em> WHO.</p>
+    <p>World Happiness Report. (2025). <em>Connecting with Others: How Social Connections Improve the Happiness of Young Adults.</em> Wellbeing Research Centre, University of Oxford.</p>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="pg body-pg about" data-running="— About the publisher —" data-folio="133">
+  <div class="body" style="display:flex; flex-direction:column; justify-content:center;">
+    <div style="font-family:var(--rr-font-mono); font-size:9pt; letter-spacing:.22em; color:var(--red); text-transform:uppercase; margin-bottom:8pt;">— About the publisher —</div>
+    <h2>Rucking Revolution.</h2>
+    <p style="font-family:var(--rr-font-serif); font-size:12pt; line-height:1.6; margin:14pt 0;">Rucking Revolution is an independent publisher dedicated to making the rucking community more accessible, more inclusive, and better informed. We believe rucking is one of the most effective tools available for building individual resilience and genuine human connection — and we believe it belongs to everyone, not just athletes or veterans.</p>
+    <p style="font-family:var(--rr-font-serif); font-size:12pt; line-height:1.6; margin:0 0 14pt;">We publish practical guides, community resources, and training materials for ruckers at all levels and from all backgrounds.</p>
+    <span class="url">RuckingRevolution.org</span>
+    <p style="font-family:var(--rr-font-serif); font-style:italic; font-size:11.5pt; line-height:1.6; color:var(--muted); text-align:center; max-width:3.6in; margin:12pt auto 0;">Join the conversation, find local clubs, and access free resources for starting your own rucking community.</p>
+    <p style="font-family:var(--rr-font-mono); font-size:8.5pt; letter-spacing:.22em; color:var(--steel); text-transform:uppercase; text-align:center; margin-top:36pt;">© Rucking Revolution · First published 2026 · All rights reserved.</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     BACK COVER
+     ============================================================ -->
+<div class="pg back-cover no-chrome" data-screen-label="Back Cover">
+  <svg viewBox="0 0 560 800" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+    <rect width="560" height="800" fill="#fbf8f1"/>
+    <rect x="0" y="0" width="560" height="14" fill="#11161a"/>
+    <rect x="0" y="14" width="560" height="3" fill="#8a1e1e"/>
+
+    <g transform="translate(40 70)" font-family="IBM Plex Mono, monospace" letter-spacing="4" fill="#4f5a63">
+      <text font-size="11">— RUCKING REVOLUTION · FIELD GUIDE 02 —</text>
+    </g>
+
+    <g transform="translate(40 130)" font-family="Archivo, sans-serif" font-weight="700" letter-spacing="-1.5" fill="#11161a">
+      <text font-size="34" y="0">Put something heavy in</text>
+      <text font-size="34" y="42">a bag. Open the door.</text>
+      <text font-size="34" y="84" fill="#8a1e1e">Walk yourself out.</text>
+    </g>
+
+    <g transform="translate(40 280)" font-family="Source Serif 4, serif" fill="#11161a">
+      <text font-size="13.5" y="0">One in six people on the planet are now meaningfully</text>
+      <text font-size="13.5" y="22">affected by loneliness. Apps have not fixed it. Group</text>
+      <text font-size="13.5" y="44">chats have not fixed it. Better conversation skills have</text>
+      <text font-size="13.5" y="66">not fixed it.</text>
+      <text font-size="13.5" y="100" font-style="italic" fill="#4f5a63">Walking with weight, alongside other people, might.</text>
+    </g>
+
+    <g transform="translate(40 430)" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="2.5" fill="#11161a">
+      <text y="0">— INSIDE —</text>
+    </g>
+    <g transform="translate(40 458)" font-family="Source Serif 4, serif" font-size="13" fill="#11161a">
+      <text y="0">·  The science of loneliness, weight, and walking</text>
+      <text y="22">·  A 12-week starter programme for absolute beginners</text>
+      <text y="44">·  How to build a ruck club from two people up</text>
+      <text y="66">·  Mental health, grief, anxiety — what rucking can hold</text>
+      <text y="88">·  Real stories from ruckers around the world</text>
+    </g>
+
+    <g transform="translate(40 614)">
+      <line x1="0" y1="0" x2="480" y2="0" stroke="#11161a" stroke-width="1"/>
+    </g>
+    <g transform="translate(40 642)" font-family="Source Serif 4, serif" font-style="italic" font-size="14" fill="#11161a">
+      <text y="0">"Loneliness is not a character flaw.</text>
+      <text y="22">It is a biological alarm system, evolved</text>
+      <text y="44">to tell you that something your species</text>
+      <text y="66">needs is missing."</text>
+    </g>
+    <g transform="translate(40 730)" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="3" fill="#4f5a63">
+      <text y="0">— FROM CHAPTER 01 —</text>
+    </g>
+
+    <g transform="translate(40 770)">
+      <line x1="0" y1="0" x2="480" y2="0" stroke="#11161a" stroke-width="1"/>
+      <text y="22" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="3" fill="#11161a">RUCKINGREVOLUTION.ORG</text>
+      <text x="480" y="22" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="3" fill="#4f5a63">FIELD GUIDE · 02</text>
+    </g>
+  </svg>
+</div>
+
+</body>
+</html>

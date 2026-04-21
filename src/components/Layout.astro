@@ -130,7 +130,7 @@
 
     <!-- Footer -->
     <footer class="bg-secondary py-8 text-gray-200">
-      <div class="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-4 sm:grid-cols-4 sm:px-6 lg:px-8">
+      <div class="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-4 sm:grid-cols-3 sm:px-6 lg:px-8">
         <!-- About Section -->
         <section>
           <h3 class="text-white font-semibold mb-4">About</h3>
@@ -164,23 +164,6 @@
           </ul>
         </section>
 
-        <!-- Newsletter -->
-        <section>
-          <h3 class="text-white font-semibold mb-4">Newsletter</h3>
-          <p class="text-sm mb-4">Get updates on new articles, workouts, and community events.</p>
-          <form action="/api/newsletter" method="POST" class="space-y-2" id="footer-newsletter-form" aria-label="Newsletter signup">
-            <div style="position:absolute;left:-9999px;" aria-hidden="true">
-              <label for="footer-newsletter-honeypot">Website</label>
-              <input id="footer-newsletter-honeypot" type="text" name="website" tabindex="-1" autocomplete="off" />
-            </div>
-            <label for="footer-newsletter-email" class="sr-only">Email address</label>
-            <input id="footer-newsletter-email" type="email" name="email" placeholder="Enter your email" required class="w-full rounded-border border border-gray-600 bg-gray-700 px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-accent" />
-            <button type="submit" class="w-full rounded-md bg-accent px-4 py-2 font-medium text-secondary transition-colors duration-200 hover:bg-accent/90">
-              Subscribe
-            </button>
-          </form>
-        </section>
-
         <!-- Legal -->
         <section>
           <h3 class="text-white font-semibold mb-4">Legal</h3>
@@ -204,7 +187,7 @@
 
     <CookieConsent />
     <script type="module" src="/scripts/layout.js" is:inline></script>
-    <script type="module" src="/scripts/newsletter-signup.js" is:inline></script>
+    
     <script is:inline>
       function updateThemeIcons() {
         const theme = document.documentElement.getAttribute('data-theme');

@@ -35,7 +35,7 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   const requesterKey = getRequesterKey(request);
-  const rateLimit = checkRateLimit(requesterKey, {
+  const rateLimit = await checkRateLimit(requesterKey, {
     windowMs: 60 * 1000,
     maxRequests: 30,
     storeKey: '__workoutRateLimitStore',

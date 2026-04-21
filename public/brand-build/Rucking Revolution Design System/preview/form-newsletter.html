@@ -1,0 +1,23 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>body{margin:0;padding:0;background:#11161a;font-family:"IBM Plex Sans",sans-serif}
+.wrap{padding:24px 28px;position:relative;overflow:hidden}
+.wrap::before{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(139,0,0,.1) 40px,rgba(139,0,0,.1) 41px)}
+.inner{position:relative}
+.stamp{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.2em;color:#8a1e1e;border:1px solid #8a1e1e;padding:.3rem .7rem;margin-bottom:12px;text-transform:uppercase;border-radius:2px}
+h2{font-family:"Archivo",sans-serif;font-weight:700;font-size:1.9rem;color:#fff;margin:0 0 6px;text-transform:uppercase;letter-spacing:-.02em}
+.desc{font-family:"Source Serif 4",serif;font-size:.95rem;color:#a8b5c2;margin:0 0 14px;max-width:54ch}
+.form{display:flex;gap:8px;max-width:480px}
+input{flex:1;padding:.9rem 1rem;font-family:"IBM Plex Mono",monospace;font-size:.85rem;letter-spacing:.05em;background:#f7f9fa;border:2px solid #a8b5c2;color:#11161a;outline:none}
+input::placeholder{color:#4f5a63}
+.btn{padding:.9rem 1.4rem;font-family:"Archivo",sans-serif;font-size:.9rem;letter-spacing:.1em;background:#8a1e1e;color:#fff;border:none;cursor:pointer;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));text-transform:uppercase}
+.note{font-family:"IBM Plex Mono",monospace;font-size:.65rem;color:#4f5a63;margin:8px 0 0;text-transform:uppercase;letter-spacing:.08em}
+</style></head><body>
+<div class="wrap"><div class="inner">
+  <div class="stamp">NEWSLETTER</div>
+  <h2>JOIN THE MOVEMENT</h2>
+  <p class="desc">Stay ahead of the curve with exclusive notifications on our latest articles, tools, strategies and inspiration from the rucking community. Written for and by people who ruck with purpose — not for email marketers.</p>
+  <form class="form" onsubmit="event.preventDefault()"><input type="email" placeholder="ENTER EMAIL"/><button class="btn">SUBSCRIBE</button></form>
+  <p class="note">No spam.</p>
+</div></div>
+</body></html>

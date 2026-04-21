@@ -1,0 +1,55 @@
+<svg width="560" height="800" viewBox="0 0 560 800" xmlns="http://www.w3.org/2000/svg">
+  
+  <rect width="560" height="800" fill="#11161a"></rect>
+  <rect x="0" y="0" width="560" height="54" fill="#eef2f4"></rect>
+  <text x="32" y="36" font-family="IBM Plex Mono, monospace" font-size="13" letter-spacing="5" fill="#11161a">RUCKING REVOLUTION · FIELD GUIDE 02</text>
+  <rect x="0" y="54" width="560" height="5" fill="#8a1e1e"></rect>
+
+  
+  <g transform="translate(40 100)" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="4" fill="#8a1e1e">
+    <text>LOAD · 08.5 KG · PURPOSE BUILT</text>
+  </g>
+
+  
+  <g transform="translate(180 170)">
+    
+    <rect x="0" y="30" width="200" height="260" rx="14" fill="#eef2f4"></rect>
+    
+    <rect x="14" y="18" width="172" height="40" rx="10" fill="#eef2f4"></rect>
+    
+    <g fill="#11161a" opacity="0.9">
+      <rect x="28" y="78" width="144" height="4"></rect>
+      <rect x="28" y="110" width="144" height="4"></rect>
+      <rect x="28" y="142" width="144" height="4"></rect>
+      <rect x="28" y="174" width="144" height="4"></rect>
+      <rect x="28" y="206" width="144" height="4"></rect>
+      <rect x="28" y="238" width="144" height="4"></rect>
+    </g>
+    
+    <rect x="88" y="258" width="24" height="14" rx="2" fill="#11161a"></rect>
+    
+    <rect x="90" y="-30" width="20" height="60" fill="#8a1e1e"></rect>
+    
+    <rect x="60" y="92" width="80" height="44" fill="#11161a"></rect>
+    <text x="100" y="120" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="22" font-weight="700" fill="#eef2f4" letter-spacing="2">8.5</text>
+  </g>
+
+  
+  <g transform="translate(40 530)" font-family="Archivo, sans-serif" font-weight="700" letter-spacing="-3" fill="#eef2f4">
+    <text y="0" font-size="72">RUCK YOUR</text>
+    <text y="76" font-size="72">WAY OUT.</text>
+  </g>
+
+  
+  <g transform="translate(40 658)" font-family="Source Serif 4, serif" font-style="italic" fill="#c9d3da">
+    <text font-size="17" y="0">Lift loneliness. Build resilience.</text>
+    <text font-size="17" y="24">Find people who actually show up.</text>
+  </g>
+
+  
+  <g transform="translate(40 754)">
+    <line x1="0" y1="0" x2="480" y2="0" stroke="#667684" stroke-width="1"></line>
+    <text y="22" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="3" fill="#c9d3da">ALEXANDER</text>
+    <text x="480" y="22" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="3" fill="#c9d3da">RUCKING REVOLUTION</text>
+  </g>
+</svg>

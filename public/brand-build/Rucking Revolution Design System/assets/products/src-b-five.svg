@@ -1,0 +1,87 @@
+<svg width="560" height="800" viewBox="0 0 560 800" xmlns="http://www.w3.org/2000/svg">
+  
+  <rect width="560" height="800" fill="#eef2f4"></rect>
+  <rect x="0" y="0" width="560" height="54" fill="#11161a"></rect>
+  <text x="32" y="36" font-family="IBM Plex Mono, monospace" font-size="13" letter-spacing="5" fill="#eef2f4">RUCKING REVOLUTION · FIELD GUIDE 06</text>
+  <rect x="0" y="54" width="560" height="5" fill="#8a1e1e"></rect>
+
+  
+  <g transform="translate(40 100)" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="4" fill="#8a1e1e">
+    <text>YOU DO NOT NEED FIFTY PEOPLE. YOU NEED FIVE.</text>
+  </g>
+
+  
+  <g transform="translate(40 148)" font-family="Archivo, sans-serif" font-weight="700" letter-spacing="-3" fill="#11161a">
+    <text y="72" font-size="76">START A</text>
+    <text y="152" font-size="76">RUCK </text>
+    <text x="200" y="152" font-size="76" fill="#8a1e1e">CLUB.</text>
+  </g>
+
+  
+  <g transform="translate(64 540)">
+    <line x1="-24" y1="140" x2="472" y2="140" stroke="#11161a" stroke-width="2"></line>
+
+    
+    
+    <g fill="#11161a">
+      <rect x="0" y="42" width="32" height="48" rx="3"></rect>
+      <rect x="28" y="40" width="22" height="64" rx="2"></rect>
+      <circle cx="39" cy="26" r="12"></circle>
+      <rect x="30" y="102" width="8" height="28" transform="rotate(-10 34 102)"></rect>
+      <rect x="42" y="102" width="8" height="28" transform="rotate(12 46 102)"></rect>
+      <rect x="44" y="46" width="3" height="40" fill="#8a1e1e"></rect>
+    </g>
+    
+    <g fill="#11161a" transform="translate(96 12)">
+      <rect x="0" y="32" width="38" height="52" rx="3"></rect>
+      <rect x="32" y="36" width="20" height="56" rx="2"></rect>
+      <circle cx="42" cy="22" r="11"></circle>
+      <rect x="34" y="90" width="7" height="26" transform="rotate(10 38 90)"></rect>
+      <rect x="44" y="90" width="7" height="26" transform="rotate(-8 48 90)"></rect>
+      <rect x="46" y="40" width="3" height="38" fill="#8a1e1e"></rect>
+    </g>
+    
+    <g fill="#11161a" transform="translate(186 6)">
+      <rect x="4" y="48" width="26" height="40" rx="3"></rect>
+      <rect x="28" y="40" width="20" height="60" rx="2"></rect>
+      <circle cx="38" cy="26" r="11"></circle>
+      <rect x="30" y="98" width="7" height="26" transform="rotate(-10 34 98)"></rect>
+      <rect x="41" y="98" width="7" height="26" transform="rotate(12 44 98)"></rect>
+      <rect x="42" y="52" width="3" height="32" fill="#8a1e1e"></rect>
+    </g>
+    
+    <g fill="#11161a" transform="translate(280 0)">
+      <rect x="0" y="34" width="36" height="58" rx="3"></rect>
+      <rect x="32" y="36" width="22" height="60" rx="2"></rect>
+      <circle cx="42" cy="22" r="12"></circle>
+      <rect x="34" y="94" width="8" height="28" transform="rotate(10 38 94)"></rect>
+      <rect x="46" y="94" width="8" height="28" transform="rotate(-8 50 94)"></rect>
+      <rect x="48" y="40" width="3" height="44" fill="#8a1e1e"></rect>
+    </g>
+    
+    <g fill="#11161a" transform="translate(376 8)">
+      <rect x="0" y="40" width="34" height="48" rx="3"></rect>
+      <rect x="30" y="38" width="22" height="60" rx="2"></rect>
+      <circle cx="40" cy="24" r="12"></circle>
+      <rect x="32" y="96" width="8" height="28" transform="rotate(-12 36 96)"></rect>
+      <rect x="44" y="96" width="8" height="28" transform="rotate(14 48 96)"></rect>
+      <rect x="46" y="44" width="3" height="40" fill="#8a1e1e"></rect>
+    </g>
+
+    
+    <g font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="4" fill="#4f5a63">
+      <text x="18" y="162">01</text>
+      <text x="114" y="162">02</text>
+      <text x="208" y="162">03</text>
+      <text x="302" y="162">04</text>
+      <text x="398" y="162">05</text>
+    </g>
+  </g>
+
+  
+  <g transform="translate(40 754)">
+    <line x1="0" y1="0" x2="480" y2="0" stroke="#11161a" stroke-width="1"></line>
+    <text y="22" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="3" fill="#4f5a63">ALEXANDER</text>
+    <text x="480" y="22" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="3" fill="#4f5a63">RUCKING REVOLUTION</text>
+  </g>
+</svg>
