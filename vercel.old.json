@@ -7,9 +7,7 @@
     { "source": "/articles/:slug((?!tag)[^/]+)", "destination": "/learn/articles/:slug", "statusCode": 301 },
     { "source": "/articles/:page(\\d+)", "destination": "/learn/articles/:page", "statusCode": 301 },
     { "source": "/articles/tag/:tag", "destination": "/learn/articles/tag/:tag", "statusCode": 301 },
-    { "source": "/articles/tag/:tag/:page", "destination": "/learn/articles/tag/:tag/:page", "statusCode": 301 },
-    { "source": "/maintenance.html", "destination": "/maintenance.html", "statusCode": 200 },
-    { "source": "/(.*)", "destination": "/maintenance.html", "permanent": false }
+    { "source": "/articles/tag/:tag/:page", "destination": "/learn/articles/tag/:tag/:page", "statusCode": 301 }
   ],
   "headers": [
     {
