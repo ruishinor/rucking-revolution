@@ -3,13 +3,6 @@
   "framework": "astro",
   "buildCommand": "npm run build",
 
-  "_maintenanceModeToggle": {
-    "enabled": false,
-    "howToEnable": "Add _rule1 and _rule2 as the last two items in the redirects array below, then redeploy.",
-    "_rule1": { "source": "/maintenance.html", "destination": "/maintenance.html", "statusCode": 200 },
-    "_rule2": { "source": "/(.*)", "destination": "/maintenance.html", "permanent": false }
-  },
-
   "redirects": [
     { "source": "/articles", "destination": "/learn/articles", "statusCode": 301 },
     { "source": "/articles/:slug((?!tag)[^/]+)", "destination": "/learn/articles/:slug", "statusCode": 301 },
