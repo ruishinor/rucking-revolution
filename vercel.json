@@ -2,20 +2,26 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "astro",
   "buildCommand": "npm run build",
+
+  "_maintenanceModeToggle": {
+    "enabled": false,
+    "howToEnable": "Add _rule1 and _rule2 as the last two items in the redirects array below, then redeploy.",
+    "_rule1": { "source": "/maintenance.html", "destination": "/maintenance.html", "statusCode": 200 },
+    "_rule2": { "source": "/(.*)", "destination": "/maintenance.html", "permanent": false }
+  },
+
   "redirects": [
     { "source": "/articles", "destination": "/learn/articles", "statusCode": 301 },
     { "source": "/articles/:slug((?!tag)[^/]+)", "destination": "/learn/articles/:slug", "statusCode": 301 },
     { "source": "/articles/:page(\\d+)", "destination": "/learn/articles/:page", "statusCode": 301 },
     { "source": "/articles/tag/:tag", "destination": "/learn/articles/tag/:tag", "statusCode": 301 },
-    { "source": "/articles/tag/:tag/:page", "destination": "/learn/articles/tag/:tag/:page", "statusCode": 301 },
-    { "source": "/maintenance.html", "destination": "/maintenance.html", "statusCode": 200 },
-    { "source": "/(.*)", "destination": "/maintenance.html", "permanent": false }
+    { "source": "/articles/tag/:tag/:page", "destination": "/learn/articles/tag/:tag/:page", "statusCode": 301 }
   ],
+
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        
         {
           "key": "Content-Security-Policy-Report-Only",
           "value": "default-src 'self'; report-uri /api/csp-report"
