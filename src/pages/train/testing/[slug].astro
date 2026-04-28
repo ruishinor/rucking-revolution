@@ -1,0 +1,107 @@
+---
+import Layout from '@/components/Layout.astro';
+import { tests } from '@/data/tests';
+import { site } from '@/data/site';
+import ShareButtons from '@/components/ShareButtons.astro';
+
+export function getStaticPaths() {
+  return tests.map(test => ({
+    params: { slug: test.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const test = tests.find(t => t.slug === slug);
+
+if (!test) {
+  return Astro.redirect('/train/testing');
+}
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": test.title,
+  "description": test.short,
+  "url": `${site.baseUrl}/train/testing/${test.slug}`
+};
+---
+
+<Layout title={test.title} description={test.short} structuredData={structuredData} canonicalUrl={`${site.baseUrl}/train/testing/${test.slug}`}>
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <div class="mb-6">
+      <span class="label-mono">TEST OVERVIEW</span>
+      <h1 class="text-3xl font-heading text-secondary mt-2">{test.title}</h1>
+      <p class="text-muted-foreground mt-3">{test.overview}</p>
+    </div>
+
+    <!-- Test Components -->
+    <section class="mb-8">
+      <h2 class="text-2xl font-heading text-secondary mb-4 bg-[#8a1e1e] text-white px-3 py-2 rounded">TEST COMPONENTS</h2>
+      <div class="bg-panel p-6 rounded-lg">
+        <p class="text-muted-foreground mb-4">
+          This test consists of the following components that measure different aspects of physical readiness:
+        </p>
+        {test.components && (
+          <ul class="list-disc pl-6 text-sm text-muted-foreground space-y-2">
+            {test.components.map(c => (<li>{c}</li>))}
+          </ul>
+        )}
+      </div>
+    </section>
+
+    {test.standards && (
+      <section class="mb-8">
+        <h2 class="text-2xl font-heading text-secondary mb-4 bg-[#8a1e1e] text-white px-3 py-2 rounded">STANDARDS</h2>
+        <ul class="list-disc pl-6 text-sm text-muted-foreground space-y-2">
+          {test.standards.map(s => (<li>{s}</li>))}
+        </ul>
+      </section>
+    )}
+
+    <!-- Suggested Practice Routines -->
+    {test.practiceRoutines && (
+      <section class="mb-8">
+        <h2 class="text-2xl font-heading text-secondary mb-4 bg-[#8a1e1e] text-white px-3 py-2 rounded">SUGGESTED PRACTICE ROUTINES</h2>
+        <div class="space-y-4">
+          {test.practiceRoutines.map((routine, idx) => (
+            <div class="bg-panel p-6 rounded-lg">
+              <h3 class="font-semibold text-lg mb-2">Routine {idx + 1}: {routine.name}</h3>
+              <p class="text-sm text-muted-foreground mb-3">{routine.description}</p>
+              <ul class="list-disc pl-6 text-sm text-muted-foreground space-y-1">
+                {routine.steps.map(s => (<li>{s}</li>))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {test.milestones && (
+      <section class="mb-8">
+        <h2 class="text-2xl font-heading text-secondary mb-4 bg-[#8a1e1e] text-white px-3 py-2 rounded">MILESTONES</h2>
+        <ul class="list-disc pl-6 text-sm text-muted-foreground space-y-2">
+          {test.milestones.map(m => (<li>{m}</li>))}
+        </ul>
+      </section>
+    )}
+
+    <!-- Adapting Ruck Training -->
+    <section class="mb-8">
+      <h2 class="text-2xl font-heading text-secondary mb-4 bg-[#8a1e1e] text-white px-3 py-2 rounded">ADAPTING RUCK TRAINING</h2>
+      <div class="bg-panel p-6 rounded-lg">
+        <p class="text-muted-foreground mb-4">
+          To meet the standards of {test.title}, adapt your ruck training as follows:
+        </p>
+        {test.adaptationTips && (
+          <ul class="list-disc pl-6 text-sm text-muted-foreground space-y-2">
+            {test.adaptationTips.map(t => (<li>{t}</li>))}
+          </ul>
+        )}
+      </div>
+    </section>
+
+    <div class="mt-6">
+      <ShareButtons url={`${site.baseUrl}/train/testing/${test.slug}`} title={test.title} />
+    </div>
+  </div>
+</Layout>

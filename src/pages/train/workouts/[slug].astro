@@ -1,6 +1,8 @@
 ---
 import Layout from '@/components/Layout.astro';
 import { workouts, type Workout } from '@/data/workouts.ts';
+import ShareButtons from '@/components/ShareButtons.astro';
+import { site } from '@/data/site';
 
 export function getStaticPaths() {
   return workouts.map((workout) => ({
@@ -90,22 +92,28 @@ const difficultyColors: Record<string, string> = {
         </section>
       )}
 
-      <section class="mb-8 pt-6 border-t border-border">
-        <div class="flex gap-4">
-          <a 
-            href="/train/workouts"
-            class="btn btn-utility"
-          >
-            ← Back to Workouts
-          </a>
-          <button 
-            type="button"
-            data-print-trigger="true"
-            class="btn btn-primary"
-          >
-            Print Workout
-          </button>
-        </div>
+       <section class="mb-8 pt-6 border-t border-border">
+         <div class="flex gap-4">
+           <a 
+             href="/train/workouts"
+             class="btn btn-utility"
+           >
+             ← Back to Workouts
+           </a>
+           <button 
+             type="button"
+             data-print-trigger="true"
+             class="btn btn-primary"
+           >
+             Print Workout
+           </button>
+         </div>
+       </section>
+
+      <!-- Share Buttons -->
+      <section class="mb-8 bg-muted-50 rounded-lg p-6">
+        <h2 class="font-heading text-secondary mb-4 bg-[#8a1e1e] text-white px-3 py-2 rounded">SHARE THIS WORKOUT</h2>
+        <ShareButtons url={`${site.baseUrl}/train/workouts/${workout.slug}`} title={workout.title} />
       </section>
     </div>
   </div>

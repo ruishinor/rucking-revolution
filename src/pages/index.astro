@@ -10,6 +10,8 @@ import { quotes } from '@/data/quotes.ts';
 
 // Feature toggle (PUBLIC_ prefixed env var is exposed to client in Astro)
 const SHOW_COMICS = import.meta.env.PUBLIC_SHOW_COMICS === 'true';
+// Feature toggle for lead book visibility
+const SHOW_FEATURED_BOOK = import.meta.env.PUBLIC_SHOW_FEATURED_BOOK === 'true';
 
 // Get latest 3 articles sorted by date (newest first)
 const latestArticles = [...articles]
@@ -22,11 +24,16 @@ const featuredArticle = articles[0];
 // Get first comic for preview (respect feature toggle)
 const featuredComic = SHOW_COMICS ? comics[0] : null;
 
-// Get lead book product for Product Teaser
-const leadBook = products.find(p => p.id === 'your-first-ruck');
+// Get lead book product for Product Teaser (only when toggle enabled)
+// Default to "Ruck Your Way Out" (correct first book, currently incomplete)
+const leadBookProduct = products.find(p => p.id === 'ruck-your-way-out');
+const leadBook = SHOW_FEATURED_BOOK && leadBookProduct ? leadBookProduct : null;
 
-// Get published products for Digital Library catalog
-const publishedProducts = products.filter(p => p.published !== false && p.id !== 'your-first-ruck' && p.id !== 'coming-soon');
+// Get published products for Digital Library catalog (respect featured-book toggle)
+// Exclude both "Ruck Your Way Out" and "your-first-ruck" when toggle is disabled
+const publishedProducts = products.filter(
+  (p) => p.published !== false && p.id !== 'coming-soon' && (p.id !== 'ruck-your-way-out' || SHOW_FEATURED_BOOK) && (p.id !== 'your-first-ruck' || SHOW_FEATURED_BOOK)
+);
 
 // Homepage structured data - WebSite schema with search action for Google
 const homepageStructuredData = {
@@ -183,11 +190,14 @@ const communityItems = [
       </div>
       <div class="grid md:grid-cols-3 gap-6">
         {pillars.map((pillar) => (
-          <a href={pillar.href} class="card-military p-8 group">
+          <a
+            href={pillar.href}
+            class="card-military p-8 group focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary"
+          >
             <span class="label-mono block mb-2">{pillar.label}</span>
-            <h3 class="text-4xl font-heading text-secondary mb-4 group-hover:text-primary transition-colors">{pillar.title}</h3>
+            <h3 class="text-4xl font-heading text-secondary mb-4 group-hover:text-primary group-focus:text-primary transition-colors">{pillar.title}</h3>
             <p class="text-muted-foreground text-sm leading-relaxed">{pillar.description}</p>
-            <div class="mt-6 text-primary opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-2">
+            <div class="mt-6 text-primary opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity flex items-center gap-2">
               <span class="text-sm font-heading tracking-wider">ENTER</span>
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
@@ -222,7 +232,7 @@ const communityItems = [
               <!-- Taxonomy Tags -->
               <div class="flex flex-wrap gap-2 mb-6" role="list" aria-label="Article topics">
                 {featuredArticle.tags.map((tag) => (
-                  <span class="stamp stamp-primary text-xs py-1" role="listitem">{tag}</span>
+                  <a href={`/learn/articles/tag/${tag}`} class="stamp stamp-primary text-xs py-1 hover:opacity-80 transition-opacity" role="listitem">{tag}</a>
                 ))}
               </div>
               <a href={`/learn/articles/${featuredArticle.slug}`} class="btn btn-secondary" aria-label={`Read article: ${featuredArticle.title}`}>

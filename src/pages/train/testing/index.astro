@@ -1,0 +1,33 @@
+---
+import Layout from '@/components/Layout.astro';
+import Pill from '@/components/Pill.astro';
+import { tests } from '@/data/tests';
+import { site } from '@/data/site';
+
+const pageTitle = 'Testing';
+---
+
+<Layout title={pageTitle} description="Performance and milestone testing for ruckers" canonicalUrl={`${site.baseUrl}/train/testing`}>
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <div class="mb-8">
+      <span class="section-marker">///</span>
+      <h1 class="text-3xl font-heading text-secondary">TESTING</h1>
+      <p class="text-muted-foreground mt-3">Practice tests and milestone checks to measure progress and readiness for events or heavier loads.</p>
+    </div>
+
+    <div class="mb-6">
+      <h2 class="text-xl font-semibold mb-4">Available Tests</h2>
+      <div class="flex flex-wrap gap-3" role="list">
+        {tests.map((t) => (
+          <div role="listitem">
+            <Pill href={`/train/testing/${t.slug}`} label={t.title} ariaLabel={`Open test overview: ${t.title}`} />
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-10">
+      <p class="text-sm text-muted-foreground">Click a test to open its overview and suggested practice sessions.</p>
+    </div>
+  </div>
+</Layout>

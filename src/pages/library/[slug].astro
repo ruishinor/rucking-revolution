@@ -2,11 +2,15 @@
 import Layout from '@/components/Layout.astro';
 import { products } from '@/data/products';
 import { site } from '@/data/site';
+import ShareButtons from '@/components/ShareButtons.astro';
+
+// Toggle to control visibility of the lead book
+const SHOW_FEATURED_BOOK = import.meta.env.PUBLIC_SHOW_FEATURED_BOOK === 'true';
 
 const { slug } = Astro.params;
 
-// Find product by id (using slug as id) - only published products
-const publishedProducts = products.filter(p => p.published !== false);
+// Find product by id (using slug as id) - only published products and respect featured-book toggle
+const publishedProducts = products.filter(p => p.published !== false && (p.id !== 'ruck-your-way-out' || SHOW_FEATURED_BOOK) && (p.id !== 'your-first-ruck' || SHOW_FEATURED_BOOK));
 const product = publishedProducts.find(p => p.id === slug);
 
 // If product not found, redirect to library index
@@ -17,7 +21,8 @@ if (!product) {
 export async function getStaticPaths() {
   // Import products inside getStaticPaths to ensure correct context
   const { products } = await import('@/data/products');
-  const published = products.filter(p => p.published !== false);
+  const SHOW_FEATURED_BOOK = import.meta.env.PUBLIC_SHOW_FEATURED_BOOK === 'true';
+  const published = products.filter(p => p.published !== false && (p.id !== 'ruck-your-way-out' || SHOW_FEATURED_BOOK) && (p.id !== 'your-first-ruck' || SHOW_FEATURED_BOOK));
   return published.map(product => ({
     params: { slug: product.id },
     props: { product }
@@ -195,6 +200,10 @@ const productStructuredData = {
             </span>
           </div>
         </div>
+         <!-- Share buttons -->
+         <div class="mt-6">
+           <ShareButtons url={`${site.baseUrl}/library/${product.id}`} title={product.title} />
+         </div>
       </section>
     </div>
 

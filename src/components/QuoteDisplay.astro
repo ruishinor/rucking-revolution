@@ -23,7 +23,7 @@ const defaultQuote = quotes[Math.floor(Math.random() * quotes.length)];
     if (!quoteDisplay) return;
     
     try {
-      const quotes = JSON.parse(quoteDisplay.dataset.quotes || '[]');
+      const quotes = JSON.parse(((quoteDisplay as HTMLElement).dataset?.quotes) || '[]');
       if (quotes.length === 0) return;
       
       // Get random index, ensure it's different from current if possible

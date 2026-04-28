@@ -1,0 +1,75 @@
+---
+import Layout from '@/components/Layout.astro';
+import Pill from '@/components/Pill.astro';
+import ShareButtons from '@/components/ShareButtons.astro';
+import { internationalEvents } from '@/data/international-events';
+import { site } from '@/data/site';
+---
+
+<Layout title="International Events" description="Overview of recurring international rucking and long-distance walking events" canonicalUrl={`${site.baseUrl}/learn/knowledgebase/international-events`}>
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    <div class="mb-8">
+      <span class="section-marker">///</span>
+      <h1 class="text-3xl font-heading text-secondary bg-[#8a1e1e] text-white px-3 py-2 rounded inline-block">International Events</h1>
+      <p class="text-muted-foreground mt-3">A curated overview of regular international marches, trails and long-distance events relevant to ruckers and endurance walkers.</p>
+    </div>
+
+     <div class="flex flex-wrap gap-3 mb-8" role="list">
+      {internationalEvents.map((ev) => (
+        <div role="listitem">
+          <Pill 
+            href={`/learn/knowledgebase/international-events/${ev.id}`} 
+            label={ev.name} 
+            ariaLabel={`View event: ${ev.name}`} 
+          />
+        </div>
+      ))}
+    </div>
+
+    <div class="grid gap-6">
+      {internationalEvents.map((ev) => (
+        <article class="p-6 border border-border rounded-lg bg-surface">
+          <div class="mb-3">
+            <h2 class="text-xl font-heading text-secondary">
+              <a href={`/learn/knowledgebase/international-events/${ev.id}`} class="hover:underline">
+                {ev.name}
+              </a>
+            </h2>
+            <div class="flex flex-wrap gap-3 mt-1 text-xs text-muted-foreground">
+              {ev.typicalDates && <span>{ev.typicalDates}</span>}
+              {ev.difficulty && <span class="px-2 py-1 bg-gray-100 rounded">{ev.difficulty}</span>}
+              {ev.challengeGrade && <span class="px-2 py-1 bg-primary/10 text-primary rounded">{ev.challengeGrade}</span>}
+            </div>
+          </div>
+          <p class="text-sm text-muted-foreground">{ev.summary}</p>
+          <div class="mt-4 flex flex-wrap gap-3">
+            <a 
+              href={`/learn/knowledgebase/international-events/${ev.id}`} 
+              class="btn-military btn-military-secondary text-sm"
+              aria-label={`View details for ${ev.name}`}
+            >
+              VIEW DETAILS
+            </a>
+            {ev.link && (
+              <a 
+                href={ev.link} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="text-primary hover:underline text-sm mt-3 inline-block"
+                aria-label={`Visit official ${ev.name} website`}
+              >
+                Visit event website →
+              </a>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- Share Buttons -->
+    <div class="mt-8 bg-muted-50 rounded-lg p-6">
+      <h2 class="font-heading text-secondary mb-4 bg-[#8a1e1e] text-white px-3 py-2 rounded">SHARE THIS PAGE</h2>
+      <ShareButtons url={`${site.baseUrl}/learn/knowledgebase/international-events`} title="International Events" />
+    </div>
+  </div>
+</Layout>

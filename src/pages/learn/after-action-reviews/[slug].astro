@@ -10,6 +10,9 @@ if (!aar || !aar.approved) {
   return Astro.redirect('/learn/after-action-reviews/archive');
 }
 
+// Narrowed non-null assertion for template usage
+const aarAsserted = aar as any;
+
 export async function getStaticPaths() {
   return aarEntries
     .filter(aar => aar.approved)
@@ -31,11 +34,11 @@ function formatWeight(weight?: number, unit?: 'kg' | 'lbs'): string {
   return `${weight} ${unit || 'kg'}`;
 }
 
-function getParticipantsCount(): string {
-  const started = aar.participantsStarted;
-  const completed = aar.participantsCompleted;
-  const legacy = aar.participants;
-  
+function getParticipantsCount(a: any): string {
+  const started = a.participantsStarted;
+  const completed = a.participantsCompleted;
+  const legacy = a.participants;
+
   if (started !== undefined && completed !== undefined) {
     return `${completed}/${started}`;
   }
@@ -52,8 +55,8 @@ function getParticipantsCount(): string {
 }
 ---
 <Layout 
-  title={`${aar.title} | After Action Review`}
-  description={`After Action Review: ${aar.title} - ${aar.conditions}`}
+  title={`${aarAsserted.title} | After Action Review`}
+  description={`After Action Review: ${aarAsserted.title} - ${aarAsserted.conditions}`}
 >
   <div class="max-w-4xl mx-auto px-4 py-12">
     <!-- Back Navigation -->
@@ -71,61 +74,61 @@ function getParticipantsCount(): string {
 
     <!-- Header -->
     <header class="mb-8">
-      <div class="flex items-center gap-3 mb-4">
+          <div class="flex items-center gap-3 mb-4">
         <span class="bg-red-800 text-white text-sm font-medium px-3 py-1 rounded">
-          {new Date(aar.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+          {new Date(aarAsserted.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
         </span>
       </div>
-      <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{aar.title}</h1>
+      <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{aarAsserted.title}</h1>
       <p class="text-lg text-gray-600">
-        By <span class="font-medium text-red-800">{aar.author}</span>
+        By <span class="font-medium text-red-800">{aarAsserted.author}</span>
       </p>
     </header>
 
     <!-- Quick Stats - Optional Fields Grid -->
-    {(aar.distance !== undefined || aar.duration !== undefined || aar.individualWeight !== undefined || aar.load !== undefined || aar.participantsStarted !== undefined || aar.participantsCompleted !== undefined || aar.participants !== undefined || aar.classNumber !== undefined || aar.originalText !== undefined) && (
+    {(aarAsserted.distance !== undefined || aarAsserted.duration !== undefined || aarAsserted.individualWeight !== undefined || aarAsserted.load !== undefined || aarAsserted.participantsStarted !== undefined || aarAsserted.participantsCompleted !== undefined || aarAsserted.participants !== undefined || aarAsserted.classNumber !== undefined || aarAsserted.originalText !== undefined) && (
       <div class="bg-gray-50 rounded-lg p-6 mb-8">
-        {aar.originalText && (
+        {aarAsserted.originalText && (
           <div class="mb-4 pb-4 border-b border-gray-200">
             <p class="text-sm text-gray-500 mb-1">Original Notes</p>
-            <p class="text-gray-700 whitespace-pre-wrap" set:html={aar.originalText}></p>
+            <p class="text-gray-700 whitespace-pre-wrap" set:html={aarAsserted.originalText}></p>
           </div>
         )}
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {aar.classNumber && (
+          {aarAsserted.classNumber && (
             <div class="text-center">
               <p class="text-sm text-gray-500 mb-1">Class</p>
-              <p class="text-lg font-bold text-red-800">{aar.classNumber}</p>
+              <p class="text-lg font-bold text-red-800">{aarAsserted.classNumber}</p>
             </div>
           )}
-          {aar.participantsStarted !== undefined || aar.participantsCompleted !== undefined || aar.participants !== undefined ? (
+          {aarAsserted.participantsStarted !== undefined || aarAsserted.participantsCompleted !== undefined || aarAsserted.participants !== undefined ? (
             <div class="text-center">
               <p class="text-sm text-gray-500 mb-1">Participants</p>
-              <p class="text-2xl font-bold text-red-800">{getParticipantsCount()}</p>
+              <p class="text-2xl font-bold text-red-800">{getParticipantsCount(aarAsserted)}</p>
             </div>
           ) : null}
-          {aar.distance !== undefined && (
+          {aarAsserted.distance !== undefined && (
             <div class="text-center">
               <p class="text-sm text-gray-500 mb-1">Distance</p>
-              <p class="text-2xl font-bold text-red-800">{aar.distance}<span class="text-base font-normal text-gray-600"> km</span></p>
+              <p class="text-2xl font-bold text-red-800">{aarAsserted.distance}<span class="text-base font-normal text-gray-600"> km</span></p>
             </div>
           )}
-          {(aar.individualWeight !== undefined || aar.load !== undefined) && (
+          {(aarAsserted.individualWeight !== undefined || aarAsserted.load !== undefined) && (
             <div class="text-center">
               <p class="text-sm text-gray-500 mb-1">Weight</p>
-              <p class="text-2xl font-bold text-red-800">{formatWeight(aar.individualWeight || aar.load, aar.individualWeightUnit)}</p>
+              <p class="text-2xl font-bold text-red-800">{formatWeight(aarAsserted.individualWeight || aarAsserted.load, aarAsserted.individualWeightUnit)}</p>
             </div>
           )}
-          {aar.duration !== undefined && (
+          {aarAsserted.duration !== undefined && (
             <div class="text-center">
               <p class="text-sm text-gray-500 mb-1">Duration</p>
-              <p class="text-2xl font-bold text-red-800">{formatDuration(aar.duration)}</p>
+              <p class="text-2xl font-bold text-red-800">{formatDuration(aarAsserted.duration)}</p>
             </div>
           )}
         </div>
         <div class="mt-4 pt-4 border-t border-gray-200">
           <p class="text-gray-700">
-            <span class="font-medium">Conditions:</span> {aar.conditions}
+            <span class="font-medium">Conditions:</span> {aarAsserted.conditions}
           </p>
         </div>
       </div>
@@ -141,7 +144,7 @@ function getParticipantsCount(): string {
         </h2>
         <div class="bg-white border border-gray-200 rounded-lg p-6">
           <ul class="space-y-3">
-            {aar.planned.map((item, index) => (
+            {aarAsserted.planned.map((item: string, index: number) => (
               <li class="flex items-start">
                 <span class="text-red-800 font-medium mr-3">{index + 1}.</span>
                 <span class="text-gray-700">{item}</span>
@@ -159,7 +162,7 @@ function getParticipantsCount(): string {
         </h2>
         <div class="bg-white border border-gray-200 rounded-lg p-6">
           <ul class="space-y-3">
-            {aar.actual.map((item, index) => (
+            {aarAsserted.actual.map((item: string, index: number) => (
               <li class="flex items-start">
                 <span class="text-red-800 font-medium mr-3">{index + 1}.</span>
                 <span class="text-gray-700">{item}</span>
@@ -177,7 +180,7 @@ function getParticipantsCount(): string {
         </h2>
         <div class="bg-green-50 border border-green-200 rounded-lg p-6">
           <ul class="space-y-3">
-            {aar.whatWentWell.map((item, index) => (
+            {aarAsserted.whatWentWell.map((item: string, index: number) => (
               <li class="flex items-start">
                 <svg class="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -197,7 +200,7 @@ function getParticipantsCount(): string {
         </h2>
         <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
           <ul class="space-y-3">
-            {aar.improvements.map((item, index) => (
+            {aarAsserted.improvements.map((item: string, index: number) => (
               <li class="flex items-start">
                 <svg class="w-5 h-5 text-amber-600 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
@@ -217,7 +220,7 @@ function getParticipantsCount(): string {
         </h2>
         <div class="bg-primary/5 border border-primary/10 rounded-lg p-6">
           <ul class="space-y-3">
-            {aar.lessonsLearned.map((item, index) => (
+            {aarAsserted.lessonsLearned.map((item: string, index: number) => (
               <li class="flex items-start">
                 <span class="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center text-primary text-xs font-bold mr-3 flex-shrink-0">
                   {index + 1}

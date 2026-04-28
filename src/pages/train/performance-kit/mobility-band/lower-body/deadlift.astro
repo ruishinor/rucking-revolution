@@ -1,6 +1,6 @@
 ---
 import Layout from '@/components/Layout.astro';
-import MediaPlaceholder from '@/components/MediaPlaceholder.astro';
+import ExerciseTimer from '@/components/ExerciseTimer.astro';
 import { exercises } from '@/data/exercises.ts';
 
 const exercise = exercises.find(ex => ex.slug === 'deadlift');
@@ -46,14 +46,14 @@ const exercise = exercises.find(ex => ex.slug === 'deadlift');
       <div class="mb-12">
         <h2 class="text-2xl font-heading text-secondary mb-4 bg-[#8a1e1e] text-white px-3 py-2 rounded">EXERCISE DEMONSTRATION</h2>
         {exercise?.media.map((media) => (
-          <div class="mb-6">
+          <div class="mb-6 max-w-2xl mx-auto">
             {media.type === 'image' ? (
               <figure>
                 <img src={media.src} alt={media.alt} class="rounded-lg shadow-md w-full h-auto" loading="lazy" />
                 <figcaption class="mt-2 text-center text-sm text-muted">{media.alt}</figcaption>
               </figure>
             ) : (
-              <MediaPlaceholder alt="Illustration coming soon" />
+              <div class="aspect-w-16 aspect-h-9 max-w-2xl mx-auto bg-gray-100 rounded-lg flex items-center justify-center">`n                <span class="text-muted">Video demonstration coming soon</span>`n              </div>
             )}
           </div>
         ))}
@@ -76,6 +76,7 @@ const exercise = exercises.find(ex => ex.slug === 'deadlift');
           </div>
         </div>
       </div>
+            <ExerciseTimer exerciseName={exercise?.title} />
     </div>
   </div>
 </Layout>

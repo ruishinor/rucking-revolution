@@ -4,7 +4,7 @@ import { articles } from '@/data/articles';
 import Layout from '@/components/Layout.astro';
 import { existsSync } from 'node:fs';
 
-const publicAssetExists = (assetPath) =>
+const publicAssetExists = (assetPath: string) =>
   existsSync(new URL(`../../../public${assetPath}`, import.meta.url));
 
 const allTags = [...new Set(articles.flatMap(article => article.tags))];
@@ -109,7 +109,7 @@ const pageDescription = `Explore our collection of articles on rucking, leadersh
               <p class="text-muted-foreground mb-2 line-clamp-3 text-sm">{article.excerpt}</p>
               <div class="flex flex-wrap gap-3 text-xs font-mono text-muted-foreground mt-auto">
                 <span>BY {article.author.toUpperCase()}</span>
-                <time dateTime={article.date}>
+                <time datetime={article.date}>
                   {new Date(article.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                 </time>
                 <span>{article.readingTime} MIN READ</span>

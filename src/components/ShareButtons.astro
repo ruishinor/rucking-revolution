@@ -1,0 +1,60 @@
+---
+interface Props {
+  url: string;
+  title?: string;
+  text?: string;
+}
+const { url, title = '', text = '' } = Astro.props;
+
+const encodedUrl = encodeURIComponent(url);
+const encodedTitle = encodeURIComponent(title);
+const tweetUrl = `https://twitter.com/intent/tweet?text=${encodedTitle}%20${encodedUrl}`;
+const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
+const linkedinUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=${encodedTitle}`;
+const whatsappUrl = `https://api.whatsapp.com/send?text=${encodedTitle}%20${encodedUrl}`;
+const mailtoUrl = `mailto:?subject=${encodedTitle}&body=${encodedUrl}`;
+---
+
+<div class="flex items-center gap-3 rr-share-buttons" data-url={url} data-title={title} data-text={text}>
+  <a href={facebookUrl} target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" class="text-sm text-muted-foreground hover:text-primary">📘 Facebook</a>
+  <a href={tweetUrl} target="_blank" rel="noopener noreferrer" aria-label="Share on X (Twitter)" class="text-sm text-muted-foreground hover:text-primary">🐦 X</a>
+  <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" class="text-sm text-muted-foreground hover:text-primary">🔗 LinkedIn</a>
+  <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp" class="text-sm text-muted-foreground hover:text-primary">🟢 WhatsApp</a>
+  <a href={mailtoUrl} aria-label="Share via email" class="text-sm text-muted-foreground hover:text-primary">✉️ Email</a>
+  <button type="button" class="text-sm text-muted-foreground hover:text-primary">🔗 Share</button>
+</div>
+
+<script>
+  (function () {
+    if (typeof window === 'undefined') return;
+
+    function attach() {
+      document.querySelectorAll('.rr-share-buttons').forEach(function (el) {
+        if ((el as any).dataset.shareAttached) return;
+        var btn = el.querySelector('button');
+        if (!btn) return;
+        btn.addEventListener('click', function () {
+          var url = (el as HTMLElement).dataset.url || '';
+          var title = (el as HTMLElement).dataset.title || '';
+          var text = (el as HTMLElement).dataset.text || '';
+          if (navigator && (navigator as any).share) {
+            try { (navigator as any).share({ title: title, text: text, url: url }); } catch (e) {}
+          } else if (navigator && navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(url).then(function () { alert('Link copied to clipboard'); }).catch(function () { alert('Link copied to clipboard'); });
+          } else {
+            try { prompt('Copy this link', url); } catch (e) { /* ignore */ }
+          }
+        });
+        (el as any).dataset.shareAttached = '1';
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', attach);
+    } else {
+      attach();
+    }
+
+    document.addEventListener('astro:page-load', attach);
+  })();
+</script>

@@ -3,6 +3,10 @@ import Layout from '@/components/Layout.astro';
 import ProductCard from '@/components/ProductCard.astro';
 import { products } from '@/data/products';
 import { site } from '@/data/site';
+import Pill from '@/components/Pill.astro';
+
+// Toggle to control visibility of the lead book
+const SHOW_FEATURED_BOOK = import.meta.env.PUBLIC_SHOW_FEATURED_BOOK === 'true';
 
 // Get unique categories
 const categories = [
@@ -16,8 +20,8 @@ const categories = [
 // Get selected category from URL params
 const selectedCategory = Astro.url.searchParams.get('category') || 'all';
 
-// Filter products by category (only show published products)
-const publishedProducts = products.filter(p => p.published !== false);
+// Filter products by category (only show published products; respect featured-book toggle)
+const publishedProducts = products.filter(p => p.published !== false && (p.id !== 'your-first-ruck' || SHOW_FEATURED_BOOK));
 const filteredProducts = selectedCategory === 'all' 
   ? publishedProducts 
   : publishedProducts.filter(p => p.category === selectedCategory);
@@ -87,27 +91,16 @@ const libraryStructuredData = {
       <!-- Category Navigation -->
       <nav aria-label="Product categories" class="mb-8">
         <div class="flex flex-wrap justify-center gap-2" role="list">
-          {categories.map((cat) => (
-            <a 
-              href={`/library${cat.id === 'all' ? '' : `?category=${cat.id}`}`}
-              class:list={[
-                "px-4 py-2 rounded text-sm font-medium transition-all duration-200 border border-border card-border",
-                selectedCategory === cat.id 
-                  ? "bg-primary text-white border-primary" 
-                  : "bg-surface text-muted-foreground hover:border-primary hover:text-primary"
-              ]}
-              aria-current={selectedCategory === cat.id ? 'page' : undefined}
-              role="listitem"
-            >
-              <span class="mr-1" aria-hidden="true">{cat.icon}</span>
-              {cat.name}
-              {cat.id !== 'all' && (
-                <span class="ml-1 text-xs opacity-75">
-                  ({products.filter(p => p.category === cat.id).length})
-                </span>
-              )}
-            </a>
-          ))}
+          {categories.map((cat) => {
+            const href = `/library${cat.id === 'all' ? '' : `?category=${cat.id}`}`;
+            const count = cat.id !== 'all' ? ` (${publishedProducts.filter(p => p.category === cat.id).length})` : '';
+            const label = `${cat.icon} ${cat.name}${count}`;
+            return (
+              <div role="listitem">
+                <Pill href={href} label={label} active={selectedCategory === cat.id} ariaLabel={`Filter by ${cat.name}`} />
+              </div>
+            );
+          })}
         </div>
       </nav>
 

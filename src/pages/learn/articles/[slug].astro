@@ -5,6 +5,7 @@ import Layout from '@/components/Layout.astro';
 import { sanitizeArticleHtml } from '@/lib/security';
 import { marked } from 'marked';
 import { existsSync } from 'node:fs';
+import ShareButtons from '@/components/ShareButtons.astro';
 
 export async function getStaticPaths() {
   return articles.map(article => ({
@@ -20,7 +21,7 @@ if (!article) {
   return Astro.redirect('/404');
 }
 
-const renderedContent = sanitizeArticleHtml(marked.parse(article.body));
+const renderedContent = sanitizeArticleHtml(await Promise.resolve(marked.parse(article.body)));
 const heroImageExists = existsSync(new URL(`../../public${article.heroImage.src}`, import.meta.url));
 
 const relatedArticles = articles
@@ -110,7 +111,7 @@ const structuredData = {
         <div class="flex flex-wrap gap-4 text-sm font-mono text-muted-foreground mb-6">
           <span>BY {article.author.toUpperCase()}</span>
           <span>|</span>
-          <time dateTime={article.date}>{formattedDate}</time>
+          <time datetime={article.date}>{formattedDate}</time>
           <span>|</span>
           <span>{article.readingTime} MIN READ</span>
           {article.estimatedCaloriesBurned && (
@@ -133,17 +134,17 @@ const structuredData = {
           </div>
         </div>
         <div class="flex-1">
-          <h2 class="font-heading text-secondary mb-2">ABOUT THE AUTHOR</h2>
+          <h2 class="font-heading text-secondary mb-2 bg-[#8a1e1e] text-white px-3 py-2 rounded">ABOUT THE AUTHOR</h2>
           <p class="text-muted-foreground text-sm">
             {article.author} is a dedicated rucking enthusiast and contributor to Rucking Revolution.
           </p>
         </div>
       </section>
 
-      {/* Related Articles */}
-      {relatedArticles.length > 0 && (
-        <section class="mb-8">
-          <h2 class="font-heading text-secondary mb-4">RELATED ARTICLES</h2>
+        {/* Related Articles */}
+        {relatedArticles.length > 0 && (
+          <section class="mb-8">
+            <h2 class="font-heading text-secondary mb-4 bg-[#8a1e1e] text-white px-3 py-2 rounded">RELATED ARTICLES</h2>
           <div class="grid gap-4 md:grid-cols-3">
             {relatedArticles.map(related => (
               <article class="card-border flex flex-col h-full border border-border hover:border-primary transition-colors">
@@ -174,36 +175,11 @@ const structuredData = {
         </section>
       )}
 
-      {/* Share Links */}
-      <section class="mb-8 bg-muted-50 rounded-lg p-6">
-        <h2 class="font-heading text-secondary mb-4">SHARE THIS ARTICLE</h2>
-        <div class="flex flex-wrap gap-3">
-          <a 
-            href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(article.title)}&url=${encodeURIComponent(`${site.baseUrl}/learn/articles/${article.slug}`)}`} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            class="flex-1 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors text-center text-sm"
-          >
-            Twitter
-          </a>
-          <a 
-            href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`${site.baseUrl}/learn/articles/${article.slug}`)}`} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            class="flex-1 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors text-center text-sm"
-          >
-            Facebook
-          </a>
-          <a 
-            href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(`${site.baseUrl}/learn/articles/${article.slug}`)}&title=${encodeURIComponent(article.title)}`} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            class="flex-1 px-4 py-2 bg-blue-800 text-white rounded hover:bg-blue-900 transition-colors text-center text-sm"
-          >
-            LinkedIn
-          </a>
-        </div>
-      </section>
+        {/* Share Links (use shared component) */}
+        <section class="mb-8 bg-muted-50 rounded-lg p-6">
+          <h2 class="font-heading text-secondary mb-4 bg-[#8a1e1e] text-white px-3 py-2 rounded">SHARE THIS ARTICLE</h2>
+          <ShareButtons url={`${site.baseUrl}/learn/articles/${article.slug}`} title={article.title} />
+        </section>
     </div>
   </div>
 </Layout>

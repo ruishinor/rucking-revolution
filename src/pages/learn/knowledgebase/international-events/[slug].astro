@@ -1,0 +1,153 @@
+---
+import Layout from '@/components/Layout.astro';
+import Pill from '@/components/Pill.astro';
+import ShareButtons from '@/components/ShareButtons.astro';
+import { internationalEvents } from '@/data/international-events';
+import { site } from '@/data/site';
+
+export async function getStaticPaths() {
+  return internationalEvents.map(ev => ({
+    params: { slug: ev.id },
+    props: { event: ev }
+  }));
+}
+
+const { slug } = Astro.params;
+const event = internationalEvents.find(ev => ev.id === slug);
+
+if (!event) {
+  return Astro.redirect('/404');
+}
+
+const pageTitle = `${event.name} - International Events - Rucking Revolution`;
+const pageDescription = event.summary;
+---
+
+<Layout 
+  title={pageTitle}
+  description={pageDescription}
+  canonicalUrl={`${site.baseUrl}/learn/knowledgebase/international-events/${event.id}`}
+  openGraph={{
+    type: 'website',
+    url: `${site.baseUrl}/learn/knowledgebase/international-events/${event.id}`,
+    title: event.name,
+    description: event.summary
+  }}
+>
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    <nav class="mb-6">
+      <a href="/learn/knowledgebase/international-events" class="text-sm text-muted-foreground hover:underline">← Back to International Events</a>
+    </nav>
+
+    <div class="mb-8">
+      <span class="section-marker">///</span>
+      <h1 class="text-3xl font-heading text-secondary bg-[#8a1e1e] text-white px-3 py-2 rounded inline-block">{event.name}</h1>
+      <p class="text-muted-foreground mt-3">{event.summary}</p>
+    </div>
+
+    <div class="grid gap-8 md:grid-cols-2 mb-8">
+      <div class="space-y-4">
+        <div>
+          <h2 class="font-heading text-secondary mb-2">WHAT</h2>
+          <p class="text-muted-foreground text-sm">{event.what || event.summary}</p>
+        </div>
+
+        <div>
+          <h2 class="font-heading text-secondary mb-2">WHERE</h2>
+          <p class="text-muted-foreground text-sm">{event.where || 'Various locations'}</p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <h2 class="font-heading text-secondary mb-2">LENGTH</h2>
+            <p class="text-muted-foreground text-sm">{event.length || 'Varies'}</p>
+          </div>
+          <div>
+            <h2 class="font-heading text-secondary mb-2">DURATION</h2>
+            <p class="text-muted-foreground text-sm">{event.duration || 'Varies'}</p>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="font-heading text-secondary mb-2">CHALLENGE GRADE</h2>
+          <p class="text-lg font-bold text-primary">{event.challengeGrade || 'Not rated'}</p>
+          {event.challengeMethodology && (
+            <p class="text-muted-foreground text-sm mt-1">
+              <span class="font-medium">Methodology:</span> {event.challengeMethodology}
+            </p>
+          )}
+        </div>
+
+        {event.typicalDates && (
+          <div>
+            <h2 class="font-heading text-secondary mb-2">TYPICAL DATES</h2>
+            <p class="text-muted-foreground text-sm">{event.typicalDates}</p>
+          </div>
+        )}
+
+        {event.link && (
+          <div>
+            <a 
+              href={event.link} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="btn-military btn-military-primary inline-block"
+              aria-label={`Visit official ${event.name} website`}
+            >
+              VISIT OFFICIAL EVENT SITE →
+            </a>
+          </div>
+        )}
+      </div>
+
+      <div>
+        <h2 class="font-heading text-secondary mb-4">LOCATION MAP</h2>
+        {event.coordinates ? (
+          <div class="aspect-video rounded-lg overflow-hidden border border-border">
+            <iframe
+              src={`https://www.openstreetmap.org/export/embed.html?bbox=${event.coordinates.lng-0.5}%2C${event.coordinates.lat-0.5}%2C${event.coordinates.lng+0.5}%2C${event.coordinates.lat+0.5}&layer=mapnik&marker=${event.coordinates.lat}%2C${event.coordinates.lng}`}
+              class="w-full h-full border-0"
+              loading="lazy"
+              title={`Map showing location of ${event.name}`}
+              aria-label={`Interactive map showing location of ${event.name}`}
+            ></iframe>
+          </div>
+        ) : (
+          <div class="aspect-video rounded-lg bg-muted-50 flex items-center justify-center">
+            <p class="text-muted-foreground text-sm">Map not available for this event</p>
+          </div>
+        )}
+        <p class="text-xs text-muted-foreground mt-2">
+          Map data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer" class="hover:underline">OpenStreetMap</a> contributors
+        </p>
+      </div>
+    </div>
+
+    <!-- Share Buttons -->
+    <div class="mt-8 bg-muted-50 rounded-lg p-6">
+      <h2 class="font-heading text-secondary mb-4 bg-[#8a1e1e] text-white px-3 py-2 rounded">SHARE THIS EVENT</h2>
+      <ShareButtons url={`${site.baseUrl}/learn/knowledgebase/international-events/${event.id}`} title={event.name} />
+    </div>
+  </div>
+</Layout>
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "{event.name}",
+    "description": "{event.summary}",
+    "location": {
+      "@type": "Place",
+      "name": "{event.where || 'Various locations'}",
+      "address": "{event.where || 'Various locations'}"
+    },
+    "url": "{site.baseUrl}/learn/knowledgebase/international-events/{event.id}",
+    "typicalAgeRange": "{event.difficulty || 'Varies'}",
+    "offers": {
+      "@type": "Offer",
+      "url": "{event.link || '#'}",
+      "availability": "https://schema.org/InStock"
+    }
+  }
+</script>

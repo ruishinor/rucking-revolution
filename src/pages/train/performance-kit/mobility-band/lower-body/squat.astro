@@ -1,6 +1,7 @@
 ---
 import Layout from '@/components/Layout.astro';
 import MediaPlaceholder from '@/components/MediaPlaceholder.astro';
+import ExerciseTimer from '@/components/ExerciseTimer.astro';
 import { exercises } from '@/data/exercises.ts';
 
 const exercise = exercises.find(ex => ex.slug === 'squat');
@@ -59,23 +60,9 @@ const exercise = exercises.find(ex => ex.slug === 'squat');
         ))}
       </div>
 
-      <div class="pt-6 border-t border-border">
-        <h2 class="text-xl font-heading text-secondary mb-4 bg-[#8a1e1e] text-white px-3 py-2 rounded">TRACK YOUR PROGRESS</h2>
-        <div class="space-y-3">
-          <div class="flex items-center gap-3">
-            <span class="label-mono w-16">SETS</span>
-            <input type="number" min="1" value="3" class="w-20 px-2 py-1 border border-border rounded bg-background" />
-          </div>
-          <div class="flex items-center gap-3">
-            <span class="label-mono w-16">REPS</span>
-            <input type="number" min="1" value="12" class="w-20 px-2 py-1 border border-border rounded bg-background" />
-          </div>
-          <div class="flex items-center gap-3">
-            <span class="label-mono w-16">REST</span>
-            <input type="number" min="0" value="90" class="w-20 px-2 py-1 border border-border rounded bg-background" /> <span class="text-muted-foreground text-sm">seconds</span>
-          </div>
-        </div>
-      </div>
+       <div class="pt-6 border-t border-border">
+         <ExerciseTimer exerciseName={exercise?.title || 'Squat'} />
+       </div>
     </div>
   </div>
 </Layout>

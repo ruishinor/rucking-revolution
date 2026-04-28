@@ -1,6 +1,7 @@
 ---
 import Layout from '@/components/Layout.astro';
 import MediaPlaceholder from '@/components/MediaPlaceholder.astro';
+import ExerciseTimer from '@/components/ExerciseTimer.astro';
 ---
 <Layout title="Release Ball - Performance Kit" description="Myofascial release techniques using a lacrosse or massage ball">
   <div class="bg-surface py-16">
@@ -32,17 +33,27 @@ import MediaPlaceholder from '@/components/MediaPlaceholder.astro';
         </div>
       </div>
 
-      <div class="mb-12">
-        <h2 class="text-2xl font-heading text-secondary mb-4 bg-[#8a1e1e] text-white px-3 py-2 rounded">TECHNIQUE</h2>
-        <ol class="list-decimal list-inside space-y-3 text-muted-foreground">
-          <li>Place the ball on the target area (e.g., under your glute while sitting or lying down).</li>
-          <li>Apply gentle pressure by leaning into the ball, using your body weight.</li>
-          <li>Slowly roll the ball to search for tender spots (trigger points).</li>
-          <li>Once you find a tender spot, hold pressure on it for 20-30 seconds or until the pain decreases by about 50%.</li>
-          <li>Move slowly to the next spot and repeat.</li>
-          <li>Breathe deeply and relax into the pressure.</li>
-        </ol>
-      </div>
+       <div class="mb-12">
+         <h2 class="text-2xl font-heading text-secondary mb-4 bg-[#8a1e1e] text-white px-3 py-2 rounded">TECHNIQUE</h2>
+         <ol class="list-decimal list-inside space-y-3 text-muted-foreground">
+           <li>Place the ball on the target area (e.g., under your glute while sitting or lying down).</li>
+           <li>Apply gentle pressure by leaning into the ball, using your body weight.</li>
+           <li>Slowly roll the ball to search for tender spots (trigger points).</li>
+           <li>Once you find a tender spot, hold pressure on it for 20-30 seconds or until the pain decreases by about 50%.</li>
+           <li>Move slowly to the next spot and repeat.</li>
+           <li>Breathe deeply and relax into the pressure.</li>
+         </ol>
+       </div>
+
+       <div class="mb-12">
+         <h2 class="text-2xl font-heading text-secondary mb-4 bg-[#8a1e1e] text-white px-3 py-2 rounded">PROGRESSION</h2>
+         <ol class="list-decimal list-inside space-y-2 text-muted-foreground">
+           <li>Start with lighter pressure, gradually increase as tolerance builds.</li>
+           <li>Target larger muscle groups first (glutes, quads) before smaller areas.</li>
+           <li>Add movement while maintaining pressure (e.g., bend/extend knee while rolling quad).</li>
+           <li>Combine with dynamic stretching after release work.</li>
+         </ol>
+       </div>
 
       <div class="mb-12">
         <h2 class="text-2xl font-heading text-secondary mb-4 bg-[#8a1e1e] text-white px-3 py-2 rounded">EXERCISE DEMONSTRATIONS</h2>
@@ -81,15 +92,19 @@ import MediaPlaceholder from '@/components/MediaPlaceholder.astro';
         </div>
       </div>
 
-      <div class="pt-6 border-t border-border">
-        <h2 class="text-xl font-heading text-secondary mb-4 bg-[#8a1e1e] text-white px-3 py-2 rounded">SAFETY TIPS</h2>
-        <ul class="list-disc list-inside space-y-2 text-muted-foreground">
-          <li>Avoid rolling directly on bones or joints.</li>
-          <li>Do not roll on injured or inflamed areas without professional guidance.</li>
-          <li>If you feel sharp or shooting pain, stop immediately.</li>
-          <li>Stay hydrated after SMR to help flush out toxins.</li>
-        </ul>
-      </div>
+       <div class="pt-6 border-t border-border">
+         <h2 class="text-xl font-heading text-secondary mb-4 bg-[#8a1e1e] text-white px-3 py-2 rounded">SAFETY TIPS</h2>
+         <ul class="list-disc list-inside space-y-2 text-muted-foreground">
+           <li>Avoid rolling directly on bones or joints.</li>
+           <li>Do not roll on injured or inflamed areas without professional guidance.</li>
+           <li>If you feel sharp or shooting pain, stop immediately.</li>
+           <li>Stay hydrated after SMR to help flush out toxins.</li>
+         </ul>
+       </div>
+
+       <div class="pt-6 border-t border-border">
+         <ExerciseTimer exerciseName="Release Ball" />
+       </div>
     </div>
   </div>
 </Layout>

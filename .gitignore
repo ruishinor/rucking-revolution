@@ -72,4 +72,15 @@ secrets.json
 .upstash/
 README.md
 SECURITY_CHECKLIST.md
+instructions-*.md
+progression-log.md
+accessibility-*.txt
+
+# Development tools outputs
+*.nmr
+*.swo
+*.swn
+*~
+.nerdctl*
+dev.Dockerfile*
 

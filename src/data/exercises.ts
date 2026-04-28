@@ -23,7 +23,7 @@ export const exercises: Exercise[] = [
     title: 'Push-Up',
     difficulty: 'beginner',
     equipment: ['bodyweight'],
-    targetMuscles: ['chest', 'shoulders', 'triceps', 'core'],
+    targetMuscles: ['Chest', 'Shoulders', 'Triceps', 'Core'],
     steps: [
       'Start in plank position with hands shoulder-width apart',
       'Keep body in straight line from head to heels',
@@ -61,8 +61,8 @@ export const exercises: Exercise[] = [
     slug: 'pull-up',
     title: 'Pull-Up',
     difficulty: 'intermediate',
-    equipment: ['pull-up bar'],
-    targetMuscles: ['back', 'biceps', 'shoulders', 'core'],
+    equipment: ['Pull-up bar'],
+    targetMuscles: ['Back', 'Biceps', 'Shoulders', 'Core'],
     steps: [
       'Grip pull-up bar with palms facing away, slightly wider than shoulder-width',
       'Hang with arms fully extended (dead hang)',
@@ -100,8 +100,8 @@ export const exercises: Exercise[] = [
     slug: 'overhead-press',
     title: 'Overhead Press',
     difficulty: 'beginner',
-    equipment: ['barbell', 'dumbbells', 'kettlebells'],
-    targetMuscles: ['shoulders', 'triceps', 'upper chest', 'core'],
+    equipment: ['Barbell', 'Dumbbells', 'Kettlebells'],
+    targetMuscles: ['Shoulders', 'Triceps', 'Upper chest', 'Core'],
     steps: [
       'Stand with feet shoulder-width apart, core engaged',
       'Hold weight at shoulder level with palms facing forward',
@@ -139,8 +139,8 @@ export const exercises: Exercise[] = [
     slug: 'bent-over-row',
     title: 'Bent-Over Row',
     difficulty: 'beginner',
-    equipment: ['barbell', 'dumbbells', 'kettlebells'],
-    targetMuscles: ['back', 'biceps', 'shoulders', 'core'],
+    equipment: ['Barbell', 'Dumbbells', 'Kettlebells'],
+    targetMuscles: ['Back', 'Biceps', 'Shoulders', 'Core'],
     steps: [
       'Stand with feet hip-width apart, hinge at hips',
       'Lower torso until nearly parallel to floor, back flat',
@@ -178,8 +178,8 @@ export const exercises: Exercise[] = [
     slug: 'dips',
     title: 'Dips',
     difficulty: 'intermediate',
-    equipment: ['parallel bars', 'dip station', 'bench'],
-    targetMuscles: ['chest', 'triceps', 'shoulders'],
+    equipment: ['Parallel bars', 'Dip station', 'Bench'],
+    targetMuscles: ['Chest', 'Triceps', 'Shoulders'],
     steps: [
       'Support yourself on parallel bars with arms straight',
       'Lean forward slightly to emphasize chest (or stay upright for triceps)',
@@ -218,8 +218,8 @@ export const exercises: Exercise[] = [
     slug: 'plank',
     title: 'Plank',
     difficulty: 'beginner',
-    equipment: ['bodyweight'],
-    targetMuscles: ['core', 'shoulders', 'glutes'],
+    equipment: ['Bodyweight'],
+    targetMuscles: ['Core', 'Shoulders', 'Glutes'],
     steps: [
       'Start in push-up position or on forearms',
       'Elbows under shoulders if on forearms, hands under shoulders if on hands',

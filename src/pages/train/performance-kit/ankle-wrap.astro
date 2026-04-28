@@ -1,5 +1,6 @@
 ---
 import Layout from '@/components/Layout.astro';
+import ExerciseTimer from '@/components/ExerciseTimer.astro';
 ---
 <Layout title="Ankle Wrap - Performance Kit" description="Stability and mobility exercises using ankle wraps or resistance bands">
   <div class="bg-surface py-16">
@@ -110,15 +111,19 @@ import Layout from '@/components/Layout.astro';
         </ol>
       </div>
 
-      <div class="pt-6 border-t border-border">
-        <h2 class="text-xl font-heading text-secondary mb-4">SAFETY TIPS</h2>
-        <ul class="list-disc list-inside space-y-2 text-muted-foreground">
-          <li>Start with light resistance and gradually increase as strength improves</li>
-          <li>Perform movements slowly and with control</li>
-          <li>If you feel pain (not to be confused with muscle fatigue), stop the exercise</li>
-          <li>Consult with a healthcare professional if you have existing ankle injuries</li>
-        </ul>
-      </div>
-    </div>
-  </div>
+       <div class="pt-6 border-t border-border">
+         <h2 class="text-xl font-heading text-secondary mb-4 bg-[#8a1e1e] text-white px-3 py-2 rounded">SAFETY TIPS</h2>
+         <ul class="list-disc list-inside space-y-2 text-muted-foreground">
+           <li>Start with light resistance and gradually increase as strength improves</li>
+           <li>Perform movements slowly and with control</li>
+           <li>If you feel pain (not to be confused with muscle fatigue), stop the exercise</li>
+           <li>Consult with a healthcare professional if you have existing ankle injuries</li>
+         </ul>
+       </div>
+
+       <div class="pt-6 border-t border-border">
+         <ExerciseTimer exerciseName="Ankle Wrap" />
+       </div>
+     </div>
+   </div>
 </Layout>

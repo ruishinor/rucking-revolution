@@ -1,0 +1,58 @@
+---
+import Layout from '@/components/Layout.astro';
+import ShareButtons from '@/components/ShareButtons.astro';
+import { recommendedReading } from '@/data/recommended-reading';
+import { site } from '@/data/site';
+---
+
+<Layout title="Recommended Reading" description="Curated book recommendations for rucking, endurance, and leadership" canonicalUrl={`${site.baseUrl}/learn/knowledgebase/recommended-reading`}>
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    <div class="mb-8">
+      <span class="section-marker">///</span>
+      <h1 class="text-3xl font-heading text-secondary">RECOMMENDED READING</h1>
+      <p class="text-muted-foreground mt-3">Curated books to deepen your knowledge of rucking, endurance, and leadership.</p>
+    </div>
+
+    <div class="grid gap-8">
+      {recommendedReading.map((book) => (
+        <article class="p-6 border border-border rounded-lg grid md:grid-cols-3 gap-6 items-start">
+          <div class="md:col-span-1">
+            {book.isbn ? (
+              <img 
+                src={`https://covers.openlibrary.org/b/isbn/${book.isbn}-L.jpg`} 
+                alt={`Cover: ${book.title}`} 
+                class="w-1/3 rounded shadow-sm" 
+                loading="lazy"
+                onerror={`this.onerror=null;this.src='${book.cover || ''}'; if(!this.src) this.parentElement.innerHTML='<div class="w-1/3 h-21 bg-gray-100 rounded flex items-center justify-center text-4xl">📚</div>'"`}
+              />
+            ) : book.cover ? (
+              <img src={book.cover} alt={`Cover: ${book.title}`} class="w-1/3 rounded shadow-sm" loading="lazy" />
+            ) : (
+              <div class="w-1/3 h-21 bg-gray-100 rounded flex items-center justify-center text-4xl">📚</div>
+            )}
+          </div>
+          <div class="md:col-span-2">
+            <h2 class="text-2xl font-heading text-secondary mb-2 bg-[#8a1e1e] text-white px-3 py-2 rounded">{book.title}</h2>
+            <p class="text-sm text-muted-foreground mb-4">By {book.author}</p>
+            <p class="text-base text-muted-foreground mb-6">{book.description}</p>
+            {book.affiliateLink && (
+              <a href={book.affiliateLink} target="_blank" rel="noopener noreferrer" class="bg-primary text-white px-5 py-3 rounded-md inline-block hover:opacity-90 transition-opacity">
+                Buy on Amazon
+              </a>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- Share Buttons -->
+    <div class="mt-8 bg-muted-50 rounded-lg p-6">
+      <h2 class="font-heading text-secondary mb-4 bg-[#8a1e1e] text-white px-3 py-2 rounded">SHARE THIS PAGE</h2>
+      <ShareButtons url={`${site.baseUrl}/learn/knowledgebase/recommended-reading`} title="Recommended Reading" />
+    </div>
+
+    <div class="mt-8 text-xs text-muted-foreground bg-gray-50 p-3 rounded">
+      <strong>Affiliate disclosure:</strong> This page may contain affiliate links. If you purchase through an affiliate link we may earn a small commission at no extra cost to you. We only recommend products we trust.
+    </div>
+  </div>
+</Layout>

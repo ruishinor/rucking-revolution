@@ -1,0 +1,66 @@
+---
+import Layout from '@/components/Layout.astro';
+import ExerciseTimer from '@/components/ExerciseTimer.astro';
+import { exercises } from '@/data/exercises.ts';
+
+const exercise = exercises.find(ex => ex.slug === 'calf-raise');
+---
+<Layout title={`${exercise?.title} - Performance Kit`} description={`Learn proper form for ${exercise?.title}`}>
+  <div class="bg-surface py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-heading text-secondary mb-4">{exercise?.title?.toUpperCase()}</h1>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <div>
+          <h2 class="text-2xl font-heading text-secondary mb-4 bg-[#8a1e1e] text-white px-3 py-2 rounded">PURPOSE</h2>
+          <p class="text-muted-foreground mb-4">{exercise?.targetMuscles?.join(', ')} strengthening through calf raises builds lower leg stability and push-off power for rucking.</p>
+          <p class="text-muted">Primary muscles: {exercise?.targetMuscles?.join(', ')}</p>
+          <p class="text-muted">Equipment: {exercise?.equipment?.join(', ')}</p>
+          <p class="text-muted">Difficulty: {exercise?.difficulty}</p>
+        </div>
+        <div>
+          <h2 class="text-2xl font-heading text-secondary mb-4 bg-[#8a1e1e] text-white px-3 py-2 rounded">PROGRESSIONS</h2>
+          <ol class="list-decimal list-inside space-y-2 text-muted-foreground">
+            {exercise?.progressions?.map((p) => (<li>{p}</li>))}
+          </ol>
+        </div>
+      </div>
+
+      <div class="mb-12">
+        <h2 class="text-2xl font-heading text-secondary mb-4 bg-[#8a1e1e] text-white px-3 py-2 rounded">STEP-BY-STEP TECHNIQUE</h2>
+        <ol class="list-decimal list-inside space-y-3 text-muted-foreground">
+          {exercise?.steps?.map((step) => (<li>{step}</li>))}
+        </ol>
+      </div>
+
+      <div class="mb-12">
+        <h2 class="text-2xl font-heading text-secondary mb-4 bg-[#8a1e1e] text-white px-3 py-2 rounded">COMMON MISTAKES</h2>
+        <ul class="list-disc list-inside space-y-2 text-muted-foreground">
+          {exercise?.mistakes?.map((m) => (<li>{m}</li>))}
+        </ul>
+      </div>
+
+      <div class="mb-12">
+        <h2 class="text-2xl font-heading text-secondary mb-4 bg-[#8a1e1e] text-white px-3 py-2 rounded">EXERCISE DEMONSTRATION</h2>
+        {exercise?.media?.map((media) => (
+          <div class="mb-6 max-w-2xl mx-auto">
+            {media.type === 'image' ? (
+              <figure>
+                <img src={media.src} alt={media.alt} class="rounded-lg shadow-md w-full h-auto" loading="lazy" />
+                <figcaption class="mt-2 text-center text-sm text-muted">{media.alt}</figcaption>
+              </figure>
+            ) : (
+              <div class="aspect-w-16 aspect-h-9 bg-gray-100 rounded-lg flex items-center justify-center">
+                <span class="text-muted">Video demonstration coming soon</span>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <ExerciseTimer exerciseName={exercise?.title} />
+    </div>
+  </div>
+</Layout>

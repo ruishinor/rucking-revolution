@@ -23,9 +23,23 @@ export interface Product {
 }
 
 export const products: Product[] = [
-  // Lead Book - Your First Ruck (published)
-  {
-    id: 'your-first-ruck',
+   // First Book - Ruck Your Way Out (incomplete, not published)
+   {
+     id: 'ruck-your-way-out',
+     sku: 'RR-BOOK-003',
+     title: 'Ruck Your Way Out',
+     description: 'The definitive guide to breaking through rucking plateaus and achieving peak performance. (Incomplete: pending final edits and payment link setup)',
+     category: 'books',
+     priceEUR: 0, // TBD
+     files: [], // Incomplete
+     purchaseLink: '#', // TBD: payment links not configured
+     previewImages: [], // Incomplete
+     whatYouLearn: [], // Incomplete
+     published: false
+   },
+   // Lead Book - Your First Ruck (published)
+   {
+     id: 'your-first-ruck',
     sku: 'RR-EBOOK-001',
     title: 'Your First Ruck',
     description: 'A 30-day beginner plan for strength, stamina, and consistency. Start simple, build strength, stay consistent.',

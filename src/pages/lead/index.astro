@@ -1,5 +1,6 @@
 ---
 import Layout from '@/components/Layout.astro';
+const SHOW_CREW_TACTICS = import.meta.env.PUBLIC_SHOW_CREW_TACTICS === 'true';
 ---
 <Layout title="Lead - Rucking Revolution" description="Leadership, crew tactics, and community building for rucking." currentPage="/lead">
   <div class="bg-surface py-16">
@@ -15,16 +16,30 @@ import Layout from '@/components/Layout.astro';
       <section class="mb-12">
         <h2 class="text-2xl font-heading text-secondary mb-6">LEADERSHIP & COMMUNITY</h2>
         <div class="grid gap-6 md:grid-cols-2">
-          <a href="/lead/ruck-clubs" class="block p-6 border border-border card-border hover:border-primary transition-colors">
-            <h3 class="text-xl font-heading text-secondary mb-2">RUCK CLUBS</h3>
+          <a href="/lead/ruck-clubs" class="group block p-6 border border-border card-border hover:border-primary hover:text-primary transition-colors">
+            <h3 class="text-xl font-heading text-secondary mb-2 group-hover:text-primary">RUCK CLUBS</h3>
             <p class="text-muted-foreground text-sm">
               Resources for starting and running ruck crews.
             </p>
           </a>
-          <a href="/lead/crew-tactics" class="block p-6 border border-border card-border hover:border-primary transition-colors">
-            <h3 class="text-xl font-heading text-secondary mb-2">CREW TACTICS</h3>
+          {SHOW_CREW_TACTICS && (
+            <a href="/lead/crew-tactics" class="group block p-6 border border-border card-border hover:border-primary hover:text-primary transition-colors">
+              <h3 class="text-xl font-heading text-secondary mb-2 group-hover:text-primary">CREW TACTICS</h3>
+              <p class="text-muted-foreground text-sm">
+                Leadership tactic cards and generator for rucks.
+              </p>
+            </a>
+          )}
+        </div>
+      </section>
+
+      <section class="mb-12">
+        <h2 class="text-2xl font-heading text-secondary mb-6">SOCIAL MEDIA</h2>
+        <div class="grid gap-6 md:grid-cols-1">
+          <a href="/lead/ruck-clubs-on-social-media" class="block p-6 border border-border card-border hover:border-primary hover:text-primary transition-colors">
+            <h3 class="text-xl font-heading text-secondary mb-2 group-hover:text-primary">RUCK CLUBS ON SOCIAL MEDIA</h3>
             <p class="text-muted-foreground text-sm">
-              Leadership tactic cards and generator for rucks.
+              Find ruck clubs and communities on Facebook, Instagram, and other platforms.
             </p>
           </a>
         </div>

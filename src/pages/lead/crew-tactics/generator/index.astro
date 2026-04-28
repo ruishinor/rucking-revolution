@@ -1,6 +1,11 @@
 ---
 import Layout from '@/components/Layout.astro';
 import CardGenerator from '@/components/CardGenerator.astro';
+
+const SHOW_CREW_TACTICS = import.meta.env.PUBLIC_SHOW_CREW_TACTICS === 'true';
+if (!SHOW_CREW_TACTICS) {
+  return Astro.redirect('/lead');
+}
 ---
 
 <Layout 
