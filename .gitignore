@@ -75,6 +75,11 @@ SECURITY_CHECKLIST.md
 instructions-*.md
 progression-log.md
 accessibility-*.txt
+.maintenance-mode.md
+localhost_2026-04-27_02-00-19.report.html
+filelist.txt
+maintenance.html
+test/
 
 # Development tools outputs
 *.nmr
