@@ -50,8 +50,8 @@ const libraryStructuredData = {
         "image": product.previewImages?.[0]?.src ? `${site.baseUrl}${product.previewImages[0].src}` : undefined,
         "offers": {
           "@type": "Offer",
-          "price": product.priceEUR,
-          "priceCurrency": "EUR"
+          "price": product.priceUSD || product.priceEUR,
+          "priceCurrency": product.priceUSD ? "USD" : "EUR"
         }
       }
     }))

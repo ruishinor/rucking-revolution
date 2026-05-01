@@ -5,6 +5,7 @@ export interface Product {
   description: string;
   category: 'books' | 'guides' | 'card-decks' | 'training-materials' | 'workout-packs';
   priceEUR: number;
+  priceUSD?: number;
   files: {
     name: string;
     src: string;
@@ -24,19 +25,105 @@ export interface Product {
 
 export const products: Product[] = [
    // First Book - Ruck Your Way Out (incomplete, not published)
-   {
-     id: 'ruck-your-way-out',
-     sku: 'RR-BOOK-003',
-     title: 'Ruck Your Way Out',
-     description: 'The definitive guide to breaking through rucking plateaus and achieving peak performance. (Incomplete: pending final edits and payment link setup)',
-     category: 'books',
-     priceEUR: 0, // TBD
-     files: [], // Incomplete
-     purchaseLink: '#', // TBD: payment links not configured
-     previewImages: [], // Incomplete
-     whatYouLearn: [], // Incomplete
-     published: false
-   },
+    {
+      id: 'ruck-your-way-out',
+      sku: 'RR-BOOK-003',
+      title: 'Ruck Your Way Out: How Walking with Weight Lifts Loneliness, Builds Resilience, and Connects You to People Who Actually Show Up',
+      description: `## What's Inside (132 pages, 12 chapters, 4 appendices)
+
+### The Science & Practice
+• **Chapter 1-5:** Why loneliness is a physical health crisis — and how rucking addresses it
+• **Chapter 6-8:** Your first 12 weeks: week-by-week progression + how to build a ruck club
+• **Chapter 9-11:** Rucking for mental health, grief, and anxiety — going deeper
+
+### Real Stories
+• Three composite stories from the rucking community: the woman who rucked through burnout, the man who moved to a new city, the older woman returning to activity
+
+### Practical Resources
+• **Appendix A:** 12-week starter programme (Foundation → Extension → Building → Community → Consolidation → Milestone)
+• **Appendix B:** Weight management & safety guidelines
+• **Appendix C:** Directory of ruck clubs + how to start your own
+• **Appendix D:** 16 key research references (WHO, Surgeon General, Harvard, Oxford)
+
+---
+
+## You'll Discover:
+
+✓ Why rucking burns 2-3x more calories than walking (without running's joint impact)
+✓ How shared physical effort creates irreversible trust (the "military bond" made civilian)
+✓ The 4kg rule: why starting lighter than you think works better
+✓ How ruck clubs create unconditional belonging — no fitness required
+✓ Why "showing up" beats "working out" for building identity
+
+---
+
+## Who This Is For
+
+→ People feeling socially disconnected despite being "connected" online
+→ Anyone who's tried gyms, apps, and clubs without finding real community
+→ Those returning to fitness after 30, 50, or a health scare
+→ Mental health practitioners looking for adjunct therapies
+→ Anyone who wants to start a ruck club in their city
+
+---
+
+## What You Get
+
+📖 **Full PDF ebook** (132 pages, print-optimized)
+📱 **EPUB & MOBI formats** for any device
+📋 **Printable 12-week checklist** (separate PDF)
+🗺️ **Ruck club starter kit** (outreach templates + meeting structure)
+
+---
+
+*"Loneliness is not a character flaw. If anything, it is a biological alarm system which has evolved to tell you that something your species needs is missing."* — From Chapter 1`,
+      category: 'books',
+      priceEUR: 15.5,
+      priceUSD: 17,
+      files: [
+        {
+          name: 'Ruck Your Way Out - PDF',
+          src: 'https://ruckingrevolution.gumroad.com/l/ruck-your-way-out',
+          type: 'pdf',
+          size: '132 pages'
+        },
+        {
+          name: 'Ruck Your Way Out - EPUB',
+          src: 'https://ruckingrevolution.gumroad.com/l/ruck-your-way-out',
+          type: 'epub',
+          size: '132 pages'
+        },
+        {
+          name: 'Ruck Your Way Out - MOBI',
+          src: 'https://ruckingrevolution.gumroad.com/l/ruck-your-way-out',
+          type: 'mobi',
+          size: '132 pages'
+        }
+      ],
+      purchaseLink: 'https://ruckingrevolution.gumroad.com/l/ruck-your-way-out',
+      previewImages: [
+        {
+          src: '/brand-build/Rucking Revolution Design System/assets/products/rywo-c-fieldnote.svg',
+          alt: 'Cover of Ruck Your Way Out field guide showing title and subtitle'
+        },
+        {
+          src: '/brand-build/Rucking Revolution Design System/assets/products/rywo-a-companions.svg',
+          alt: 'Interior spread showing community stories and ruck club blueprints'
+        },
+        {
+          src: '/brand-build/Rucking Revolution Design System/assets/products/rywo-b-weight.svg',
+          alt: 'Interior spread showing weight progression and safety guidelines'
+        }
+      ],
+      whatYouLearn: [
+        'Why rucking burns 2-3x more calories than walking (without running\'s joint impact)',
+        'How shared physical effort creates irreversible trust (the "military bond" made civilian)',
+        'The 4kg rule: why starting lighter than you think works better',
+        'How ruck clubs create unconditional belonging — no fitness required',
+        'Why "showing up" beats "working out" for building identity'
+      ],
+      published: false
+    },
    // Lead Book - Your First Ruck (published)
    {
      id: 'your-first-ruck',
