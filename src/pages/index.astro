@@ -23,7 +23,8 @@ const latestArticles = [...articles]
 const featuredArticle = articles[0];
 
 // Get first comic for preview (respect feature toggle)
-const featuredComic = SHOW_COMICS ? comics[0] : null;
+const featuredComic = comics[0];
+const featuredComicHref = SHOW_COMICS && featuredComic ? `/red-rucker/${featuredComic.episode}` : '/red-rucker';
 
 // Get lead book product for Product Teaser (only when toggle enabled)
 // Default to "Ruck Your Way Out" (correct first book, currently incomplete)
@@ -375,7 +376,7 @@ const pillars = [
           </a>
         </div>
         {featuredComic && (
-          <a href={`/red-rucker/${featuredComic.episode}`} class="block group">
+          <a href={featuredComicHref} class="block group">
             <div class="aspect-[4/3] bg-panel mb-4 overflow-hidden">
               <img 
                 src={featuredComic.image} 

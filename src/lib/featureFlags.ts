@@ -9,7 +9,7 @@ function readFlag(value: string | undefined, fallback = false) {
 }
 
 export const featureFlags = {
-  showComics: readFlag(process.env.PUBLIC_SHOW_COMICS, true),
+  showComics: readFlag(process.env.PUBLIC_SHOW_COMICS, false),
   showFeaturedBook: readFlag(process.env.PUBLIC_SHOW_FEATURED_BOOK, false),
   showCrewTactics: readFlag(process.env.PUBLIC_SHOW_CREW_TACTICS, false),
   showRoutesContent: readFlag(process.env.PUBLIC_ROUTES_ENABLED, false),
