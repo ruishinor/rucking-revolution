@@ -120,26 +120,6 @@ function readRequiredText(
   return { ok: true, value };
 }
 
-function readRequiredNumber(
-  formData: FormData,
-  key: string,
-  label: string,
-  min: number,
-  max: number,
-): { ok: true; value: number } | { ok: false; error: string } {
-  const raw = normalizeText(formData.get(key));
-  const value = Number(raw);
-
-  if (!Number.isFinite(value) || value < min || value > max) {
-    return {
-      ok: false,
-      error: `${label} must be a number between ${min} and ${max}.`,
-    };
-  }
-
-  return { ok: true, value };
-}
-
 function readOptionalNumber(
   formData: FormData,
   key: string,

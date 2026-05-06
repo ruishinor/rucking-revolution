@@ -1,0 +1,91 @@
+---
+import Layout from '@/components/Layout.astro';
+import UnderReviewNotice from '@/components/UnderReviewNotice.astro';
+import { fieldNotes } from '@/data/fieldnotes';
+import { site } from '@/data/site';
+import { existsSync } from 'node:fs';
+import { featureFlags, getReviewStatusCopy } from '@/lib/featureFlags';
+
+const { showFieldNotesContent: SHOW_FIELD_NOTES_CONTENT } = featureFlags;
+
+const publicAssetExists = (assetPath: string) =>
+  existsSync(new URL(`../../../public${assetPath}`, import.meta.url));
+
+const notes = [...fieldNotes]
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  .map((note) => ({
+    ...note,
+    hasHeroImage: publicAssetExists(note.heroImage.src),
+  }));
+---
+
+<Layout
+  title="Field Notes - Rucking Revolution"
+  description="Observations, insights, and open questions from real-world rucking sessions."
+  canonicalUrl={`${site.baseUrl}/field-notes`}
+  currentPage="/learn"
+>
+  {!SHOW_FIELD_NOTES_CONTENT ? (
+    <UnderReviewNotice
+      label="Field Notes"
+      description={getReviewStatusCopy('Field Notes').description}
+      backHref="/learn"
+      backLabel="Back to Learn"
+    />
+  ) : (
+  <div class="bg-surface py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-heading text-secondary mb-4">FIELD NOTES</h1>
+        <p class="text-lg font-serif text-muted-foreground max-w-3xl mx-auto">
+          Short reports from training days, experiments, and long-distance prep. Less polished theory, more direct observation.
+        </p>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {notes.map((note) => (
+          <article class="card-border flex flex-col h-full border border-border hover:border-primary transition-colors">
+            <a href={`/field-notes/${note.slug}`} class="mb-0 block">
+              {note.hasHeroImage ? (
+                <img
+                  src={note.heroImage.src}
+                  alt={note.heroImage.alt}
+                  class="w-full h-48 object-cover"
+                  loading="lazy"
+                />
+              ) : (
+                <div class="w-full h-48 bg-muted flex items-center justify-center">
+                  <span class="text-muted-foreground text-sm font-mono">NO IMAGE</span>
+                </div>
+              )}
+            </a>
+
+            <div class="p-4 flex flex-col gap-3 flex-1">
+              <div>
+                <h2 class="text-xl font-heading text-secondary mb-2">
+                  <a href={`/field-notes/${note.slug}`} class="hover:underline">{note.title}</a>
+                </h2>
+                <p class="text-sm text-muted-foreground">
+                  {note.location} · {note.distance} km · {note.load} kg
+                </p>
+              </div>
+
+              <ul class="space-y-2 text-sm text-muted-foreground">
+                {note.observations.slice(0, 2).map((observation) => (
+                  <li>{observation}</li>
+                ))}
+              </ul>
+
+              <div class="text-xs font-mono text-muted-foreground mt-auto">
+                <time datetime={note.date}>
+                  {new Date(note.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                </time>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+  )}
+</Layout>

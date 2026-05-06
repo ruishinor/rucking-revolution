@@ -12,7 +12,7 @@ const { crewTactic } = Astro.props;
     <div class="mt-4 space-y-2 text-base text-muted-foreground">
       <h3 class="mb-1 font-semibold text-foreground">Prompts:</h3>
       <ul class="list-disc list-inside text-left space-y-1">
-        {crewTactic.prompts.map((prompt: string, index: number) => (
+        {crewTactic.prompts.map((prompt: string) => (
           <li class="pl-2">{prompt}</li>
         ))}
       </ul>

@@ -1,0 +1,89 @@
+---
+import Layout from '@/components/Layout.astro';
+import UnderReviewNotice from '@/components/UnderReviewNotice.astro';
+import { routes } from '@/data/routes';
+import { site } from '@/data/site';
+import { existsSync } from 'node:fs';
+import { featureFlags, getReviewStatusCopy } from '@/lib/featureFlags';
+
+const { showRoutesContent: SHOW_ROUTES_CONTENT } = featureFlags;
+
+const publicAssetExists = (assetPath: string) =>
+  existsSync(new URL(`../../../public${assetPath}`, import.meta.url));
+
+const routeCards = routes.map((route) => ({
+  ...route,
+  hasHeroImage: publicAssetExists(route.heroImage.src),
+}));
+---
+
+<Layout
+  title="Routes - Rucking Revolution"
+  description="Explore curated rucking routes with distance, elevation, terrain, and load recommendations."
+  canonicalUrl={`${site.baseUrl}/routes`}
+  currentPage="/learn"
+>
+  {!SHOW_ROUTES_CONTENT ? (
+    <UnderReviewNotice
+      label="Routes"
+      description={getReviewStatusCopy('Routes').description}
+      backHref="/learn"
+      backLabel="Back to Learn"
+    />
+  ) : (
+  <div class="bg-surface py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-heading text-secondary mb-4">ROUTES</h1>
+        <p class="text-lg font-serif text-muted-foreground max-w-3xl mx-auto">
+          A field-ready collection of route ideas spanning beginner loops, urban sessions, and longer endurance-focused marches.
+        </p>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {routeCards.map((route) => (
+          <article class="card-border flex flex-col h-full border border-border hover:border-primary transition-colors">
+            <a href={`/routes/${route.slug}`} class="mb-0 block">
+              {route.hasHeroImage ? (
+                <img
+                  src={route.heroImage.src}
+                  alt={route.heroImage.alt}
+                  class="w-full h-48 object-cover"
+                  loading="lazy"
+                />
+              ) : (
+                <div class="w-full h-48 bg-muted flex items-center justify-center">
+                  <span class="text-muted-foreground text-sm font-mono">NO IMAGE</span>
+                </div>
+              )}
+            </a>
+
+            <div class="p-4 flex flex-col gap-3 flex-1">
+              <div>
+                <h2 class="text-xl font-heading text-secondary mb-2">
+                  <a href={`/routes/${route.slug}`} class="hover:underline">{route.title}</a>
+                </h2>
+                <p class="text-sm text-muted-foreground">{route.description}</p>
+              </div>
+
+              <div class="flex flex-wrap gap-2 text-xs font-mono text-muted-foreground">
+                <span>{route.distance} KM</span>
+                <span>{route.estimatedTime}</span>
+                <span>{route.elevationGain} M GAIN</span>
+                <span>{route.loadRecommendation} KG LOAD</span>
+              </div>
+
+              <div class="flex flex-wrap gap-2 text-xs mt-auto">
+                <span class="px-2 py-1 bg-primary/10 text-primary rounded">{route.difficulty.toUpperCase()}</span>
+                {route.terrain.map((terrain) => (
+                  <span class="px-2 py-1 bg-muted rounded text-muted-foreground">{terrain.toUpperCase()}</span>
+                ))}
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+  )}
+</Layout>

@@ -1,0 +1,29 @@
+---
+const {
+  label,
+  description,
+  backHref = '/learn',
+  backLabel = 'Back to Learn',
+} = Astro.props;
+---
+
+<div class="bg-surface py-16">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav class="mb-6">
+      <a href={backHref} class="text-sm text-muted-foreground hover:underline">{backLabel}</a>
+    </nav>
+
+    <section class="border border-border card-border p-8 md:p-10 text-center">
+      <span class="section-marker block mb-4">///</span>
+      <p class="label-mono mb-3">{label.toUpperCase()}</p>
+      <h1 class="text-3xl md:text-4xl font-heading text-secondary mb-4">CONTENT UNDER REVIEW</h1>
+      <p class="text-lg font-serif text-muted-foreground max-w-2xl mx-auto">
+        {description}
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a href="/learn" class="btn btn-secondary">BACK TO LEARN</a>
+        <a href="/contact" class="btn btn-utility">ASK A QUESTION</a>
+      </div>
+    </section>
+  </div>
+</div>

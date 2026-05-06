@@ -105,8 +105,10 @@ const timerId = exerciseName.replace(/\s+/g, '-').toLowerCase();
     containers.forEach(container => {
       const exercise = (container as HTMLElement).dataset.exercise || 'exercise';
       const timerId = (container as HTMLElement).dataset.timerId || exercise.replace(/\s+/g, '-').toLowerCase();
-      const workDuration = parseInt((container as HTMLElement).dataset.workDuration) * 1000 || 60000;
-      const restDuration = parseInt((container as HTMLElement).dataset.restDuration) * 1000 || 30000;
+      const workDurationValue = (container as HTMLElement).dataset.workDuration ?? '60';
+      const restDurationValue = (container as HTMLElement).dataset.restDuration ?? '30';
+      const workDuration = parseInt(workDurationValue, 10) * 1000 || 60000;
+      const restDuration = parseInt(restDurationValue, 10) * 1000 || 30000;
       
       const timerDisplay = container.querySelector(`#timer-display-${timerId}`);
       const statusDisplay = container.querySelector(`#timer-status-${timerId}`);

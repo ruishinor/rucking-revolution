@@ -1,0 +1,129 @@
+---
+import Layout from '@/components/Layout.astro';
+import UnderReviewNotice from '@/components/UnderReviewNotice.astro';
+import { routes } from '@/data/routes';
+import { site } from '@/data/site';
+import { existsSync } from 'node:fs';
+import { featureFlags, getReviewStatusCopy } from '@/lib/featureFlags';
+
+const { showRoutesContent: SHOW_ROUTES_CONTENT } = featureFlags;
+
+export async function getStaticPaths() {
+  return routes.map((route) => ({
+    params: { slug: route.slug },
+    props: { route },
+  }));
+}
+
+const { slug } = Astro.params;
+const route = routes.find((entry) => entry.slug === slug);
+
+if (!route) {
+  return Astro.redirect('/routes');
+}
+
+const hasHeroImage = existsSync(new URL(`../../../public${route.heroImage.src}`, import.meta.url));
+---
+
+<Layout
+  title={`${route.title} - Routes - Rucking Revolution`}
+  description={route.description}
+  canonicalUrl={`${site.baseUrl}/routes/${route.slug}`}
+  currentPage="/learn"
+>
+  {!SHOW_ROUTES_CONTENT ? (
+    <UnderReviewNotice
+      label="Routes"
+      description={getReviewStatusCopy('Routes').description}
+      backHref="/routes"
+      backLabel="Back to Routes"
+    />
+  ) : (
+  <div class="max-w-5xl mx-auto px-4 py-12">
+    <nav class="mb-6">
+      <a href="/routes" class="text-sm text-muted-foreground hover:underline">Back to Routes</a>
+    </nav>
+
+    <div class="mb-8">
+      <h1 class="text-3xl font-heading text-secondary mb-3">{route.title}</h1>
+      <p class="text-muted-foreground">{route.description}</p>
+    </div>
+
+    {hasHeroImage && (
+      <img
+        src={route.heroImage.src}
+        alt={route.heroImage.alt}
+        class="w-full h-72 object-cover rounded-lg border border-border mb-8"
+      />
+    )}
+
+    <div class="grid gap-8 md:grid-cols-2">
+      <section class="p-6 border border-border card-border">
+        <h2 class="text-xl font-heading text-secondary mb-4">ROUTE SNAPSHOT</h2>
+        <dl class="space-y-3 text-sm">
+          <div class="flex justify-between gap-4">
+            <dt class="text-muted-foreground">Distance</dt>
+            <dd>{route.distance} km</dd>
+          </div>
+          <div class="flex justify-between gap-4">
+            <dt class="text-muted-foreground">Estimated time</dt>
+            <dd>{route.estimatedTime}</dd>
+          </div>
+          <div class="flex justify-between gap-4">
+            <dt class="text-muted-foreground">Difficulty</dt>
+            <dd class="capitalize">{route.difficulty}</dd>
+          </div>
+          <div class="flex justify-between gap-4">
+            <dt class="text-muted-foreground">Elevation gain</dt>
+            <dd>{route.elevationGain} m</dd>
+          </div>
+          <div class="flex justify-between gap-4">
+            <dt class="text-muted-foreground">Recommended load</dt>
+            <dd>{route.loadRecommendation} kg</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="p-6 border border-border card-border">
+        <h2 class="text-xl font-heading text-secondary mb-4">CONDITIONS</h2>
+        <div class="mb-4">
+          <h3 class="font-heading text-secondary mb-2">Terrain</h3>
+          <div class="flex flex-wrap gap-2">
+            {route.terrain.map((terrain) => (
+              <span class="px-2 py-1 bg-muted rounded text-sm text-muted-foreground capitalize">{terrain}</span>
+            ))}
+          </div>
+        </div>
+        <div>
+          <h3 class="font-heading text-secondary mb-2">Best season</h3>
+          <div class="flex flex-wrap gap-2">
+            {route.bestSeason.map((season) => (
+              <span class="px-2 py-1 bg-primary/10 text-primary rounded text-sm capitalize">{season}</span>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="mt-8 p-6 border border-border card-border">
+      <h2 class="text-xl font-heading text-secondary mb-4">WAYPOINTS</h2>
+      <ol class="space-y-4">
+        {route.waypoints.map((waypoint) => (
+          <li class="border-l-2 border-primary pl-4">
+            <div class="text-sm font-mono text-primary mb-1">{waypoint.distanceFromStart} km</div>
+            <h3 class="font-heading text-secondary">{waypoint.name}</h3>
+            <p class="text-sm text-muted-foreground">{waypoint.description}</p>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    {route.notes && (
+      <section class="mt-8 p-6 border border-border card-border">
+        <h2 class="text-xl font-heading text-secondary mb-3">FIELD NOTE</h2>
+        <p class="text-muted-foreground">{route.notes}</p>
+      </section>
+    )}
+  </div>
+  )}
+</Layout>

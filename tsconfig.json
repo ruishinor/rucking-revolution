@@ -5,5 +5,31 @@
     "paths": {
       "@/*": ["./src/*"]
     }
-  }
+  },
+  "exclude": [
+    "dist",
+    "node_modules",
+    ".astro",
+    ".vercel",
+    "_bmad",
+    ".agents",
+    "drafts-not-to-be-distributed",
+    "drafts-visual-not-in-production",
+    "inspiration-ideas-and-drafts-and-other-things-to-extrapolate-and-learn-from",
+    "project-documents-ugc",
+    "analyze.js",
+    "check-quotes.js",
+    "classify.js",
+    "contrast.js",
+    "filter-quotes.js",
+    "fix-all-imports.js",
+    "fix-data-imports.js",
+    "fix-data-imports2.js",
+    "fix-imports-final.js",
+    "fix-imports.js",
+    "fix-pages.js",
+    "remove-long-quotes.js",
+    "truncate-quotes.js",
+    "scripts"
+  ]
 }

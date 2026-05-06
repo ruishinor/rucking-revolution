@@ -95,6 +95,6 @@ const twitterProperties: Record<string, string> = {
 {description && <meta name="description" content={description} />}
 {Object.entries(ogProperties).map(([key, value]) => <meta property={key} content={value} />)}
 {Object.entries(twitterProperties).map(([key, value]) => <meta name={key} content={value} />)}
-{structuredData && <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>}
+{structuredData && <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>}
 {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
 {noindex || nofollow ? <meta name="robots" content={`${noindex ? 'noindex' : 'index'},${nofollow ? 'nofollow' : 'follow'}`} /> : null}

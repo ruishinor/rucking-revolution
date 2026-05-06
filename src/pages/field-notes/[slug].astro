@@ -1,0 +1,122 @@
+---
+import Layout from '@/components/Layout.astro';
+import UnderReviewNotice from '@/components/UnderReviewNotice.astro';
+import { fieldNotes } from '@/data/fieldnotes';
+import { site } from '@/data/site';
+import { existsSync } from 'node:fs';
+import { featureFlags, getReviewStatusCopy } from '@/lib/featureFlags';
+
+const { showFieldNotesContent: SHOW_FIELD_NOTES_CONTENT } = featureFlags;
+
+export async function getStaticPaths() {
+  return fieldNotes.map((note) => ({
+    params: { slug: note.slug },
+    props: { note },
+  }));
+}
+
+const { slug } = Astro.params;
+const note = fieldNotes.find((entry) => entry.slug === slug);
+
+if (!note) {
+  return Astro.redirect('/field-notes');
+}
+
+const hasHeroImage = existsSync(new URL(`../../../public${note.heroImage.src}`, import.meta.url));
+---
+
+<Layout
+  title={`${note.title} - Field Notes - Rucking Revolution`}
+  description={`Field note from ${note.location} covering observations, insights, and open questions.`}
+  canonicalUrl={`${site.baseUrl}/field-notes/${note.slug}`}
+  currentPage="/learn"
+>
+  {!SHOW_FIELD_NOTES_CONTENT ? (
+    <UnderReviewNotice
+      label="Field Notes"
+      description={getReviewStatusCopy('Field Notes').description}
+      backHref="/field-notes"
+      backLabel="Back to Field Notes"
+    />
+  ) : (
+  <div class="max-w-5xl mx-auto px-4 py-12">
+    <nav class="mb-6">
+      <a href="/field-notes" class="text-sm text-muted-foreground hover:underline">Back to Field Notes</a>
+    </nav>
+
+    <div class="mb-8">
+      <h1 class="text-3xl font-heading text-secondary mb-3">{note.title}</h1>
+      <p class="text-muted-foreground">
+        {note.location} · {new Date(note.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+      </p>
+    </div>
+
+    {hasHeroImage && (
+      <img
+        src={note.heroImage.src}
+        alt={note.heroImage.alt}
+        class="w-full h-72 object-cover rounded-lg border border-border mb-8"
+      />
+    )}
+
+    <div class="grid gap-8 md:grid-cols-2">
+      <section class="p-6 border border-border card-border">
+        <h2 class="text-xl font-heading text-secondary mb-4">SESSION DATA</h2>
+        <dl class="space-y-3 text-sm">
+          <div class="flex justify-between gap-4">
+            <dt class="text-muted-foreground">Distance</dt>
+            <dd>{note.distance} km</dd>
+          </div>
+          <div class="flex justify-between gap-4">
+            <dt class="text-muted-foreground">Duration</dt>
+            <dd>{note.duration} min</dd>
+          </div>
+          <div class="flex justify-between gap-4">
+            <dt class="text-muted-foreground">Load</dt>
+            <dd>{note.load} kg</dd>
+          </div>
+          <div class="flex justify-between gap-4">
+            <dt class="text-muted-foreground">Weather</dt>
+            <dd>{note.weather}</dd>
+          </div>
+        </dl>
+        <div class="mt-4">
+          <h3 class="font-heading text-secondary mb-2">Terrain</h3>
+          <div class="flex flex-wrap gap-2">
+            {note.terrain.map((terrain) => (
+              <span class="px-2 py-1 bg-muted rounded text-sm text-muted-foreground capitalize">{terrain}</span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="p-6 border border-border card-border">
+        <h2 class="text-xl font-heading text-secondary mb-4">OBSERVATIONS</h2>
+        <ul class="space-y-2 text-sm text-muted-foreground">
+          {note.observations.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </section>
+    </div>
+
+    <section class="mt-8 p-6 border border-border card-border">
+      <h2 class="text-xl font-heading text-secondary mb-4">INSIGHTS</h2>
+      <ul class="space-y-2 text-sm text-muted-foreground">
+        {note.insights.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="mt-8 p-6 border border-border card-border">
+      <h2 class="text-xl font-heading text-secondary mb-4">OPEN QUESTIONS</h2>
+      <ul class="space-y-2 text-sm text-muted-foreground">
+        {note.questions.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    </section>
+  </div>
+  )}
+</Layout>

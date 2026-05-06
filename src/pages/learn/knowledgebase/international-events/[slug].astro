@@ -1,42 +1,60 @@
 ---
 import Layout from '@/components/Layout.astro';
-import Pill from '@/components/Pill.astro';
 import ShareButtons from '@/components/ShareButtons.astro';
 import { internationalEvents } from '@/data/international-events';
 import { site } from '@/data/site';
 
 export async function getStaticPaths() {
-  return internationalEvents.map(ev => ({
+  return internationalEvents.map((ev) => ({
     params: { slug: ev.id },
-    props: { event: ev }
+    props: { event: ev },
   }));
 }
 
 const { slug } = Astro.params;
-const event = internationalEvents.find(ev => ev.id === slug);
+const event = internationalEvents.find((ev) => ev.id === slug);
 
 if (!event) {
-  return Astro.redirect('/404');
+  return Astro.redirect('/learn/knowledgebase/international-events');
 }
 
 const pageTitle = `${event.name} - International Events - Rucking Revolution`;
 const pageDescription = event.summary;
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Event',
+  name: event.name,
+  description: event.summary,
+  location: {
+    '@type': 'Place',
+    name: event.where || 'Various locations',
+    address: event.where || 'Various locations',
+  },
+  url: `${site.baseUrl}/learn/knowledgebase/international-events/${event.id}`,
+  typicalAgeRange: event.difficulty || 'Varies',
+  offers: {
+    '@type': 'Offer',
+    url: event.link || '#',
+    availability: 'https://schema.org/InStock',
+  },
+};
 ---
 
-<Layout 
+<Layout
   title={pageTitle}
   description={pageDescription}
   canonicalUrl={`${site.baseUrl}/learn/knowledgebase/international-events/${event.id}`}
+  structuredData={structuredData}
   openGraph={{
     type: 'website',
     url: `${site.baseUrl}/learn/knowledgebase/international-events/${event.id}`,
     title: event.name,
-    description: event.summary
+    description: event.summary,
   }}
 >
   <div class="max-w-6xl mx-auto px-4 py-12">
     <nav class="mb-6">
-      <a href="/learn/knowledgebase/international-events" class="text-sm text-muted-foreground hover:underline">← Back to International Events</a>
+      <a href="/learn/knowledgebase/international-events" class="text-sm text-muted-foreground hover:underline">Back to International Events</a>
     </nav>
 
     <div class="mb-8">
@@ -87,10 +105,10 @@ const pageDescription = event.summary;
 
         {event.link && (
           <div>
-            <a 
-              href={event.link} 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            <a
+              href={event.link}
+              target="_blank"
+              rel="noopener noreferrer"
               class="btn-military btn-military-primary inline-block"
               aria-label={`Visit official ${event.name} website`}
             >
@@ -105,7 +123,7 @@ const pageDescription = event.summary;
         {event.coordinates ? (
           <div class="aspect-video rounded-lg overflow-hidden border border-border">
             <iframe
-              src={`https://www.openstreetmap.org/export/embed.html?bbox=${event.coordinates.lng-0.5}%2C${event.coordinates.lat-0.5}%2C${event.coordinates.lng+0.5}%2C${event.coordinates.lat+0.5}&layer=mapnik&marker=${event.coordinates.lat}%2C${event.coordinates.lng}`}
+              src={`https://www.openstreetmap.org/export/embed.html?bbox=${event.coordinates.lng - 0.5}%2C${event.coordinates.lat - 0.5}%2C${event.coordinates.lng + 0.5}%2C${event.coordinates.lat + 0.5}&layer=mapnik&marker=${event.coordinates.lat}%2C${event.coordinates.lng}`}
               class="w-full h-full border-0"
               loading="lazy"
               title={`Map showing location of ${event.name}`}
@@ -123,31 +141,9 @@ const pageDescription = event.summary;
       </div>
     </div>
 
-    <!-- Share Buttons -->
     <div class="mt-8 bg-muted-50 rounded-lg p-6">
       <h2 class="font-heading text-secondary mb-4 bg-[#8a1e1e] text-white px-3 py-2 rounded">SHARE THIS EVENT</h2>
       <ShareButtons url={`${site.baseUrl}/learn/knowledgebase/international-events/${event.id}`} title={event.name} />
     </div>
   </div>
 </Layout>
-
-<script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Event",
-    "name": "{event.name}",
-    "description": "{event.summary}",
-    "location": {
-      "@type": "Place",
-      "name": "{event.where || 'Various locations'}",
-      "address": "{event.where || 'Various locations'}"
-    },
-    "url": "{site.baseUrl}/learn/knowledgebase/international-events/{event.id}",
-    "typicalAgeRange": "{event.difficulty || 'Varies'}",
-    "offers": {
-      "@type": "Offer",
-      "url": "{event.link || '#'}",
-      "availability": "https://schema.org/InStock"
-    }
-  }
-</script>

@@ -18,8 +18,6 @@ export const prerender = false;
 
 const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
 const RATE_LIMIT_MAX_REQUESTS = 5;
-const MAX_BODY_SIZE = 50 * 1024;
-
 async function verifyTurnstileToken(request: Request, token: string): Promise<boolean> {
   const { turnstileSecretKey } = getAarConfiguration();
 

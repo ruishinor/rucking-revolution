@@ -1,0 +1,17 @@
+---
+import Layout from '@/components/Layout.astro';
+import UnderReviewNotice from '@/components/UnderReviewNotice.astro';
+---
+
+<Layout
+  title="Newsletter Archive - Rucking Revolution"
+  description="Past newsletter issues will be published here after editorial review."
+  currentPage="/newsletter"
+>
+  <UnderReviewNotice
+    label="Newsletter Archive"
+    description="Past issues are not ready for publication yet. This archive route is live so public links continue working while the content is being reviewed."
+    backHref="/newsletter"
+    backLabel="Back to Newsletter"
+  />
+</Layout>

@@ -7,11 +7,12 @@ import { articles } from '@/data/articles.ts';
 import { products } from '@/data/products.ts';
 import { comics } from '@/data/comics.ts';
 import { quotes } from '@/data/quotes.ts';
+import { featureFlags } from '@/lib/featureFlags';
 
-// Feature toggle (PUBLIC_ prefixed env var is exposed to client in Astro)
-const SHOW_COMICS = import.meta.env.PUBLIC_SHOW_COMICS === 'true';
-// Feature toggle for lead book visibility
-const SHOW_FEATURED_BOOK = import.meta.env.PUBLIC_SHOW_FEATURED_BOOK === 'true';
+const {
+  showComics: SHOW_COMICS,
+  showFeaturedBook: SHOW_FEATURED_BOOK,
+} = featureFlags;
 
 // Get latest 3 articles sorted by date (newest first)
 const latestArticles = [...articles]
@@ -122,13 +123,6 @@ const pillars = [
   },
 ];
 
-const communityItems = [
-  { title: 'Why Rucking', desc: 'The philosophy and practice', href: '/why-rucking', icon: 'question' },
-  { title: 'Routes', desc: 'Navigate terrain with verified paths', href: '/routes', icon: 'route' },
-  { title: 'Events', desc: 'Join scheduled events', href: '/events', icon: 'calendar' },
-  { title: 'Field Notes', desc: 'Real reports from the crew', href: '/field-notes', icon: 'note' },
-  { title: 'Crews', desc: 'Find or start your crew', href: '/lead/ruck-clubs', icon: 'users' },
-];
 ---
 
 <Layout title="Home" description={site.description} currentPage="/" structuredData={homepageStructuredData}>
@@ -407,8 +401,8 @@ const communityItems = [
       <p class="text-base font-serif mb-8 max-w-lg mx-auto" style="color: var(--rr-color-muted-200);">
         Stay ahead of the curve with exclusive notifications on our latest articles, tools, strategies and inspiration from the rucking community. Written for and by people who ruck with purpose — not for email marketers.
       </p>
-      <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
-      <iframe src="https://subscribe-forms.beehiiv.com/8bd044bf-35a4-4f3a-8da4-cc7808c49496" class="beehiiv-embed" data-test-id="beehiiv-embed" frameborder="0" scrolling="no" style="width: 420px; height: 166px; margin: 0 auto; border-radius: 0px 0px 0px 0px !important; background-color: transparent; box-shadow: 0 0 #0000; max-width: 100%; z-index: 10; position: relative;"></iframe>
+      <script is:inline async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
+      <iframe src="https://subscribe-forms.beehiiv.com/8bd044bf-35a4-4f3a-8da4-cc7808c49496" class="beehiiv-embed" data-test-id="beehiiv-embed" style="width: 420px; height: 166px; margin: 0 auto; border: 0; border-radius: 0 !important; background-color: transparent; box-shadow: 0 0 #0000; max-width: 100%; z-index: 10; position: relative; overflow: hidden;"></iframe>
     </div>
   </section>
 

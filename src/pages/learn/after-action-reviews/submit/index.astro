@@ -410,7 +410,7 @@ Astro.response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate
   </div>
 
   {allowPublicSubmissions ? (
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   ) : null}
   <script type="module" src="/scripts/aar-submit.js" is:inline></script>
 </Layout>

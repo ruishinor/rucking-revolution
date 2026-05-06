@@ -1,0 +1,135 @@
+---
+import Layout from '@/components/Layout.astro';
+import UnderReviewNotice from '@/components/UnderReviewNotice.astro';
+import { events } from '@/data/events';
+import { site } from '@/data/site';
+import { existsSync } from 'node:fs';
+import { featureFlags, getReviewStatusCopy } from '@/lib/featureFlags';
+
+const { showEventsContent: SHOW_EVENTS_CONTENT } = featureFlags;
+
+export async function getStaticPaths() {
+  return events.map((event) => ({
+    params: { slug: event.slug },
+    props: { event },
+  }));
+}
+
+const { slug } = Astro.params;
+const event = events.find((entry) => entry.slug === slug);
+
+if (!event) {
+  return Astro.redirect('/events');
+}
+
+const hasHeroImage = existsSync(new URL(`../../../public${event.heroImage.src}`, import.meta.url));
+---
+
+<Layout
+  title={`${event.title} - Events - Rucking Revolution`}
+  description={event.description}
+  canonicalUrl={`${site.baseUrl}/events/${event.slug}`}
+  currentPage="/learn"
+>
+  {!SHOW_EVENTS_CONTENT ? (
+    <UnderReviewNotice
+      label="Events"
+      description={getReviewStatusCopy('Events').description}
+      backHref="/events"
+      backLabel="Back to Events"
+    />
+  ) : (
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    <nav class="mb-6">
+      <a href="/events" class="text-sm text-muted-foreground hover:underline">Back to Events</a>
+    </nav>
+
+    <div class="mb-8">
+      <h1 class="text-3xl font-heading text-secondary mb-3">{event.title}</h1>
+      <p class="text-muted-foreground">{event.description}</p>
+    </div>
+
+    {hasHeroImage && (
+      <img
+        src={event.heroImage.src}
+        alt={event.heroImage.alt}
+        class="w-full h-80 object-cover rounded-lg border border-border mb-8"
+      />
+    )}
+
+    <div class="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+      <section class="space-y-8">
+        <div class="p-6 border border-border card-border">
+          <h2 class="text-xl font-heading text-secondary mb-4">EVENT SNAPSHOT</h2>
+          <dl class="grid gap-3 sm:grid-cols-2 text-sm">
+            <div>
+              <dt class="text-muted-foreground">Date</dt>
+              <dd>{new Date(event.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</dd>
+            </div>
+            <div>
+              <dt class="text-muted-foreground">Location</dt>
+              <dd>{event.location}</dd>
+            </div>
+            <div>
+              <dt class="text-muted-foreground">Duration</dt>
+              <dd>{event.duration}</dd>
+            </div>
+            <div>
+              <dt class="text-muted-foreground">Difficulty</dt>
+              <dd class="capitalize">{event.difficulty}</dd>
+            </div>
+            <div>
+              <dt class="text-muted-foreground">Distance</dt>
+              <dd>{event.distance} km</dd>
+            </div>
+            <div>
+              <dt class="text-muted-foreground">Load</dt>
+              <dd>{event.load} kg</dd>
+            </div>
+            <div>
+              <dt class="text-muted-foreground">Price</dt>
+              <dd>EUR {event.priceEUR.toFixed(2)}</dd>
+            </div>
+            <div>
+              <dt class="text-muted-foreground">Max participants</dt>
+              <dd>{event.maxParticipants}</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="p-6 border border-border card-border">
+          <h2 class="text-xl font-heading text-secondary mb-4">AGENDA</h2>
+          <ol class="space-y-3">
+            {event.agenda.map((item) => (
+              <li class="grid grid-cols-[120px_1fr] gap-4 text-sm">
+                <span class="font-mono text-primary">{item.time}</span>
+                <span class="text-muted-foreground">{item.activity}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <aside class="space-y-8">
+        <div class="p-6 border border-border card-border">
+          <h2 class="text-xl font-heading text-secondary mb-4">INCLUDES</h2>
+          <ul class="space-y-2 text-sm text-muted-foreground">
+            {event.includes.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="p-6 border border-border card-border">
+          <h2 class="text-xl font-heading text-secondary mb-4">REQUIREMENTS</h2>
+          <ul class="space-y-2 text-sm text-muted-foreground">
+            {event.requirements.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+  )}
+</Layout>

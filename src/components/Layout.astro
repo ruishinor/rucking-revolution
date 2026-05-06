@@ -57,7 +57,7 @@
       noindex={noindex}
       nofollow={nofollow}
     />
-    {!structuredData && <script type="application/ld+json" set:html={JSON.stringify(defaultOrganizationData)}></script>}
+    {!structuredData && <script is:inline type="application/ld+json" set:html={JSON.stringify(defaultOrganizationData)}></script>}
   </head>
   <body class="min-h-screen flex flex-col bg-background text-foreground antialiased">
     <!-- Skip to content link for accessibility -->
@@ -248,7 +248,7 @@
            }
            const original = node.nodeValue;
            if (original.includes(':')) {
-             const updated = original.replace(/(:\s*)(\w)/g, (match, p1, p2) => p1 + p2.toUpperCase());
+             const updated = original.replace(/(:\s*)(\w)/g, (_match, p1, p2) => p1 + p2.toUpperCase());
              if (updated !== original) {
                node.nodeValue = updated;
              }

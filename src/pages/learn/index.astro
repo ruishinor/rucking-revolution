@@ -1,5 +1,12 @@
 ---
 import Layout from '@/components/Layout.astro';
+import { featureFlags } from '@/lib/featureFlags';
+
+const {
+  showRoutesContent: SHOW_ROUTES_CONTENT,
+  showEventsContent: SHOW_EVENTS_CONTENT,
+  showFieldNotesContent: SHOW_FIELD_NOTES_CONTENT,
+} = featureFlags;
 ---
 <Layout title="Learn - Rucking Revolution" description="Knowledge base for rucking discipline, leadership, and field-tested methods." currentPage="/learn">
   <div class="bg-surface py-16">
@@ -62,12 +69,15 @@ import Layout from '@/components/Layout.astro';
            </a>
            <a href="/routes" class="group block p-4 border border-border card-border hover:border-primary transition-colors text-center">
              <span class="font-heading text-secondary group-hover:text-primary">ROUTES</span>
+             <span class="mt-1 block text-xs text-muted-foreground">{SHOW_ROUTES_CONTENT ? 'Reviewed content live' : 'Content under review'}</span>
            </a>
            <a href="/events" class="group block p-4 border border-border card-border hover:border-primary transition-colors text-center">
              <span class="font-heading text-secondary group-hover:text-primary">EVENTS</span>
+             <span class="mt-1 block text-xs text-muted-foreground">{SHOW_EVENTS_CONTENT ? 'Reviewed content live' : 'Content under review'}</span>
            </a>
            <a href="/field-notes" class="group block p-4 border border-border card-border hover:border-primary transition-colors text-center">
              <span class="font-heading text-secondary group-hover:text-primary">FIELD NOTES</span>
+             <span class="mt-1 block text-xs text-muted-foreground">{SHOW_FIELD_NOTES_CONTENT ? 'Reviewed content live' : 'Content under review'}</span>
            </a>
          </div>
        </section>
