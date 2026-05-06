@@ -1,9 +1,9 @@
 ---
 import Layout from '@/components/Layout.astro';
 import { comics } from '@/data/comics.ts';
+import { featureFlags } from '@/lib/featureFlags';
 
-// Feature toggle: show/hide comics archive
-const SHOW_COMICS = import.meta.env.PUBLIC_SHOW_COMICS === 'true';
+const { showComics: SHOW_COMICS } = featureFlags;
 const featuredComic = comics[0];
 ---
 

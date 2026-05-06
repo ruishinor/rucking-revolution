@@ -1,12 +1,10 @@
 ---
 import Layout from '@/components/Layout.astro';
 import { comics } from '@/data/comics.ts';
+import { featureFlags } from '@/lib/featureFlags';
 
 const episode = Number(Astro.params.episode);
-const SHOW_COMICS = import.meta.env.PUBLIC_SHOW_COMICS === 'true';
-if (!SHOW_COMICS) {
-  return Astro.redirect('/red-rucker');
-}
+const { showComics: SHOW_COMICS } = featureFlags;
 const comic = comics.find((c) => c.episode === episode);
 
 if (!comic) {
@@ -34,9 +32,16 @@ export async function getStaticPaths() {
 <Layout 
   title={`${comic.title} - Red Rucker Episode ${comic.episode}`} 
   description={`${comic.caption} - Lesson: ${comic.lesson}`}
+  currentPage="/red-rucker"
+  canonicalUrl={`https://ruckingrevolution.org/red-rucker/${comic.episode}`}
 >
   <div class="bg-gray-50 py-12">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      {!SHOW_COMICS && (
+        <div class="mb-6 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+          The archive is currently hidden from listings, but direct episode links remain available.
+        </div>
+      )}
       <!-- Breadcrumb -->
       <nav class="mb-8">
         <ol class="flex items-center gap-2 text-sm text-gray-500">
