@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Rucking Revolution favicon</title>
+  <desc id="desc">A red rounded square with the white RR initials.</desc>
+  <rect width="64" height="64" rx="14" fill="#8A1E1E" />
+  <path d="M18 16h15c8.1 0 14 4.7 14 12.2 0 5.3-2.8 9.1-7.3 10.9L49 48H37.7l-7.8-8H28v8H18V16Zm10 8v8.5h4.1c3.2 0 5.1-1.5 5.1-4.2S35.3 24 32.1 24H28Zm6.9 16.2L41.6 48H28v-7.8h6.9Z" fill="#FFF9F1" />
+</svg>

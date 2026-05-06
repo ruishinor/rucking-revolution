@@ -100,7 +100,7 @@ const homepageStructuredData = {
 const proofPoints = [
   { value: 'FIELD-TESTED', label: 'Methods proven in real life' },
   { value: 'CREW-BUILT', label: 'By active ruck leaders' },
-  { value: 'INDIVIDUAL → COMMUNITY', label: 'Proven pathway' },
+  { value: 'INDIVIDUAL -> COMMUNITY', label: 'Proven pathway' },
 ];
 
 const pillars = [
@@ -225,11 +225,13 @@ const pillars = [
                 {featuredArticle.excerpt}
               </p>
               <!-- Taxonomy Tags -->
-              <div class="flex flex-wrap gap-2 mb-6" role="list" aria-label="Article topics">
+              <ul class="flex flex-wrap gap-2 mb-6" aria-label="Article topics">
                 {featuredArticle.tags.map((tag) => (
-                  <a href={`/learn/articles/tag/${tag}`} class="stamp stamp-primary text-xs py-1 hover:opacity-80 transition-opacity" role="listitem">{tag}</a>
+                  <li>
+                    <a href={`/learn/articles/tag/${tag}`} class="stamp stamp-primary text-xs py-1 hover:opacity-80 transition-opacity">{tag}</a>
+                  </li>
                 ))}
-              </div>
+              </ul>
               <a href={`/learn/articles/${featuredArticle.slug}`} class="btn btn-secondary" aria-label={`Read article: ${featuredArticle.title}`}>
                 READ ARTICLE
                 <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -275,7 +277,7 @@ const pillars = [
                 />
                 <div class="hidden w-full h-full items-center justify-center text-muted-300">
                   <div class="text-center">
-                    <div class="text-4xl mb-2" role="img" aria-label="Books">📚</div>
+                    <div class="text-sm font-heading uppercase tracking-[0.2em]">Book</div>
                     <p class="text-sm">Preview unavailable</p>
                   </div>
                 </div>
@@ -317,7 +319,7 @@ const pillars = [
             )}
             <!-- Purchase Link -->
             <a href={leadBook.purchaseLink} class="text-primary font-bold text-sm hover:underline" aria-label={`View book details for ${leadBook.title}`}>
-              View book details →
+              View book details ->
             </a>
           </aside>
         )}
@@ -400,10 +402,10 @@ const pillars = [
       <span class="stamp stamp-primary mb-6">NEWSLETTER</span>
       <h2 class="text-3xl md:text-4xl font-heading text-white mb-4">JOIN THE MOVEMENT</h2>
       <p class="text-base font-serif mb-8 max-w-lg mx-auto" style="color: var(--rr-color-muted-200);">
-        Stay ahead of the curve with exclusive notifications on our latest articles, tools, strategies and inspiration from the rucking community. Written for and by people who ruck with purpose — not for email marketers.
+        Stay ahead of the curve with exclusive notifications on our latest articles, tools, strategies and inspiration from the rucking community. Written for and by people who ruck with purpose - not for email marketers.
       </p>
       <script is:inline async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
-      <iframe src="https://subscribe-forms.beehiiv.com/8bd044bf-35a4-4f3a-8da4-cc7808c49496" class="beehiiv-embed" data-test-id="beehiiv-embed" style="width: 420px; height: 166px; margin: 0 auto; border: 0; border-radius: 0 !important; background-color: transparent; box-shadow: 0 0 #0000; max-width: 100%; z-index: 10; position: relative; overflow: hidden;"></iframe>
+      <iframe title="Newsletter signup form" src="https://subscribe-forms.beehiiv.com/8bd044bf-35a4-4f3a-8da4-cc7808c49496" class="beehiiv-embed" data-test-id="beehiiv-embed" style="width: 420px; height: 166px; margin: 0 auto; border: 0; border-radius: 0 !important; background-color: transparent; box-shadow: 0 0 #0000; max-width: 100%; z-index: 10; position: relative; overflow: hidden;"></iframe>
     </div>
   </section>
 

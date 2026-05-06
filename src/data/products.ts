@@ -709,8 +709,8 @@ export const products: Product[] = [
     purchaseLink: '#',
     previewImages: [
       {
-        src: '/images/products/coming-soon.jpg',
-        alt: 'Coming Soon - New products launching soon'
+        src: '/images/products/coming-soon.svg',
+        alt: 'Coming Soon placeholder cover for an upcoming Rucking Revolution product'
       }
     ],
     whatYouLearn: [],

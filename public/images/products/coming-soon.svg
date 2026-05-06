@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1500" role="img" aria-labelledby="title desc">
+  <title id="title">Coming soon product cover</title>
+  <desc id="desc">A branded placeholder cover announcing that a new Rucking Revolution product is coming soon.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#F7F1E7" />
+      <stop offset="100%" stop-color="#E2D7C5" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="1500" rx="56" fill="url(#bg)" />
+  <rect x="88" y="88" width="1024" height="1324" rx="40" fill="#FFFDF8" stroke="#D8CEBF" stroke-width="8" />
+  <rect x="136" y="136" width="928" height="156" rx="24" fill="#8A1E1E" />
+  <text x="164" y="206" fill="#FFF9F1" font-family="Arial, sans-serif" font-size="44" font-weight="700" letter-spacing="10">RUCKING REVOLUTION</text>
+  <text x="164" y="552" fill="#172023" font-family="Arial, sans-serif" font-size="128" font-weight="800">COMING</text>
+  <text x="164" y="688" fill="#172023" font-family="Arial, sans-serif" font-size="128" font-weight="800">SOON</text>
+  <text x="164" y="780" fill="#5E463C" font-family="Georgia, serif" font-size="40">New field guides and training tools are in development.</text>
+  <circle cx="864" cy="980" r="144" fill="#F0E3D0" stroke="#8A1E1E" stroke-width="14" />
+  <path d="M808 980h112M864 924v112" stroke="#8A1E1E" stroke-width="18" stroke-linecap="round" />
+  <text x="164" y="1180" fill="#8A1E1E" font-family="Courier New, monospace" font-size="34" font-weight="700" letter-spacing="8">JOIN THE LIST FOR RELEASE UPDATES</text>
+</svg>

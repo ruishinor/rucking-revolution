@@ -9,7 +9,12 @@ const {
   workDuration = 60,
   restDuration = 30
 } = Astro.props;
-const timerId = exerciseName.replace(/\s+/g, '-').toLowerCase();
+const timerId =
+  exerciseName
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '') || 'exercise';
 ---
 <div class="exercise-timer bg-panel p-6 rounded-lg mb-8 border border-border" data-exercise={exerciseName} data-timer-id={timerId} data-work-duration={workDuration} data-rest-duration={restDuration}>
   <h2 class="text-xl font-heading text-secondary mb-4 bg-[#8a1e1e] text-white px-3 py-2 rounded">TIMER & PROGRESS</h2>
@@ -20,6 +25,7 @@ const timerId = exerciseName.replace(/\s+/g, '-').toLowerCase();
       type="button" 
       class="timer-mode-btn px-4 py-2 rounded-md text-sm font-medium transition-colors bg-primary text-white" 
       data-mode="work"
+      aria-pressed="true"
       aria-label={`Switch to Work timer mode (${workDuration}s)`}
     >
       WORK (${workDuration}s)
@@ -28,6 +34,7 @@ const timerId = exerciseName.replace(/\s+/g, '-').toLowerCase();
       type="button" 
       class="timer-mode-btn px-4 py-2 rounded-md text-sm font-medium transition-colors bg-muted-100 text-muted-foreground hover:bg-muted-200" 
       data-mode="rest"
+      aria-pressed="false"
       aria-label={`Switch to Rest timer mode (${restDuration}s)`}
     >
       REST (${restDuration}s)
@@ -39,7 +46,7 @@ const timerId = exerciseName.replace(/\s+/g, '-').toLowerCase();
     <div class="text-6xl font-mono font-bold text-secondary" id={`timer-display-${timerId}`}>
       {Math.floor(workDuration / 60).toString().padStart(2, '0')}:{(workDuration % 60).toString().padStart(2, '0')}
     </div>
-    <p class="text-sm text-muted-foreground mt-2" id={`timer-status-${timerId}`}>Ready - Click Start to begin</p>
+    <p class="text-sm text-muted-foreground mt-2" id={`timer-status-${timerId}`} aria-live="polite" aria-atomic="true">Ready - Click Start to begin</p>
   </div>
 
   <!-- Timer Controls -->
@@ -99,151 +106,7 @@ const timerId = exerciseName.replace(/\s+/g, '-').toLowerCase();
 </div>
 
 <script>
-  document.addEventListener('astro:page-load', () => {
-    const containers = document.querySelectorAll('.exercise-timer');
-    
-    containers.forEach(container => {
-      const exercise = (container as HTMLElement).dataset.exercise || 'exercise';
-      const timerId = (container as HTMLElement).dataset.timerId || exercise.replace(/\s+/g, '-').toLowerCase();
-      const workDurationValue = (container as HTMLElement).dataset.workDuration ?? '60';
-      const restDurationValue = (container as HTMLElement).dataset.restDuration ?? '30';
-      const workDuration = parseInt(workDurationValue, 10) * 1000 || 60000;
-      const restDuration = parseInt(restDurationValue, 10) * 1000 || 30000;
-      
-      const timerDisplay = container.querySelector(`#timer-display-${timerId}`);
-      const statusDisplay = container.querySelector(`#timer-status-${timerId}`);
-      const controlsContainer = container.querySelector(`#timer-controls-${timerId}`);
-      const setsDisplay = container.querySelector(`#sets-counter-${timerId}`);
-      
-      if (!timerDisplay || !statusDisplay || !controlsContainer || !setsDisplay) return;
-      
-      let startTime = 0;
-      let remaining = workDuration;
-      let timerInterval: ReturnType<typeof setInterval> | null = null;
-      let isRunning = false;
-      let sets = 0;
-      let currentMode = 'work';
-      let currentDuration = workDuration;
+  import { attachExerciseTimerLifecycle } from '@/scripts/exercise-timer';
 
-      const formatTime = (ms: number) => {
-        const totalSeconds = Math.max(0, Math.floor(ms / 1000));
-        const minutes = Math.floor(totalSeconds / 60).toString().padStart(2, '0');
-        const seconds = (totalSeconds % 60).toString().padStart(2, '0');
-        return `${minutes}:${seconds}`;
-      };
-
-      const updateDisplay = () => {
-        if (isRunning) {
-          remaining = currentDuration - (Date.now() - startTime);
-          timerDisplay.textContent = formatTime(remaining);
-          
-          // Auto-switch when interval ends
-          if (remaining <= 0) {
-            if (currentMode === 'work') {
-              // Work interval complete: increment set, switch to rest
-              sets++;
-              (setsDisplay as HTMLElement).textContent = sets.toString();
-              switchMode('rest');
-              startTimer();
-            } else {
-              // Rest interval complete: switch to work
-              switchMode('work');
-              startTimer();
-            }
-          }
-        }
-      };
-
-      const startTimer = () => {
-        if (isRunning) return;
-        isRunning = true;
-        startTime = Date.now();
-        timerInterval = setInterval(updateDisplay, 100);
-        
-        (controlsContainer.querySelector('[data-action="start"]') as HTMLButtonElement).disabled = true;
-        (controlsContainer.querySelector('[data-action="pause"]') as HTMLButtonElement).disabled = false;
-        (controlsContainer.querySelector('[data-action="stop"]') as HTMLButtonElement).disabled = false;
-        statusDisplay.textContent = `${currentMode === 'work' ? 'Work' : 'Rest'}: Running...`;
-      };
-
-      const pauseTimer = () => {
-        if (!isRunning) return;
-        isRunning = false;
-        if (timerInterval) clearInterval(timerInterval);
-        timerInterval = null;
-        
-        (controlsContainer.querySelector('[data-action="start"]') as HTMLButtonElement).disabled = false;
-        (controlsContainer.querySelector('[data-action="pause"]') as HTMLButtonElement).disabled = true;
-        statusDisplay.textContent = `${currentMode === 'work' ? 'Work' : 'Rest'}: Paused`;
-      };
-
-      const stopTimer = () => {
-        isRunning = false;
-        if (timerInterval) clearInterval(timerInterval);
-        timerInterval = null;
-        
-        (controlsContainer.querySelector('[data-action="start"]') as HTMLButtonElement).disabled = false;
-        (controlsContainer.querySelector('[data-action="pause"]') as HTMLButtonElement).disabled = true;
-        (controlsContainer.querySelector('[data-action="stop"]') as HTMLButtonElement).disabled = true;
-        statusDisplay.textContent = `${currentMode === 'work' ? 'Work' : 'Rest'}: Stopped`;
-      };
-
-      const resetTimer = () => {
-        stopTimer();
-        currentMode = 'work';
-        currentDuration = workDuration;
-        remaining = workDuration;
-        timerDisplay.textContent = formatTime(remaining);
-        statusDisplay.textContent = `${currentMode === 'work' ? 'Work' : 'Rest'}: Ready - Click Start to begin`;
-      };
-
-      const incrementSet = () => {
-        sets++;
-        (setsDisplay as HTMLElement).textContent = sets.toString();
-      };
-
-      const switchMode = (mode: string) => {
-        currentMode = mode;
-        currentDuration = mode === 'work' ? workDuration : restDuration;
-        remaining = currentDuration;
-        isRunning = false;
-        if (timerInterval) clearInterval(timerInterval);
-        timerInterval = null;
-        
-        timerDisplay.textContent = formatTime(remaining);
-        
-        container.querySelectorAll('.timer-mode-btn').forEach(btn => {
-          if ((btn as HTMLElement).dataset.mode === mode) {
-            btn.classList.remove('bg-muted-100', 'text-muted-foreground', 'hover:bg-muted-200');
-            btn.classList.add('bg-primary', 'text-white');
-          } else {
-            btn.classList.remove('bg-primary', 'text-white');
-            btn.classList.add('bg-muted-100', 'text-muted-foreground', 'hover:bg-muted-200');
-          }
-        });
-
-        statusDisplay.textContent = `${mode === 'work' ? 'Work' : 'Rest'}: Ready - Click Start to begin`;
-        
-        // Update button states
-        (controlsContainer.querySelector('[data-action="start"]') as HTMLButtonElement).disabled = false;
-        (controlsContainer.querySelector('[data-action="pause"]') as HTMLButtonElement).disabled = true;
-        (controlsContainer.querySelector('[data-action="stop"]') as HTMLButtonElement).disabled = true;
-      };
-
-      // Initialize display
-      timerDisplay.textContent = formatTime(remaining);
-
-      // Event listeners for mode toggle
-      container.querySelectorAll('.timer-mode-btn').forEach(btn => {
-        btn.addEventListener('click', () => switchMode((btn as HTMLElement).dataset.mode || 'work'));
-      });
-
-      // Event listeners for timer controls
-      controlsContainer.querySelector('[data-action="start"]')?.addEventListener('click', startTimer);
-      controlsContainer.querySelector('[data-action="pause"]')?.addEventListener('click', pauseTimer);
-      controlsContainer.querySelector('[data-action="stop"]')?.addEventListener('click', stopTimer);
-      controlsContainer.querySelector('[data-action="reset"]')?.addEventListener('click', resetTimer);
-      container.querySelector('[data-action="increment-set"]')?.addEventListener('click', incrementSet);
-    });
-  });
+  attachExerciseTimerLifecycle();
 </script>

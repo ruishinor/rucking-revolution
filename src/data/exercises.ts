@@ -50,7 +50,7 @@ export const exercises: Exercise[] = [
     ],
     media: [
       {
-        src: '/images/exercises/push-up.jpg',
+        src: '/images/exercises/exercise-demo-placeholder.svg',
         alt: 'Person performing push-up with proper form: straight body line, hands under shoulders, chest lowered to floor',
         type: 'image'
       }
@@ -89,7 +89,7 @@ export const exercises: Exercise[] = [
     ],
     media: [
       {
-        src: '/images/exercises/pull-up.jpg',
+        src: '/images/exercises/exercise-demo-placeholder.svg',
         alt: 'Person performing pull-up with proper form: overhand grip, chest pulling up to bar, shoulders engaged',
         type: 'image'
       }
@@ -128,7 +128,7 @@ export const exercises: Exercise[] = [
     ],
     media: [
       {
-        src: '/images/exercises/overhead-press.jpg',
+        src: '/images/exercises/exercise-demo-placeholder.svg',
         alt: 'Person performing overhead press with barbell: standing tall, core tight, bar moving vertically over head',
         type: 'image'
       }
@@ -167,7 +167,7 @@ export const exercises: Exercise[] = [
     ],
     media: [
       {
-        src: '/images/exercises/bent-over-row.jpg',
+        src: '/images/exercises/exercise-demo-placeholder.svg',
         alt: 'Person performing bent-over row with dumbbells: flat back, hips hinged, pulling weight toward ribs',
         type: 'image'
       }
@@ -207,7 +207,7 @@ export const exercises: Exercise[] = [
     ],
     media: [
       {
-        src: '/images/exercises/dips.jpg',
+        src: '/images/exercises/exercise-demo-placeholder.svg',
         alt: 'Person performing dips on parallel bars: upright torso, elbows close to body, lowering to 90 degrees',
         type: 'image'
       }
@@ -247,7 +247,7 @@ export const exercises: Exercise[] = [
     ],
     media: [
       {
-        src: '/images/exercises/plank.jpg',
+        src: '/images/exercises/exercise-demo-placeholder.svg',
         alt: 'Person performing forearm plank with proper form: straight body line, elbows under shoulders, core engaged',
         type: 'image'
       }
@@ -287,7 +287,7 @@ export const exercises: Exercise[] = [
     ],
     media: [
       {
-        src: '/images/exercises/bicep-curl.jpg',
+        src: '/images/exercises/exercise-demo-placeholder.svg',
         alt: 'Person performing dumbbell bicep curl: elbows pinned to sides, palms facing up, curling weight toward shoulders',
         type: 'image'
       }
@@ -326,7 +326,7 @@ export const exercises: Exercise[] = [
     ],
     media: [
       {
-        src: '/images/exercises/tricep-extension.jpg',
+        src: '/images/exercises/exercise-demo-placeholder.svg',
         alt: 'Person performing overhead tricep extension with dumbbell: upper arms stationary, elbows bending to lower weight behind head',
         type: 'image'
       }
@@ -366,7 +366,7 @@ export const exercises: Exercise[] = [
     ],
     media: [
       {
-        src: '/images/exercises/lateral-raise.jpg',
+        src: '/images/exercises/exercise-demo-placeholder.svg',
         alt: 'Person performing dumbbell lateral raise: slight elbow bend, raising arms to shoulder height, leading with elbows',
         type: 'image'
       }
@@ -406,7 +406,7 @@ export const exercises: Exercise[] = [
     ],
     media: [
       {
-        src: '/images/exercises/face-pulls.jpg',
+        src: '/images/exercises/exercise-demo-placeholder.svg',
         alt: 'Person performing face pulls with cable rope: pulling toward face, elbows high, hands separating near ears',
         type: 'image'
       }
@@ -448,7 +448,7 @@ export const exercises: Exercise[] = [
     ],
     media: [
       {
-        src: '/images/exercises/squat.jpg',
+        src: '/images/exercises/exercise-demo-placeholder.svg',
         alt: 'Person performing barbell back squat: feet shoulder-width, chest up, lowering to parallel depth, knees tracking over toes',
         type: 'image'
       }
@@ -489,7 +489,7 @@ export const exercises: Exercise[] = [
     ],
     media: [
       {
-        src: '/images/exercises/deadlift.jpg',
+        src: '/images/exercises/exercise-demo-placeholder.svg',
         alt: 'Person performing conventional deadlift: flat back, bar close to legs, driving through heels to stand tall',
         type: 'image'
       }
@@ -530,7 +530,7 @@ export const exercises: Exercise[] = [
     ],
     media: [
       {
-        src: '/images/exercises/lunge.jpg',
+        src: '/images/exercises/exercise-demo-placeholder.svg',
         alt: 'Person performing dumbbell lunge: front knee at 90 degrees over ankle, back knee above floor, torso upright',
         type: 'image'
       }
@@ -571,7 +571,7 @@ export const exercises: Exercise[] = [
     ],
     media: [
       {
-        src: '/images/exercises/glute-bridge.jpg',
+        src: '/images/exercises/exercise-demo-placeholder.svg',
         alt: 'Person performing weighted glute bridge: barbell across hips, driving through heels, forming straight line from shoulders to knees',
         type: 'image'
       }
@@ -612,7 +612,7 @@ export const exercises: Exercise[] = [
     ],
     media: [
       {
-        src: '/images/exercises/calf-raise.jpg',
+        src: '/images/exercises/exercise-demo-placeholder.svg',
         alt: 'Person performing standing calf raise on step: heels lowered below step for stretch, rising onto toes with contraction',
         type: 'image'
       }
@@ -653,7 +653,7 @@ export const exercises: Exercise[] = [
     ],
     media: [
       {
-        src: '/images/exercises/step-up.jpg',
+        src: '/images/exercises/exercise-demo-placeholder.svg',
         alt: 'Person performing dumbbell step-up: entire foot on bench, driving through heel to lift body, torso upright',
         type: 'image'
       }
@@ -694,7 +694,7 @@ export const exercises: Exercise[] = [
     ],
     media: [
       {
-        src: '/images/exercises/wall-sit.jpg',
+        src: '/images/exercises/exercise-demo-placeholder.svg',
         alt: 'Person performing wall sit: back flat against wall, thighs parallel to floor, knees at 90 degrees over ankles',
         type: 'image'
       }
@@ -736,7 +736,7 @@ export const exercises: Exercise[] = [
     ],
     media: [
       {
-        src: '/images/exercises/bulgarian-split-squat.jpg',
+        src: '/images/exercises/exercise-demo-placeholder.svg',
         alt: 'Person performing dumbbell Bulgarian split squat: rear foot on bench, front knee at 90 degrees, torso upright',
         type: 'image'
       }
@@ -777,7 +777,7 @@ export const exercises: Exercise[] = [
     ],
     media: [
       {
-        src: '/images/exercises/kettlebell-swing.jpg',
+        src: '/images/exercises/exercise-demo-placeholder.svg',
         alt: 'Person performing kettlebell swing: hinging at hips, driving hips forward to swing kettlebell to chest height',
         type: 'image'
       }
@@ -819,7 +819,7 @@ export const exercises: Exercise[] = [
     ],
     media: [
       {
-        src: '/images/exercises/box-jump.jpg',
+        src: '/images/exercises/exercise-demo-placeholder.svg',
         alt: 'Person performing box jump: explosive triple extension, landing softly on box with knees bent, feet flat',
         type: 'image'
       }

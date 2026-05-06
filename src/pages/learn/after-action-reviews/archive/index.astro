@@ -1,8 +1,10 @@
 ---
 import Layout from '@/components/Layout.astro';
 import { aarEntries } from '@/data/aar';
+import { getAarConfiguration } from '@/lib/aarSubmission';
 
 const approvedAARs = aarEntries.filter(aar => aar.approved);
+const allowPublicSubmissions = getAarConfiguration().enabled;
 
 approvedAARs.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
@@ -146,12 +148,16 @@ function getParticipantsCount(aar: typeof approvedAARs[0]): string {
           <p class="text-muted-foreground mb-4">
             The archive is empty. Be the first to submit an After Action Review!
           </p>
-          <a 
-            href="/learn/after-action-reviews/submit" 
-            class="inline-block bg-primary text-white px-6 py-2 rounded hover:bg-primary-dark transition-colors font-medium"
-          >
-            Submit an AAR
-          </a>
+          {allowPublicSubmissions ? (
+            <a 
+              href="/learn/after-action-reviews/submit" 
+              class="inline-block bg-primary text-white px-6 py-2 rounded hover:bg-primary-dark transition-colors font-medium"
+            >
+              Submit an AAR
+            </a>
+          ) : (
+            <p class="text-muted-foreground text-sm">Public submissions are currently disabled.</p>
+          )}
         </div>
       )}
 
@@ -165,13 +171,17 @@ function getParticipantsCount(aar: typeof approvedAARs[0]): string {
             &larr; AAR Overview
           </a>
           <span class="text-border">|</span>
-          <a 
-            href="/learn/after-action-reviews/submit" 
-            class="text-primary hover:text-primary-dark font-medium"
-          >
-            Submit an AAR
-          </a>
-          <span class="text-border">|</span>
+          {allowPublicSubmissions ? (
+            <>
+              <a 
+                href="/learn/after-action-reviews/submit" 
+                class="text-primary hover:text-primary-dark font-medium"
+              >
+                Submit an AAR
+              </a>
+              <span class="text-border">|</span>
+            </>
+          ) : null}
           <a 
             href="/learn" 
             class="text-primary hover:text-primary-dark font-medium"

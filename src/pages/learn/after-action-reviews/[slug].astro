@@ -1,8 +1,10 @@
 ---
 import Layout from '@/components/Layout.astro';
 import { aarEntries } from '@/data/aar';
+import { getAarConfiguration } from '@/lib/aarSubmission';
 
 const { slug } = Astro.params;
+const allowPublicSubmissions = getAarConfiguration().enabled;
 
 const aar = aarEntries.find((entry) => entry.id === slug);
 
@@ -246,13 +248,17 @@ function getParticipantsCount(a: any): string {
           Back to Archive
         </a>
         <span class="text-gray-300">|</span>
-        <a 
-          href="/learn/after-action-reviews/submit" 
-          class="text-red-800 hover:text-red-900 font-medium"
-        >
-          Submit Your AAR
-        </a>
-        <span class="text-gray-300">|</span>
+        {allowPublicSubmissions ? (
+          <>
+            <a 
+              href="/learn/after-action-reviews/submit" 
+              class="text-red-800 hover:text-red-900 font-medium"
+            >
+              Submit Your AAR
+            </a>
+            <span class="text-gray-300">|</span>
+          </>
+        ) : null}
         <a 
           href="/learn/after-action-reviews" 
           class="text-red-800 hover:text-red-900 font-medium"
